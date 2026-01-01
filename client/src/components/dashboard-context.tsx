@@ -53,10 +53,12 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const loadData = async () => {
       try {
+        // Use base path for GitHub Pages deployment
+        const basePath = import.meta.env.BASE_URL || '';
         const [featuresRes, jiraRes, salesRes] = await Promise.all([
-          fetch('/data/features.json'),
-          fetch('/data/jira.json'),
-          fetch('/data/sales.json'),
+          fetch(`${basePath}data/features.json`),
+          fetch(`${basePath}data/jira.json`),
+          fetch(`${basePath}data/sales.json`),
         ]);
 
         if (!featuresRes.ok || !jiraRes.ok || !salesRes.ok) {

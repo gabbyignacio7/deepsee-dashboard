@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, Router as WouterRouter } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -14,7 +14,10 @@ import PlatformArchitecture from "@/pages/platform-architecture";
 import FeatureDetail from "@/pages/feature-detail";
 import NotFound from "@/pages/not-found";
 
-function Router() {
+// Get base path from Vite config for GitHub Pages
+const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, '') || '';
+
+function AppRouter() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
@@ -39,10 +42,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <DashboardProvider>
-          <Toaster />
-          <Router />
-        </DashboardProvider>
+        <WouterRouter base={BASE_PATH}>
+          <DashboardProvider>
+            <Toaster />
+            <AppRouter />
+          </DashboardProvider>
+        </WouterRouter>
       </TooltipProvider>
     </QueryClientProvider>
   );
