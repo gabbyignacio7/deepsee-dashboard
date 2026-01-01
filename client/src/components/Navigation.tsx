@@ -23,14 +23,10 @@ export default function Navigation() {
 
   const isActive = (path: string) => location === path || (path === '/executive' && location === '/');
 
-  const handleLogout = async () => {
-    try {
-      await fetch('/api/auth/logout', { method: 'POST' });
-      window.location.reload();
-    } catch (err) {
-      console.error('Logout failed:', err);
-      window.location.reload();
-    }
+  const handleLogout = () => {
+    // Clear client-side session storage for static hosting
+    sessionStorage.removeItem('deepsee_auth');
+    window.location.reload();
   };
 
   return (
