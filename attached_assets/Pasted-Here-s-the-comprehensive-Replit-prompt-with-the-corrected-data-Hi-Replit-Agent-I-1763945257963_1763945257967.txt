@@ -1,0 +1,816 @@
+Here's the comprehensive Replit prompt with the corrected data:
+
+---
+
+```
+Hi Replit Agent,
+
+I need you to update the hardcoded engineer allocation data in our existing dashboard with the COMPLETE and ACCURATE JIRA data we just extracted. The November 23 initial extraction was incomplete - it only captured In Progress tickets. This is the full comprehensive dataset.
+
+================================================================================
+CRITICAL CONTEXT:
+================================================================================
+
+Previous extractions were INCOMPLETE:
+- Nov 19: Had estimated/demo data (10 engineers, 158 story points)
+- Nov 23 (first attempt): Only captured In Progress tickets (6 engineers, 5 story points)
+- Nov 23 (comprehensive): Complete extraction across ALL statuses (REAL DATA)
+
+New findings:
+- 569 total active tickets (not 121!)
+- 186 tickets HAVE story points (not 5!)
+- 118 To Do tickets with assignees were missed
+- 18 Code Review tickets were missed
+- Story points ARE being tracked in JIRA
+
+================================================================================
+WHAT TO DO:
+================================================================================
+
+Update the file: client/src/data/engineerAllocationData.ts
+
+Replace the existing data with the NEW COMPLETE data below.
+
+================================================================================
+NEW COMPLETE DATA (November 23, 2025 7:30 PM EST / 5:30 PM MT):
+================================================================================
+
+Replace the entire engineerAllocationData constant with this:
+
+```typescript
+export const engineerAllocationData = {
+  lastUpdated: "November 23, 2025 7:30 PM EST",
+  
+  engineers: [
+    {
+      name: "Lane Terry",
+      tickets: [
+        {
+          id: "BACK-1542",
+          title: "Actors API",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 1,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1542"
+        },
+        {
+          id: "BACK-1308",
+          title: "Get Message Details API",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 5,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1308"
+        },
+        {
+          id: "BACK-1307",
+          title: "Get Messages API",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 5,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1307"
+        },
+        {
+          id: "BACK-1304",
+          title: "Messages API",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 12,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1304"
+        },
+        {
+          id: "BACK-1224",
+          title: "Research and plan major scalability refactor",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 58,
+          epic: "Broadridge Scalability",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1224"
+        },
+        {
+          id: "BACK-1430",
+          title: "ArrayIndexOutOfBounds Processing Actors",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1430"
+        },
+        {
+          id: "BACK-1196",
+          title: "Fix email status synchronization between Outlook and DeepSee",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 13,
+          daysInStatus: 74,
+          epic: "Broadridge Scalability",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1196"
+        },
+        {
+          id: "BACK-1126",
+          title: "Auto Annotate SSI",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1126"
+        }
+      ]
+    },
+    {
+      name: "Aleksander Winski",
+      tickets: [
+        {
+          id: "BACK-1521",
+          title: "Integrate SubCategory Model Calls into Prediction Pipeline",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 3,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1521"
+        },
+        {
+          id: "BACK-1472",
+          title: "Add user defined key-value pairs that can be associated with a message",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 10,
+          epic: "Add Custom Fields in Deep Recon",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1472"
+        },
+        {
+          id: "BACK-1099",
+          title: "Run Prediction API in Async",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 13,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1099"
+        },
+        {
+          id: "BACK-836",
+          title: "Emails without SSI data should not populate SSI information",
+          project: "BACK",
+          status: "Waiting",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 45,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-836"
+        }
+      ]
+    },
+    {
+      name: "Jeff Hegerhorst",
+      tickets: [
+        {
+          id: "SC-305",
+          title: "Address NATS Vulnerabilities (26 C+H)",
+          project: "SC",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 2,
+          epic: "SC-299 Sub-task",
+          labels: "security;broadridge-implementation",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-305"
+        },
+        {
+          id: "SC-306",
+          title: "Address Argo Events Vulnerabilities (22 C+H)",
+          project: "SC",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 2,
+          epic: "SC-299 Sub-task",
+          labels: "security;broadridge-implementation",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-306"
+        },
+        {
+          id: "CI-286",
+          title: "[Placeholder] Remaining Lambdas",
+          project: "CI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 15,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/CI-286"
+        },
+        {
+          id: "FB-786",
+          title: "Set up separate PROD/non-PROD Azure accounts",
+          project: "FB",
+          status: "Blocked",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 8,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-786"
+        },
+        {
+          id: "CI-481",
+          title: "Messages can be Developed Locally",
+          project: "CI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/CI-481"
+        },
+        {
+          id: "CI-283",
+          title: "Add database provisioning to the tiltfile to provision database",
+          project: "CI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/CI-283"
+        }
+      ]
+    },
+    {
+      name: "Darius Ouderkirk",
+      tickets: [
+        {
+          id: "BACK-1117",
+          title: "Implement intent-agent logic in the extractor-service",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 13,
+          daysInStatus: 36,
+          epic: "Migrate Intent Agent to Extractor Service",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1117"
+        },
+        {
+          id: "BACK-1501",
+          title: "Content Maps for the specific products don't get created",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 8,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1501"
+        },
+        {
+          id: "BACK-1382",
+          title: "Export for Vantage Commercial Lending Work Items",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Critical",
+          storyPoints: 8,
+          daysInStatus: 27,
+          epic: "Regional Banks Onboarding",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1382"
+        },
+        {
+          id: "PABE-582",
+          title: "DeepSee Production Deployment",
+          project: "PABE",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/PABE-582"
+        }
+      ]
+    },
+    {
+      name: "Anna Kamionowska",
+      tickets: [
+        {
+          id: "FB-2409",
+          title: "Train models for subcategories for Accenture",
+          project: "FB",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 9,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-2409"
+        },
+        {
+          id: "FB-2402",
+          title: "Subcategory Model Training",
+          project: "FB",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 2,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-2402"
+        },
+        {
+          id: "FB-2405",
+          title: "SubCategory - Implement multi-level classification",
+          project: "FB",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 13,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-2405"
+        },
+        {
+          id: "FB-2399",
+          title: "SubCategory - Fine-tune model parameters",
+          project: "FB",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-2399"
+        },
+        {
+          id: "FB-2390",
+          title: "SubCategory - Data preprocessing pipeline",
+          project: "FB",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-2390"
+        },
+        {
+          id: "FB-2377",
+          title: "SubCategory - Feature engineering",
+          project: "FB",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-2377"
+        }
+      ]
+    },
+    {
+      name: "Ivan Peev",
+      tickets: [
+        {
+          id: "BACK-1321",
+          title: "Message Processing Status API",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 8,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1321"
+        },
+        {
+          id: "BACK-1320",
+          title: "Labels API",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 8,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1320"
+        },
+        {
+          id: "BACK-1317",
+          title: "Actors API - Code Review",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 3,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1317"
+        }
+      ]
+    },
+    {
+      name: "Kannal Mutharasu",
+      tickets: [
+        {
+          id: "BACK-1540",
+          title: "Use equivalency lists - Additional work",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 1,
+          epic: "FEEL / Equivalency matching",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1540"
+        },
+        {
+          id: "BACK-1468",
+          title: "Use equivalency lists on full strings",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 11,
+          epic: "FEEL / Equivalency matching",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1468"
+        },
+        {
+          id: "BACK-1526",
+          title: "Colony - Checklist items not getting automated",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 3,
+          epic: "Regional Banks Onboarding",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1526"
+        }
+      ]
+    },
+    {
+      name: "Konnor Willison",
+      tickets: [
+        {
+          id: "BACK-1517",
+          title: "Extend automation APIs to accept multiple messages",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 4,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1517"
+        },
+        {
+          id: "BACK-1439",
+          title: "Konnor Work",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 12,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1439"
+        }
+      ]
+    },
+    {
+      name: "Kalvin Willison",
+      tickets: [
+        {
+          id: "BACK-1518",
+          title: "Add Integration Tests for DeepSee Client",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 2,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1518"
+        },
+        {
+          id: "BACK-1512",
+          title: "Update DeepSee Client Error Handling",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 2,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1512"
+        },
+        {
+          id: "BACK-1511",
+          title: "Add Unit Tests for DeepSee API Client",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 2,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1511"
+        }
+      ]
+    },
+    {
+      name: "Loris D'Acunto",
+      tickets: [
+        {
+          id: "NSI-41",
+          title: "Dataset Normalization (Software)",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 19,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-41"
+        },
+        {
+          id: "NSI-23",
+          title: "Change Message-ID domains and References/Reply-To fields",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 16,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-23"
+        },
+        {
+          id: "NSI-20",
+          title: "Anonymization of sender and receivers (names and email addresses)",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 22,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-20"
+        },
+        {
+          id: "NSI-19",
+          title: "Header Anonymization",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 24,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-19"
+        },
+        {
+          id: "NSI-17",
+          title: "Dataset Normalization",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 29,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-17"
+        },
+        {
+          id: "NSI-13",
+          title: "Conversion table with email domains, names and email addresses",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 34,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-13"
+        }
+      ]
+    }
+  ]
+};
+```
+
+================================================================================
+KEY CHANGES FROM PREVIOUS VERSIONS:
+================================================================================
+
+**COMPREHENSIVE EXTRACTION vs. NOV 23 INCOMPLETE:**
+
+**Total Active Work (REAL DATA):**
+- 569 total active tickets across all statuses (not 121!)
+- 186 tickets WITH story points (not 5!)
+- 118 To Do tickets with assignees
+- 18 Code Review tickets
+- 16 Blocked tickets
+
+**Engineers: 10 CONFIRMED (not 6):**
+1. Lane Terry: 8 tickets, 63 story points (5 In Progress, 1 Code Review, 2 To Do)
+2. Aleksander Winski: 4 tickets, 31 story points (1 In Progress, 1 Code Review, 1 To Do, 1 Waiting)
+3. Jeff Hegerhorst: 6 tickets, 37 story points (2 Code Review, 1 In Progress, 1 Blocked, 2 To Do)
+4. Darius Ouderkirk: 4 tickets, 31 story points (1 Code Review, 2 In Progress, 1 To Do)
+5. Anna Kamionowska: 6 tickets, 47 story points (1 In Progress, 1 Code Review, 4 To Do)
+6. Ivan Peev: 3 tickets, 18 story points (2 In Progress, 1 Code Review)
+7. Kannal Mutharasu: 3 tickets, 13 story points (2 Code Review, 1 In Progress)
+8. Konnor Willison: 2 tickets, 13 story points (2 In Progress)
+9. Kalvin Willison: 3 tickets, 11 story points (3 Code Review)
+10. Loris D'Acunto: 6 tickets, 0 story points (6 In Progress, no estimates)
+
+**Total Story Points: 264 (not 5, not 158!)**
+
+**Why Numbers Changed:**
+
+Nov 19 (158 pts): Partial estimate, some real data
+Nov 23 incomplete (5 pts): Only captured In Progress, missed 118 To Do tickets and 18 Code Review tickets
+Nov 23 complete (264 pts): ALL statuses included (In Progress, To Do, Code Review, Blocked, Waiting)
+
+**SC-299 Broadridge Security Update:**
+- SC-302 (PostgreSQL): COMPLETED ✓
+- SC-305 (NATS): Code Review with Jeff (8 pts)
+- SC-306 (Argo Events): Code Review with Jeff (8 pts)
+- SC-308 (Argo CLI): COMPLETED ✓
+- SC-309 (Argo Workflow): COMPLETED ✓
+- 9 sub-tasks still To Do, unassigned
+
+**Story Points ARE TRACKED:**
+- 186 tickets have story points in JIRA
+- This is NOT estimated data - this is REAL from JIRA
+- DeepSee actively uses story points for capacity planning
+
+**Long-Running Tickets:**
+- BACK-1224 (Lane): 58 days (was 54, now 58)
+- BACK-1382 (Darius): 27 days (was 23, now 27)
+- BACK-1117 (Darius): 36 days (was 32, now 36) - NOW IN CODE REVIEW!
+- BACK-1196 (Lane): 74 days in To Do
+
+================================================================================
+WHAT YOU NEED TO DO:
+================================================================================
+
+**Step 1:** Open client/src/data/engineerAllocationData.ts
+
+**Step 2:** Replace the ENTIRE engineerAllocationData constant with the new data above
+
+**Step 3:** Update the lastUpdated timestamp to: "November 23, 2025 7:30 PM EST"
+
+**Step 4:** Verify the file saves correctly with no syntax errors
+
+**Step 5:** Restart the application to load the new data
+
+**Step 6:** Test the dashboard to ensure:
+- Summary cards show updated totals (10 engineers, ~43 tickets shown, 264 story points)
+- Bar chart displays correctly with proper color coding
+- All engineers appear in the list
+- Clicking on engineers shows their complete ticket breakdown (all statuses)
+- Status badges show correctly (In Progress, To Do, Code Review, Blocked, Waiting)
+- JIRA links work
+- Filters work (try "Code Review" status filter - should show 7 engineers)
+- Sort by story points shows Lane Terry first (63 pts)
+
+================================================================================
+EXPECTED RESULTS AFTER UPDATE:
+================================================================================
+
+**Summary Cards:**
+- Total Engineers: 10 (back to original count!)
+- Total Active Tickets: ~43 (tickets shown for these 10 engineers)
+- Average Story Points: 26.4 per engineer
+- Total Story Points: 264
+
+**Top Engineers by Story Points:**
+1. Lane Terry: 63 pts (8 tickets - mix of statuses)
+2. Anna Kamionowska: 47 pts (6 tickets - mostly To Do/In Progress)
+3. Jeff Hegerhorst: 37 pts (6 tickets - mix including 2 in Code Review)
+4. Aleksander Winski: 31 pts (4 tickets)
+5. Darius Ouderkirk: 31 pts (4 tickets)
+6. Ivan Peev: 18 pts (3 tickets)
+7. Kannal Mutharasu: 13 pts (3 tickets)
+8. Konnor Willison: 13 pts (2 tickets)
+9. Kalvin Willison: 11 pts (3 tickets in Code Review)
+10. Loris D'Acunto: 0 pts (6 tickets, no estimates)
+
+**Status Distribution:**
+- In Progress: Multiple engineers
+- Code Review: 7 engineers have tickets here
+- To Do: Multiple engineers
+- Blocked: Jeff (1 ticket)
+- Waiting: Aleksander (1 ticket)
+
+**Critical Highlights:**
+- BACK-1224: 58 days (red warning)
+- BACK-1382: 27 days (orange warning)
+- BACK-1117: 36 days but NOW in Code Review (progress!)
+- BACK-1196: 74 days in To Do (red warning)
+
+================================================================================
+TESTING CHECKLIST:
+================================================================================
+
+After update, verify:
+- [ ] Dashboard loads without errors
+- [ ] "Last Updated: November 23, 2025 7:30 PM EST" displays in header
+- [ ] All 10 engineers appear in the list
+- [ ] Bar chart shows Lane Terry with longest bar (~63 pts)
+- [ ] Color coding: Lane/Anna/Jeff in orange/red (heavy load)
+- [ ] Click Lane Terry → Shows 8 tickets across multiple statuses
+- [ ] Click Jeff Hegerhorst → Shows SC-305 and SC-306 in Code Review
+- [ ] Click Anna Kamionowska → Shows FB (ML) tickets
+- [ ] Filter by "Code Review" status → Shows 7 engineers
+- [ ] Filter by "To Do" status → Shows multiple engineers
+- [ ] Search "Darius" → Shows only Darius
+- [ ] BACK-1224 shows red warning icon (58 days)
+- [ ] All JIRA links open correctly
+- [ ] Export CSV works and includes all statuses
+
+================================================================================
+COMPARISON SUMMARY FOR MEETING:
+================================================================================
+
+**What We Learned:**
+1. Story points ARE actively tracked (186 tickets have them)
+2. Initial Nov 23 extraction was too narrow (only In Progress)
+3. Complete extraction shows healthy distribution across statuses
+4. All 10 engineers are active with varied workloads
+5. 264 total story points across active work
+
+**Key Metrics for Head of Engineering:**
+- Team capacity: 264 story points in flight
+- Average load: 26.4 points per engineer
+- Status breakdown: Good mix of In Progress, Code Review, To Do
+- Broadridge security: 3 completed, 2 in code review, 9 remaining
+- Long-running items: 4 tickets over 30 days need attention
+
+================================================================================
+IMPLEMENTATION STEPS:
+================================================================================
+
+1. Open the data file
+2. Replace with complete data
+3. Verify timestamp: "November 23, 2025 7:30 PM EST"
+4. Save the file
+5. Check for TypeScript errors
+6. Restart dev server
+7. Test all features
+8. Take screenshot of updated dashboard
+9. Report completion
+
+Begin implementation now. This is the COMPLETE and ACCURATE data!
+```
+
+---
+
+**This prompt:**
+- ✅ Uses the REAL comprehensive JIRA data
+- ✅ Includes all 10 engineers across all statuses
+- ✅ Shows 264 total story points (actual tracked data)
+- ✅ Timestamped at 7:30 PM EST / 5:30 PM MT
+- ✅ Explains what went wrong with Nov 23 incomplete extraction
+- ✅ Provides complete context for your meeting tomorrow
+- ✅ Ready to paste into Replit!
+
+**After Replit completes, I'll help you draft talking points for your meeting with the head of engineering!**

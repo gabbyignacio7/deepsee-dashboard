@@ -1,0 +1,494 @@
+// ============================================================================
+// DEEPSEE AI DASHBOARD UPDATE - December 2, 2025
+// Source: 2025-11-07-DeepSee-prioritization-dashboard-v3__3_.xlsx
+// Updated by: Gabriel Ignacio
+// ============================================================================
+// 
+// CHANGES IN THIS UPDATE:
+// 1. Ryan populated Conversion Probability (Column O) - COMPLETE
+// 2. Confidence Level defaulted to MEDIUM (0.5) per Ryan's direction
+// 3. Full sales pipeline data with probabilities
+// 4. Complete features data with scoring fields
+//
+// PRIORITIZATION FORMULA:
+// Score = (ARR × Replicability × Conversion%) / (Effort_Weeks × Confidence%)
+// Note: Conversion and Confidence are stored as whole numbers (e.g., 80 = 80%)
+//
+// PROBABILITY SCALE (from Ryan):
+// - Introduction: 10%
+// - Qualification: 30%
+// - Proposal/POC: 50-60%
+// - Contract Negotiation: 80%
+// - Closed Won: 100%
+//
+// CONFIDENCE LEVEL (default MEDIUM per Ryan):
+// - High: 100%
+// - Medium: 50% (DEFAULT)
+// - Low: 33%
+// ============================================================================
+
+// ============================================
+// SALES PIPELINE DATA
+// Source: Master_Data_Sales_Pipeline sheet
+// ============================================
+
+const salesPipelineData = [
+  {
+    "opportunity_id": "OPP-001",
+    "opportunity_name": "DTCC Trade Processing POC to Production",
+    "account_name": "DTCC",
+    "stage": "Closed Won",
+    "arr_value": 750000,
+    "close_date": "2025-12-31",
+    "probability_pct": 100,
+    "owner": "Steve Shillingford",
+    "agent_type": "Trade Processing",
+    "mapped_feature_id": "F-026",
+    "status": "Active",
+    "notes": ""
+  },
+  {
+    "opportunity_id": "OPP-002",
+    "opportunity_name": "Broadridge Email Automation Expansion",
+    "account_name": "Broadridge",
+    "stage": "Closed Won",
+    "arr_value": 500000,
+    "close_date": "2025-11-30",
+    "probability_pct": 100,
+    "owner": "Steve Shillingford",
+    "agent_type": "Email Automation",
+    "mapped_feature_id": "F-030",
+    "status": "Active",
+    "notes": ""
+  },
+  {
+    "opportunity_id": "OPP-003",
+    "opportunity_name": "Colony Bank SSI Deployment",
+    "account_name": "Regional Banks - Colony Bank",
+    "stage": "Closed Won",
+    "arr_value": 200000,
+    "close_date": "2025-12-15",
+    "probability_pct": 100,
+    "owner": "Armen Sargysan",
+    "agent_type": "Standing Settlement Instructions",
+    "mapped_feature_id": "F-036",
+    "status": "Active",
+    "notes": ""
+  },
+  {
+    "opportunity_id": "OPP-004",
+    "opportunity_name": "Accenture Multi-Agent Platform",
+    "account_name": "Accenture",
+    "stage": "Closed Won",
+    "arr_value": 1200000,
+    "close_date": "2025-10-31",
+    "probability_pct": 100,
+    "owner": "Steve Shillingford",
+    "agent_type": "Platform (All Agents)",
+    "mapped_feature_id": "F-034, F-035",
+    "status": "Active",
+    "notes": ""
+  },
+  {
+    "opportunity_id": "OPP-005",
+    "opportunity_name": "JP Morgan Reconciliation Annual Renewal",
+    "account_name": "JP Morgan",
+    "stage": "Closed Won",
+    "arr_value": 3000000,
+    "close_date": "2025-12-31",
+    "probability_pct": 100,
+    "owner": "Steve Shillingford",
+    "agent_type": "Core Reconciliation",
+    "mapped_feature_id": "F-032",
+    "status": "Renewal",
+    "notes": ""
+  },
+  {
+    "opportunity_id": "OPP-006",
+    "opportunity_name": "Sunwest Bank SSI Deployment",
+    "account_name": "Regional Banks - Sunwest Bank",
+    "stage": "Contract Negotiation",
+    "arr_value": 180000,
+    "close_date": "2026-01-31",
+    "probability_pct": 80,
+    "owner": "Armen Sargysan",
+    "agent_type": "Standing Settlement Instructions",
+    "mapped_feature_id": "F-037",
+    "status": "Active",
+    "notes": ""
+  },
+  {
+    "opportunity_id": "OPP-007",
+    "opportunity_name": "Large Bank Trade Processing Platform",
+    "account_name": "[Confidential - Large US Bank]",
+    "stage": "Contract Negotiation",
+    "arr_value": 2500000,
+    "close_date": "2026-02-28",
+    "probability_pct": 80,
+    "owner": "Steve Shillingford",
+    "agent_type": "Trade Processing",
+    "mapped_feature_id": "F-040",
+    "status": "Active",
+    "notes": ""
+  },
+  {
+    "opportunity_id": "OPP-008",
+    "opportunity_name": "Vantage Bank Custom Reconciliation POC",
+    "account_name": "Regional Banks - Vantage Bank",
+    "stage": "POC",
+    "arr_value": 200000,
+    "close_date": "2026-03-31",
+    "probability_pct": 50,
+    "owner": "Armen Sargysan",
+    "agent_type": "Core Reconciliation",
+    "mapped_feature_id": "F-038",
+    "status": "At Risk",
+    "notes": "Client tired of waiting, requires prepayment or binding contract"
+  },
+  {
+    "opportunity_id": "OPP-009",
+    "opportunity_name": "Insurance Company Loan Operations",
+    "account_name": "[Prospect - Insurance Co A]",
+    "stage": "POC",
+    "arr_value": 600000,
+    "close_date": "2026-04-30",
+    "probability_pct": 60,
+    "owner": "Armen Sargysan",
+    "agent_type": "Loan Operations",
+    "mapped_feature_id": "F-045",
+    "status": "Active",
+    "notes": ""
+  },
+  {
+    "opportunity_id": "OPP-010",
+    "opportunity_name": "Asset Manager Email Automation",
+    "account_name": "[Prospect - Asset Manager B]",
+    "stage": "POC",
+    "arr_value": 400000,
+    "close_date": "2026-03-31",
+    "probability_pct": 60,
+    "owner": "Armen Sargysan",
+    "agent_type": "Email Automation",
+    "mapped_feature_id": "F-039",
+    "status": "Active",
+    "notes": ""
+  },
+  {
+    "opportunity_id": "OPP-011",
+    "opportunity_name": "Regional Bank Consortium Platform",
+    "account_name": "[Prospect - Regional Bank Consortium]",
+    "stage": "Proposal",
+    "arr_value": 800000,
+    "close_date": "2026-05-31",
+    "probability_pct": 50,
+    "owner": "Steve Shillingford",
+    "agent_type": "Platform (All Agents)",
+    "mapped_feature_id": "Multiple platform features",
+    "status": "Active",
+    "notes": ""
+  },
+  {
+    "opportunity_id": "OPP-012",
+    "opportunity_name": "Hedge Fund Trade Matching",
+    "account_name": "[Prospect - Hedge Fund D]",
+    "stage": "Proposal",
+    "arr_value": 350000,
+    "close_date": "2026-04-30",
+    "probability_pct": 50,
+    "owner": "Armen Sargysan",
+    "agent_type": "Matching Engine",
+    "mapped_feature_id": "F-043",
+    "status": "Active",
+    "notes": ""
+  },
+  {
+    "opportunity_id": "OPP-013",
+    "opportunity_name": "Global Bank Security Settlements",
+    "account_name": "[Prospect - Global Bank E]",
+    "stage": "Qualification",
+    "arr_value": 1500000,
+    "close_date": "2026-06-30",
+    "probability_pct": 30,
+    "owner": "Steve Shillingford",
+    "agent_type": "Security Settlements",
+    "mapped_feature_id": "F-041",
+    "status": "Active",
+    "notes": ""
+  },
+  {
+    "opportunity_id": "OPP-014",
+    "opportunity_name": "Investment Bank One View Platform",
+    "account_name": "[Prospect - Investment Bank F]",
+    "stage": "Qualification",
+    "arr_value": 900000,
+    "close_date": "2026-07-31",
+    "probability_pct": 30,
+    "owner": "Armen Sargysan",
+    "agent_type": "One View",
+    "mapped_feature_id": "F-044",
+    "status": "Active",
+    "notes": ""
+  },
+  {
+    "opportunity_id": "OPP-015",
+    "opportunity_name": "European Bank Multi-Agent Exploration",
+    "account_name": "[Prospect - European Bank G]",
+    "stage": "Introduction",
+    "arr_value": 2000000,
+    "close_date": "2026-09-30",
+    "probability_pct": 10,
+    "owner": "Steve Shillingford",
+    "agent_type": "Platform (All Agents)",
+    "mapped_feature_id": "Multiple platform features",
+    "status": "Early Stage",
+    "notes": ""
+  },
+  {
+    "opportunity_id": "OPP-016",
+    "opportunity_name": "Pension Fund DeepPilot Discussion",
+    "account_name": "[Prospect - Pension Fund H]",
+    "stage": "Introduction",
+    "arr_value": 500000,
+    "close_date": "2026-08-31",
+    "probability_pct": 10,
+    "owner": "Armen Sargysan",
+    "agent_type": "DeepPilot",
+    "mapped_feature_id": "F-047",
+    "status": "Early Stage",
+    "notes": ""
+  }
+];
+
+// ============================================
+// CLIENT-SPECIFIC FEATURES (with ARR)
+// Source: Master_Data_Features sheet
+// Only features with direct revenue impact
+// ============================================
+
+const clientFeaturesData = [
+  {
+    "feature_id": "F-026",
+    "feature_name": "DTCC Agent Onboarding - Trade Processing Phase 1",
+    "agent_type": "Trade Processing",
+    "category": "Client-Specific Work",
+    "quarter_planned": "NEXT",
+    "replicability_score": 3,
+    "primary_client": "DTCC",
+    "arr_amount": 750000,
+    "conversion_probability": 100,
+    "current_status": "",
+    "completion_pct": 0.6,
+    "effort_tshirt": "L",
+    "effort_weeks": 8,
+    "confidence_level": 50
+  },
+  {
+    "feature_id": "F-030",
+    "feature_name": "Email Automation Workflow",
+    "agent_type": "Email Automation",
+    "category": "Client-Specific Work",
+    "quarter_planned": "NOW",
+    "replicability_score": 3,
+    "primary_client": "Broadridge",
+    "arr_amount": 500000,
+    "conversion_probability": 100,
+    "current_status": "",
+    "completion_pct": 0,
+    "effort_tshirt": "M",
+    "effort_weeks": 4,
+    "confidence_level": 50
+  },
+  {
+    "feature_id": "F-031",
+    "feature_name": "Broadridge Critical Bug Fix - Email Processing",
+    "agent_type": "Trade Processing",
+    "category": "Bug Fixes",
+    "quarter_planned": "NOW",
+    "replicability_score": 1,
+    "primary_client": "Broadridge",
+    "arr_amount": -500000,
+    "conversion_probability": 100,
+    "current_status": "In Progress",
+    "completion_pct": 0.7,
+    "effort_tshirt": "L",
+    "effort_weeks": 8,
+    "confidence_level": 50
+  },
+  {
+    "feature_id": "F-034",
+    "feature_name": "Accenture Email Automation Deployment - HERA",
+    "agent_type": "Email Automation",
+    "category": "Client-Specific Work",
+    "quarter_planned": "NOW",
+    "replicability_score": 4,
+    "primary_client": "Accenture",
+    "arr_amount": 1200000,
+    "conversion_probability": 100,
+    "current_status": "",
+    "completion_pct": 0,
+    "effort_tshirt": "M",
+    "effort_weeks": 4,
+    "confidence_level": 50
+  },
+  {
+    "feature_id": "F-036",
+    "feature_name": "HMDA / CRA Reporting - Colony Bank",
+    "agent_type": "HMDA / CRA",
+    "category": "Client-Specific Work",
+    "quarter_planned": "NOW",
+    "replicability_score": 5,
+    "primary_client": "Regional Banks",
+    "arr_amount": 200000,
+    "conversion_probability": 100,
+    "current_status": "In Progress",
+    "completion_pct": 0.4,
+    "effort_tshirt": "L",
+    "effort_weeks": 8,
+    "confidence_level": 50
+  },
+  {
+    "feature_id": "F-037",
+    "feature_name": "Treasury Agent Deployment - Sunwest Bank",
+    "agent_type": "Standing Settlement Instructions",
+    "category": "Client-Specific Work",
+    "quarter_planned": "NOW",
+    "replicability_score": 5,
+    "primary_client": "Regional Banks",
+    "arr_amount": 180000,
+    "conversion_probability": 80,
+    "current_status": "",
+    "completion_pct": 0,
+    "effort_tshirt": "M",
+    "effort_weeks": 4,
+    "confidence_level": 50
+  },
+  {
+    "feature_id": "F-038",
+    "feature_name": "Vantage Bank Custom Reconciliation (POC)",
+    "agent_type": "Core Reconciliation",
+    "category": "Client-Specific Work",
+    "quarter_planned": "NEXT",
+    "replicability_score": 2,
+    "primary_client": "Regional Banks",
+    "arr_amount": 200000,
+    "conversion_probability": 50,
+    "current_status": "Not Started",
+    "completion_pct": 0,
+    "effort_tshirt": "S",
+    "effort_weeks": 2,
+    "confidence_level": 50
+  }
+];
+
+// ============================================
+// EFFORT T-SHIRT SIZE MAPPING
+// ============================================
+
+const effortMapping = {
+  "XS": 1,
+  "S": 2,
+  "M": 4,
+  "L": 8,
+  "XL": 16
+};
+
+// ============================================
+// PRIORITY SCORING FUNCTION
+// Formula: (ARR × Replicability × Conversion%) / (Effort × Confidence%)
+// Note: Conversion and Confidence are now percentages (0-100)
+// ============================================
+
+function calculatePriorityScore(feature) {
+  const arr = Math.abs(feature.arr_amount) || 0;
+  const replicability = feature.replicability_score || 1;
+  const conversion = (feature.conversion_probability || 100) / 100; // Convert % to decimal
+  const effort = feature.effort_weeks || 4;
+  const confidence = (feature.confidence_level || 50) / 100; // Convert % to decimal
+  
+  // Handle bug fixes (negative ARR = risk mitigation)
+  const arrMultiplier = feature.arr_amount < 0 ? 2 : 1; // Double weight for risk mitigation
+  
+  const score = (arr * arrMultiplier * replicability * conversion) / (effort * confidence);
+  
+  return Math.round(score);
+}
+
+// ============================================
+// PRIORITY TIER ASSIGNMENT
+// ============================================
+
+function assignPriorityTier(score) {
+  if (score >= 500000) return "Tier 0: Emergency";
+  if (score >= 200000) return "Tier 1: Fast Track";
+  if (score >= 100000) return "Tier 2: Standard Delivery";
+  if (score >= 50000) return "Tier 3: Custom Engagement";
+  return "Tier 4: Backlog";
+}
+
+// ============================================
+// CALCULATED PRIORITY SCORES
+// ============================================
+
+const calculatedPriorities = clientFeaturesData.map(feature => {
+  const score = calculatePriorityScore(feature);
+  return {
+    feature_id: feature.feature_id,
+    feature_name: feature.feature_name,
+    primary_client: feature.primary_client,
+    arr_amount: feature.arr_amount,
+    conversion_probability: feature.conversion_probability,
+    replicability_score: feature.replicability_score,
+    effort_weeks: feature.effort_weeks,
+    confidence_level: feature.confidence_level,
+    priority_score: score,
+    priority_tier: assignPriorityTier(score)
+  };
+}).sort((a, b) => b.priority_score - a.priority_score);
+
+// ============================================
+// PIPELINE SUMMARY METRICS
+// ============================================
+
+const pipelineMetrics = {
+  total_pipeline_arr: salesPipelineData.reduce((sum, opp) => sum + opp.arr_value, 0),
+  weighted_pipeline_arr: salesPipelineData.reduce((sum, opp) => sum + (opp.arr_value * opp.probability_pct / 100), 0),
+  closed_won_arr: salesPipelineData.filter(opp => opp.stage === "Closed Won").reduce((sum, opp) => sum + opp.arr_value, 0),
+  at_risk_arr: salesPipelineData.filter(opp => opp.status === "At Risk").reduce((sum, opp) => sum + opp.arr_value, 0),
+  opportunities_by_stage: {
+    "Introduction": salesPipelineData.filter(opp => opp.stage === "Introduction").length,
+    "Qualification": salesPipelineData.filter(opp => opp.stage === "Qualification").length,
+    "Proposal": salesPipelineData.filter(opp => opp.stage === "Proposal").length,
+    "POC": salesPipelineData.filter(opp => opp.stage === "POC").length,
+    "Contract Negotiation": salesPipelineData.filter(opp => opp.stage === "Contract Negotiation").length,
+    "Closed Won": salesPipelineData.filter(opp => opp.stage === "Closed Won").length
+  }
+};
+
+// ============================================
+// EXPORT FOR DASHBOARD
+// ============================================
+
+module.exports = {
+  salesPipelineData,
+  clientFeaturesData,
+  effortMapping,
+  calculatePriorityScore,
+  assignPriorityTier,
+  calculatedPriorities,
+  pipelineMetrics
+};
+
+// ============================================
+// CONSOLE OUTPUT FOR VERIFICATION
+// ============================================
+
+console.log("=== PIPELINE METRICS ===");
+console.log(`Total Pipeline ARR: $${pipelineMetrics.total_pipeline_arr.toLocaleString()}`);
+console.log(`Weighted Pipeline ARR: $${pipelineMetrics.weighted_pipeline_arr.toLocaleString()}`);
+console.log(`Closed Won ARR: $${pipelineMetrics.closed_won_arr.toLocaleString()}`);
+console.log(`At Risk ARR: $${pipelineMetrics.at_risk_arr.toLocaleString()}`);
+console.log("");
+console.log("=== CALCULATED PRIORITIES ===");
+calculatedPriorities.forEach(p => {
+  console.log(`${p.feature_id}: ${p.feature_name.substring(0, 40).padEnd(40)} | Score: ${p.priority_score.toLocaleString().padStart(10)} | ${p.priority_tier}`);
+});

@@ -1,0 +1,256 @@
+# DeepSee AI Dashboard Enhancement - Replit Prompt
+
+## CONTEXT
+I have an existing Streamlit dashboard for DeepSee AI's prioritization system. The dashboard currently displays features, JIRA tickets, sales pipeline data, and various analytical views. I need to make three critical enhancements based on stakeholder feedback.
+
+## ATTACHED FILES
+- **Excel File**: `2025-11-07-DeepSee-prioritization-dashboard-v3__1_.xlsx` (Contains updated data with new filtering requirements)
+
+## DATA STRUCTURE OVERVIEW
+
+### Master_Data_JIRA_Tickets Sheet (2,663 tickets)
+Key columns:
+- `jira_ticket_id`: Unique ticket identifier (e.g., "PR-1555", "UI-694", "BACK-1481")
+- `jira_ticket_title`: Ticket description
+- `jira_status`: Current status
+- `jira_category`: Category classification
+- `project_key`: Project identifier (BACK, UI, PR, CI, SC, FB)
+- `client_name`: Associated client
+- `effort_tshirt_size`: Size estimate (XS, S, M, L, XL)
+- `story_points`: Numeric effort estimate
+- `mapped_feature_id`: Links to features (F-001, F-002, etc.)
+- `mapped_feature_name`: Feature name
+- `assigned_engineer`: Engineer assignment
+- `sprint`: Sprint assignment
+- **`Product Proposed to Deprecate`**: Filter flag ('Y' or 'N') - **CRITICAL FOR FILTERING**
+- `Additional Notes on Reason to Deprecate`: Optional comment field
+
+**Current Data Distribution:**
+- Total tickets: 2,663
+- Tickets marked 'Y' (to deprecate/exclude): 1,968
+- Tickets marked 'N' (to keep active): 695
+
+### Master_Data_Features Sheet (47 features)
+Key columns:
+- `Feature_ID`: Unique identifier (F-001 through F-047)
+- `Feature_Name`: Feature description
+- `Priority_Tier`: Tier classification (Emergency, High Priority, Medium Priority, etc.)
+- `ARR_Amount`: Annual Recurring Revenue
+- `Replicability_Score`: Replicability metric
+- `Conversion_Probability_%`: Likelihood of conversion
+- `Effort_Estimate_Weeks`: Effort estimate
+- `Effort_T-Shirt_Size`: Size category
+- `Priority_Score`: Calculated priority
+- `Weighted_ARR`: Revenue-weighted metric
+- `JIRA_Ticket_Count`: Number of associated JIRA tickets
+- Plus 40+ other columns for comprehensive tracking
+
+## REQUIRED ENHANCEMENTS
+
+### ENHANCEMENT 1: JIRA Ticket Filtering by Deprecation Flag
+**Requirement**: Add a default filter that excludes JIRA tickets where `Product Proposed to Deprecate` = 'Y'
+
+**Implementation Requirements:**
+1. **Keep the column visible** in the dashboard - users should still see this field in the data view
+2. **Apply filter by default** - When the dashboard loads, automatically exclude all tickets with 'Y' in the deprecation field
+3. **Make filter toggleable** - Add a checkbox/toggle in the sidebar that allows users to:
+   - ☑ "Exclude Deprecated Tickets" (DEFAULT: CHECKED)
+   - When unchecked, show all 2,663 tickets
+   - When checked, show only 695 tickets (those with 'N' or blank values)
+4. **Update metrics dynamically** - All dashboard metrics (ticket counts, story points, workload calculations) should update based on filter state
+5. **Persist filter state** - If possible, remember the user's filter preference within the session
+
+**Code Suggestions:**
+```python
+# In sidebar
+show_deprecated = st.sidebar.checkbox(
+    "Exclude Deprecated Tickets", 
+    value=True,  # Default to checked
+    help="Hide tickets marked 'Y' in 'Product Proposed to Deprecate' field"
+)
+
+# Apply filter to dataframe
+if show_deprecated:
+    df_jira_filtered = df_jira[df_jira['Product Proposed to Deprecate'] != 'Y']
+else:
+    df_jira_filtered = df_jira.copy()
+
+# Display filter impact
+st.sidebar.metric(
+    "Active Tickets", 
+    len(df_jira_filtered),
+    delta=f"{len(df_jira_filtered) - len(df_jira)} from total"
+)
+```
+
+### ENHANCEMENT 2: Update All Dashboard Data to Reflect Excel File
+**Requirement**: Replace all data loading to use the attached Excel file as the single source of truth
+
+**Implementation Requirements:**
+1. **Update data loading function** to read from: `2025-11-07-DeepSee-prioritization-dashboard-v3__1_.xlsx`
+2. **Load all relevant sheets:**
+   - Master_Data_Features (header at row 2)
+   - Master_Data_JIRA_Tickets (header at row 1)
+   - Master_Data_Sales_Pipeline (header at row 2)
+   - Master_Data_Client_Projects (header at row 2)
+   - Master_Data_Won_Deals (header at row 2)
+   - Lookup_Tables (header at row 2)
+3. **Verify data integrity** after loading (row counts, required columns present)
+4. **Handle header rows correctly** - Some sheets have headers in row 1, others in row 2
+5. **Update all dashboard calculations** to work with new data structure
+6. **Test all existing views** (Sales, Engineering, Product, Management) to ensure they render correctly
+
+**Code Suggestions:**
+```python
+@st.cache_data
+def load_data():
+    file_path = '2025-11-07-DeepSee-prioritization-dashboard-v3__1_.xlsx'
+    
+    # Load with appropriate header rows
+    df_jira = pd.read_excel(file_path, sheet_name='Master_Data_JIRA_Tickets', header=0)
+    df_features = pd.read_excel(file_path, sheet_name='Master_Data_Features', header=1)
+    df_sales = pd.read_excel(file_path, sheet_name='Master_Data_Sales_Pipeline', header=1)
+    df_projects = pd.read_excel(file_path, sheet_name='Master_Data_Client_Projects', header=1)
+    df_deals = pd.read_excel(file_path, sheet_name='Master_Data_Won_Deals', header=1)
+    df_lookups = pd.read_excel(file_path, sheet_name='Lookup_Tables', header=1)
+    
+    # Data validation
+    assert len(df_jira) == 2663, f"Expected 2663 JIRA tickets, got {len(df_jira)}"
+    assert len(df_features) == 47, f"Expected 47 features, got {len(df_features)}"
+    
+    return df_jira, df_features, df_sales, df_projects, df_deals, df_lookups
+```
+
+### ENHANCEMENT 3: Add Tooltips for Key Dashboard Metrics
+**Requirement**: Add hover tooltips with definitions for the five key priority framework terms
+
+**Tooltips Needed:**
+
+1. **Weighted ARR**
+   - **Definition**: "Annual Recurring Revenue (ARR) multiplied by the Conversion Probability. This represents the expected revenue value accounting for deal likelihood."
+   - **Formula**: `Weighted ARR = ARR × Conversion Probability`
+   - **Example**: "$100K ARR × 50% probability = $50K Weighted ARR"
+
+2. **ARR (Annual Recurring Revenue)**
+   - **Definition**: "Total annual contract value from a client for this feature or opportunity. Represents actual or projected recurring revenue."
+   - **Example**: "$250K/year contract = $250K ARR"
+
+3. **Replicability Score**
+   - **Definition**: "Measure of how many clients would benefit from this feature. Higher scores indicate platform features useful across multiple clients."
+   - **Scale**: "1-10 scale, where 10 = benefits all clients, 1 = single client only"
+
+4. **Conversion Probability**
+   - **Definition**: "Likelihood that a sales opportunity will close successfully, expressed as a percentage. Used to calculate Weighted ARR."
+   - **Scale**: "0-100%, where 100% = signed contract, 0% = unlikely to close"
+
+5. **Effort (T-Shirt Size)**
+   - **Definition**: "Estimated engineering effort required to deliver the feature, categorized by complexity and time."
+   - **Scale**: 
+     - "XS (1-3 days)"
+     - "S (4-7 days / 1 week)"
+     - "M (2-3 weeks)"
+     - "L (4-6 weeks)"
+     - "XL (7+ weeks)"
+
+**Implementation Requirements:**
+1. Add tooltips to **column headers** in data tables
+2. Add tooltips to **metric cards** on dashboard
+3. Add tooltips to **chart labels** where these terms appear
+4. Make tooltips **consistent across all dashboard views** (Sales, Engineering, Product, Management)
+5. Use clear, **non-technical language** suitable for Sales and Executive audiences
+6. Ensure tooltips are **visible on hover** and don't interfere with dashboard usability
+
+**Code Suggestions:**
+```python
+# Using Streamlit's built-in help parameter
+st.metric(
+    "Weighted ARR", 
+    f"${total_weighted_arr:,.0f}",
+    help="Annual Recurring Revenue (ARR) multiplied by Conversion Probability. Represents expected revenue value accounting for deal likelihood."
+)
+
+# For dataframes with tooltips
+def add_column_tooltips(df):
+    """Add tooltip metadata to dataframe columns"""
+    tooltips = {
+        'Weighted_ARR': 'ARR × Conversion Probability - Expected revenue accounting for deal likelihood',
+        'ARR_Amount': 'Annual Recurring Revenue - Total annual contract value',
+        'Replicability_Score': 'How many clients benefit (1-10 scale, 10=all clients)',
+        'Conversion_Probability_%': 'Likelihood of deal closing (0-100%)',
+        'Effort_T-Shirt_Size': 'Engineering effort: XS(1-3d), S(1wk), M(2-3wk), L(4-6wk), XL(7+wk)'
+    }
+    return tooltips
+
+# Display with tooltips in column config
+st.dataframe(
+    df,
+    column_config={
+        "Weighted_ARR": st.column_config.NumberColumn(
+            "Weighted ARR",
+            help="ARR × Conversion Probability - Expected revenue accounting for deal likelihood",
+            format="$%d"
+        ),
+        "Replicability_Score": st.column_config.NumberColumn(
+            "Replicability",
+            help="How many clients benefit (1-10 scale, 10=all clients)",
+            min_value=1,
+            max_value=10
+        )
+    }
+)
+```
+
+## ADDITIONAL REQUIREMENTS
+
+### Data Validation Checks
+After loading data, verify:
+- [ ] All 2,663 JIRA tickets loaded successfully
+- [ ] All 47 features loaded successfully
+- [ ] 'Product Proposed to Deprecate' column exists with 'Y'/'N' values
+- [ ] All required columns for calculations are present
+- [ ] No null values in critical fields (Feature_ID, jira_ticket_id, Priority_Score, ARR_Amount)
+
+### Testing Checklist
+- [ ] Filter toggle works correctly (checked = exclude Y's, unchecked = show all)
+- [ ] Metrics update dynamically when filter changes
+- [ ] All pivot views (Sales, Engineering, Management, Product) display correctly
+- [ ] Tooltips appear on hover for all five key terms
+- [ ] Dashboard performance remains acceptable with full dataset
+- [ ] Column 'Product Proposed to Deprecate' remains visible in tables
+
+### User Experience Requirements
+1. **Clear visual indication** when filter is active (e.g., colored badge showing "695 active tickets")
+2. **Smooth transitions** when toggling filter (no page reload if possible)
+3. **Tooltips appear quickly** (no delay) and don't block content
+4. **Responsive design** - tooltips work on different screen sizes
+5. **Error handling** - graceful failure if Excel file is missing or corrupted
+
+## OUTPUT EXPECTATIONS
+
+Please provide:
+1. **Updated complete Streamlit code** with all three enhancements implemented
+2. **Comments explaining** each major change
+3. **Any new dependencies** required (e.g., updated pandas version, new libraries)
+4. **Test results** showing:
+   - Filter working correctly (695 tickets shown when checked)
+   - All 2,663 tickets shown when unchecked
+   - Tooltips rendering properly
+5. **Any issues encountered** and how they were resolved
+
+## PRIORITY ORDER
+1. **HIGHEST**: Enhancement 1 (Filtering) - This is blocking stakeholder review
+2. **HIGH**: Enhancement 2 (Data Update) - Ensures dashboard reflects latest decisions
+3. **MEDIUM**: Enhancement 3 (Tooltips) - Improves usability for non-technical users
+
+## NOTES
+- The filtering feature is critical for Connor's review - he should only see the 695 active tickets by default
+- Ryan has already tagged all 2,663 tickets in the Excel file - we just need to respect those decisions in the dashboard
+- Tooltips requested specifically for Sales team and new team members who aren't familiar with the priority framework
+- Dashboard should maintain all existing functionality while adding these enhancements
+
+## EXAMPLE USE CASE
+When Ryan opens the dashboard:
+1. He sees **695 active tickets** (Y's excluded by default)
+2. He can quickly toggle to see **all 2,663 tickets** if needed for historical review
+3. When Steve (Sales) hovers over "Weighted ARR", he sees a clear explanation without needing to ask Ryan
+4. All existing views (Board view, Sprint planning, Feature breakdown) continue to work with filtered data

@@ -1,0 +1,89 @@
+Here's a comprehensive prompt for Replit to handle both tasks:
+
+---
+
+## Dashboard Update Request: Remove Name References & Update Engineer Allocation
+
+### Context
+I'm updating the Sprint Progress Dashboard/Board Slide for an upcoming board presentation. Two housekeeping items need to be addressed to make the dashboard cleaner and more professional.
+
+---
+
+### Task 1: Remove Name References from Priority Labels
+
+**Current State:**
+The dashboard contains sub-bullets and labels that reference specific people's priority rankings, such as:
+- "Ryan's number three"
+- "Steve's number four"
+- "Steve's number two priority"
+- Similar variations with team member names
+
+**Required Change:**
+Replace these name-based references with descriptive labels that explain what the item actually is. The goal is to make the dashboard more generic and professional for board-level viewing.
+
+**Examples of desired transformations:**
+| Current Label | Should Become |
+|---------------|---------------|
+| "Ryan's #3 priority" | The actual feature/initiative name or category (e.g., "Security Vulnerability Remediation") |
+| "Steve's #2" | Descriptive label (e.g., "Visual Progress Tracker - Compare Planned vs Delivered") |
+
+**Instructions:**
+1. Scan all dashboard views (Now, Next, Later buckets; Revenue, Operations, Innovation categories) for any references containing personal names followed by priority numbers
+2. Replace with the substantive description of what that item represents
+3. Keep any supplementary text that describes the actual work item
+4. Preserve the priority tier structure (Tier 0-4) - we're only removing the informal name-based shorthand
+
+---
+
+### Task 2: Remove Anna Cas from Engineer Allocation Display
+
+**Current State:**
+The engineer allocation chart/section still displays Anna Cas as an active team member with potential work allocation, even though she is currently on maternity leave.
+
+**Required Change:**
+Remove Anna Cas from the active engineer allocation display. Her assigned tickets should either:
+- Be flagged as needing reassignment, OR
+- Already have been transferred to other engineers (verify in JIRA data if available)
+
+**Instructions:**
+1. Locate the engineer allocation section (appears to show backend and frontend engineer distributions)
+2. Remove Anna Cas from the active engineer list
+3. If the dashboard pulls from JIRA data and her name persists, add a filter to exclude her from the displayed allocation
+4. Ensure the allocation percentages/charts recalculate correctly without her included
+5. If any tickets are still assigned to her in the data source, flag them or note they need reassignment
+
+---
+
+### Technical Notes
+
+**Dashboard Technology:**
+- The dashboard is likely built in Replit
+- Data may be pulling from JIRA API or a connected data source
+- The board view includes: sprint velocity tracking, ticket status buckets (To Do, In Progress, Done), engineer allocation charts, and categorized priority items
+
+**Priority Framework Reference:**
+The dashboard uses a tiered priority system with categories including:
+- Revenue (client-facing, ARR-impacting)
+- Operations (internal efficiency)
+- Innovation (future capabilities)
+
+And time horizons:
+- Now (current sprint)
+- Next (upcoming sprint)
+- Later (backlog)
+
+---
+
+### Deliverables
+1. Updated dashboard with all name-based priority references replaced with descriptive labels
+2. Engineer allocation section updated to exclude Anna Cas
+3. Brief summary of all changes made (for my records)
+
+---
+
+### Additional Context
+This dashboard will be used for board presentation materials, so professionalism and clarity are important. Ryan (CPO) specifically requested these changes to make the content more generic and appropriate for external stakeholders.
+
+---
+
+Let me know if you need me to provide the current dashboard code, data structure, or any specific file paths to locate these elements.

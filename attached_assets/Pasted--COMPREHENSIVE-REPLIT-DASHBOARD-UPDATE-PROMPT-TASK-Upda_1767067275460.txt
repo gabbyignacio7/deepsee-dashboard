@@ -1,0 +1,728 @@
+**COMPREHENSIVE REPLIT DASHBOARD UPDATE PROMPT**
+
+```
+TASK: Update DeepSee Dashboard with ARTEMIS Pillars, Mercury Section, and Sprint S2 Data (Dec 29)
+
+CONTEXT:
+- Dashboard: DeepSee Product Dashboard (React/TypeScript)
+- Updates requested by Ryan McQueen (CPO)
+- Date: December 29, 2025 @ 8:30 PM MT
+- Sprint: 2025-S2 (Holiday Sprint) - Day 11 of 14, 3 days remaining
+
+---
+
+PART A: STRUCTURAL CHANGES
+============================
+
+CHANGE 1: RENAME PILLAR
+
+BEFORE: "Service Fabric and Integrations"
+AFTER: "Platform"
+
+Find all instances and replace throughout codebase.
+
+---
+
+CHANGE 2: ADD PROJECT ARTEMIS HEADER WITH TOOLTIPS
+
+Add overall "Project ARTEMIS" header above pillars with tooltip links to PRD documents.
+
+ARTEMIS CONFIGURATION:
+
+```typescript
+const artemisConfig = {
+  header: {
+    name: "Project ARTEMIS",
+    description: "Next-generation AI platform for capital markets automation",
+    prdLink: "https://deepseehq-my.sharepoint.com/:w:/r/personal/ryan_mcqueen_deepsee_ai/_layouts/15/Doc.aspx?sourcedoc=%7B4A345503-C611-45C6-885A-C47A19821F9B%7D&file=Project_ARTEMIS_PRD_Full.docx&action=default&mobileredirect=true"
+  },
+  pillars: [
+    {
+      id: "platform",
+      name: "Platform",
+      description: "Communication, storage, and processing infrastructure for ARTEMIS",
+      prdLink: "https://deepseehq-my.sharepoint.com/:w:/r/personal/ryan_mcqueen_deepsee_ai/_layouts/15/Doc.aspx?sourcedoc=%7B698AB87A-61B5-4E84-B79A-E64A233C0334%7D&file=Platform_PRD_Full.docx&action=default&mobileredirect=true"
+    },
+    {
+      id: "automation-orchestration",
+      name: "Automation and Orchestration",
+      description: "Visibility, auditability, and multi-agent coordination",
+      prdLink: "https://deepseehq-my.sharepoint.com/:w:/r/personal/ryan_mcqueen_deepsee_ai/_layouts/15/Doc.aspx?sourcedoc=%7B6394B6C3-43F2-4A2B-BD28-7019A131303F%7D&file=Automation_Orchestration_PRD_Full.docx&action=default&mobileredirect=true"
+    }
+  ]
+};
+```
+
+TOOLTIP COMPONENT:
+
+```tsx
+interface PillarLinkProps {
+  name: string;
+  description: string;
+  prdLink: string;
+}
+
+const PillarLink: React.FC<PillarLinkProps> = ({ name, description, prdLink }) => {
+  const [showTooltip, setShowTooltip] = useState(false);
+  
+  return (
+    <div className="relative inline-flex items-center gap-1">
+      
+        href={prdLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-semibold text-blue-600 hover:text-blue-800 hover:underline"
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
+      >
+        {name}
+        <span className="ml-1 text-gray-400 text-sm">ⓘ</span>
+      </a>
+      
+      {showTooltip && (
+        <div className="absolute z-50 bottom-full left-0 mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg shadow-lg max-w-xs">
+          <p className="font-medium">{name}</p>
+          <p className="text-gray-300 text-xs mt-1">{description}</p>
+          <p className="text-blue-300 text-xs mt-1">Click to view PRD →</p>
+          <div className="absolute top-full left-4 w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-gray-900"></div>
+        </div>
+      )}
+    </div>
+  );
+};
+```
+
+---
+
+CHANGE 3: ADD MERCURY EXTRACTION TRACKING SECTION
+
+Create dedicated section for Mercury Extraction progress.
+
+MERCURY TICKETS DATA:
+
+```typescript
+const mercuryTickets = [
+  {
+    key: "BACK-1645",
+    summary: "Feedback: Mercury Extraction for HMDA",
+    status: "In Progress",
+    assignee: "Kalvin Willison",
+    client: "Colony Bank",
+    storyPoints: 3
+  },
+  {
+    key: "BACK-1591",
+    summary: "More Feedback: Mercury Extraction for Colony",
+    status: "Done",
+    assignee: "Kalvin Willison",
+    client: "Colony Bank",
+    storyPoints: 2
+  },
+  {
+    key: "BACK-1578",
+    summary: "Feedback: Mercury Extraction for Colony Bank",
+    status: "Done",
+    assignee: "Kalvin Willison",
+    client: "Colony Bank",
+    storyPoints: 2
+  },
+  {
+    key: "BACK-1532",
+    summary: "Fine-tune Mercury Extraction for Sunwest",
+    status: "In Progress",
+    assignee: "Konnor Willison",
+    client: "Sunwest",
+    storyPoints: 5
+  }
+];
+
+const mercuryMetrics = {
+  total: 4,
+  done: 2,
+  inProgress: 2,
+  toDo: 0,
+  completionPercent: 50,
+  clients: ["Colony Bank", "Sunwest", "BBVA"]
+};
+```
+
+MERCURY SECTION COMPONENT:
+
+```tsx
+const MercuryExtractionSection: React.FC = () => {
+  return (
+    <div className="bg-white rounded-lg shadow-md p-6 mt-6">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+            <span className="text-2xl">📄</span> Mercury Extraction
+          </h2>
+          <p className="text-sm text-gray-500">Document extraction service for loan packages and financial documents</p>
+        </div>
+        
+          href="https://deepsee.atlassian.net/issues/?jql=project%20in%20(BACK%2C%20UI)%20AND%20(summary%20~%20%27Mercury%27%20OR%20labels%20%3D%20%27Mercury%27)"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 hover:underline text-sm"
+        >
+          View in JIRA →
+        </a>
+      </div>
+
+      {/* Progress Bar */}
+      <div className="mb-4">
+        <div className="flex justify-between text-sm mb-1">
+          <span className="text-gray-600">Sprint S2 Completion</span>
+          <span className="font-semibold">50%</span>
+        </div>
+        <div className="w-full bg-gray-200 rounded-full h-3">
+          <div className="bg-green-500 h-3 rounded-full" style={{ width: '50%' }}></div>
+        </div>
+      </div>
+
+      {/* Metrics Grid */}
+      <div className="grid grid-cols-4 gap-4 mb-4">
+        <div className="text-center p-3 bg-gray-50 rounded-lg">
+          <p className="text-2xl font-bold text-gray-800">4</p>
+          <p className="text-xs text-gray-500">Total</p>
+        </div>
+        <div className="text-center p-3 bg-green-50 rounded-lg">
+          <p className="text-2xl font-bold text-green-600">2</p>
+          <p className="text-xs text-gray-500">Done</p>
+        </div>
+        <div className="text-center p-3 bg-blue-50 rounded-lg">
+          <p className="text-2xl font-bold text-blue-600">2</p>
+          <p className="text-xs text-gray-500">In Progress</p>
+        </div>
+        <div className="text-center p-3 bg-gray-50 rounded-lg">
+          <p className="text-2xl font-bold text-gray-600">0</p>
+          <p className="text-xs text-gray-500">To Do</p>
+        </div>
+      </div>
+
+      {/* Tickets Table */}
+      <div className="border rounded-lg overflow-hidden">
+        <table className="w-full text-sm">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-4 py-2 text-left font-medium text-gray-600">Ticket</th>
+              <th className="px-4 py-2 text-left font-medium text-gray-600">Summary</th>
+              <th className="px-4 py-2 text-left font-medium text-gray-600">Status</th>
+              <th className="px-4 py-2 text-left font-medium text-gray-600">Assignee</th>
+              <th className="px-4 py-2 text-left font-medium text-gray-600">Client</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-t hover:bg-gray-50">
+              <td className="px-4 py-2"><a href="https://deepsee.atlassian.net/browse/BACK-1645" target="_blank" className="text-blue-600 hover:underline font-medium">BACK-1645</a></td>
+              <td className="px-4 py-2 text-gray-700">Feedback: Mercury Extraction for HMDA</td>
+              <td className="px-4 py-2"><span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">In Progress</span></td>
+              <td className="px-4 py-2 text-gray-600">Kalvin Willison</td>
+              <td className="px-4 py-2 text-gray-600">Colony Bank</td>
+            </tr>
+            <tr className="border-t hover:bg-gray-50 bg-gray-50">
+              <td className="px-4 py-2"><a href="https://deepsee.atlassian.net/browse/BACK-1532" target="_blank" className="text-blue-600 hover:underline font-medium">BACK-1532</a></td>
+              <td className="px-4 py-2 text-gray-700">Fine-tune Mercury Extraction for Sunwest</td>
+              <td className="px-4 py-2"><span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">In Progress</span></td>
+              <td className="px-4 py-2 text-gray-600">Konnor Willison</td>
+              <td className="px-4 py-2 text-gray-600">Sunwest</td>
+            </tr>
+            <tr className="border-t hover:bg-gray-50">
+              <td className="px-4 py-2"><a href="https://deepsee.atlassian.net/browse/BACK-1591" target="_blank" className="text-blue-600 hover:underline font-medium">BACK-1591</a></td>
+              <td className="px-4 py-2 text-gray-700">More Feedback: Mercury Extraction for Colony</td>
+              <td className="px-4 py-2"><span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Done</span></td>
+              <td className="px-4 py-2 text-gray-600">Kalvin Willison</td>
+              <td className="px-4 py-2 text-gray-600">Colony Bank</td>
+            </tr>
+            <tr className="border-t hover:bg-gray-50 bg-gray-50">
+              <td className="px-4 py-2"><a href="https://deepsee.atlassian.net/browse/BACK-1578" target="_blank" className="text-blue-600 hover:underline font-medium">BACK-1578</a></td>
+              <td className="px-4 py-2 text-gray-700">Feedback: Mercury Extraction for Colony Bank</td>
+              <td className="px-4 py-2"><span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Done</span></td>
+              <td className="px-4 py-2 text-gray-600">Kalvin Willison</td>
+              <td className="px-4 py-2 text-gray-600">Colony Bank</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {/* Client Summary */}
+      <div className="mt-4 pt-4 border-t flex justify-between items-center">
+        <p className="text-sm text-gray-500">
+          <span className="font-medium">Active Clients:</span> Colony Bank, Sunwest, BBVA
+        </p>
+        <p className="text-sm text-gray-500">
+          <span className="font-medium">Lead:</span> Kalvin Willison
+        </p>
+      </div>
+    </div>
+  );
+};
+```
+
+---
+
+PART B: SPRINT S2 DATA UPDATE (December 29, 2025)
+==================================================
+
+UPDATE SPRINT HEADER DATA:
+
+```typescript
+const sprintData = {
+  sprint: "2025-S2",
+  sprintName: "Holiday Sprint",
+  startDate: "2025-12-19",
+  endDate: "2026-01-02",
+  daysElapsed: 11,
+  daysRemaining: 3,
+  capacity: "55%",
+  lastUpdated: "2025-12-29T20:30:00-07:00"
+};
+```
+
+---
+
+UPDATE STATUS BREAKDOWN:
+
+```typescript
+const statusBreakdown = {
+  done: { count: 30, percent: 41.1, color: "#22c55e" },
+  toDo: { count: 27, percent: 37.0, color: "#6b7280" },
+  inProgress: { count: 8, percent: 11.0, color: "#3b82f6" },
+  blocked: { count: 3, percent: 4.1, color: "#ef4444" },
+  codeReview: { count: 3, percent: 4.1, color: "#8b5cf6" },
+  inTesting: { count: 1, percent: 1.4, color: "#f59e0b" },
+  cancelled: { count: 1, percent: 1.4, color: "#9ca3af" },
+  total: 73
+};
+```
+
+---
+
+UPDATE PROJECT BREAKDOWN:
+
+```typescript
+const projectBreakdown = [
+  { project: "BACK", count: 33, color: "#3b82f6" },
+  { project: "UI", count: 18, color: "#8b5cf6" },
+  { project: "SC", count: 16, color: "#22c55e" },
+  { project: "CI", count: 5, color: "#f59e0b" },
+  { project: "FB", count: 1, color: "#6b7280" }
+];
+```
+
+---
+
+UPDATE ENGINEER WORKLOAD:
+
+```typescript
+const engineerWorkload = [
+  { name: "Ivan Peev", total: 10, done: 4, inProgress: 2, codeReview: 1, blocked: 0, toDo: 3 },
+  { name: "Jeff Hegerhorst", total: 8, done: 7, inProgress: 1, codeReview: 0, blocked: 0, toDo: 0 },
+  { name: "Chad Hegerhorst", total: 5, done: 3, inProgress: 0, codeReview: 0, blocked: 1, toDo: 1 },
+  { name: "Kannal Mutharasu", total: 5, done: 2, inProgress: 0, codeReview: 1, blocked: 0, toDo: 2 },
+  { name: "Owen Riley", total: 4, done: 2, inProgress: 1, codeReview: 0, blocked: 0, toDo: 0 },
+  { name: "Aleksander Winski", total: 4, done: 1, inProgress: 1, codeReview: 0, blocked: 0, toDo: 2 },
+  { name: "Konnor Willison", total: 4, done: 0, inProgress: 1, codeReview: 0, blocked: 0, toDo: 3 },
+  { name: "Kalvin Willison", total: 3, done: 0, inProgress: 1, codeReview: 0, blocked: 0, toDo: 2 },
+  { name: "Darius Ouderkirk", total: 3, done: 0, inProgress: 1, codeReview: 0, blocked: 0, toDo: 2 },
+  { name: "Matthew Snow", total: 2, done: 0, inProgress: 0, codeReview: 1, blocked: 0, toDo: 1 },
+  { name: "Treven Trujillo", total: 1, done: 0, inProgress: 0, codeReview: 0, blocked: 0, toDo: 1 },
+  { name: "Lane Terry", total: 1, done: 0, inProgress: 0, codeReview: 0, blocked: 0, toDo: 1 }
+];
+
+const unassigned = { total: 23, done: 1, inProgress: 1, codeReview: 1, blocked: 0, toDo: 20 };
+```
+
+---
+
+UPDATE BLOCKED TICKETS:
+
+```typescript
+const blockedTickets = [
+  {
+    key: "CI-898",
+    summary: "Upgrade JPM RDS version",
+    assignee: "Chad Hegerhorst",
+    blockerReason: "Postgres 13 EOL Feb 2026, JPM maintenance window constraints",
+    daysBlocked: 42,
+    critical: true
+  },
+  {
+    key: "BACK-1489",
+    summary: "Update classification-api Base Image to Ubuntu",
+    assignee: "Unassigned",
+    blockerReason: "Base image standardization dependency",
+    daysBlocked: 47,
+    critical: true
+  },
+  {
+    key: "UI-721",
+    summary: "DeepRecon - Make Subcategory Models' predictions...",
+    assignee: "Unassigned",
+    blockerReason: "Model dependency - NEW",
+    daysBlocked: 1,
+    critical: false
+  }
+];
+```
+
+---
+
+UPDATE CODE REVIEW QUEUE:
+
+```typescript
+const codeReviewQueue = [
+  {
+    key: "UI-724",
+    summary: "Deep Recon - Allow downloading more than 1000...",
+    assignee: "Matthew Snow",
+    daysInReview: 2
+  },
+  {
+    key: "BACK-1612",
+    summary: "Age Distribution API",
+    assignee: "Ivan Peev",
+    daysInReview: 1
+  },
+  {
+    key: "BACK-811",
+    summary: "Output processing fails for large work items",
+    assignee: "Kannal Mutharasu",
+    daysInReview: 3
+  }
+];
+```
+
+---
+
+UPDATE CLIENT TICKETS:
+
+```typescript
+const clientTickets = [
+  { client: "Accenture/HERA", total: 6, done: 0, inProgress: 2, toDo: 3, blocked: 1, arr: "$1.2M" },
+  { client: "Colony Bank", total: 2, done: 0, inProgress: 0, toDo: 2, blocked: 0, arr: "$200K" },
+  { client: "DTCC", total: 2, done: 0, inProgress: 0, toDo: 2, blocked: 0, arr: "$750K" },
+  { client: "Sunwest", total: 1, done: 0, inProgress: 1, toDo: 0, blocked: 0, arr: "$150K" },
+  { client: "BBVA", total: 1, done: 0, inProgress: 0, toDo: 1, blocked: 0, arr: "$100K" }
+];
+```
+
+---
+
+UPDATE SECURITY PROGRESS:
+
+```typescript
+const securityProgress = {
+  project: "SC",
+  total: 16,
+  done: 11,
+  inProgress: 0,
+  toDo: 5,
+  completionPercent: 68.8,
+  lead: "Jeff Hegerhorst"
+};
+```
+
+---
+
+UPDATE COMPARISON DATA (Dec 23 vs Dec 29):
+
+```typescript
+const comparisonData = {
+  baseline: {
+    date: "2025-12-23",
+    total: 69,
+    done: 20,
+    donePercent: 29,
+    inProgress: 9,
+    codeReview: 5,
+    blocked: 2,
+    unassigned: 21
+  },
+  current: {
+    date: "2025-12-29",
+    total: 73,
+    done: 30,
+    donePercent: 41,
+    inProgress: 8,
+    codeReview: 3,
+    blocked: 3,
+    unassigned: 23
+  },
+  delta: {
+    total: "+4",
+    done: "+10",
+    donePercent: "+12%",
+    inProgress: "-1",
+    codeReview: "-2",
+    blocked: "+1",
+    unassigned: "+2"
+  }
+};
+```
+
+---
+
+UPDATE COMPLETED SINCE DEC 23:
+
+```typescript
+const completedSinceDec23 = [
+  { key: "UI-729", summary: "Deep Pilot - Add a new stencil to return the value", assignee: "Owen Riley", project: "UI" },
+  { key: "UI-725", summary: "New Stencil - Subgroup Check Term Presens", assignee: "Owen Riley", project: "UI" },
+  { key: "CI-911", summary: "Restrict allowed ip addresses for aws load balancer", assignee: "Chad Hegerhorst", project: "CI" },
+  { key: "CI-901", summary: "AWS Cloudtrail - Cost Savings", assignee: "Chad Hegerhorst", project: "CI" },
+  { key: "BACK-1611", summary: "Add With Priority Functionality to Counterparty", assignee: "Ivan Peev", project: "BACK" },
+  { key: "BACK-1610", summary: "Counterparties Across Time API", assignee: "Ivan Peev", project: "BACK" },
+  { key: "BACK-1605", summary: "Add Manual Intervention Required Filter", assignee: "Ivan Peev", project: "BACK" },
+  { key: "BACK-1581", summary: "Message Breakout Chart API", assignee: "Ivan Peev", project: "BACK" },
+  { key: "BACK-1572", summary: "Manual tasks have to be pushed back to allegro", assignee: "Kannal Mutharasu", project: "BACK" },
+  { key: "BACK-839", summary: "Allow Event Status to be Updated via API", assignee: "Aleksander Winski", project: "BACK" }
+];
+```
+
+---
+
+UPDATE IN PROGRESS AT RISK:
+
+```typescript
+const inProgressAtRisk = [
+  { key: "UI-700", summary: "Identify the top five senders to a Project", assignee: "Owen Riley" },
+  { key: "SC-298", summary: "Fix Remaining Application-Level Dependencies", assignee: "Unassigned" },
+  { key: "CI-436", summary: "Port over the inference pipeline to argo workflows", assignee: "Jeff Hegerhorst" },
+  { key: "BACK-1645", summary: "Feedback: Mercury Extraction for HMDA", assignee: "Kalvin Willison" },
+  { key: "BACK-1640", summary: "Inbox Statistics API", assignee: "Ivan Peev" },
+  { key: "BACK-1602", summary: "Evaluate GPT-5 Responses API + Structured", assignee: "Darius Ouderkirk" },
+  { key: "BACK-1582", summary: "Deep Recon - make term predictions", assignee: "Aleksander Winski" },
+  { key: "BACK-1532", summary: "Fine-tune Mercury Extraction for Sunwest", assignee: "Konnor Willison" }
+];
+```
+
+---
+
+UPDATE ALERT BANNERS:
+
+```typescript
+const alertBanners = [
+  {
+    type: "critical",
+    color: "red",
+    icon: "🔴",
+    title: "Blocked > 7 Days",
+    message: "CI-898 (42 days), BACK-1489 (47 days) - Address blockers or move to S3",
+    tickets: ["CI-898", "BACK-1489"]
+  },
+  {
+    type: "warning",
+    color: "yellow",
+    icon: "🟡",
+    title: "In Progress at Risk",
+    message: "8 items in progress with only 3 days left - Prioritize for completion",
+    count: 8
+  },
+  {
+    type: "warning",
+    color: "yellow",
+    icon: "🟡",
+    title: "Unassigned Tickets",
+    message: "23 tickets unassigned - Assign or defer to S3",
+    count: 23
+  },
+  {
+    type: "info",
+    color: "green",
+    icon: "✅",
+    title: "Top Performer",
+    message: "Ivan Peev - 4 tickets completed since Dec 23",
+    engineer: "Ivan Peev"
+  }
+];
+```
+
+---
+
+UPDATE SPRINT HEALTH:
+
+```typescript
+const sprintHealth = {
+  status: "MODERATE",
+  color: "yellow",
+  emoji: "🟡",
+  summary: "Good progress (+12% completion) but significant work remains with only 3 days left",
+  metrics: {
+    completionRate: "41.1%",
+    trend: "📈 +12% from Dec 23",
+    dailyVelocity: "1.67 tickets/day",
+    ticketsNeededFor50: 7,
+    estimatedCarryover: "~30 tickets"
+  },
+  recommendations: [
+    "Unblock CI-898 and BACK-1489 or move to S3",
+    "Assign the 23 unassigned tickets or defer",
+    "Priority focus on 8 In Progress items",
+    "Clear 3 items in Code Review",
+    "Triage To Do items - move non-essential to S3"
+  ]
+};
+```
+
+---
+
+ADD SPRINT CLOSE READINESS COMPONENT:
+
+```tsx
+const SprintCloseReadiness: React.FC = () => {
+  return (
+    <div className="bg-white rounded-lg shadow-md p-6 mt-6">
+      <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+        <span className="text-2xl">🏁</span> Sprint Close Readiness
+        <span className="text-sm font-normal text-gray-500 ml-2">3 days remaining</span>
+      </h2>
+      
+      <div className="grid grid-cols-2 gap-6">
+        {/* Likely to Complete */}
+        <div className="border-l-4 border-green-500 pl-4">
+          <h3 className="font-semibold text-green-700 mb-2">✅ Likely to Complete</h3>
+          <ul className="text-sm text-gray-600 space-y-1">
+            <li>• 3 Code Review tickets (quick reviews)</li>
+            <li>• 8 In Progress items (if focused)</li>
+            <li>• Low complexity To Do items</li>
+          </ul>
+          <p className="text-sm font-medium text-green-600 mt-2">Achievable: 50%+ completion</p>
+        </div>
+        
+        {/* At Risk */}
+        <div className="border-l-4 border-red-500 pl-4">
+          <h3 className="font-semibold text-red-700 mb-2">⚠️ At Risk of Carryover</h3>
+          <ul className="text-sm text-gray-600 space-y-1">
+            <li>• 27 To Do tickets</li>
+            <li>• 3 Blocked tickets</li>
+            <li>• 23 Unassigned items</li>
+          </ul>
+          <p className="text-sm font-medium text-red-600 mt-2">Expected carryover: ~30 tickets</p>
+        </div>
+      </div>
+      
+      {/* Recommendations */}
+      <div className="mt-4 pt-4 border-t">
+        <h3 className="font-semibold text-gray-700 mb-2">📋 Final 3 Days Actions</h3>
+        <div className="grid grid-cols-2 gap-2 text-sm">
+          <div className="flex items-center gap-2 text-gray-600">
+            <span className="text-red-500">1.</span> Unblock CI-898 and BACK-1489
+          </div>
+          <div className="flex items-center gap-2 text-gray-600">
+            <span className="text-yellow-500">2.</span> Assign or defer 23 unassigned
+          </div>
+          <div className="flex items-center gap-2 text-gray-600">
+            <span className="text-blue-500">3.</span> Focus on 8 In Progress items
+          </div>
+          <div className="flex items-center gap-2 text-gray-600">
+            <span className="text-purple-500">4.</span> Clear Code Review queue
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+```
+
+---
+
+PART C: VISUAL LAYOUT
+======================
+
+DASHBOARD LAYOUT ORDER:
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  HEADER: Sprint 2025-S2 | Dec 29, 2025 | 3 days remaining          │
+├─────────────────────────────────────────────────────────────────────┤
+│  ALERT BANNERS (red/yellow/green)                                   │
+├─────────────────────────────────────────────────────────────────────┤
+│  PROJECT ARTEMIS HEADER WITH TOOLTIP                                │
+│  ├── Platform (tooltip + link)                                      │
+│  └── Automation and Orchestration (tooltip + link)                  │
+├─────────────────────────────────────────────────────────────────────┤
+│  ┌──────────────────────┐  ┌──────────────────────┐                │
+│  │  STATUS DONUT CHART  │  │  PROJECT BAR CHART   │                │
+│  │  Done: 30 (41%)      │  │  BACK: 33            │                │
+│  │  To Do: 27 (37%)     │  │  UI: 18              │                │
+│  │  In Progress: 8      │  │  SC: 16              │                │
+│  │  Blocked: 3          │  │  CI: 5               │                │
+│  └──────────────────────┘  └──────────────────────┘                │
+├─────────────────────────────────────────────────────────────────────┤
+│  COMPARISON CARD: Dec 23 vs Dec 29                                  │
+│  Done: 20 → 30 (+10) | Completion: 29% → 41% (+12%)                │
+├─────────────────────────────────────────────────────────────────────┤
+│  MERCURY EXTRACTION SECTION                                         │
+│  Progress: 50% | Tickets: 4 | In Progress: 2                       │
+├─────────────────────────────────────────────────────────────────────┤
+│  ENGINEER WORKLOAD TABLE (sortable)                                │
+├─────────────────────────────────────────────────────────────────────┤
+│  ┌─────────────────────┐  ┌─────────────────────┐                  │
+│  │  CLIENT TICKETS     │  │  SECURITY PROGRESS  │                  │
+│  │  Accenture: 6       │  │  SC: 68.8% complete │                  │
+│  │  Colony: 2          │  │  11/16 done         │                  │
+│  │  DTCC: 2            │  │  Lead: Jeff H.      │                  │
+│  └─────────────────────┘  └─────────────────────┘                  │
+├─────────────────────────────────────────────────────────────────────┤
+│  SPRINT CLOSE READINESS                                            │
+│  Likely to Complete | At Risk of Carryover | Recommendations       │
+├─────────────────────────────────────────────────────────────────────┤
+│  BLOCKED TICKETS (3) | CODE REVIEW QUEUE (3)                       │
+├─────────────────────────────────────────────────────────────────────┤
+│  COMPLETED SINCE DEC 23 (10 tickets)                               │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+PART D: IMPLEMENTATION CHECKLIST
+=================================
+
+[ ] 1. Rename "Service Fabric and Integrations" → "Platform"
+[ ] 2. Add artemisConfig with pillar definitions and PRD links
+[ ] 3. Create PillarLink tooltip component
+[ ] 4. Add Project ARTEMIS header to dashboard
+[ ] 5. Create MercuryExtractionSection component
+[ ] 6. Update sprintData with Dec 29 values
+[ ] 7. Update statusBreakdown (73 total, 30 done, 41.1%)
+[ ] 8. Update projectBreakdown
+[ ] 9. Update engineerWorkload (12 engineers + unassigned)
+[ ] 10. Update blockedTickets (3 items, including new UI-721)
+[ ] 11. Update codeReviewQueue (3 items, down from 5)
+[ ] 12. Update clientTickets
+[ ] 13. Update securityProgress (68.8% complete)
+[ ] 14. Add comparisonData (Dec 23 vs Dec 29)
+[ ] 15. Add completedSinceDec23 (10 tickets)
+[ ] 16. Add inProgressAtRisk (8 items)
+[ ] 17. Update alertBanners
+[ ] 18. Update sprintHealth
+[ ] 19. Create SprintCloseReadiness component
+[ ] 20. Test all tooltip links open correctly
+
+---
+
+OUTPUT EXPECTED:
+
+1. Screenshot of updated dashboard with all changes
+2. Confirmation ARTEMIS header displays with working tooltips
+3. Confirmation Mercury section displays with correct data
+4. All PRD links open in new tabs
+5. Sprint data reflects Dec 29 extraction
+```
+
+---
+
+**SUMMARY OF CHANGES:**
+
+| Change | Description |
+|--------|-------------|
+| Pillar Rename | "Service Fabric and Integrations" → "Platform" |
+| ARTEMIS Header | New header with tooltip linking to PRD |
+| Pillar Tooltips | Platform + Automation & Orchestration with PRD links |
+| Mercury Section | Dedicated tracking for Mercury Extraction (4 tickets, 50% complete) |
+| Sprint Data | Updated to Dec 29 (73 tickets, 41.1% done, 3 days remaining) |
+| Comparison | Dec 23 vs Dec 29 showing +10 tickets done (+12%) |
+| Alerts | 3 blocked, 8 at risk, 23 unassigned |
+| Sprint Close | Readiness assessment with recommendations |

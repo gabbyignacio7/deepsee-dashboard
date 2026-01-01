@@ -1,0 +1,1982 @@
+[
+  {
+    "JIRA_Ticket_ID": "DS-001",
+    "Title": "Pen testing security audit Q4 2025",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-003"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-002",
+    "Title": "Security vulnerability remediation - SQL injection",
+    "Status": "In Progress",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-003",
+    "Title": "API authentication hardening",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-004",
+    "Title": "Encryption at rest implementation",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-005",
+    "Title": "SIEM integration for audit logging",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-006",
+    "Title": "Multi-factor authentication implementation",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-007",
+    "Title": "Role-based access control (RBAC) enhancement",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-008",
+    "Title": "Security headers implementation",
+    "Status": "Code Review",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-009",
+    "Title": "Compliance audit preparation (SOC 2)",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-010",
+    "Title": "Security incident response playbook",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-011",
+    "Title": "Terraform deployment optimization",
+    "Status": "In Progress",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-003"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-012",
+    "Title": "Terraform state management improvement",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-013",
+    "Title": "Infrastructure drift detection automation",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-014",
+    "Title": "Multi-environment Terraform modules",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-015",
+    "Title": "Terraform backend migration to S3",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-016",
+    "Title": "CI/CD pipeline Terraform integration",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-017",
+    "Title": "Terraform documentation update",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-018",
+    "Title": "Disaster recovery Terraform scripts",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-019",
+    "Title": "Cost optimization Terraform modules",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-020",
+    "Title": "Auto-scaling Terraform configuration",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-021",
+    "Title": "Database optimization for scale",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-003"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-022",
+    "Title": "Query performance tuning - slow queries",
+    "Status": "In Progress",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-023",
+    "Title": "Database index optimization",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-024",
+    "Title": "Database sharding implementation",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-025",
+    "Title": "Read replica setup for high availability",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-026",
+    "Title": "Database backup automation",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-027",
+    "Title": "Database connection pooling optimization",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-028",
+    "Title": "Time-series data storage optimization",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-029",
+    "Title": "Database migration to PostgreSQL 15",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-030",
+    "Title": "Database monitoring and alerting setup",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-031",
+    "Title": "Database partitioning strategy",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-032",
+    "Title": "Database vacuum and maintenance automation",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-033",
+    "Title": "Database schema versioning",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-034",
+    "Title": "Database cost optimization analysis",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-035",
+    "Title": "Database encryption key rotation",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-036",
+    "Title": "Azure deployment automation",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-003"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-037",
+    "Title": "Azure DevOps pipeline optimization",
+    "Status": "In Progress",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-038",
+    "Title": "Container orchestration with AKS",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-039",
+    "Title": "Blue-green deployment implementation",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-040",
+    "Title": "Rollback automation for failed deployments",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-041",
+    "Title": "Environment parity testing automation",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-042",
+    "Title": "Azure cost monitoring dashboard",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-043",
+    "Title": "Load balancer configuration optimization",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-044",
+    "Title": "CDN integration for static assets",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-045",
+    "Title": "Application insights integration",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-046",
+    "Title": "Azure Functions for serverless workflows",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-047",
+    "Title": "Service mesh implementation (Istio)",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-048",
+    "Title": "API gateway configuration",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-049",
+    "Title": "Helm charts for Kubernetes deployment",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-050",
+    "Title": "GitOps workflow implementation",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-051",
+    "Title": "Service fabric internal enhancements - core logic",
+    "Status": "In Progress",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-003"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-052",
+    "Title": "Information graph database schema design",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-008"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-053",
+    "Title": "Information graph API endpoints",
+    "Status": "In Progress",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-008"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-054",
+    "Title": "Information graph query optimization",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-008"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-055",
+    "Title": "Information graph caching layer",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-008"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-056",
+    "Title": "Information graph relationship modeling",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-008"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-057",
+    "Title": "Agent-to-agent communication protocol",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-009"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-058",
+    "Title": "Agent state management enhancement",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-009"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-059",
+    "Title": "Agent orchestration engine improvement",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-009"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-060",
+    "Title": "Agent reasoning framework enhancement",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-009"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-061",
+    "Title": "Agent planning algorithm optimization",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-009"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-062",
+    "Title": "Multi-agent coordination logic",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-009"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-063",
+    "Title": "Agent performance monitoring",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-064",
+    "Title": "Agent failure recovery mechanism",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-065",
+    "Title": "Agent versioning and rollback",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-066",
+    "Title": "LLM inference optimization",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-010"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-067",
+    "Title": "Model training pipeline automation",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-010"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-068",
+    "Title": "GPU resource allocation optimization",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-010"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-069",
+    "Title": "Model versioning and registry",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-070",
+    "Title": "Model serving infrastructure",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-071",
+    "Title": "Feature store implementation",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-072",
+    "Title": "Model monitoring and drift detection",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-073",
+    "Title": "A/B testing framework for models",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-074",
+    "Title": "Model explainability tools",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-075",
+    "Title": "Prompt engineering framework",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-001"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-076",
+    "Title": "Fine-tuning pipeline for SLMs",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-077",
+    "Title": "Embedding model optimization",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-001"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-078",
+    "Title": "Vector database integration",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-001"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-079",
+    "Title": "Retrieval-augmented generation (RAG) pipeline",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-001"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-080",
+    "Title": "Model performance benchmarking",
+    "Status": "To Do",
+    "Category": "Core Infrastructure",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-101",
+    "Title": "DTCC onboarding - Extraction module Phase 1",
+    "Status": "In Progress",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-102",
+    "Title": "DTCC onboarding - Validation rules configuration",
+    "Status": "In Progress",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-103",
+    "Title": "DTCC onboarding - Reconciliation logic implementation",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-104",
+    "Title": "DTCC onboarding - Orchestration workflow",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-105",
+    "Title": "DTCC onboarding - Dashboard integration",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-106",
+    "Title": "DTCC onboarding - Data ingestion pipeline",
+    "Status": "In Progress",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-107",
+    "Title": "DTCC onboarding - API endpoints for trade data",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-108",
+    "Title": "DTCC onboarding - Break detection logic",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-109",
+    "Title": "DTCC onboarding - Notification system",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-110",
+    "Title": "DTCC onboarding - User training materials",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-111",
+    "Title": "DTCC onboarding - Performance testing",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-112",
+    "Title": "DTCC onboarding - Security audit preparation",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-113",
+    "Title": "DTCC onboarding - Data migration from legacy system",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-114",
+    "Title": "DTCC onboarding - UAT environment setup",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-115",
+    "Title": "DTCC onboarding - Production deployment plan",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "F-026"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-116",
+    "Title": "DTCC Phase 2 - Additional asset class support",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-027"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-117",
+    "Title": "DTCC Phase 2 - Enhanced reporting",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-027"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-118",
+    "Title": "DTCC Phase 2 - API expansion",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-027"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-119",
+    "Title": "DTCC Core Reconciliation - Schema design",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-028"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-120",
+    "Title": "DTCC Core Reconciliation - Data mapping logic",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-028"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-121",
+    "Title": "DTCC Core Reconciliation - Break resolution workflow",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-028"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-122",
+    "Title": "DTCC Core Reconciliation - Testing and validation",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-028"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-131",
+    "Title": "Broadridge trade matching bug fix - root cause analysis",
+    "Status": "In Progress",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "F-031"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-132",
+    "Title": "Broadridge trade matching bug fix - implementation",
+    "Status": "In Progress",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "F-031"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-133",
+    "Title": "Broadridge trade matching bug fix - testing",
+    "Status": "Code Review",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "F-031"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-134",
+    "Title": "Broadridge email automation - workflow design",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-030"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-135",
+    "Title": "Broadridge email automation - template configuration",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-030"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-136",
+    "Title": "Broadridge email automation - integration with Outlook",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-030"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-137",
+    "Title": "Broadridge email automation - response generation logic",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-030"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-138",
+    "Title": "Broadridge email automation - analytics dashboard",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-030"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-139",
+    "Title": "Broadridge email automation - testing and UAT",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-030"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-140",
+    "Title": "Broadridge matching engine - configuration setup",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-029"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-141",
+    "Title": "Broadridge matching engine - custom matching rules",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-029"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-142",
+    "Title": "Broadridge matching engine - break escalation logic",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-029"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-143",
+    "Title": "Broadridge matching engine - UI enhancements",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-029"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-144",
+    "Title": "Broadridge matching engine - performance optimization",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-029"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-145",
+    "Title": "Broadridge - quarterly business review preparation",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-146",
+    "Title": "Broadridge - SLA monitoring dashboard",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-147",
+    "Title": "Broadridge - custom reporting requirements",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-148",
+    "Title": "Broadridge - data retention policy implementation",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-151",
+    "Title": "JP Morgan reconciliation enhancement - requirements gathering",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "JP Morgan",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "F-032"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-152",
+    "Title": "JP Morgan reconciliation enhancement - implementation",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "JP Morgan",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-032"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-153",
+    "Title": "JP Morgan reconciliation enhancement - testing",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "JP Morgan",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-032"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-154",
+    "Title": "JP Morgan security settlements - configuration",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "JP Morgan",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-033"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-155",
+    "Title": "JP Morgan security settlements - optimization logic",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "JP Morgan",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-033"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-156",
+    "Title": "JP Morgan - annual contract renewal documentation",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "JP Morgan",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-161",
+    "Title": "Accenture email automation - deployment setup",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Accenture",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-034"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-162",
+    "Title": "Accenture email automation - custom workflow configuration",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Accenture",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-034"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-163",
+    "Title": "Accenture multi-agent orchestration - architecture design",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Accenture",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-035"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-164",
+    "Title": "Accenture multi-agent orchestration - implementation",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Accenture",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-035"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-165",
+    "Title": "Accenture - proof of concept documentation",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Accenture",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-171",
+    "Title": "Colony Bank SSI deployment - data integration",
+    "Status": "In Progress",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Regional Banks",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-036"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-172",
+    "Title": "Colony Bank SSI deployment - validation rules",
+    "Status": "In Progress",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Regional Banks",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-036"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-173",
+    "Title": "Colony Bank SSI deployment - UI configuration",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Regional Banks",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "F-036"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-174",
+    "Title": "Colony Bank SSI deployment - testing and UAT",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Regional Banks",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-036"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-175",
+    "Title": "Sunwest Bank SSI deployment - setup",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Regional Banks",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-037"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-176",
+    "Title": "Sunwest Bank SSI deployment - configuration",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Regional Banks",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-037"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-177",
+    "Title": "Vantage Bank custom reconciliation - requirements analysis",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Regional Banks",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-038"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-178",
+    "Title": "Vantage Bank custom reconciliation - custom logic development",
+    "Status": "To Do",
+    "Category": "Client-Specific Work",
+    "Client_Name": "Regional Banks",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-038"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-201",
+    "Title": "LLM extraction accuracy improvement",
+    "Status": "In Progress",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-001"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-202",
+    "Title": "Document type classification enhancement",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-001"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-203",
+    "Title": "Multi-language extraction support",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-022"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-204",
+    "Title": "Table extraction from PDFs",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-001"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-205",
+    "Title": "Handwritten text recognition",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-206",
+    "Title": "Entity extraction accuracy improvement",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-001"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-207",
+    "Title": "Confidence scoring for extracted fields",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-001"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-208",
+    "Title": "Extraction model fine-tuning pipeline",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-001"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-211",
+    "Title": "Simplified agentic UI - wireframe design",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-006"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-212",
+    "Title": "Simplified agentic UI - component library",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-006"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-213",
+    "Title": "Simplified agentic UI - implementation",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-013"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-214",
+    "Title": "Matching engine UI redesign",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-007"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-215",
+    "Title": "Information graph UI design",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-014"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-216",
+    "Title": "Information graph UI implementation",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-019"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-217",
+    "Title": "Responsive design optimization",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-218",
+    "Title": "Dark mode implementation",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-219",
+    "Title": "Accessibility improvements (WCAG 2.1)",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-220",
+    "Title": "User onboarding flow enhancement",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-002"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-221",
+    "Title": "Retention prediction UI development",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-004"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-222",
+    "Title": "Double-click dashboard message viewer",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-005"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-223",
+    "Title": "Activity tracing visualization",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-011"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-224",
+    "Title": "Exception prediction dashboard",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-012"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-225",
+    "Title": "User configurable dashboard framework",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-017"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-226",
+    "Title": "Process mapping visualization",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-018"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-227",
+    "Title": "Process optimization recommendations engine",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-018"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-228",
+    "Title": "Process variation highlights dashboard",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-023"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-229",
+    "Title": "Real-time analytics pipeline",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-230",
+    "Title": "Custom report builder",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-231",
+    "Title": "Data export functionality (CSV, Excel, PDF)",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-232",
+    "Title": "Dashboard performance optimization",
+    "Status": "To Do",
+    "Category": "Platform Improvements",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-301",
+    "Title": "Salesforce connectivity API development",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-302",
+    "Title": "Outlook integration API endpoints",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-016"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-303",
+    "Title": "Ops Console integration API",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "F-016"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-304",
+    "Title": "MCP (Model Context Protocol) integration",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "F-015"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-305",
+    "Title": "3rd party agent communication protocol",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "F-015"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-306",
+    "Title": "REST API versioning strategy",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-307",
+    "Title": "API rate limiting implementation",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-308",
+    "Title": "API authentication (OAuth 2.0)",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "L",
+    "Story_Points": 8,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-309",
+    "Title": "API documentation (OpenAPI/Swagger)",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-310",
+    "Title": "API monitoring and logging",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-311",
+    "Title": "Webhook implementation for event notifications",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-312",
+    "Title": "GraphQL API implementation",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-313",
+    "Title": "API caching layer (Redis)",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-314",
+    "Title": "API error handling standardization",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-315",
+    "Title": "API performance optimization",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-316",
+    "Title": "API SDK development (Python, JavaScript)",
+    "Status": "To Do",
+    "Category": "API Development",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "XL",
+    "Story_Points": 13,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-401",
+    "Title": "Trade reconciliation precision error fix",
+    "Status": "To Do",
+    "Category": "Bug Fixes",
+    "Client_Name": "Broadridge",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-402",
+    "Title": "Dashboard loading performance issue",
+    "Status": "In Progress",
+    "Category": "Bug Fixes",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-403",
+    "Title": "Email extraction timeout handling",
+    "Status": "Code Review",
+    "Category": "Bug Fixes",
+    "Client_Name": "Accenture",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-404",
+    "Title": "User session expiration bug",
+    "Status": "To Do",
+    "Category": "Bug Fixes",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-405",
+    "Title": "Date formatting inconsistency across timezones",
+    "Status": "To Do",
+    "Category": "Bug Fixes",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-406",
+    "Title": "PDF rendering issue for large files",
+    "Status": "To Do",
+    "Category": "Bug Fixes",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-407",
+    "Title": "Memory leak in agent execution loop",
+    "Status": "To Do",
+    "Category": "Bug Fixes",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-408",
+    "Title": "Concurrent write conflict in database",
+    "Status": "To Do",
+    "Category": "Bug Fixes",
+    "Client_Name": "Internal",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-409",
+    "Title": "API response timeout for large datasets",
+    "Status": "To Do",
+    "Category": "Bug Fixes",
+    "Client_Name": "DTCC",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-410",
+    "Title": "UI button misalignment on mobile devices",
+    "Status": "To Do",
+    "Category": "Bug Fixes",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-411",
+    "Title": "Email notification delivery failure",
+    "Status": "To Do",
+    "Category": "Bug Fixes",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-412",
+    "Title": "Data export CSV encoding issue",
+    "Status": "To Do",
+    "Category": "Bug Fixes",
+    "Client_Name": "JP Morgan",
+    "Effort_T_Shirt_Size": "S",
+    "Story_Points": 2,
+    "Mapped_Feature_ID": "0"
+  },
+  {
+    "JIRA_Ticket_ID": "DS-413",
+    "Title": "Search functionality returning incorrect results",
+    "Status": "To Do",
+    "Category": "Bug Fixes",
+    "Client_Name": "Multiple",
+    "Effort_T_Shirt_Size": "M",
+    "Story_Points": 5,
+    "Mapped_Feature_ID": "0"
+  }
+]

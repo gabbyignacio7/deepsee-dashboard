@@ -1,0 +1,810 @@
+Here's the revised Replit prompt with hardcoded data from Claude browser:
+
+---
+
+```
+Hi Replit Agent,
+
+I need you to add a new "Engineer Allocation" view to the existing Engineering tab in our dashboard. This view will show JIRA workload distribution across all engineers with visual bar charts by story points and ticket counts using HARDCODED data I'm providing below.
+
+================================================================================
+CONTEXT: EXISTING DASHBOARD
+================================================================================
+
+We have an existing priority dashboard at:
+- Current tabs: Priority Dashboard, Engineering, Board View
+- Framework: React/TypeScript
+- Styling: Tailwind CSS
+- Data source: Hardcoded data (NO CSV upload needed)
+
+The Engineering tab currently exists but needs this new allocation view added.
+
+================================================================================
+OBJECTIVE
+================================================================================
+
+Add a comprehensive "Engineer Allocation" section to the Engineering tab that displays:
+
+1. Bar chart showing story points per engineer (horizontal bars)
+2. Ticket count breakdown by status per engineer
+3. Filterable/searchable engineer list
+4. Drill-down capability to see individual tickets
+5. Summary statistics at the top
+6. "Last Updated" timestamp showing when data was captured
+
+================================================================================
+HARDCODED DATA TO USE
+================================================================================
+
+Use this exact data structure in your code:
+
+```typescript
+const engineerAllocationData = {
+  lastUpdated: "November 19, 2025 11:54 AM",
+  totalTickets: 572,
+  inProgressTickets: 120,
+  
+  engineers: [
+    {
+      name: "Lane Terry",
+      totalTickets: 5,
+      totalStoryPoints: 45,
+      tickets: [
+        {
+          id: "BACK-1500",
+          title: "Add Integer ID for Inboxes & Update All Inboxes",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 5,
+          epic: "Infrastructure",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1500"
+        },
+        {
+          id: "BACK-1324",
+          title: "Statistics API",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 7,
+          epic: "DeepRecon API",
+          labels: "broadridge-implementation",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1324"
+        },
+        {
+          id: "BACK-1308",
+          title: "Get Message Details API",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 10,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1308"
+        },
+        {
+          id: "BACK-1304",
+          title: "Messages API",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 12,
+          daysInStatus: 7,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1304"
+        },
+        {
+          id: "BACK-1224",
+          title: "Research and plan major scalability refactor",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 20,
+          daysInStatus: 54,
+          epic: "Broadridge Scalability",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1224"
+        }
+      ]
+    },
+    {
+      name: "Jeff Hegerhorst",
+      totalTickets: 4,
+      totalStoryPoints: 32,
+      tickets: [
+        {
+          id: "SC-302",
+          title: "Address PostgreSQL Vulnerabilities (158 C+H)",
+          project: "SC",
+          status: "In Progress",
+          priority: "Critical",
+          storyPoints: 13,
+          daysInStatus: 2,
+          epic: "SC-299 Sub-task",
+          labels: "wiz-priority;security;broadridge-implementation",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-302"
+        },
+        {
+          id: "SC-306",
+          title: "Address Argo Events Vulnerabilities (22 C+H)",
+          project: "SC",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 0,
+          epic: "SC-299 Sub-task",
+          labels: "security;broadridge-implementation",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-306"
+        },
+        {
+          id: "SC-308",
+          title: "Address Argo CLI Vulnerabilities (9 C+H)",
+          project: "SC",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "SC-299 Sub-task",
+          labels: "security;broadridge-implementation",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-308"
+        },
+        {
+          id: "SC-309",
+          title: "Address Argo Workflow Controller Vulnerabilities",
+          project: "SC",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 6,
+          daysInStatus: 0,
+          epic: "SC-299 Sub-task",
+          labels: "security;broadridge-implementation",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-309"
+        }
+      ]
+    },
+    {
+      name: "Aleksander Winski",
+      totalTickets: 3,
+      totalStoryPoints: 24,
+      tickets: [
+        {
+          id: "BACK-1472",
+          title: "Add user defined key-value pairs that can be associated with a message",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 5,
+          epic: "Add Custom Fields in Deep Recon",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1472"
+        },
+        {
+          id: "BACK-1470",
+          title: "Update the prediction API to include custom fields",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 1,
+          epic: "Add Custom Fields in Deep Recon",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1470"
+        },
+        {
+          id: "BACK-1258",
+          title: "Research feasibility of moving JSON blobs to S3 with database pointers",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 11,
+          daysInStatus: 5,
+          epic: "Implement database space optimization strategy",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1258"
+        }
+      ]
+    },
+    {
+      name: "Darius Ouderkirk",
+      totalTickets: 3,
+      totalStoryPoints: 20,
+      tickets: [
+        {
+          id: "BACK-1501",
+          title: "Content Maps for the specific products don't get created",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 8,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1501"
+        },
+        {
+          id: "BACK-1382",
+          title: "Export for Vantage Commercial Lending Work Items",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Critical",
+          storyPoints: 8,
+          daysInStatus: 23,
+          epic: "Regional Banks Onboarding",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1382"
+        },
+        {
+          id: "BACK-1117",
+          title: "Implement intent-agent logic in the extractor-service",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 12,
+          daysInStatus: 32,
+          epic: "Migrate Intent Agent to Extractor Service",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1117"
+        }
+      ]
+    },
+    {
+      name: "Ivan Peev",
+      totalTickets: 2,
+      totalStoryPoints: 16,
+      tickets: [
+        {
+          id: "BACK-1316",
+          title: "Labels API",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 5,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1316"
+        },
+        {
+          id: "BACK-1317",
+          title: "Actors API",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 1,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1317"
+        }
+      ]
+    },
+    {
+      name: "Kannal Mutharasu",
+      totalTickets: 2,
+      totalStoryPoints: 13,
+      tickets: [
+        {
+          id: "BACK-1468",
+          title: "Use equivalency lists on full strings",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 7,
+          epic: "FEEL / Equivalency matching improvements for Accenture",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1468"
+        },
+        {
+          id: "BACK-1464",
+          title: "Deep Pilot - Hardcode some checklist items to be sent to Allegro without review (Colonybank)",
+          project: "BACK",
+          status: "Blocked",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 6,
+          epic: "Regional Banks Onboarding",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1464"
+        }
+      ]
+    },
+    {
+      name: "Treven Trujillo",
+      totalTickets: 1,
+      totalStoryPoints: 8,
+      tickets: [
+        {
+          id: "BACK-1462",
+          title: "Deep Recon - Detach Automations from Outlook (for Accenture)",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 3,
+          epic: "Automations for Accenture",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1462"
+        }
+      ]
+    },
+    {
+      name: "Loris D'Acunto",
+      totalTickets: 6,
+      totalStoryPoints: 0,
+      tickets: [
+        {
+          id: "NSI-41",
+          title: "Dataset Normalization (Software)",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 15,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-41"
+        },
+        {
+          id: "NSI-23",
+          title: "Change Message-ID domains and References/Reply-To fields",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 12,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-23"
+        },
+        {
+          id: "NSI-20",
+          title: "Anonymization of sender and receivers (names and email addresses)",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 18,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-20"
+        },
+        {
+          id: "NSI-19",
+          title: "Header Anonymization",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 20,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-19"
+        },
+        {
+          id: "NSI-17",
+          title: "Dataset Normalization",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 25,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-17"
+        },
+        {
+          id: "NSI-13",
+          title: "Conversion table with email domains, names and email addresses",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 30,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-13"
+        }
+      ]
+    },
+    {
+      name: "Mitesh Yadav",
+      totalTickets: 2,
+      totalStoryPoints: 0,
+      tickets: [
+        {
+          id: "FB-1787",
+          title: "Update preprocessing step to handle entity associations",
+          project: "FB",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 8,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-1787"
+        },
+        {
+          id: "FB-1060",
+          title: "Adapt inference and postprocess function based on new preprocessing",
+          project: "FB",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 12,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-1060"
+        }
+      ]
+    },
+    {
+      name: "Anna Kamionowska",
+      totalTickets: 1,
+      totalStoryPoints: 0,
+      tickets: [
+        {
+          id: "FB-2409",
+          title: "Train models for subcategories for Accenture",
+          project: "FB",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 5,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-2409"
+        }
+      ]
+    }
+  ]
+};
+```
+
+================================================================================
+UI/UX SPECIFICATIONS
+================================================================================
+
+LAYOUT:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  ENGINEER ALLOCATION DASHBOARD                                  │
+│  Last Updated: November 19, 2025 11:54 AM                       │
+│                                                                  │
+│  Summary Cards:                                                 │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐              │
+│  │Total Eng: 10│ │Active: 120  │ │Total SP: 158│              │
+│  │  engineers  │ │  tickets    │ │ story points│              │
+│  └─────────────┘ └─────────────┘ └─────────────┘              │
+│                                                                  │
+│  Filters: [Search Engineer] [Project: All ▼] [Status: All ▼]  │
+│                                                                  │
+│  Sort by: [Story Points ▼]                                     │
+│                                                                  │
+│  ─────────────────────────────────────────────────────────────  │
+│                                                                  │
+│  WORKLOAD BY ENGINEER (Story Points)                           │
+│                                                                  │
+│  Lane Terry          ████████████████████████ 45 pts (5 tix)   │
+│  Jeff Hegerhorst     ████████████████ 32 pts (4 tix)           │
+│  Aleksander Winski   ████████████ 24 pts (3 tix)               │
+│  Darius Ouderkirk    ██████████ 20 pts (3 tix)                 │
+│  Ivan Peev           ████████ 16 pts (2 tix)                   │
+│  Kannal Mutharasu    ███████ 13 pts (2 tix)                    │
+│  Treven Trujillo     ████ 8 pts (1 tix)                        │
+│  Loris D'Acunto      ▒ No estimates (6 tix)                    │
+│  Mitesh Yadav        ▒ No estimates (2 tix)                    │
+│  Anna Kamionowska    ▒ No estimates (1 tix)                    │
+│                                                                  │
+│  ─────────────────────────────────────────────────────────────  │
+│                                                                  │
+│  DETAILED BREAKDOWN                                             │
+│                                                                  │
+│  ▼ Lane Terry (5 tickets, 45 story points)                     │
+│    ┌─────────────────────────────────────────────────────────┐│
+│    │ In Progress (5): 45 pts                                  ││
+│    │ • BACK-1500: Add Integer ID for Inboxes (- pts, 5 days) ││
+│    │ • BACK-1324: Statistics API (5 pts, 7 days)            ││
+│    │ • BACK-1308: Get Message Details API (8 pts, 10 days)  ││
+│    │ • BACK-1304: Messages API (12 pts, 7 days)             ││
+│    │ • BACK-1224: Scalability research (20 pts, 54 days ⚠️) ││
+│    └─────────────────────────────────────────────────────────┘│
+│                                                                  │
+│  ▶ Jeff Hegerhorst (4 tickets, 32 story points) [Click expand]│
+│  ▶ Aleksander Winski (3 tickets, 24 story points)             │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+================================================================================
+COMPONENT SPECIFICATIONS
+================================================================================
+
+COMPONENT 1: Summary Cards (Top Row)
+
+Display 3 key metrics calculated from hardcoded data:
+1. Total Engineers: Count of engineers in array (10)
+2. Total Active Tickets: Sum of all tickets across engineers (27 shown)
+3. Total Story Points: Sum of all story points where not null (158)
+
+Additional stat if helpful: "Tickets without estimates: X"
+
+Style: Cards with large numbers, subtle borders, rounded corners
+
+COMPONENT 2: Filter Bar
+
+Filters needed:
+- Search box (filter by engineer name - client-side filtering)
+- Project dropdown (BACK, SC, UI, PR, FB, CI, NSI, etc. - extract from data)
+- Status dropdown (In Progress, To Do, Code Review, Blocked, All)
+- Sort dropdown (Story Points High-Low, Story Points Low-High, Name A-Z, Ticket Count)
+
+All filtering happens client-side on the hardcoded data.
+
+COMPONENT 3: Horizontal Bar Chart
+
+Requirements:
+- Show ALL engineers from hardcoded data
+- X-axis: Story points (0 to 45 max)
+- Y-axis: Engineer names
+- Bar color coding:
+  * Green (0-15 pts): Light load
+  * Yellow (16-30 pts): Moderate load
+  * Orange (31-45 pts): Heavy load
+  * Red (45+ pts): Very heavy load
+  * Gray striped: No story point estimates (show ticket count instead)
+- For engineers with no story points (Loris, Mitesh, Anna):
+  * Show gray striped bar with text: "No estimates (X tickets)"
+- Tooltip on hover showing: Engineer name, total story points, ticket count
+- Click bar to expand detailed breakdown below
+
+COMPONENT 4: Detailed Breakdown (Expandable)
+
+For each engineer, show expandable section with:
+- Header: Engineer name, total tickets, total story points (or "No estimates")
+- Grouped by status:
+  * In Progress (count, story points)
+  * To Do (count, story points)
+  * Code Review (count, story points)
+  * Blocked (count, story points)
+- List of tickets under each status:
+  * Ticket ID (clickable link to JIRA using jiraLink field)
+  * Ticket title (truncate if >60 chars)
+  * Story points (show "-" if null)
+  * Days in status with warning icon if >30 days
+  * Priority indicator (color dot based on priority field)
+  * Labels badge if contains "broadridge-implementation"
+- Color coding for days in status:
+  * Green: <7 days
+  * Yellow: 7-14 days
+  * Orange: 15-30 days
+  * Red: 30+ days (show ⚠️ icon)
+
+================================================================================
+COLOR SCHEME & STYLING
+================================================================================
+
+Use existing dashboard color scheme, but add these specific colors:
+
+Priority Indicators (dots):
+- Blocker: #DC2626 (red-600)
+- Critical: #F59E0B (amber-500)
+- Major: #3B82F6 (blue-500)
+- Minor: #10B981 (green-500)
+- Trivial: #6B7280 (gray-500)
+
+Status Colors:
+- In Progress: #3B82F6 (blue)
+- To Do: #6B7280 (gray)
+- Code Review: #8B5CF6 (purple)
+- Blocked: #DC2626 (red)
+
+Bar Chart Colors (by load):
+- Light (0-15): #34D399 (emerald-400)
+- Moderate (16-30): #FBBF24 (amber-400)
+- Heavy (31-45): #FB923C (orange-400)
+- Very Heavy (45+): #F87171 (red-400)
+- No Estimates: #E5E7EB (gray-200) with diagonal stripes
+
+================================================================================
+INTERACTIVE FEATURES
+================================================================================
+
+1. Click on bar chart → Scroll to and expand that engineer's details
+2. Click on engineer name in detailed view → Expand/collapse their tickets
+3. Click on ticket ID → Open ticket in JIRA (new tab) using jiraLink field
+4. Hover over bar → Show tooltip with exact numbers
+5. Search box → Filter engineers in real-time (client-side)
+6. Sort dropdown → Re-order engineers dynamically
+7. All interactivity uses the hardcoded data - no external API calls
+
+================================================================================
+DATA PROCESSING LOGIC
+================================================================================
+
+Calculate these metrics from hardcoded data:
+
+```typescript
+// Summary calculations
+const totalEngineers = engineerAllocationData.engineers.length;
+const totalTickets = engineerAllocationData.engineers.reduce(
+  (sum, eng) => sum + eng.totalTickets, 0
+);
+const totalStoryPoints = engineerAllocationData.engineers.reduce(
+  (sum, eng) => sum + eng.totalStoryPoints, 0
+);
+const ticketsWithoutEstimates = engineerAllocationData.engineers
+  .flatMap(e => e.tickets)
+  .filter(t => t.storyPoints === null).length;
+
+// For each engineer, group tickets by status
+const groupedTickets = engineer.tickets.reduce((acc, ticket) => {
+  const status = ticket.status;
+  if (!acc[status]) acc[status] = [];
+  acc[status].push(ticket);
+  return acc;
+}, {});
+
+// Calculate story points per status
+const storyPointsByStatus = {
+  "In Progress": groupedTickets["In Progress"]?.reduce(
+    (sum, t) => sum + (t.storyPoints || 0), 0
+  ) || 0,
+  // ... etc for other statuses
+};
+```
+
+Handle missing story points:
+- If storyPoints is null, show "-" or "No estimate"
+- In bar chart, show gray striped bar with ticket count for engineers with all null story points
+- In totals, only sum non-null story points
+
+================================================================================
+RESPONSIVE DESIGN
+================================================================================
+
+Desktop (>1024px):
+- Bar chart: Full width
+- Detailed breakdown: Full width
+- Summary cards: 3 across
+
+Tablet (768-1024px):
+- Bar chart: Full width
+- Detailed breakdown: 1 column
+- Summary cards: 2 across, then 1 below
+
+Mobile (<768px):
+- Bar chart: Vertical scrolling, show top 5 by default with "Show All" button
+- Detailed breakdown: 1 column, simplified view
+- Summary cards: 1 across, stacked
+- Filters: Simplified, fewer options
+
+================================================================================
+IMPLEMENTATION STEPS
+================================================================================
+
+Step 1: Create hardcoded data constant in new file: /data/engineerAllocationData.ts
+Step 2: Add new "Engineer Allocation" section to Engineering tab
+Step 3: Create summary cards component using hardcoded totals
+Step 4: Build horizontal bar chart component (use Recharts library with hardcoded data)
+Step 5: Build filter bar component (client-side filtering)
+Step 6: Build detailed breakdown expandable component
+Step 7: Add click handlers and interactivity
+Step 8: Add tooltips and JIRA links (use jiraLink field from data)
+Step 9: Style everything with Tailwind CSS
+Step 10: Add responsive breakpoints
+Step 11: Test with hardcoded data
+Step 12: Add "Last Updated" timestamp display
+
+================================================================================
+CODE STRUCTURE
+================================================================================
+
+Create these new files/components:
+
+```
+/data
+  engineerAllocationData.ts      (Hardcoded data constant)
+
+/components
+  /engineering
+    EngineerAllocation.tsx       (Main container - reads hardcoded data)
+    SummaryCards.tsx              (Top metrics cards)
+    FilterBar.tsx                 (Search and filters)
+    WorkloadChart.tsx             (Horizontal bar chart)
+    EngineerDetails.tsx           (Expandable breakdown)
+    /utils
+      engineerFilters.ts          (Client-side filtering logic)
+      engineerAggregations.ts     (Calculate metrics from data)
+```
+
+================================================================================
+CRITICAL REQUIREMENTS
+================================================================================
+
+1. Must integrate seamlessly with existing Engineering tab
+2. Must use ONLY the hardcoded data provided - no CSV upload, no API calls
+3. Must handle missing story points gracefully (show "No estimates" with ticket count)
+4. Must be responsive on all screen sizes
+5. Must link directly to JIRA tickets using jiraLink field
+6. Must maintain existing dashboard styling/theme
+7. Must show "Last Updated: November 19, 2025 11:54 AM" timestamp
+8. All filtering/sorting happens client-side on hardcoded data
+9. Must perform well (data is small - only 10 engineers, 27 tickets)
+
+================================================================================
+SPECIAL HANDLING NOTES
+================================================================================
+
+Engineers with no story points (Loris, Mitesh, Anna):
+- In bar chart: Show gray striped bar with text "No estimates (X tickets)"
+- In summary: Exclude from total story points, but include in ticket count
+- In details: Show "-" for story points field
+- Still allow filtering/searching these engineers
+
+BACK-1224 (Lane's 54-day ticket):
+- Highlight with warning icon ⚠️ in red
+- This is the longest-running In Progress ticket
+
+SC-302 (Jeff's Critical security ticket):
+- Highlight with "Critical" badge in red
+- This is the only SC-299 ticket In Progress
+
+Broadridge-labeled tickets:
+- Show small badge "Broadridge" next to ticket title
+- Slightly highlight these tickets (light blue background)
+
+================================================================================
+VALIDATION & TESTING
+================================================================================
+
+Before considering complete, test:
+- Verify bar chart displays all 10 engineers correctly
+- Verify engineers with no story points show gray striped bars
+- Verify all filters work (search, project, status, sort)
+- Verify expandable sections work
+- Verify JIRA links open correctly to https://deepsee.atlassian.net/browse/[TICKET_ID]
+- Verify responsive design on mobile
+- Verify sorting by story points puts Lane Terry first (45 pts)
+- Verify searching for "Jeff" shows only Jeff Hegerhorst
+- Test with filtering by status "In Progress"
+- Verify 54-day warning appears on BACK-1224
+- Verify Critical priority badge appears on SC-302
+
+================================================================================
+DELIVERABLE
+================================================================================
+
+When complete:
+1. Show me the new Engineer Allocation view in the Engineering tab
+2. Demonstrate bar chart with hardcoded data showing all 10 engineers
+3. Show expandable engineer details with Lane Terry expanded
+4. Demonstrate filters working (search for "Lane", filter by "In Progress")
+5. Show JIRA link click opening new tab
+6. Confirm responsive design works
+7. Show "Last Updated" timestamp
+
+NO CSV UPLOAD NEEDED - All data is hardcoded in the component.
+
+Begin implementation now. Thank you!
+```
+
+---
+
+**This revised prompt:**
+- ✅ Uses hardcoded data from Claude browser output
+- ✅ NO CSV upload component needed
+- ✅ All data is in a TypeScript constant
+- ✅ Includes all 10 engineers from the JIRA analysis
+- ✅ Handles missing story points (Loris, Mitesh, Anna)
+- ✅ Includes direct JIRA links
+- ✅ Shows "Last Updated" timestamp
+- ✅ All filtering/sorting is client-side
+- ✅ Ready to paste into Replit!

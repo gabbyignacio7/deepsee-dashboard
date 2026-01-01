@@ -1,0 +1,658 @@
+**REPLIT DASHBOARD UPDATE PROMPT**
+**Data Extracted: December 11, 2025 @ 4:30 PM MT**
+**Includes: Sprint 1 Final Status + Sprint 2 Planning**
+
+```
+Update the DeepSee AI Sprint Dashboard with the following verified data. This is a comprehensive update covering Sprint 2025-S1 current state and Sprint 2025-S2 planning.
+
+---
+
+## METADATA
+```json
+{
+  "metadata": {
+    "extractedAt": "2025-12-11T16:30:00-07:00",
+    "forDate": "2025-12-11",
+    "sprint1Day": 7,
+    "sprint1Name": "2025-S1",
+    "sprint2Name": "2025-S2",
+    "previousExtraction": "2025-12-09T16:45:00-07:00",
+    "dataSource": "JIRA JQL extraction + board reconciliation"
+  }
+}
+```
+
+---
+
+## TICKET COUNT CLARIFICATION
+
+IMPORTANT: Use these counts consistently across the dashboard.
+
+```json
+{
+  "ticketCounts": {
+    "jqlTotal": 109,
+    "parentIssuesOnly": 87,
+    "boardVisible": 74,
+    "subtasks": 22,
+    "cancelled": 1,
+    "recommendedDisplay": 87,
+    "note": "Board shows 74 because it collapses subtasks and hides cancelled. Use 87 (parent issues) for reporting."
+  }
+}
+```
+
+Display explanation (for FAQ/tooltip):
+"Board shows 74 work items. Full count is 87 parent issues (109 including subtasks). The difference is 22 subtasks collapsed under parents and 1 cancelled item."
+
+---
+
+## SPRINT 2025-S1 STATUS (Day 7 of 14)
+
+### SPRINT SUMMARY
+```json
+{
+  "sprint": {
+    "name": "2025-S1",
+    "goal": "Secure Broadridge ($500K ARR) through Wave 1 security remediation, deliver Mercury Extraction for Colony/Sunwest, and complete DeepRecon API migration.",
+    "startDate": "2025-12-05",
+    "endDate": "2025-12-19",
+    "totalTickets": 87,
+    "displayNote": "87 parent issues (109 including subtasks)",
+    "daysElapsed": 7,
+    "daysRemaining": 7,
+    "health": "YELLOW",
+    "completionRate": 47
+  }
+}
+```
+
+### STATUS BREAKDOWN
+```json
+{
+  "statusBreakdown": {
+    "done": { "count": 51, "percentage": 47 },
+    "inProgress": { "count": 15, "percentage": 14 },
+    "codeReview": { "count": 4, "percentage": 4 },
+    "inTesting": { "count": 1, "percentage": 1 },
+    "toDo": { "count": 35, "percentage": 32 },
+    "blocked": { "count": 2, "percentage": 2 },
+    "cancelled": { "count": 1, "percentage": 1 }
+  },
+  "unassigned": 31
+}
+```
+
+### PROGRESS COMPARISON
+```json
+{
+  "progressComparison": {
+    "dec9": {
+      "done": 30,
+      "completionRate": "30%"
+    },
+    "dec11": {
+      "done": 51,
+      "completionRate": "47%"
+    },
+    "improvement": "+17% in 2 days",
+    "ticketsCompleted": 21
+  }
+}
+```
+
+### BLOCKED TICKETS (ATTENTION REQUIRED)
+```json
+{
+  "blocked": [
+    {
+      "id": "FB-2407",
+      "summary": "Update ml-workflows Base Image to Ubuntu 24.04 LTS",
+      "assignee": "Unassigned",
+      "reporter": "Konnor Willison",
+      "severity": "HIGH",
+      "action": "Needs engineering discussion on dependencies"
+    },
+    {
+      "id": "BACK-1489",
+      "summary": "Update classification-api Base Image to Ubuntu 24.04 LTS",
+      "assignee": "Kalvin Willison",
+      "reporter": "Konnor Willison",
+      "severity": "HIGH",
+      "action": "Needs engineering discussion on dependencies"
+    }
+  ]
+}
+```
+
+### IN TESTING (1)
+```json
+{
+  "inTesting": [
+    { "id": "CI-436", "summary": "Port inference pipeline to argo workflows", "assignee": "Jeff Hegerhorst", "points": 8 }
+  ],
+  "note": "BACK-1572 moved to Done"
+}
+```
+
+### CODE REVIEW (4)
+```json
+{
+  "codeReview": [
+    { "id": "BACK-1521", "summary": "Integrate SubCategory Model Calls into Prediction Pipeline", "assignee": "Aleksander Winski", "points": 3 },
+    { "id": "BACK-1318", "summary": "Counterparties API", "assignee": "Ivan Peev", "flag": "In review since Dec 5 (6+ days)" },
+    { "id": "UI-701", "summary": "Adjust UI layout for email attachment screen", "assignee": "Matthew Snow", "points": 5 },
+    { "id": "BACK-1485", "summary": "Update preprocessor Base Image to Alpine 3.22.2", "assignee": "Treven Trujillo", "points": 1 }
+  ]
+}
+```
+
+### PROJECT BREAKDOWN
+```json
+{
+  "projectBreakdown": {
+    "BACK": 76,
+    "SC": 20,
+    "UI": 11,
+    "FB": 1,
+    "CI": 1,
+    "total": 109
+  }
+}
+```
+
+### ENGINEER ROSTER (Active Work Only)
+```json
+{
+  "engineers": [
+    {
+      "name": "Aleksander Winski",
+      "activeTickets": 2,
+      "tickets": [
+        { "id": "BACK-1521", "summary": "Integrate SubCategory Model Calls", "status": "Code Review", "points": 3 },
+        { "id": "BACK-839", "summary": "Allow Event Status to be Updated via API", "status": "In Progress" }
+      ]
+    },
+    {
+      "name": "Chad Hegerhorst",
+      "activeTickets": 1,
+      "tickets": [
+        { "id": "SC-316", "summary": "Backup Restoration Test (SOC 2)", "status": "In Progress", "points": 3 }
+      ]
+    },
+    {
+      "name": "Darius Ouderkirk",
+      "activeTickets": 3,
+      "tickets": [
+        { "id": "BACK-1548", "summary": "Enable Conditional Reconciliation", "status": "To Do", "points": 5 },
+        { "id": "BACK-1573", "summary": "Deep Pilot - Extra non-matching subgroups", "status": "In Progress" },
+        { "id": "BACK-1382", "summary": "Export for Vantage Commercial Lending", "status": "In Progress", "points": 3 }
+      ]
+    },
+    {
+      "name": "Ivan Peev",
+      "activeTickets": 2,
+      "tickets": [
+        { "id": "BACK-1318", "summary": "Counterparties API", "status": "Code Review", "flag": "6+ days in review" },
+        { "id": "BACK-1567", "summary": "Actionable Data Export", "status": "In Progress" }
+      ]
+    },
+    {
+      "name": "Jeff Hegerhorst",
+      "activeTickets": 2,
+      "tickets": [
+        { "id": "CI-436", "summary": "Port inference pipeline to argo workflows", "status": "In Testing", "points": 8 },
+        { "id": "SC-320", "summary": "Address MLFlow Server Vulnerabilities", "status": "In Progress" }
+      ]
+    },
+    {
+      "name": "Kalvin Willison",
+      "activeTickets": 3,
+      "tickets": [
+        { "id": "BACK-1575", "summary": "Enhance Mercury Extraction Schema Parameters", "status": "In Progress", "points": 3 },
+        { "id": "BACK-1492", "summary": "Update workflows-events-consumer Base Image", "status": "In Progress", "points": 1 },
+        { "id": "BACK-1489", "summary": "Update classification-api Base Image", "status": "BLOCKED", "points": 1 }
+      ]
+    },
+    {
+      "name": "Kannal Mutharasu",
+      "activeTickets": 1,
+      "tickets": [
+        { "id": "BACK-811", "summary": "Output processing fails for large work items", "status": "In Progress" }
+      ],
+      "note": "BACK-1572, BACK-1576, BACK-1560 all completed"
+    },
+    {
+      "name": "Konnor Willison",
+      "activeTickets": 4,
+      "tickets": [
+        { "id": "BACK-1532", "summary": "Fine-tune Mercury Extraction for Sunwest Bank", "status": "In Progress" },
+        { "id": "BACK-1530", "summary": "Setup BBVA Mercury Extraction Schema", "status": "To Do" },
+        { "id": "BACK-1529", "summary": "Setup CTC Mercury Extraction Schema", "status": "To Do" },
+        { "id": "BACK-1528", "summary": "Setup CTC Mercury Extraction Schema", "status": "To Do" }
+      ]
+    },
+    {
+      "name": "Lane Terry",
+      "activeTickets": 1,
+      "tickets": [
+        { "id": "BACK-1430", "summary": "ArrayIndexOutOfBounds Processing Actors", "status": "To Do" }
+      ]
+    },
+    {
+      "name": "Matthew Snow",
+      "activeTickets": 2,
+      "tickets": [
+        { "id": "UI-703", "summary": "Dashboards - preserve tab/filters when switching", "status": "In Progress", "points": 2 },
+        { "id": "UI-701", "summary": "Adjust UI layout for email attachment", "status": "Code Review", "points": 5 }
+      ]
+    },
+    {
+      "name": "Owen Riley",
+      "activeTickets": 1,
+      "tickets": [
+        { "id": "UI-711", "summary": "Add New Blockly Block for Term presence", "status": "To Do", "points": 2 }
+      ],
+      "note": "Cleared code review backlog (UI-712, UI-708, UI-706 all Done)"
+    },
+    {
+      "name": "Treven Trujillo",
+      "activeTickets": 4,
+      "tickets": [
+        { "id": "BACK-1490", "summary": "Update deep-recon-extractor-service Base Image", "status": "In Progress", "points": 1 },
+        { "id": "BACK-1488", "summary": "Update deepview-status-service Base Image", "status": "In Progress", "points": 1 },
+        { "id": "BACK-1486", "summary": "Update deepview-service Base Image", "status": "In Progress", "points": 1 },
+        { "id": "BACK-1485", "summary": "Update preprocessor Base Image", "status": "Code Review", "points": 1 }
+      ]
+    }
+  ],
+  "totalEngineersActive": 12,
+  "unassignedCount": 31
+}
+```
+
+### KEY TICKETS RESOLVED (Dec 9 → Dec 11)
+```json
+{
+  "resolved": [
+    { "id": "BACK-1531", "summary": "Mercury Extraction Colony Bank", "assignee": "Kalvin Willison", "impact": "Colony production issue resolved" },
+    { "id": "BACK-1576", "summary": "BBVA Term Type Adjustment", "assignee": "Kannal Mutharasu", "impact": "Ryan's flagged item complete" },
+    { "id": "BACK-1560", "summary": "BBVA Reconciliation Output", "assignee": "Kannal Mutharasu" },
+    { "id": "BACK-1572", "summary": "Manual tasks pushed back to allegro", "assignee": "Kannal Mutharasu" },
+    { "id": "BACK-1322", "summary": "ML Models API", "assignee": "Ivan Peev" },
+    { "id": "UI-712", "summary": "Invalid checklist item link", "assignee": "Owen Riley" },
+    { "id": "UI-708", "summary": "Migrate GET Inboxes API", "assignee": "Owen Riley" },
+    { "id": "UI-706", "summary": "Migrate Statistics APIs", "assignee": "Owen Riley" }
+  ]
+}
+```
+
+### WINS (Dec 11)
+```json
+{
+  "wins": [
+    {
+      "title": "+21 Tickets Completed in 2 Days",
+      "description": "Completion jumped from 30% to 47%",
+      "impact": "Strong velocity despite mid-sprint"
+    },
+    {
+      "title": "Colony Production Issue Resolved",
+      "description": "BACK-1531 Mercury Extraction done - client unblocked",
+      "tickets": ["BACK-1531"],
+      "assignee": "Kalvin Willison"
+    },
+    {
+      "title": "BBVA Work Cleared",
+      "description": "Kannal completed BACK-1576, BACK-1560, BACK-1572",
+      "tickets": ["BACK-1576", "BACK-1560", "BACK-1572"],
+      "assignee": "Kannal Mutharasu"
+    },
+    {
+      "title": "Owen Cleared Code Review Backlog",
+      "description": "UI-712, UI-708, UI-706 all moved to Done",
+      "tickets": ["UI-712", "UI-708", "UI-706"],
+      "assignee": "Owen Riley"
+    },
+    {
+      "title": "Ivan Unblocked",
+      "description": "BACK-1322 ML Models API completed",
+      "tickets": ["BACK-1322"],
+      "assignee": "Ivan Peev"
+    },
+    {
+      "title": "Security Work Complete",
+      "description": "All Wave 1 and Wave 2 security tickets done - $500K ARR protected",
+      "assignee": "Jeff Hegerhorst"
+    }
+  ]
+}
+```
+
+### RISKS (Dec 11)
+```json
+{
+  "risks": [
+    {
+      "severity": "HIGH",
+      "item": "2 Blocked Tickets",
+      "description": "FB-2407 and BACK-1489 (Ubuntu image updates) blocked",
+      "owner": "Konnor Willison (reporter)",
+      "action": "Discuss dependencies in standup"
+    },
+    {
+      "severity": "MEDIUM",
+      "item": "31 Unassigned Tickets",
+      "description": "Mostly security (SC-xxx) and API subtasks need owners",
+      "owner": "Brandon Baguley",
+      "action": "Assign or move to backlog"
+    },
+    {
+      "severity": "MEDIUM",
+      "item": "BACK-1318 Long-Running Review",
+      "description": "Ivan's Counterparties API in Code Review 6+ days",
+      "owner": "Ivan Peev",
+      "action": "Get reviewer assigned"
+    },
+    {
+      "severity": "LOW",
+      "item": "BACK-1542 Label Missing",
+      "description": "Done but still missing broadridge-implementation label",
+      "owner": "Lane Terry",
+      "action": "Add label for tracking"
+    }
+  ]
+}
+```
+
+---
+
+## SPRINT 2025-S2 PLANNING
+
+### SPRINT 2 OVERVIEW
+```json
+{
+  "sprint2": {
+    "name": "2025-S2",
+    "startDate": "2025-12-19",
+    "endDate": "2026-01-02",
+    "totalDays": 14,
+    "workingDays": 6,
+    "effectiveCapacity": "55%",
+    "sprintOwner": "Brandon Baguley",
+    "philosophy": "Maintain momentum, not maximize output. Stabilization over expansion.",
+    "ticketsAlreadyAssigned": 46,
+    "note": "46 UI tickets (DeepRecon dashboard) created by Nadiya on Dec 11"
+  }
+}
+```
+
+### HOLIDAY CAPACITY
+```json
+{
+  "holidayCapacity": {
+    "week1": { "dates": "Dec 19-26", "capacity": "50%", "note": "Christmas week" },
+    "week2": { "dates": "Dec 27-Jan 2", "capacity": "60%", "note": "New Year week" },
+    "overall": "55%",
+    "closedDays": ["Dec 25", "Dec 26", "Jan 1"],
+    "keyPTO": [
+      { "name": "Gabriel Ignacio", "dates": "Dec 16 - Jan 8", "note": "Async work only" }
+    ]
+  }
+}
+```
+
+### SPRINT 2 PRIORITIES
+```json
+{
+  "priorities": {
+    "tier0": {
+      "name": "EMERGENCY - Revenue at Risk",
+      "items": [
+        "Any remaining Broadridge security tickets",
+        "Production outages or degradation"
+      ]
+    },
+    "tier1": {
+      "name": "HIGH VALUE DELIVERY",
+      "items": [
+        "Broadridge V3 API completion and data export",
+        "Colony Bank HMDA/CRA Step 6 transformation",
+        "Accenture HERA automation enablement"
+      ]
+    },
+    "tier2": {
+      "name": "STEADY PROGRESS",
+      "items": [
+        "Regional bank ongoing support (Colony, BBVA)",
+        "Mercury extraction refinements",
+        "Bug fixes from Sprint 1"
+      ]
+    },
+    "tier3": {
+      "name": "IF CAPACITY ALLOWS",
+      "items": [
+        "Technical debt items",
+        "Documentation and process improvements"
+      ]
+    }
+  }
+}
+```
+
+### CLIENT COMMITMENTS
+```json
+{
+  "clientCommitments": {
+    "broadridge": {
+      "arr": 500000,
+      "items": ["Complete V3 API deployment", "Data export for client delivery", "UI enhancements", "Security remediation continuation"],
+      "owner": "Lane Terry"
+    },
+    "colonyBank": {
+      "arr": 200000,
+      "items": ["HMDA/CRA Tool Step 6: VLOOKUP transformation", "Prompt enhancement for extraction"],
+      "owner": "Kalvin Willison",
+      "target": "Reduce 8-10 hours manual work to 30 minutes"
+    },
+    "accenture": {
+      "arr": 1200000,
+      "items": ["HERA automation turn-on"],
+      "owners": ["Lane Terry", "Ivan Peev"]
+    },
+    "dtcc": {
+      "arr": 750000,
+      "items": ["Maintain daily support calls with Nadiya", "Ad-hoc requests"],
+      "owner": "Nadiya Omelchuk"
+    }
+  }
+}
+```
+
+### CARRYOVER FROM SPRINT 1
+```json
+{
+  "carryover": {
+    "count": 58,
+    "note": "58 tickets not Done in S1 (excluding cancelled)",
+    "highPriority": [
+      { "id": "BACK-1532", "summary": "Fine-tune Mercury Extraction for Sunwest Bank", "assignee": "Konnor Willison", "status": "In Progress" },
+      { "id": "BACK-1530", "summary": "Setup BBVA Mercury Extraction Schema", "assignee": "Konnor Willison", "status": "To Do" },
+      { "id": "BACK-1548", "summary": "Enable Conditional Reconciliation", "assignee": "Darius Ouderkirk", "status": "To Do", "points": 5 },
+      { "id": "BACK-1382", "summary": "Export for Vantage Commercial Lending", "assignee": "Darius Ouderkirk", "status": "In Progress", "points": 3 },
+      { "id": "CI-436", "summary": "Port inference pipeline to argo workflows", "assignee": "Jeff Hegerhorst", "status": "In Testing", "points": 8 },
+      { "id": "SC-316", "summary": "Backup Restoration Test (SOC 2)", "assignee": "Chad Hegerhorst", "status": "In Progress", "points": 3 }
+    ],
+    "blocked": [
+      { "id": "FB-2407", "summary": "Update ml-workflows Base Image", "assignee": "Unassigned" },
+      { "id": "BACK-1489", "summary": "Update classification-api Base Image", "assignee": "Kalvin Willison" }
+    ]
+  }
+}
+```
+
+### CLIENT BACKLOG
+```json
+{
+  "clientBacklog": {
+    "colony": {
+      "count": 16,
+      "highlight": "BACK-1578: Feedback Mercury Extraction (Dec 10)",
+      "blocked": "UI-682: Enhance Golden Source Picker"
+    },
+    "broadridge": {
+      "count": 4,
+      "items": ["UI-697", "SC-301", "SC-300", "PR-1556"]
+    },
+    "bbva": {
+      "count": 4,
+      "items": ["CI-891", "UI-686", "UI-685", "PR-1552"]
+    },
+    "security": {
+      "count": 237,
+      "note": "Large backlog - prioritize based on severity"
+    }
+  }
+}
+```
+
+### SPRINT 2 SUCCESS METRICS
+```json
+{
+  "successMetrics": {
+    "delivery": [
+      "Story points completed vs. committed",
+      "Carryover rate (target: <20%)",
+      "Sprint completion percentage"
+    ],
+    "clientSatisfaction": [
+      "Broadridge: Data export delivered on time",
+      "Colony Bank: HMDA tool progress",
+      "Support response time maintained"
+    ],
+    "processHealth": [
+      "Unplanned work percentage",
+      "Support time vs. feature time",
+      "Sprint disruption incidents"
+    ],
+    "teamHealth": [
+      "Holiday coverage maintained",
+      "No burnout from coverage gaps",
+      "Clear handoffs documented"
+    ]
+  }
+}
+```
+
+### ACTION ITEMS
+```json
+{
+  "actionItems": {
+    "brandon": [
+      "Run daily standups during holiday period",
+      "Monitor sprint health and escalate blockers",
+      "Conduct remaining engineer 1:1s",
+      "Own Sprint 2 retrospective"
+    ],
+    "lane": [
+      "Finalize Broadridge data export tickets",
+      "Coordinate V3 API completion",
+      "Manage carryover item prioritization"
+    ],
+    "nadiya": [
+      "Maintain client call schedules (Broadridge 3x/week, DTCC daily)",
+      "Triage incoming requests with urgency assessment",
+      "Flag items that require sprint-breaking"
+    ],
+    "ryan": [
+      "Final approval on scope changes",
+      "Client communication for holiday expectations",
+      "Q1 2026 feature prioritization input"
+    ],
+    "gabriel": [
+      "Complete Sprint 2 JIRA setup (before Dec 16)",
+      "Document handoff items for Brandon",
+      "Ensure dashboard reflects Sprint 2 scope"
+    ]
+  }
+}
+```
+
+---
+
+## DASHBOARD DISPLAY REQUIREMENTS
+
+### 1. Dual Sprint View
+Show both sprints:
+- Sprint 2025-S1 (Active) - Day 7 of 14
+- Sprint 2025-S2 (Upcoming) - Starts Dec 19
+
+### 2. Progress Bar (Sprint 1)
+Use corrected counts:
+Done: 51 | In Progress: 15 | Code Review: 4 | In Testing: 1 | To Do: 35 | Blocked: 2
+
+### 3. Health Indicators
+- Sprint 1: YELLOW (2 blocked, 31 unassigned, 1 long review)
+- Sprint 2: BLUE (planning phase)
+
+### 4. Status Colors
+```javascript
+const statusColors = {
+  "To Do": "#6c757d",
+  "In Progress": "#007bff",
+  "Code Review": "#6f42c1",
+  "In Testing": "#17a2b8",
+  "Done": "#28a745",
+  "Blocked": "#dc3545",
+  "Cancelled": "#868e96"
+};
+```
+
+### 5. Blocked Alert Banner
+Display prominently:
+"2 BLOCKED: FB-2407, BACK-1489 - Ubuntu image updates need engineering discussion"
+
+### 6. Sprint 2 Preview Card
+```
+Sprint 2025-S2 | Dec 19 - Jan 2
+Holiday Sprint: ~55% capacity
+46 tickets assigned (UI/DeepRecon)
+Owner: Brandon Baguley
+```
+
+### 7. Ticket Count Tooltip
+When user hovers on ticket count:
+"87 parent issues shown. Board displays 74 (subtasks collapsed). Full JQL count is 109."
+
+---
+
+## VERIFICATION CHECKLIST
+
+After update, confirm:
+- [ ] Sprint 1 shows 87 tickets (not 108/109)
+- [ ] Done count shows 51 (47%)
+- [ ] Blocked count shows 2
+- [ ] Blocked alert banner visible
+- [ ] BACK-1576 NOT in active work (it's Done)
+- [ ] BACK-1531 NOT in active work (it's Done)
+- [ ] Sprint 2 preview card shows 46 tickets
+- [ ] Holiday capacity shows 55%
+- [ ] Engineer roster shows 12 active
+- [ ] Unassigned shows 31
+- [ ] Ticket count tooltip explains 87 vs 74 vs 109
+
+---
+
+END OF PROMPT
+```
+
+---
+
+This covers:
+- Corrected ticket counts (87 parent issues)
+- All Dec 11 status updates
+- Resolved tickets removed from active lists
+- Sprint 2 planning data
+- Holiday capacity
+- Client commitments
+- Action items by person

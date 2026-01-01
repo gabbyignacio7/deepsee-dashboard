@@ -1,0 +1,152 @@
+Update the Sprint 2025-S1 dashboard with fresh JIRA extraction from December 15, 2025.
+
+---
+
+SPRINT OVERVIEW:
+
+| Metric | New Value |
+|--------|-----------|
+| Total Tickets | 121 |
+| Parent Issues | 102 |
+| Days Remaining | 4 |
+| Sprint Day | 11 of 14 |
+
+---
+
+STATUS COUNTS:
+
+| Status | Count | Percentage |
+|--------|-------|------------|
+| Done | 72 | 59.5% |
+| To Do | 25 | 20.7% |
+| In Progress | 13 | 10.7% |
+| Code Review | 8 | 6.6% |
+| Blocked | 1 | 0.8% |
+| In Testing | 1 | 0.8% |
+
+---
+
+HEALTH STATUS: Change from YELLOW to GREEN
+
+Reasons:
+- 59.5% complete at Day 11 (was 50% on Dec 14)
+- Blocked reduced from 2 to 1
+- BACK-1318 cleared code review (was 9+ days stuck)
+- Unassigned reduced from 29 to 16
+
+---
+
+BLOCKED TICKETS (Updated):
+
+Remove FB-2407 from blocked list (now To Do)
+
+Only blocked ticket:
+| Ticket | Summary | Assignee | Days Blocked |
+|--------|---------|----------|--------------|
+| BACK-1489 | Update classification-api Base Image to Ubuntu 24.04 LTS | Kalvin Willison | 5+ days |
+
+---
+
+CODE REVIEW QUEUE (8 tickets):
+
+| Ticket | Summary | Assignee |
+|--------|---------|----------|
+| BACK-1589 | Update starlette in ContentProcessorAPI | Kalvin Willison |
+| UI-722 | Create Stencil for Integer / Whole Number | Owen Riley |
+| UI-711 | Blockly Block Term presence | Owen Riley |
+| SC-324 | Stakater Reloader Vulnerabilities | Jeff Hegerhorst |
+| BACK-1567 | Actionable Data Export | Ivan Peev |
+| BACK-1488 | Update deepview-status-service Base Image | Treven Trujillo |
+| UI-701 | Email attachment UI layout | Matthew Snow |
+| BACK-1521 | SubCategory Model Integration | Aleksander Winski |
+
+Remove BACK-1318 from code review (now Done)
+
+---
+
+IN PROGRESS (13 tickets):
+
+| Ticket | Summary | Assignee |
+|--------|---------|----------|
+| BACK-1596 | Broadridge - create scripts to clean up project data | Darius Ouderkirk |
+| BACK-1584 | Create Message Sender Statistics Endpoint | Ivan Peev |
+| BACK-1572 | Manual tasks push back to allegro | Kannal Mehta |
+| BACK-1586 | Update node-forge in ContentProcessorWeb | Kalvin Willison |
+| SC-322 | Address OTEL Vulnerabilities | Jeff Hegerhorst |
+| BACK-839 | Allow Event Status to be Updated via API | Aleksander Winski |
+| BACK-1532 | Sunwest Mercury Extraction | Konnor Willison |
+| BACK-1573 | DTCC Deep Pilot subgroups | Darius Ouderkirk |
+| BACK-1580 | Update dependencies: 8 Dependabot PRs | Kalvin Willison |
+| BACK-1224 | Research scalability refactor | Lane Terry |
+| BACK-1430 | ArrayIndexOutOfBounds Processing Actors | Lane Terry |
+| UI-703 | Dashboard tab/filter persistence | Matthew Snow |
+| BACK-849 | Accenture delivery failure email | Aleksander Winski |
+
+---
+
+ENGINEER WORKLOAD:
+
+| Engineer | Active | In Progress | Code Review | Blocked | To Do |
+|----------|--------|-------------|-------------|---------|-------|
+| Kalvin Willison | 6 | 5 | 0 | 1 | 0 |
+| Darius Ouderkirk | 5 | 5 | 0 | 0 | 0 |
+| Aleksander Winski | 4 | 2 | 1 | 0 | 1 |
+| Jeff Hegerhorst | 3 | 1 | 1 | 0 | 0 |
+| Lane Terry | 2 | 2 | 0 | 0 | 0 |
+| Ivan Peev | 2 | 1 | 1 | 0 | 0 |
+| Matthew Snow | 2 | 1 | 1 | 0 | 0 |
+| Owen Riley | 2 | 0 | 2 | 0 | 0 |
+| Treven Trujillo | 1 | 0 | 1 | 0 | 0 |
+| Konnor Willison | 1 | 1 | 0 | 0 | 0 |
+| Chad Hegerhorst | 0 | 0 | 0 | 0 | 0 |
+| Kannal Mehta | 1 | 1 | 0 | 0 | 0 |
+| Unassigned | 16 | 0 | 0 | 0 | 16 |
+
+---
+
+PROJECT BREAKDOWN:
+
+| Project | Total |
+|---------|-------|
+| BACK | 87 |
+| SC | 20 |
+| UI | 12 |
+| FB | 1 |
+| CI | 1 |
+
+---
+
+SPRINT 2 PREVIEW:
+
+| Metric | Value |
+|--------|-------|
+| Total Tickets | 31 |
+| Status | Ready for Dec 19 kickoff |
+
+---
+
+PROGRESS SINCE DEC 14:
+
+| Metric | Dec 14 | Dec 15 | Change |
+|--------|--------|--------|--------|
+| Done | 59 (50%) | 72 (59.5%) | +13 |
+| Unassigned | 29 | 16 | -13 |
+| Blocked | 2 | 1 | -1 |
+
+Add note: "+13 tickets completed since Saturday. Great sprint velocity."
+
+---
+
+ALERTS TO UPDATE:
+
+Remove: "BACK-1318 in review 9+ days" (now Done)
+Remove: "FB-2407 NEEDS OWNER" (now has owner, status To Do)
+Keep: "BACK-1489 build failing" (still Blocked)
+
+Update blocked banner:
+OLD: "2 BLOCKED (4+ days): FB-2407 NEEDS OWNER, BACK-1489 build failing"
+NEW: "1 BLOCKED: BACK-1489 build failing (Kalvin)"
+
+---
+
+EXTRACTION TIMESTAMP: December 15, 2025 @ [current time]

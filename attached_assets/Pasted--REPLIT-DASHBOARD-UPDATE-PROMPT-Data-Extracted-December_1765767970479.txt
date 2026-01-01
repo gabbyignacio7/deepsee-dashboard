@@ -1,0 +1,492 @@
+**REPLIT DASHBOARD UPDATE PROMPT**
+**Data Extracted: December 14, 2025 @ 9:37 PM MT**
+
+```
+Update the DeepSee AI Sprint Dashboard with the following verified data from JIRA extraction. This is the Day 10 update for Sprint 2025-S1.
+
+---
+
+## METADATA
+```json
+{
+  "metadata": {
+    "extractedAt": "2025-12-14T21:37:00-07:00",
+    "forDate": "2025-12-14",
+    "sprintDay": 10,
+    "sprintName": "2025-S1",
+    "previousExtraction": "2025-12-11T16:30:00-07:00",
+    "daysRemaining": 4
+  }
+}
+```
+
+---
+
+## TICKET COUNT RECONCILIATION
+```json
+{
+  "ticketCounts": {
+    "jqlTotal": 118,
+    "parentIssuesOnly": 96,
+    "boardVisible": 81,
+    "previousTotal": 109,
+    "change": "+9",
+    "recommendedDisplay": 96,
+    "note": "Board shows ~81 (collapsed subtasks). Use 96 (parent issues) for reporting."
+  }
+}
+```
+
+---
+
+## SPRINT 2025-S1 STATUS (Day 10 of 14)
+
+### SPRINT SUMMARY
+```json
+{
+  "sprint": {
+    "name": "2025-S1",
+    "goal": "Secure Broadridge ($500K ARR) through Wave 1 security remediation, deliver Mercury Extraction for Colony/Sunwest, and complete DeepRecon API migration.",
+    "startDate": "2025-12-05",
+    "endDate": "2025-12-19",
+    "totalTickets": 96,
+    "displayNote": "96 parent issues (118 including subtasks)",
+    "daysElapsed": 10,
+    "daysRemaining": 4,
+    "health": "YELLOW",
+    "completionRate": 50
+  }
+}
+```
+
+### STATUS BREAKDOWN
+```json
+{
+  "statusBreakdown": {
+    "done": { "count": 59, "prevCount": 51, "change": "+8", "percentage": 50 },
+    "toDo": { "count": 35, "percentage": 30 },
+    "inProgress": { "count": 12, "prevCount": 15, "change": "-3", "percentage": 10 },
+    "codeReview": { "count": 8, "prevCount": 4, "change": "+4", "percentage": 7 },
+    "blocked": { "count": 2, "percentage": 2 },
+    "inTesting": { "count": 1, "percentage": 1 },
+    "cancelled": { "count": 0, "percentage": 0 }
+  },
+  "unassigned": 29
+}
+```
+
+### PROGRESS COMPARISON (Dec 11 → Dec 14)
+```json
+{
+  "progressComparison": {
+    "dec11": {
+      "done": 51,
+      "completionRate": "47%"
+    },
+    "dec14": {
+      "done": 59,
+      "completionRate": "50%"
+    },
+    "improvement": "+3% in 3 days",
+    "ticketsCompleted": 8
+  }
+}
+```
+
+### BLOCKED TICKETS (CRITICAL - NO CHANGE)
+```json
+{
+  "blocked": [
+    {
+      "id": "FB-2407",
+      "summary": "Update ml-workflows Base Image to Ubuntu 24.04 LTS",
+      "assignee": "UNASSIGNED",
+      "reporter": "Konnor Willison",
+      "severity": "HIGH",
+      "daysBlocked": 4,
+      "blockerReason": "Tests failing after package updates. Filbert team needs to remediate vulnerable packages.",
+      "dueDate": "Dec 19",
+      "action": "NEEDS OWNER ASSIGNED IMMEDIATELY"
+    },
+    {
+      "id": "BACK-1489",
+      "summary": "Update classification-api Base Image to Ubuntu 24.04 LTS",
+      "assignee": "Kalvin Willison",
+      "severity": "HIGH",
+      "blockerReason": "1 build failing, 1 PR open",
+      "action": "Kalvin needs support to investigate build failure"
+    }
+  ],
+  "note": "SAME 2 BLOCKERS SINCE DEC 11 - NO PROGRESS"
+}
+```
+
+### CODE REVIEW QUEUE (8 tickets - BOTTLENECK)
+```json
+{
+  "codeReview": [
+    { "id": "UI-701", "summary": "Adjust UI layout for email attachment screen", "assignee": "Matthew Snow" },
+    { "id": "BACK-1587", "summary": "Update urllib3 from 2.3.0 to 2.6.2 in ContentProcessor", "assignee": "Kalvin Willison" },
+    { "id": "BACK-1521", "summary": "Integrate SubCategory Model Calls into Prediction Pipeline", "assignee": "Aleksander Winski", "points": 3, "flag": "Long-running review" },
+    { "id": "BACK-1494", "summary": "Update promethia-api Base Image to Ubuntu", "assignee": "Kalvin Willison" },
+    { "id": "BACK-1493", "summary": "Update workflows-python-executor Base Image", "assignee": "Kalvin Willison" },
+    { "id": "BACK-1492", "summary": "Update workflows-events-consumer Base Image", "assignee": "Kalvin Willison" },
+    { "id": "BACK-1488", "summary": "Update deepview-status-service Base Image to Alpine", "assignee": "Treven Trujillo", "points": 1 },
+    { "id": "BACK-1318", "summary": "Counterparties API", "assignee": "Ivan Peev", "flag": "In review since Dec 5 (9+ days)" }
+  ],
+  "alert": "Code Review doubled from 4 to 8 - potential bottleneck"
+}
+```
+
+### IN TESTING (1)
+```json
+{
+  "inTesting": [
+    { "id": "CI-436", "summary": "Port inference pipeline to argo workflows", "assignee": "Jeff Hegerhorst" }
+  ]
+}
+```
+
+### IN PROGRESS (12)
+```json
+{
+  "inProgress": [
+    { "id": "BACK-1382", "summary": "Export for Vantage Commercial Lending Work", "assignee": "Darius Ouderkirk" },
+    { "id": "UI-711", "summary": "Add New Blockly Block to check Term presence", "assignee": "Owen Riley" },
+    { "id": "UI-703", "summary": "Dashboards - preserve same tab/filters", "assignee": "Matthew Snow" },
+    { "id": "SC-324", "summary": "Address Stakater Reloader Vulnerabilities", "assignee": "Jeff Hegerhorst" },
+    { "id": "BACK-1580", "summary": "Update dependencies: Review 8 Dependabot", "assignee": "Kalvin Willison" },
+    { "id": "BACK-1573", "summary": "Deep Pilot - Extra non-matching subgroups", "assignee": "Darius Ouderkirk" },
+    { "id": "BACK-1567", "summary": "Actionable Data Export", "assignee": "Ivan Peev" },
+    { "id": "BACK-1532", "summary": "Fine-tune Mercury Extraction for Sunwest Bank", "assignee": "Konnor Willison" },
+    { "id": "BACK-1304", "summary": "Messages API", "assignee": "Lane Terry", "points": 13 },
+    { "id": "BACK-1224", "summary": "Research and plan major scalability refactor", "assignee": "Lane Terry" },
+    { "id": "BACK-839", "summary": "Allow Event Status to be Updated via API", "assignee": "Aleksander Winski" },
+    { "id": "BACK-811", "summary": "Output processing fails for large work items", "assignee": "Kannal Mutharasu" }
+  ]
+}
+```
+
+### PROJECT BREAKDOWN
+```json
+{
+  "projectBreakdown": {
+    "BACK": 85,
+    "SC": 20,
+    "UI": 11,
+    "FB": 1,
+    "CI": 1,
+    "total": 118
+  }
+}
+```
+
+### KEY TICKETS STATUS (Dec 14)
+```json
+{
+  "keyTickets": [
+    { "id": "BACK-1531", "summary": "Colony Mercury Extraction", "status": "Done", "assignee": "Kalvin Willison", "change": "No change" },
+    { "id": "BACK-1578", "summary": "Feedback Mercury Extraction Colony", "status": "NOT IN SPRINT", "assignee": "Unassigned", "flag": "Should be in sprint?" },
+    { "id": "BACK-1576", "summary": "BBVA Term Type Adjustment", "status": "Done", "assignee": "Kannal Mutharasu", "change": "No change" },
+    { "id": "BACK-1560", "summary": "BBVA Reconciliation Output", "status": "Done", "assignee": "Kannal Mutharasu", "change": "No change" },
+    { "id": "BACK-1530", "summary": "BBVA Mercury Extraction Schema", "status": "To Do", "assignee": "Konnor Willison" },
+    { "id": "BACK-1542", "summary": "Deploy v3 API to Accenture & Demo", "status": "Done", "assignee": "Lane Terry", "change": "No change" },
+    { "id": "BACK-1318", "summary": "Counterparties API", "status": "Code Review", "assignee": "Ivan Peev", "flag": "9+ days in review" },
+    { "id": "BACK-1521", "summary": "SubCategory Model", "status": "Code Review", "assignee": "Aleksander Winski", "flag": "Long-running" },
+    { "id": "UI-701", "summary": "Email attachment layout", "status": "Code Review", "assignee": "Matthew Snow" },
+    { "id": "FB-2407", "summary": "ml-workflows Base Image", "status": "BLOCKED", "assignee": "UNASSIGNED", "flag": "4 days blocked, needs owner" },
+    { "id": "BACK-1489", "summary": "classification-api Base Image", "status": "BLOCKED", "assignee": "Kalvin Willison", "flag": "Build failing" },
+    { "id": "CI-436", "summary": "Argo workflows pipeline", "status": "In Testing", "assignee": "Jeff Hegerhorst" },
+    { "id": "BACK-1532", "summary": "Sunwest Bank Mercury", "status": "In Progress", "assignee": "Konnor Willison" },
+    { "id": "BACK-1575", "summary": "Mercury Extraction Schema Parameters", "status": "Done", "assignee": "Kalvin Willison", "change": "NEW - Resolved" },
+    { "id": "SC-316", "summary": "Backup Restoration Test", "status": "Done", "assignee": "Chad Hegerhorst", "change": "NEW - Resolved" },
+    { "id": "SC-320", "summary": "MLFlow Server Vulnerabilities", "status": "Done", "assignee": "Jeff Hegerhorst", "change": "NEW - Resolved" }
+  ]
+}
+```
+
+### WINS (Dec 14)
+```json
+{
+  "wins": [
+    {
+      "title": "50% Completion Milestone",
+      "description": "Sprint is halfway done with 4 days remaining",
+      "impact": "On track for completion"
+    },
+    {
+      "title": "+8 Tickets Completed Since Dec 11",
+      "description": "59 Done, up from 51",
+      "impact": "Steady velocity"
+    },
+    {
+      "title": "BACK-1575 Mercury Schema Done",
+      "description": "Kalvin completed Mercury Extraction Schema Parameters",
+      "assignee": "Kalvin Willison"
+    },
+    {
+      "title": "SC-316 Backup Restoration Done",
+      "description": "Chad completed SOC 2 backup restoration test",
+      "assignee": "Chad Hegerhorst"
+    },
+    {
+      "title": "SC-320 MLFlow Vulnerabilities Done",
+      "description": "Jeff completed MLFlow Server security work",
+      "assignee": "Jeff Hegerhorst"
+    },
+    {
+      "title": "Dependency Updates Progressing",
+      "description": "Kalvin pushing through multiple urllib3, axios, starlette updates",
+      "assignee": "Kalvin Willison"
+    }
+  ]
+}
+```
+
+### RISKS (Dec 14)
+```json
+{
+  "risks": [
+    {
+      "severity": "HIGH",
+      "item": "2 Blocked Tickets - NO PROGRESS IN 3 DAYS",
+      "description": "FB-2407 and BACK-1489 still blocked since Dec 11. FB-2407 has NO OWNER.",
+      "owner": "Brandon Baguley",
+      "action": "Assign FB-2407 immediately. Support Kalvin on BACK-1489 build failure."
+    },
+    {
+      "severity": "HIGH",
+      "item": "Code Review Bottleneck - Doubled to 8",
+      "description": "Code Review queue doubled from 4 to 8 tickets. BACK-1318 has been in review 9+ days.",
+      "owner": "Engineering",
+      "action": "Assign reviewers. Clear queue before sprint end."
+    },
+    {
+      "severity": "MEDIUM",
+      "item": "Kalvin Workload Overload",
+      "description": "Kalvin has 15+ tickets including blocked item, multiple code reviews, and dependency updates.",
+      "owner": "Brandon Baguley",
+      "action": "Consider load balancing"
+    },
+    {
+      "severity": "MEDIUM",
+      "item": "29 Unassigned Tickets",
+      "description": "Mostly security tickets (SC-xxx) need owners or move to backlog",
+      "owner": "Brandon Baguley",
+      "action": "Assign or move to Sprint 2"
+    },
+    {
+      "severity": "LOW",
+      "item": "BACK-1578 Not In Sprint",
+      "description": "Colony feedback ticket has no sprint assignment",
+      "owner": "Ryan/Gabriel",
+      "action": "Verify if this should be in Sprint 1 or 2"
+    }
+  ]
+}
+```
+
+---
+
+## SPRINT 2025-S2 PLANNING
+
+### SPRINT 2 STATUS
+```json
+{
+  "sprint2": {
+    "name": "2025-S2",
+    "exists": true,
+    "startDate": "2025-12-19",
+    "endDate": "2026-01-02",
+    "totalDays": 14,
+    "workingDays": 6,
+    "effectiveCapacity": "55%",
+    "sprintOwner": "Brandon Baguley / Konnor Willison",
+    "ticketsAssigned": 32,
+    "allUnassigned": true,
+    "note": "All 32 tickets are UI project (DeepRecon dashboard), all unassigned to engineers"
+  }
+}
+```
+
+### SPRINT 2 TICKETS (32)
+```json
+{
+  "sprint2Tickets": [
+    { "id": "UI-721", "summary": "DeepRecon - Make Custom fields output available" },
+    { "id": "UI-719", "summary": "DeepRecon - Add To column to Actionable Data" },
+    { "id": "UI-718", "summary": "DeepRecon - Display Mailbox ID in the UI" },
+    { "id": "UI-717", "summary": "Update Overview > Top Senders of Thread Length" },
+    { "id": "UI-716", "summary": "Update Overview > Breakout chart calculations" },
+    { "id": "UI-715", "summary": "Update Status page to pull correct data" },
+    { "id": "UI-714", "summary": "Update Overview > Counterparty Dashboard" },
+    { "id": "UI-713", "summary": "Update Message Volume Across Time widget" },
+    { "id": "UI-704", "summary": "Add Select/Deselect All inside Filters" },
+    { "id": "UI-702", "summary": "Create a new aggregated report" },
+    { "id": "UI-700", "summary": "Identify the top five senders to a Project" },
+    { "id": "UI-699", "summary": "Update Message Volume Across Time widget" }
+  ],
+  "note": "Plus 20 more UI tickets - all DeepRecon dashboard work from Nadiya"
+}
+```
+
+### CARRYOVER FROM SPRINT 1
+```json
+{
+  "carryover": {
+    "totalNotDone": 59,
+    "breakdown": {
+      "toDo": 35,
+      "inProgress": 12,
+      "codeReview": 8,
+      "blocked": 2,
+      "inTesting": 1
+    },
+    "highPriority": [
+      { "id": "BACK-1532", "summary": "Sunwest Bank Mercury Extraction", "status": "In Progress", "assignee": "Konnor Willison" },
+      { "id": "BACK-1304", "summary": "Messages API", "status": "In Progress", "assignee": "Lane Terry", "points": 13 },
+      { "id": "BACK-1318", "summary": "Counterparties API", "status": "Code Review", "assignee": "Ivan Peev" },
+      { "id": "CI-436", "summary": "Argo workflows pipeline", "status": "In Testing", "assignee": "Jeff Hegerhorst" },
+      { "id": "BACK-1573", "summary": "DTCC Deep Pilot subgroups", "status": "In Progress", "assignee": "Darius Ouderkirk" },
+      { "id": "BACK-1567", "summary": "Actionable Data Export", "status": "In Progress", "assignee": "Ivan Peev" },
+      { "id": "BACK-1382", "summary": "Vantage Commercial Lending Export", "status": "In Progress", "assignee": "Darius Ouderkirk" }
+    ]
+  }
+}
+```
+
+### CLIENT BACKLOG
+```json
+{
+  "clientBacklog": {
+    "colony": { "count": 9, "topTickets": ["UI-682", "BACK-1591", "BACK-1578", "BACK-1553"] },
+    "broadridge": { "count": 24, "topTickets": ["UI-697", "UI-640", "SC-301", "SC-300", "PR-1556"] },
+    "bbva": { "count": 4, "topTickets": ["UI-686", "UI-685", "PR-1552", "CI-891"] },
+    "accenture": { "count": 36, "topTickets": ["UI-720", "PR-1546", "PR-1161", "FB-2410"] },
+    "dtcc": { "count": 14, "topTickets": ["UI-636", "PR-1543", "BACK-1422", "BACK-1283"] },
+    "sunwest": { "count": 15, "topTickets": ["UI-637", "UI-265", "PR-1535", "FB-2381"] }
+  }
+}
+```
+
+### SECURITY BACKLOG
+```json
+{
+  "securityBacklog": {
+    "total": 237,
+    "topItems": [
+      { "id": "SC-301", "summary": "Address NATS Vulnerabilities (26 C+H)" },
+      { "id": "SC-300", "summary": "Address PostgreSQL Vulnerabilities (158 C+H)" },
+      { "id": "SC-297", "summary": "Standardize Alpine-based Images to 3.22.2" },
+      { "id": "SC-296", "summary": "Standardize Ubuntu-based Images to 24.04 LTS" }
+    ],
+    "note": "Significant security debt - consider dedicated allocation"
+  }
+}
+```
+
+---
+
+## CHANGES SINCE DEC 11
+```json
+{
+  "changesSinceDec11": {
+    "ticketCount": "109 → 118 (+9)",
+    "doneCount": "51 → 59 (+8)",
+    "completionRate": "47% → 50% (+3%)",
+    "codeReviewCount": "4 → 8 (+4)",
+    "blockedCount": "2 → 2 (no change)",
+    "unassignedCount": "31 → 29 (-2)",
+    "keyResolutions": [
+      "BACK-1575 Mercury Extraction Schema Parameters - DONE (Kalvin)",
+      "SC-316 Backup Restoration Test - DONE (Chad)",
+      "SC-320 MLFlow Server Vulnerabilities - DONE (Jeff)",
+      "SC-323 PVC Autoresizer Vulnerabilities - DONE (Jeff)",
+      "SC-321 Cert Manager Vulnerabilities - DONE (Jeff)"
+    ],
+    "stillBlocked": [
+      "FB-2407 - 4 days blocked, STILL UNASSIGNED",
+      "BACK-1489 - Build still failing"
+    ],
+    "newConcern": "Code Review queue doubled - potential bottleneck"
+  }
+}
+```
+
+---
+
+## DASHBOARD DISPLAY REQUIREMENTS
+
+### 1. Health Indicator
+Keep as YELLOW:
+- 2 blocked tickets (no progress in 3 days)
+- Code review bottleneck (8 tickets)
+- 29 unassigned tickets
+- Kalvin overloaded
+
+### 2. Progress Bar (Sprint 1)
+Done: 59 | In Progress: 12 | Code Review: 8 | In Testing: 1 | To Do: 35 | Blocked: 2
+
+### 3. Blocked Alert Banner (ESCALATE)
+Display prominently in RED:
+"2 BLOCKED (4+ days): FB-2407 NEEDS OWNER, BACK-1489 build failing"
+
+### 4. Code Review Alert (NEW)
+Display in ORANGE:
+"Code Review bottleneck: 8 tickets (doubled from 4). BACK-1318 in review 9+ days."
+
+### 5. Sprint 2 Preview Card
+```
+Sprint 2025-S2 | Dec 19 - Jan 2
+Holiday Sprint: ~55% capacity
+32 UI tickets (all unassigned)
+59 carryover candidates
+Owner: Brandon Baguley / Konnor Willison
+```
+
+### 6. Days Remaining Alert
+Display prominently:
+"4 DAYS LEFT - 59 tickets not done"
+
+---
+
+## VERIFICATION CHECKLIST
+
+After update, confirm:
+- [ ] Total shows 96 parent issues (118 with subtasks)
+- [ ] Done shows 59 (50%)
+- [ ] Code Review shows 8 (was 4)
+- [ ] Blocked shows 2 (FB-2407, BACK-1489)
+- [ ] FB-2407 flagged as UNASSIGNED
+- [ ] BACK-1318 flagged as 9+ days in review
+- [ ] Sprint 2 shows 32 tickets
+- [ ] Carryover shows 59 tickets
+- [ ] Days remaining shows 4
+- [ ] Kalvin workload flagged
+
+---
+
+END OF PROMPT
+```
+
+---
+
+**KEY CHANGES SINCE DEC 11:**
+
+| Metric | Dec 11 | Dec 14 | Change |
+|--------|--------|--------|--------|
+| Done | 51 | 59 | +8 |
+| Completion | 47% | 50% | +3% |
+| Code Review | 4 | 8 | +4 (doubled!) |
+| Blocked | 2 | 2 | No change |
+| Days Left | 7 | 4 | -3 |
+
+**TOP CONCERNS:**
+
+1. **FB-2407 STILL HAS NO OWNER** - 4 days blocked
+2. **Code Review doubled** - 8 tickets, bottleneck forming
+3. **BACK-1318 in review 9+ days** - Ivan needs reviewer
+4. **Kalvin overloaded** - 15+ tickets
+5. **4 days left, 59 tickets not done**
+
+Want me to craft the speaking notes and Gamma deck for tomorrow's standup?

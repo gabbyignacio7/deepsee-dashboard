@@ -1,0 +1,736 @@
+REPLIT AI AGENT - CLIENT VIEW FILTER IMPLEMENTATION
+
+**CONTEXT:**
+Ryan McQueen (CEO/CPO) requested adding a client-centric view to make the dashboard more intuitive for stakeholder navigation. This was discussed in the November 12, 2025 meeting where he emphasized the need for hierarchical filtering:
+- Highest Level: View by CLIENT and REVENUE
+- Mid Level: View by PRODUCT FEATURES 
+- Granular Level: View by JIRA TICKETS
+
+**OBJECTIVE:**
+Implement a Client View Filter that allows users to see all features, JIRA tickets, and revenue data filtered by specific clients (e.g., Broadridge, DTCC, JP Morgan, Accenture).
+
+---
+
+## PART 1: CLIENT FILTER COMPONENT
+
+**Add Client Filter Dropdown to Dashboard Header:**
+
+```tsx
+// Add to src/components/Dashboard.tsx or equivalent
+
+interface ClientFilterProps {
+  selectedClients: string[];
+  onClientChange: (clients: string[]) => void;
+}
+
+const ClientFilter: React.FC<ClientFilterProps> = ({ selectedClients, onClientChange }) => {
+  const allClients = [
+    'All Clients',
+    'Broadridge',
+    'DTCC', 
+    'JP Morgan',
+    'Goldman Sachs',
+    'Accenture',
+    'Wells Fargo',
+    'Bank of America',
+    'CIBC',
+    'Regional Banks',
+    'CTC',
+    'BBVA',
+    'Avaloq',
+    'FIS',
+    'BetaNXT',
+    'Other'
+  ];
+
+  return (
+    <div className="client-filter-container">
+      <label className="filter-label">Filter by Client:</label>
+      <select 
+        multiple
+        value={selectedClients}
+        onChange={(e) => {
+          const options = Array.from(e.target.selectedOptions, option => option.value);
+          if (options.includes('All Clients')) {
+            onClientChange([]);
+          } else {
+            onClientChange(options);
+          }
+        }}
+        className="client-filter-dropdown"
+      >
+        {allClients.map(client => (
+          <option key={client} value={client}>
+            {client}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
+```
+
+---
+
+## PART 2: CLIENT-SPECIFIC DASHBOARD VIEW
+
+**Create Dedicated Client Dashboard Component:**
+
+When a user selects a specific client (e.g., Broadridge), show:
+
+1. **Client Header Card:**
+   - Client Name
+   - Total Contract Value / ARR
+   - Features Delivered vs. Total Features (e.g., "5 / 20 - 25%")
+   - On-Time Delivery Rate
+   - Next Milestone Date
+   - Contract Status (Active, At Risk, POC, etc.)
+
+2. **Client Features Table:**
+   - Feature Name
+   - Status (In Progress, To Do, Done)
+   - Delivery Date / Target Quarter
+   - Revenue Attribution (Included in contract, POV discussion, etc.)
+   - Type (Committed, POV, Contract Negotiation)
+   - Priority Tier (Tier 0, Tier 1, etc.)
+
+3. **Client JIRA Tickets Section:**
+   - Ticket ID (BACK-####, UI-####, etc.)
+   - Ticket Title
+   - Status
+   - Assigned Engineer
+   - Story Points / Effort
+   - Sprint Assignment
+
+**Implementation Structure:**
+
+```tsx
+interface ClientDashboardViewProps {
+  clientName: string;
+  features: Feature[];
+  tickets: JiraTicket[];
+  salesPipeline: SalesOpportunity[];
+}
+
+const ClientDashboardView: React.FC<ClientDashboardViewProps> = ({
+  clientName,
+  features,
+  tickets,
+  salesPipeline
+}) => {
+  // Filter data for selected client
+  const clientFeatures = features.filter(f => 
+    f.primary_client === clientName || 
+    f.primary_client?.includes(clientName)
+  );
+  
+  const clientTickets = tickets.filter(t => 
+    clientFeatures.some(f => f.feature_id === t.mapped_feature_id)
+  );
+  
+  const clientDeals = salesPipeline.filter(d => d.client_name === clientName);
+  
+  // Calculate client metrics
+  const totalARR = clientDeals.reduce((sum, d) => sum + (d.arr || 0), 0);
+  const completedFeatures = clientFeatures.filter(f => f.status === 'Done').length;
+  const totalFeatures = clientFeatures.length;
+  const completionRate = (completedFeatures / totalFeatures * 100).toFixed(0);
+  
+  // Calculate on-time delivery rate
+  const featuresWithDates = clientFeatures.filter(f => f.target_date && f.status === 'Done');
+  const onTimeFeatures = featuresWithDates.filter(f => 
+    new Date(f.actual_delivery_date) <= new Date(f.target_date)
+  );
+  const onTimeRate = (onTimeFeatures.length / featuresWithDates.length * 100).toFixed(0);
+  
+  // Find next milestone
+  const upcomingFeatures = clientFeatures
+    .filter(f => f.target_date && new Date(f.target_date) > new Date())
+    .sort((a, b) => new Date(a.target_date) - new Date(b.target_date));
+  const nextMilestone = upcomingFeatures[0];
+
+  return (
+    <div className="client-dashboard-view">
+      {/* Client Header Card */}
+      <div className="client-header-card">
+        <h1>{clientName} Client Dashboard</h1>
+        <div className="client-metrics-grid">
+          <div className="metric">
+            <span className="metric-label">Total Contract Value</span>
+            <span className="metric-value">${(totalARR / 1000).toFixed(0)}K</span>
+          </div>
+          <div className="metric">
+            <span className="metric-label">Features Delivered</span>
+            <span className="metric-value">{completedFeatures} / {totalFeatures} ({completionRate}%)</span>
+          </div>
+          <div className="metric">
+            <span className="metric-label">On-Time Delivery Rate</span>
+            <span className="metric-value">{onTimeRate}%</span>
+          </div>
+          <div className="metric">
+            <span className="metric-label">Next Milestone</span>
+            <span className="metric-value">
+              {nextMilestone ? new Date(nextMilestone.target_date).toLocaleDateString() : 'TBD'}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Client Features Table */}
+      <div className="client-features-section">
+        <h2>Features for {clientName}</h2>
+        <table className="client-features-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Status</th>
+              <th>Delivery Date</th>
+              <th>Revenue</th>
+              <th>Type</th>
+              <th>Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            {clientFeatures.map(feature => (
+              <tr key={feature.feature_id}>
+                <td>{feature.feature_name}</td>
+                <td>
+                  <span className={`status-badge status-${feature.status.toLowerCase().replace(' ', '-')}`}>
+                    {feature.status}
+                  </span>
+                </td>
+                <td>{feature.target_date || 'TBD'}</td>
+                <td>${(feature.arr_impact / 1000).toFixed(0)}K</td>
+                <td>{feature.feature_type}</td>
+                <td>
+                  <span className={`tier-badge tier-${feature.priority_tier}`}>
+                    Tier {feature.priority_tier}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Client JIRA Tickets Section */}
+      <div className="client-tickets-section">
+        <h2>JIRA Tickets for {clientName}</h2>
+        <div className="tickets-summary">
+          <span>Total Tickets: {clientTickets.length}</span>
+          <span>To Do: {clientTickets.filter(t => t.status === 'To Do').length}</span>
+          <span>In Progress: {clientTickets.filter(t => t.status === 'In Progress').length}</span>
+          <span>Done: {clientTickets.filter(t => t.status === 'Done').length}</span>
+        </div>
+        <table className="client-tickets-table">
+          <thead>
+            <tr>
+              <th>Ticket ID</th>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Assignee</th>
+              <th>Effort</th>
+              <th>Feature</th>
+            </tr>
+          </thead>
+          <tbody>
+            {clientTickets.map(ticket => (
+              <tr key={ticket.jira_ticket_id}>
+                <td>
+                  <a 
+                    href={`https://deepsee.atlassian.net/browse/${ticket.jira_ticket_id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ticket-link"
+                  >
+                    {ticket.jira_ticket_id}
+                  </a>
+                </td>
+                <td>{ticket.jira_ticket_title}</td>
+                <td>{ticket.jira_status}</td>
+                <td>{ticket.assigned_engineer || 'Unassigned'}</td>
+                <td>{ticket.story_points || ticket.t_shirt_size || '-'}</td>
+                <td>
+                  {features.find(f => f.feature_id === ticket.mapped_feature_id)?.feature_name || '-'}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Pipeline Status Section */}
+      <div className="client-pipeline-section">
+        <h2>Sales Pipeline for {clientName}</h2>
+        <table className="client-pipeline-table">
+          <thead>
+            <tr>
+              <th>Opportunity</th>
+              <th>Stage</th>
+              <th>ARR</th>
+              <th>Close Date</th>
+              <th>Probability</th>
+            </tr>
+          </thead>
+          <tbody>
+            {clientDeals.map(deal => (
+              <tr key={deal.opportunity_id}>
+                <td>{deal.opportunity_name}</td>
+                <td>{deal.pipeline_stage}</td>
+                <td>${(deal.arr / 1000).toFixed(0)}K</td>
+                <td>{deal.expected_close_date}</td>
+                <td>{deal.conversion_probability}%</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+```
+
+---
+
+## PART 3: HIERARCHICAL NAVIGATION
+
+**Implement Breadcrumb Navigation:**
+
+Show user's current position in the hierarchy:
+```
+All Features > Client: Broadridge > Feature: Email Archiving Strategy > Ticket: BACK-1225
+```
+
+```tsx
+const Breadcrumbs: React.FC<{
+  levels: { label: string; onClick: () => void }[]
+}> = ({ levels }) => {
+  return (
+    <nav className="breadcrumbs">
+      {levels.map((level, index) => (
+        <React.Fragment key={index}>
+          <button 
+            onClick={level.onClick}
+            className="breadcrumb-link"
+          >
+            {level.label}
+          </button>
+          {index < levels.length - 1 && <span className="breadcrumb-separator">›</span>}
+        </React.Fragment>
+      ))}
+    </nav>
+  );
+};
+```
+
+---
+
+## PART 4: DATA STRUCTURE UPDATES
+
+**Update Feature Data to Support Multiple Clients:**
+
+Currently the `primary_client` field in Master_Data_Features can contain:
+- Single client: "Broadridge"
+- Multiple clients: "Multiple: JPM, DTCC, Broadridge"
+- All clients: "All"
+
+**Parsing Logic:**
+
+```typescript
+function parseClients(clientField: string): string[] {
+  if (!clientField || clientField === '' || clientField === 'TBD') {
+    return [];
+  }
+  
+  if (clientField.toLowerCase() === 'all') {
+    return ['All Clients'];
+  }
+  
+  // Handle "Multiple: JPM, DTCC, Broadridge" format
+  if (clientField.toLowerCase().startsWith('multiple')) {
+    const clientsPart = clientField.split(':')[1];
+    return clientsPart.split(',').map(c => c.trim());
+  }
+  
+  return [clientField.trim()];
+}
+
+// Usage
+const feature = {
+  feature_id: 'F-031',
+  feature_name: 'Broadridge Critical Bug Fix',
+  primary_client: 'Broadridge',
+  // ...other fields
+};
+
+const clients = parseClients(feature.primary_client);
+// Result: ['Broadridge']
+```
+
+---
+
+## PART 5: RYAN'S SPECIFIC REQUEST - MULTI-SELECT CLIENT DROPDOWN
+
+**Ryan's Quote from Meeting:**
+> "I wonder, can you make that some sort of like drop down box that would show all the clients that you're seeing in monday.com and it sort of updates that list. And then I can click the boxes of what's applicable."
+
+**Implementation:**
+
+```tsx
+const MultiClientDropdown: React.FC<{
+  availableClients: string[];
+  selectedClients: string[];
+  onChange: (clients: string[]) => void;
+}> = ({ availableClients, selectedClients, onChange }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleClient = (client: string) => {
+    if (selectedClients.includes(client)) {
+      onChange(selectedClients.filter(c => c !== client));
+    } else {
+      onChange([...selectedClients, client]);
+    }
+  };
+
+  return (
+    <div className="multi-client-dropdown">
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="dropdown-trigger"
+      >
+        {selectedClients.length === 0 
+          ? 'Select Clients...' 
+          : `${selectedClients.length} client(s) selected`}
+      </button>
+      
+      {isOpen && (
+        <div className="dropdown-menu">
+          {availableClients.map(client => (
+            <label key={client} className="dropdown-item">
+              <input
+                type="checkbox"
+                checked={selectedClients.includes(client)}
+                onChange={() => toggleClient(client)}
+              />
+              <span>{client}</span>
+            </label>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+```
+
+---
+
+## PART 6: INTEGRATION WITH EXISTING DASHBOARD
+
+**Update Main Dashboard Component:**
+
+```tsx
+const Dashboard: React.FC = () => {
+  const [viewMode, setViewMode] = useState<'all' | 'client'>('all');
+  const [selectedClient, setSelectedClient] = useState<string | null>(null);
+  const [selectedClients, setSelectedClients] = useState<string[]>([]);
+
+  // Load data
+  const { features, tickets, pipeline } = useData();
+
+  // Filter data based on selected clients
+  const filteredData = useMemo(() => {
+    if (selectedClients.length === 0) {
+      return { features, tickets, pipeline };
+    }
+
+    const filteredFeatures = features.filter(f => {
+      const featureClients = parseClients(f.primary_client);
+      return selectedClients.some(sc => featureClients.includes(sc));
+    });
+
+    const filteredTickets = tickets.filter(t => 
+      filteredFeatures.some(f => f.feature_id === t.mapped_feature_id)
+    );
+
+    const filteredPipeline = pipeline.filter(p =>
+      selectedClients.includes(p.client_name)
+    );
+
+    return {
+      features: filteredFeatures,
+      tickets: filteredTickets,
+      pipeline: filteredPipeline
+    };
+  }, [features, tickets, pipeline, selectedClients]);
+
+  return (
+    <div className="dashboard-container">
+      {/* View Mode Toggle */}
+      <div className="view-mode-toggle">
+        <button 
+          className={viewMode === 'all' ? 'active' : ''}
+          onClick={() => setViewMode('all')}
+        >
+          All Features View
+        </button>
+        <button 
+          className={viewMode === 'client' ? 'active' : ''}
+          onClick={() => setViewMode('client')}
+        >
+          Client View
+        </button>
+      </div>
+
+      {/* Client Filter (visible in both modes) */}
+      <ClientFilter 
+        selectedClients={selectedClients}
+        onClientChange={setSelectedClients}
+      />
+
+      {/* Conditional Rendering Based on View Mode */}
+      {viewMode === 'all' ? (
+        <AllFeaturesView 
+          features={filteredData.features}
+          tickets={filteredData.tickets}
+          pipeline={filteredData.pipeline}
+        />
+      ) : (
+        <ClientGridView 
+          clients={getUniqueClients(features)}
+          features={filteredData.features}
+          tickets={filteredData.tickets}
+          pipeline={filteredData.pipeline}
+          onClientSelect={setSelectedClient}
+        />
+      )}
+
+      {/* Client-Specific Dashboard (when a single client is selected) */}
+      {selectedClient && (
+        <ClientDashboardView 
+          clientName={selectedClient}
+          features={filteredData.features}
+          tickets={filteredData.tickets}
+          salesPipeline={filteredData.pipeline}
+        />
+      )}
+    </div>
+  );
+};
+```
+
+---
+
+## PART 7: STYLING REQUIREMENTS
+
+**Add CSS for Client View:**
+
+```css
+/* Client Header Card */
+.client-header-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.client-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.metric-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Client Features Table */
+.client-features-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.client-features-table th {
+  background: #2d3748;
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.client-features-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.client-features-table tbody tr:hover {
+  background: #f7fafc;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-in-progress {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-to-do {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.status-done {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+/* Tier Badges */
+.tier-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.tier-0 {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.tier-1 {
+  background: #fed7aa;
+  color: #9a3412;
+}
+
+.tier-2 {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  font-size: 0.875rem;
+}
+
+.breadcrumb-link {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.breadcrumb-link:hover {
+  color: #4338ca;
+}
+
+.breadcrumb-separator {
+  margin: 0 0.5rem;
+  color: #9ca3af;
+}
+```
+
+---
+
+## PART 8: VALIDATION & TESTING CHECKLIST
+
+After implementation, verify:
+
+ Client filter dropdown shows all unique clients from Master_Data_Features
+ Selecting a client filters features, tickets, and pipeline data correctly
+ Client dashboard shows accurate metrics (ARR, completion %, on-time rate)
+ Breadcrumb navigation works correctly
+ Multi-client selection works (can select multiple clients simultaneously)
+ "All Clients" option shows unfiltered data
+ Client-specific tables display correct data
+ JIRA ticket links open correctly in new tabs
+ Responsive design works on tablet/mobile
+ Export functionality includes client filter state
+
+---
+
+## PART 9: EXAMPLE USE CASES
+
+**Use Case 1: Broadridge Review Meeting**
+1. User selects "Client View" mode
+2. Clicks "Broadridge" from client list
+3. Sees Broadridge dashboard with:
+   - $500K ARR at risk
+   - 3 features in progress (Email Archiving, Production Testing, Monitoring)
+   - 25 JIRA tickets (3 mapped, 22 unmapped)
+   - Next milestone: Jan 15, 2026
+4. Can drill down into each feature to see tickets
+5. Can see all Tier 0 and Tier 1 items for Broadridge
+
+**Use Case 2: Executive Portfolio Review**
+1. User stays in "All Features View"
+2. Uses multi-select client dropdown to select: Broadridge, DTCC, Accenture
+3. Dashboard shows aggregated data for these 3 clients
+4. Can compare revenue distribution across selected clients
+5. Can see capacity allocation per client
+
+**Use Case 3: Sales Pipeline Review**
+1. User selects "Client View" mode
+2. Clicks "JP Morgan"
+3. Sees 5 separate contracts for JP Morgan (as discussed in meetings)
+4. Can view each contract's features and status
+5. Can see total JP Morgan ARR across all contracts
+
+---
+
+## IMPLEMENTATION PRIORITY
+
+Based on Ryan's feedback, implement in this order:
+
+1. **Phase 1 (High Priority - This Week):**
+   - Basic client filter dropdown
+   - Client-specific feature filtering
+   - Client dashboard header card with key metrics
+
+2. **Phase 2 (Medium Priority - Next Week):**
+   - Client features table
+   - Client JIRA tickets section
+   - Breadcrumb navigation
+
+3. **Phase 3 (Nice to Have - Future):**
+   - Multi-client comparison view
+   - Client timeline/Gantt chart
+   - Export client-specific reports
+
+---
+
+## CRITICAL NOTES
+
+- This addresses Ryan's #1 concern: "make the dashboard more intuitive"
+- Ryan specifically mentioned viewing by client as the "highest level" of hierarchy
+- The multi-select dropdown was explicitly requested by Ryan in the Nov 12 meeting
+- This enables Steve (Sales) to show client-specific dashboards in customer meetings
+- Supports multiple deployments per client (JP Morgan has 5, Wells Fargo has 6)
+
+Execute these changes now and confirm when the Client View Filter is live. Let me know if you encounter any issues with the client parsing logic or data filtering.

@@ -1,0 +1,580 @@
+**REPLIT DASHBOARD UPDATE PROMPT - DECEMBER 23, 2025**
+
+```
+TASK: Update Sprint Dashboard with December 23, 2025 JIRA extraction data
+
+CONTEXT:
+- Sprint 2025-S2 (Holiday Sprint)
+- Data extracted: December 23, 2025 @ 5:00 AM MT
+- Previous sprint (S1) completed with 85% completion rate
+- This is Day 4 of 14 (10 days remaining)
+- 55% capacity due to holidays
+
+---
+
+SPRINT HEADER DATA
+
+Update the main sprint card:
+
+{
+  "sprint": "2025-S2",
+  "sprintName": "Holiday Sprint",
+  "startDate": "2025-12-19",
+  "endDate": "2026-01-02",
+  "daysElapsed": 4,
+  "daysRemaining": 10,
+  "totalDays": 14,
+  "capacity": "55%",
+  "capacityNote": "Holiday Sprint - Reduced Capacity",
+  "dataAsOf": "2025-12-23T05:00:00-07:00"
+}
+
+---
+
+TICKET STATUS COUNTS
+
+Update status breakdown:
+
+{
+  "totalTickets": 69,
+  "statuses": {
+    "done": { "count": 20, "percent": 29 },
+    "toDo": { "count": 31, "percent": 45 },
+    "inProgress": { "count": 9, "percent": 13 },
+    "codeReview": { "count": 5, "percent": 7 },
+    "inTesting": { "count": 1, "percent": 1 },
+    "blocked": { "count": 2, "percent": 3 },
+    "cancelled": { "count": 1, "percent": 1 }
+  }
+}
+
+Progress bar should show:
+- Done (green): 29%
+- In Progress (blue): 13%
+- Code Review (purple): 7%
+- In Testing (orange): 1%
+- To Do (gray): 45%
+- Blocked (red): 3%
+
+---
+
+PROJECT BREAKDOWN
+
+Update project counts:
+
+{
+  "projects": {
+    "BACK": 31,
+    "UI": 17,
+    "SC": 16,
+    "CI": 4,
+    "FB": 1,
+    "PR": 0
+  },
+  "total": 69
+}
+
+---
+
+ENGINEER WORKLOAD TABLE
+
+Replace engineer data with:
+
+{
+  "engineers": [
+    {
+      "name": "Ivan Peev",
+      "total": 10,
+      "toDo": 4,
+      "inProgress": 2,
+      "codeReview": 1,
+      "inTesting": 0,
+      "blocked": 0,
+      "done": 3,
+      "storyPoints": null
+    },
+    {
+      "name": "Jeff Hegerhorst",
+      "total": 8,
+      "toDo": 0,
+      "inProgress": 1,
+      "codeReview": 0,
+      "inTesting": 0,
+      "blocked": 0,
+      "done": 7,
+      "storyPoints": null
+    },
+    {
+      "name": "Kannal Mutharasu",
+      "total": 5,
+      "toDo": 0,
+      "inProgress": 0,
+      "codeReview": 1,
+      "inTesting": 1,
+      "blocked": 0,
+      "done": 3,
+      "storyPoints": null
+    },
+    {
+      "name": "Kalvin Willison",
+      "total": 4,
+      "toDo": 2,
+      "inProgress": 1,
+      "codeReview": 0,
+      "inTesting": 0,
+      "blocked": 0,
+      "done": 1,
+      "storyPoints": null
+    },
+    {
+      "name": "Aleksander Winski",
+      "total": 4,
+      "toDo": 3,
+      "inProgress": 0,
+      "codeReview": 1,
+      "inTesting": 0,
+      "blocked": 0,
+      "done": 0,
+      "storyPoints": null
+    },
+    {
+      "name": "Chad Hegerhorst",
+      "total": 4,
+      "toDo": 0,
+      "inProgress": 1,
+      "codeReview": 0,
+      "inTesting": 0,
+      "blocked": 1,
+      "done": 2,
+      "storyPoints": null
+    },
+    {
+      "name": "Owen Riley",
+      "total": 3,
+      "toDo": 0,
+      "inProgress": 0,
+      "codeReview": 2,
+      "inTesting": 0,
+      "blocked": 0,
+      "done": 1,
+      "storyPoints": null
+    },
+    {
+      "name": "Darius Ouderkirk",
+      "total": 3,
+      "toDo": 2,
+      "inProgress": 1,
+      "codeReview": 0,
+      "inTesting": 0,
+      "blocked": 0,
+      "done": 0,
+      "storyPoints": null
+    },
+    {
+      "name": "Konnor Willison",
+      "total": 2,
+      "toDo": 1,
+      "inProgress": 1,
+      "codeReview": 0,
+      "inTesting": 0,
+      "blocked": 0,
+      "done": 0,
+      "storyPoints": null
+    },
+    {
+      "name": "Lane Terry",
+      "total": 1,
+      "toDo": 0,
+      "inProgress": 0,
+      "codeReview": 0,
+      "inTesting": 0,
+      "blocked": 0,
+      "done": 1,
+      "storyPoints": null
+    },
+    {
+      "name": "Matthew Snow",
+      "total": 1,
+      "toDo": 0,
+      "inProgress": 1,
+      "codeReview": 0,
+      "inTesting": 0,
+      "blocked": 0,
+      "done": 0,
+      "storyPoints": null
+    },
+    {
+      "name": "Treven Trujillo",
+      "total": 1,
+      "toDo": 0,
+      "inProgress": 0,
+      "codeReview": 0,
+      "inTesting": 0,
+      "blocked": 0,
+      "done": 1,
+      "storyPoints": null
+    },
+    {
+      "name": "UNASSIGNED",
+      "total": 21,
+      "toDo": 21,
+      "inProgress": 0,
+      "codeReview": 0,
+      "inTesting": 0,
+      "blocked": 1,
+      "done": 0,
+      "storyPoints": null,
+      "isAlert": true
+    }
+  ]
+}
+
+Sort by: Total tickets descending (Ivan at top, then Jeff, etc.)
+
+---
+
+BLOCKED TICKETS ALERT
+
+Display as RED alert banner at top:
+
+{
+  "blockedAlert": {
+    "show": true,
+    "severity": "critical",
+    "title": "🚨 2 BLOCKED TICKETS - CRITICAL",
+    "tickets": [
+      {
+        "key": "CI-898",
+        "summary": "Upgrade JPM RDS version",
+        "assignee": "Chad Hegerhorst",
+        "daysBlocked": 36,
+        "reporter": "Jeff Hegerhorst",
+        "blockedSince": "2025-11-17"
+      },
+      {
+        "key": "BACK-1489",
+        "summary": "Update classification-api Base Image to Ubuntu 24.04 LTS",
+        "assignee": "UNASSIGNED",
+        "daysBlocked": 41,
+        "reporter": "Konnor Willison",
+        "blockedSince": "2025-11-12"
+      }
+    ]
+  }
+}
+
+Banner text: "🚨 BLOCKED: CI-898 (36 days - Chad), BACK-1489 (41 days - UNASSIGNED) - CRITICAL"
+
+---
+
+CODE REVIEW QUEUE
+
+Display as ORANGE alert:
+
+{
+  "codeReviewAlert": {
+    "show": true,
+    "severity": "warning",
+    "title": "⚠️ CODE REVIEW: 5 tickets in queue",
+    "tickets": [
+      {
+        "key": "UI-729",
+        "summary": "Deep Pilot - Add new stencil to return value",
+        "assignee": "Owen Riley",
+        "daysInReview": 1,
+        "reporter": "Nadiya Omelchuk"
+      },
+      {
+        "key": "UI-725",
+        "summary": "New Stencil - Subgroup Check Term Presens",
+        "assignee": "Owen Riley",
+        "daysInReview": 1,
+        "reporter": "Nadiya Omelchuk"
+      },
+      {
+        "key": "BACK-1610",
+        "summary": "Counterparties Across Time API",
+        "assignee": "Ivan Peev",
+        "daysInReview": 1,
+        "reporter": "Lane Terry"
+      },
+      {
+        "key": "BACK-839",
+        "summary": "Allow Event Status to be Updated via API",
+        "assignee": "Aleksander Winski",
+        "daysInReview": 4,
+        "reporter": "Lane Terry",
+        "isAlert": true
+      },
+      {
+        "key": "BACK-811",
+        "summary": "Output processing fails for large work items",
+        "assignee": "Kannal Mutharasu",
+        "daysInReview": 1,
+        "reporter": "Darius Ouderkirk"
+      }
+    ]
+  }
+}
+
+Flag BACK-839 as overdue (4 days > 3 day threshold)
+
+---
+
+UNASSIGNED ALERT
+
+Display as YELLOW alert:
+
+{
+  "unassignedAlert": {
+    "show": true,
+    "severity": "warning",
+    "title": "⚠️ 21 UNASSIGNED TICKETS",
+    "count": 21,
+    "threshold": 10,
+    "note": "Mostly UI tickets reported by Nadiya. Includes 1 blocked ticket (BACK-1489)."
+  }
+}
+
+---
+
+CLIENT TICKETS
+
+Update client breakdown:
+
+{
+  "clients": [
+    {
+      "name": "Colony Bank",
+      "arr": "$200K",
+      "total": 2,
+      "done": 2,
+      "inProgress": 0,
+      "toDo": 0,
+      "blocked": 0,
+      "status": "green"
+    },
+    {
+      "name": "Accenture/HERA",
+      "arr": "$1.2M",
+      "total": 6,
+      "done": 0,
+      "inProgress": 0,
+      "toDo": 6,
+      "blocked": 0,
+      "status": "yellow"
+    },
+    {
+      "name": "Sunwest",
+      "arr": "$180K",
+      "total": 1,
+      "done": 0,
+      "inProgress": 1,
+      "toDo": 0,
+      "blocked": 0,
+      "status": "green"
+    },
+    {
+      "name": "DTCC",
+      "arr": "$750K",
+      "total": 1,
+      "done": 0,
+      "inProgress": 0,
+      "toDo": 1,
+      "blocked": 0,
+      "status": "yellow"
+    },
+    {
+      "name": "BBVA",
+      "arr": "TBD",
+      "total": 1,
+      "done": 0,
+      "inProgress": 0,
+      "toDo": 1,
+      "blocked": 0,
+      "status": "yellow"
+    },
+    {
+      "name": "Broadridge",
+      "arr": "$500K",
+      "total": 0,
+      "done": 0,
+      "inProgress": 0,
+      "toDo": 0,
+      "blocked": 0,
+      "status": "gray",
+      "note": "No tickets in S2"
+    }
+  ]
+}
+
+---
+
+COMPLETED TICKETS (Since Sprint Start)
+
+{
+  "completedSinceStart": {
+    "count": 12,
+    "tickets": [
+      { "key": "SC-325", "summary": "Address application level vulnerabilities", "assignee": "Kannal Mutharasu" },
+      { "key": "CI-902", "summary": "AWS OpenSearch - Cost Savings", "assignee": "Chad Hegerhorst" },
+      { "key": "BACK-1615", "summary": "Deep Pilot - Normalized extractions", "assignee": "Kannal Mutharasu" },
+      { "key": "BACK-1609", "summary": "Label Statistics Across Time API", "assignee": "Ivan Peev" },
+      { "key": "BACK-1591", "summary": "More Feedback: Mercury Extraction for Colony", "assignee": "Kalvin Willison" },
+      { "key": "BACK-1584", "summary": "Create Message Sender Statistics Endpoint", "assignee": "Ivan Peev" },
+      { "key": "BACK-1578", "summary": "Feedback: Mercury Extraction for Colony Bank", "assignee": "Kalvin Willison" },
+      { "key": "BACK-1573", "summary": "Deep Pilot - Extra non-matching subgroups", "assignee": "Darius Ouderkirk" },
+      { "key": "BACK-1567", "summary": "Actionable Data Export", "assignee": "Ivan Peev" },
+      { "key": "BACK-1488", "summary": "Update deepview-status-service Base Image", "assignee": "Treven Trujillo" },
+      { "key": "BACK-1224", "summary": "Research and plan major scalability refactor", "assignee": "Lane Terry" },
+      { "key": "BACK-1051", "summary": "JPM - Work item created with extra .XML file", "assignee": "Kannal Mutharasu" }
+    ]
+  }
+}
+
+---
+
+SECURITY TICKETS
+
+{
+  "security": {
+    "total": 16,
+    "done": 10,
+    "inProgress": 1,
+    "toDo": 5,
+    "completionRate": 63,
+    "waveStatus": "Wave 2 in progress",
+    "tickets": [
+      { "key": "SC-325", "summary": "Address application level vulnerabilities", "status": "Done", "assignee": "Kannal Mutharasu" },
+      { "key": "SC-314", "summary": "Verify promethia-api (0 C+H - Baseline)", "status": "To Do", "assignee": "Unassigned" },
+      { "key": "SC-313", "summary": "Address embeddings Vulnerabilities (1 C+H)", "status": "To Do", "assignee": "Unassigned" },
+      { "key": "SC-312", "summary": "Address preprocessor Vulnerabilities (2 C+H)", "status": "To Do", "assignee": "Unassigned" },
+      { "key": "SC-311", "summary": "Address Istio Proxy Vulnerabilities (5 C+H)", "status": "Done", "assignee": "Jeff Hegerhorst" },
+      { "key": "SC-310", "summary": "Address deepview-status-service Vulnerabilities", "status": "To Do", "assignee": "Unassigned" },
+      { "key": "SC-309", "summary": "Address Argo Workflow Controller Vulnerabilities", "status": "Done", "assignee": "Jeff Hegerhorst" },
+      { "key": "SC-308", "summary": "Address Argo CLI Vulnerabilities (9 C+H)", "status": "Done", "assignee": "Jeff Hegerhorst" },
+      { "key": "SC-307", "summary": "Address core-service Vulnerabilities (16 C+H)", "status": "To Do", "assignee": "Unassigned" },
+      { "key": "SC-306", "summary": "Address Argo Events Vulnerabilities (22 C+H)", "status": "Done", "assignee": "Jeff Hegerhorst" },
+      { "key": "SC-305", "summary": "Address NATS Vulnerabilities (26 C+H)", "status": "Done", "assignee": "Jeff Hegerhorst" },
+      { "key": "SC-304", "summary": "Address Kafka Vulnerabilities (60 C+H)", "status": "Done", "assignee": "Jeff Hegerhorst" },
+      { "key": "SC-303", "summary": "Address mlrig-box-to-tokens Vulnerabilities (80 C+H)", "status": "Done", "assignee": "Chad Hegerhorst" },
+      { "key": "SC-302", "summary": "Address PostgreSQL Vulnerabilities (158 C+H)", "status": "Done", "assignee": "Jeff Hegerhorst" },
+      { "key": "SC-299", "summary": "Priority: Address vulnerabilities", "status": "Done", "assignee": "Jeff Hegerhorst" },
+      { "key": "SC-298", "summary": "Fix Remaining Application-Level Dependencies", "status": "In Progress", "assignee": "Unassigned" }
+    ]
+  }
+}
+
+---
+
+STORY POINTS
+
+{
+  "storyPoints": {
+    "total": 64,
+    "completed": 30,
+    "remaining": 34,
+    "completionPercent": 47,
+    "note": "47% by points vs 29% by tickets - larger items completing first"
+  }
+}
+
+---
+
+SPRINT COMPARISON (S1 vs S2)
+
+{
+  "comparison": {
+    "s1Final": {
+      "sprint": "2025-S1",
+      "totalTickets": 129,
+      "done": 110,
+      "completionRate": 85,
+      "status": "Completed"
+    },
+    "s2Current": {
+      "sprint": "2025-S2",
+      "totalTickets": 69,
+      "done": 20,
+      "completionRate": 29,
+      "daysElapsed": 4,
+      "daysRemaining": 10,
+      "status": "In Progress"
+    },
+    "carryover": {
+      "count": 34,
+      "note": "34 tickets carried from S1 to S2"
+    }
+  }
+}
+
+---
+
+SPRINT HEALTH INDICATOR
+
+{
+  "health": {
+    "status": "YELLOW",
+    "reasons": [
+      "2 blocked tickets (36+ and 41+ days) - CRITICAL",
+      "21 unassigned tickets (exceeds 10 threshold)",
+      "1 Code Review item overdue (BACK-839 at 4 days)",
+      "29% completion at Day 4 (on track for 55% capacity sprint)"
+    ],
+    "positives": [
+      "No engineer overloaded (max is Ivan with 10)",
+      "Security wave progressing well (63% done)",
+      "Colony Bank work complete",
+      "Jeff completing security tickets efficiently"
+    ]
+  }
+}
+
+---
+
+DISPLAY REQUIREMENTS
+
+1. Header Section:
+   - Sprint name: "2025-S2 (Holiday Sprint)"
+   - Progress: "Day 4 of 14 | 10 days remaining"
+   - Capacity indicator: "55% Capacity"
+   - Last updated: "Dec 23, 2025 @ 5:00 AM MT"
+
+2. Alert Banners (in order):
+   - RED: Blocked tickets (CI-898, BACK-1489)
+   - ORANGE: Code Review queue (5 tickets, BACK-839 overdue)
+   - YELLOW: Unassigned (21 tickets)
+
+3. Main Dashboard:
+   - Donut chart: Status breakdown
+   - Bar chart: Project breakdown
+   - Table: Engineer workload (sortable)
+
+4. Side Panels:
+   - Client tickets with ARR
+   - Security progress
+   - Story points burndown
+
+5. Comparison Card:
+   - S1 final vs S2 current
+   - Carryover count
+
+---
+
+TOOLTIP/HOVER TEXT
+
+For ticket count discrepancy (if asked):
+"Dashboard shows Sprint S2 tickets only. Personal boards in JIRA show all assigned tickets including backlog and historical sprints."
+
+For completion rate:
+"29% by ticket count, 47% by story points. Larger items completing first."
+
+For capacity:
+"Holiday sprint with office closed Dec 25-26 and Jan 1. ~55% of normal capacity expected."
+
+---
+
+END OF UPDATE
+```
+
+This prompt includes all the data from the browser agent extraction formatted for your Replit dashboard. Want me to also create a summary Slack update for Ryan/Brandon based on this data?

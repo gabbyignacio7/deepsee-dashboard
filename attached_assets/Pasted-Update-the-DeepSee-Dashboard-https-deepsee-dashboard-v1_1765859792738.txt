@@ -1,0 +1,314 @@
+Update the DeepSee Dashboard (https://deepsee-dashboard-v1.replit.app) with the following data. This aligns to the Collective Board Active Sprints view per Brandon's direction.
+
+CRITICAL FIXES:
+1. Ticket counts must match Collective Board (89 total, not 121)
+2. Story points must update correctly - Kalvin specifically shows less than actual
+3. Engineer allocation view must reflect Active Sprints data
+
+---
+
+PART 1: SPRINT OVERVIEW
+
+---
+
+Update Sprint 2025-S1 summary:
+
+| Metric | Old Value | New Value |
+|--------|-----------|-----------|
+| Total Tickets | 118 | 89 |
+| Done | 59 (50%) | 56 (63%) |
+| To Do | 35 | 10 |
+| In Progress | 12 | 13 |
+| Code Review | 8 | 9 |
+| Blocked | 2 | 1 |
+| In Testing | 1 | 0 (not on this board) |
+| Unassigned | 29 | 7 |
+| Days Remaining | 4 | 4 |
+| Sprint Day | 11 of 14 | 11 of 14 |
+
+Sprint Health: GREEN (63% complete at Day 11)
+
+Extraction Timestamp: December 15, 2025 @ 3:41 PM MT
+Source: DeepSee Collective Board > Active sprints tab
+
+---
+
+PART 2: STATUS BREAKDOWN
+
+---
+
+| Status | Count | Percentage |
+|--------|-------|------------|
+| Done | 56 | 63% |
+| In Progress | 13 | 15% |
+| To Do | 10 | 11% |
+| Code Review | 9 | 10% |
+| Blocked | 1 | 1% |
+| TOTAL | 89 | 100% |
+
+Progress bar: 56 Done | 13 In Progress | 9 Code Review | 10 To Do | 1 Blocked
+
+---
+
+PART 3: BLOCKED TICKETS
+
+---
+
+Only 1 blocked ticket (was 2):
+
+| Ticket | Summary | Assignee | Days Blocked | Story Points |
+|--------|---------|----------|--------------|--------------|
+| BACK-1489 | Update classification-api Base Image to Ubuntu 24.04 LTS | Kalvin Willison | 4 | 1 |
+
+Remove FB-2407 from blocked (now To Do, assigned to Aleksander)
+
+Blocked banner: "1 BLOCKED: BACK-1489 (Kalvin) - 4 days"
+
+---
+
+PART 4: TO DO (10 tickets)
+
+---
+
+| Key | Summary | Assignee | Story Points |
+|-----|---------|----------|--------------|
+| BACK-1548 | Enable Conditional Reconciliation | Darius Ouderkirk | 5 |
+| BACK-1320 | Inboxes/Data Sources API (parent) | Lane Terry | - |
+| BACK-1344 | Get Data Sources API | Unassigned | - |
+| BACK-1345 | Get Data Source Details API | Unassigned | - |
+| BACK-1346 | Update Data Source API | Unassigned | - |
+| BACK-1347 | Create Data Source API | Unassigned | - |
+| BACK-1348 | Delete Data Source API | Unassigned | - |
+| BACK-1322 | ML Models API (parent) | Lane Terry | - |
+| BACK-1352 | Get ML Models API | Unassigned | - |
+| BACK-1354 | (API subtask) | Unassigned | - |
+
+---
+
+PART 5: IN PROGRESS (13 tickets)
+
+---
+
+| Key | Summary | Assignee | Story Points |
+|-----|---------|----------|--------------|
+| BACK-839 | Allow Event Status to be Updated via API | Aleksander Winski | - |
+| BACK-1532 | Fine-tune Mercury Extraction for Sunwest Bank | Konnor Willison | - |
+| BACK-1572 | Manual tasks push back to allegro | Kannal Mutharasu | 5 |
+| BACK-1573 | Deep Pilot - Extra non-matching subgroups (DTCC) | Darius Ouderkirk | 5 |
+| BACK-1224 | Research and plan major scalability refactor | Lane Terry | - |
+| UI-703 | Dashboards - preserve the same tab/filters | Matthew Snow | - |
+| SC-322 | Address OTEL Vulnerabilities | Jeff Hegerhorst | - |
+| BACK-1596 | Broadridge - create scripts to clean up project data | Darius Ouderkirk | - |
+| BACK-1580 | Update dependencies: Review 8 Dependabot PRs | Kalvin Willison | - |
+| BACK-1586 | Update node-forge from 1.3.1 to 1.3.3 | Kalvin Willison | - |
+| BACK-1584 | Create Message Sender Statistics Endpoint | Ivan Peev | - |
+| BACK-849 | Accenture unable to consume delivery failure email | Aleksander Winski | - |
+| BACK-1430 | ArrayIndexOutOfBounds Processing Actors | Lane Terry | - |
+
+---
+
+PART 6: CODE REVIEW (9 tickets)
+
+---
+
+| Key | Summary | Assignee | Story Points |
+|-----|---------|----------|--------------|
+| BACK-1521 | Integrate SubCategory Model Calls into Prediction Pipeline | Aleksander Winski | 3 |
+| BACK-1488 | Update deepview-status-service Base Image to Alpine 3.22.2 | Treven Trujillo | 1 |
+| UI-701 | Adjust the UI layout to show email attachment | Matthew Snow | 5 |
+| CI-436 | Port over inference pipeline to argo workflows | Jeff Hegerhorst | 8 |
+| SC-324 | Address Stakater Reloader Vulnerabilities | Jeff Hegerhorst | - |
+| BACK-1589 | Update starlette from 0.45.3 to 0.49.1 | Kalvin Willison | - |
+| BACK-1567 | Actionable Data Export | Ivan Peev | - |
+| UI-711 | Add New Blockly Block to check Term presence | Owen Riley | - |
+| UI-722 | Create Stencil for Integer / Whole Number | Owen Riley | - |
+
+Remove BACK-1318 from Code Review (now Done)
+
+---
+
+PART 7: DONE (56 tickets) - Sample
+
+---
+
+| Key | Summary | Assignee | Story Points | Completed |
+|-----|---------|----------|--------------|-----------|
+| BACK-1570 | Test HMDA Mercury Extraction End-to-End | Kalvin Willison | 3 | Dec 5, 2025 |
+| UI-712 | Invalid checklist item link was generated | Owen Riley | 2 | - |
+| UI-693 | Add a new blockly block for equivalency lists | Owen Riley | 5 | - |
+| BACK-1436 | Deep Recon - Always run on import Automations | Treven Trujillo | 5 | - |
+| BACK-1304 | Messages API | Lane Terry | - | - |
+| BACK-1318 | Counterparties API | Ivan Peev | - | - |
+| ... | (50 more Done tickets) | ... | ... | ... |
+
+---
+
+PART 8: ENGINEER ALLOCATION VIEW (CRITICAL FIX)
+
+---
+
+This is the data for https://deepsee-dashboard-v1.replit.app/engineering
+
+UPDATE HEADER METRICS:
+
+| Metric | Old Value | New Value |
+|--------|-----------|-----------|
+| Total Engineers | 14 | 13 (active in sprint) |
+| Active Tickets | 47 | 33 (89 - 56 Done) |
+| Avg Story Points | 19.6 | Recalculate from below |
+| Total Story Points | 275 | Recalculate from below |
+
+---
+
+ENGINEER WORKLOAD (Active - Not Done):
+
+| Engineer | To Do | Blocked | In Prog | Code Rev | Total Active | Story Points |
+|----------|-------|---------|---------|----------|--------------|--------------|
+| Lane Terry | 2 | 0 | 2 | 0 | 4 | [calculate] |
+| Darius Ouderkirk | 1 | 0 | 2 | 0 | 3 | 10 (5+5) |
+| Jeff Hegerhorst | 0 | 0 | 1 | 2 | 3 | 8+ |
+| Aleksander Winski | 0 | 0 | 2 | 1 | 3 | 3+ |
+| Kalvin Willison | 0 | 1 | 2 | 1 | 4 | [MUST FIX - more than shown] |
+| Ivan Peev | 0 | 0 | 1 | 1 | 2 | [calculate] |
+| Matthew Snow | 0 | 0 | 1 | 1 | 2 | 5+ |
+| Owen Riley | 0 | 0 | 0 | 2 | 2 | [calculate] |
+| Treven Trujillo | 0 | 0 | 0 | 1 | 1 | 1 |
+| Konnor Willison | 0 | 0 | 1 | 0 | 1 | [calculate] |
+| Kannal Mutharasu | 0 | 0 | 1 | 0 | 1 | 5 |
+| Chad Hegerhorst | 0 | 0 | 0 | 0 | 0 | 0 |
+| Unassigned | 7 | 0 | 0 | 0 | 7 | [calculate] |
+
+---
+
+KALVIN WILLISON FIX (Brandon flagged this specifically):
+
+Current dashboard shows less than actual. His real workload:
+
+| Ticket | Summary | Status | Story Points |
+|--------|---------|--------|--------------|
+| BACK-1489 | Update classification-api Base Image | Blocked | 1 |
+| BACK-1580 | Update dependencies: 8 Dependabot PRs | In Progress | - |
+| BACK-1586 | Update node-forge | In Progress | - |
+| BACK-1589 | Update starlette | Code Review | - |
+
+Plus completed work (Done):
+| Ticket | Summary | Story Points |
+|--------|---------|--------------|
+| BACK-1570 | Test HMDA Mercury Extraction End-to-End | 3 |
+| (others) | ... | ... |
+
+Total Active: 4 tickets
+Ensure story points sum correctly for Kalvin.
+
+---
+
+ENGINEER COMPLETED (Done):
+
+| Engineer | Done Count | Done Story Points |
+|----------|------------|-------------------|
+| Lane Terry | [count from Done list] | [sum SP] |
+| Darius Ouderkirk | [count] | [sum] |
+| Jeff Hegerhorst | [count] | [sum] |
+| Aleksander Winski | [count] | [sum] |
+| Kalvin Willison | [count] | [sum] |
+| Ivan Peev | [count] | [sum] |
+| Matthew Snow | [count] | [sum] |
+| Owen Riley | [count] | [sum] |
+| Treven Trujillo | [count] | [sum] |
+| Konnor Willison | [count] | [sum] |
+| Kannal Mutharasu | [count] | [sum] |
+| Chad Hegerhorst | [count] | [sum] |
+
+---
+
+PART 9: REMOVE / EXCLUDE
+
+---
+
+EXCLUDE from dashboard (tracked separately per Brandon):
+- SC (Security) project tickets (being cleaned up by Brandon)
+- Loris and Manuel work (outside sprint process per Ryan)
+
+REMOVE these alerts (no longer accurate):
+- "FB-2407 NEEDS OWNER" (now has owner, To Do)
+- "BACK-1318 in review 9+ days" (now Done)
+- "2 BLOCKED" (now only 1)
+
+---
+
+PART 10: DATA SOURCE NOTE
+
+---
+
+Add footer note to dashboard:
+
+"Source: DeepSee Collective Board > Active sprints (89 tickets)
+Last Updated: December 15, 2025 @ [timestamp] MT
+Note: SC (Security) tickets tracked separately."
+
+---
+
+PART 11: STORY POINTS CALCULATION FIX
+
+---
+
+The allocation view story points are not calculating correctly.
+
+Known story points from extraction:
+
+| Ticket | Story Points |
+|--------|--------------|
+| BACK-1548 | 5 |
+| BACK-1572 | 5 |
+| BACK-1573 | 5 |
+| BACK-1489 | 1 |
+| BACK-1521 | 3 |
+| BACK-1488 | 1 |
+| UI-701 | 5 |
+| CI-436 | 8 |
+| BACK-1570 | 3 |
+| UI-712 | 2 |
+| UI-693 | 5 |
+| BACK-1436 | 5 |
+
+Check that:
+1. Story points are being pulled from JIRA correctly
+2. Story points are summing for each engineer
+3. Kalvin's story points include all his tickets (Brandon flagged this)
+
+---
+
+PART 12: PROJECTS INCLUDED
+
+---
+
+Only include these projects (Collective Board scope):
+
+| Project | Include | Notes |
+|---------|---------|-------|
+| BACK | ✅ Yes | Primary backend work |
+| UI | ✅ Yes | Frontend work |
+| CI | ✅ Yes | Infrastructure |
+| FB | ✅ Yes | Filbert |
+| PR | ✅ Yes | Product Roadmap |
+| SC | ❌ No | Tracked separately (Brandon cleaning up) |
+
+---
+
+SUMMARY OF CHANGES:
+
+| Area | Change |
+|------|--------|
+| Total Tickets | 118 → 89 |
+| Done | 59 → 56 |
+| Completion % | 50% → 63% |
+| Blocked | 2 → 1 |
+| Unassigned | 29 → 7 |
+| Health | YELLOW → GREEN |
+| Data Source | JQL all projects → Collective Board Active Sprints |
+| Story Points | FIX calculation for all engineers, especially Kalvin |
+
+---
+
+Extraction Timestamp: December 15, 2025 @ 3:41 PM MT
+Approved Source: Brandon Baguley (Collective Board = Source of Truth)

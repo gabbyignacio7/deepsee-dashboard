@@ -1,0 +1,898 @@
+# DeepSee AI Dashboard - Tooltip Enhancement (React/TypeScript)
+
+## OBJECTIVE
+Add informative hover tooltips to the DeepSee prioritization dashboard to help Sales team, new employees, and executives understand the five key priority framework metrics without needing to ask Product/Engineering for definitions.
+
+## CONTEXT
+**Dashboard Technology**: React/TypeScript (Next.js framework)
+**Current Deployment**: Replit - https://deepsee-dashboard-v1.replit.app
+**Target Audience**: 
+- Steve (Sales/CEO) - needs simple explanations for client conversations
+- New team members - need onboarding context
+- Board members - need high-level understanding without technical jargon
+
+**Why This Matters**: 
+Ryan specifically requested these tooltips after feedback that stakeholders were unclear on terminology during dashboard reviews. The priority framework uses specific formulas, and tooltips will reduce meeting interruptions for definitions and enable self-service understanding.
+
+---
+
+## FIVE TOOLTIP DEFINITIONS TO IMPLEMENT
+
+### 1. WEIGHTED ARR
+**Icon to Use**: 💰 or 📊
+
+**Tooltip Text**:
+```
+Weighted ARR (Annual Recurring Revenue)
+
+What it is: The expected revenue value of an opportunity, accounting for the likelihood it will actually close.
+
+Formula: ARR Amount × Conversion Probability
+
+Example: 
+• Deal worth $100,000/year
+• 50% chance of closing
+• Weighted ARR = $50,000
+
+Why it matters: Helps us prioritize opportunities based on realistic revenue expectations, not just potential contract values.
+```
+
+**Technical Notes**:
+- Field name in data: `Weighted_ARR`
+- Data type: Currency (USD)
+- Display format: `$XXX,XXX` with comma separators
+- Used in: Executive Dashboard, Sales View, Priority Scoring calculations
+
+---
+
+### 2. ARR (Annual Recurring Revenue)
+**Icon to Use**: 💵 or 📈
+
+**Tooltip Text**:
+```
+ARR (Annual Recurring Revenue)
+
+What it is: The total annual contract value from a client for this feature or opportunity. This is the actual or projected recurring revenue per year.
+
+Example:
+• Client signs 3-year contract for $750K total
+• ARR = $250K/year
+
+Why it matters: ARR is the primary revenue metric we use to measure business value and prioritize features that drive sustainable, recurring income.
+
+Note: This is the "maximum potential" - see Weighted ARR for probability-adjusted values.
+```
+
+**Technical Notes**:
+- Field name in data: `ARR_Amount`
+- Data type: Currency (USD)
+- Display format: `$XXX,XXX` with comma separators
+- Used in: All views, Priority Score calculations, Revenue Impact analysis
+
+---
+
+### 3. REPLICABILITY SCORE
+**Icon to Use**: 🔄 or 🌐
+
+**Tooltip Text**:
+```
+Replicability Score
+
+What it is: How many clients would benefit from this feature. Higher scores mean the feature can be reused across multiple clients (platform feature), while lower scores indicate client-specific customization.
+
+Scale: 1-10
+• 10 = Benefits ALL clients (universal platform feature)
+• 7-9 = Benefits multiple clients (high reusability)
+• 4-6 = Benefits some clients (moderate reusability)
+• 1-3 = Benefits one client only (custom work)
+
+Why it matters: Platform features with high replicability create more long-term value than one-off customizations. We prioritize work that can serve multiple clients.
+
+Example: 
+• Email automation agent = 10 (all clients use email)
+• Custom DTCC integration = 2 (specific to one client)
+```
+
+**Technical Notes**:
+- Field name in data: `Replicability_Score`
+- Data type: Integer (1-10)
+- Display format: Whole number with "/10" suffix (e.g., "8/10")
+- Used in: Priority Score calculations, Platform vs. Custom analysis
+
+---
+
+### 4. CONVERSION PROBABILITY
+**Icon to Use**: 🎯 or 📊
+
+**Tooltip Text**:
+```
+Conversion Probability
+
+What it is: The likelihood that a sales opportunity will close successfully and become a signed contract, expressed as a percentage.
+
+Scale: 0-100%
+• 90-100% = Contract signed or imminent
+• 70-89% = Strong interest, likely to close
+• 50-69% = Qualified opportunity, moderate confidence
+• 25-49% = Early stage, uncertain outcome
+• 0-24% = Long shot or exploratory
+
+Why it matters: Used to calculate Weighted ARR and helps us focus on opportunities most likely to generate revenue. Higher probability deals get higher priority.
+
+Example:
+• POC completed successfully = 80% probability
+• Initial discovery call only = 30% probability
+```
+
+**Technical Notes**:
+- Field name in data: `Conversion_Probability_%` or `Conversion_Probability`
+- Data type: Percentage (0-100)
+- Display format: `XX%` (whole number percentage)
+- Used in: Weighted ARR calculations, Sales Pipeline forecasting
+
+---
+
+### 5. EFFORT (T-SHIRT SIZE)
+**Icon to Use**: ⏱️ or 🏗️
+
+**Tooltip Text**:
+```
+Effort (T-Shirt Size)
+
+What it is: Estimated engineering effort required to deliver the feature, categorized by complexity and time investment.
+
+Size Categories:
+• XS (Extra Small) = 1-3 days
+  Simple changes, minor UI updates, quick fixes
+
+• S (Small) = 4-7 days (1 week)
+  Small features, isolated changes, single component work
+
+• M (Medium) = 2-3 weeks
+  Standard feature development, multiple components
+
+• L (Large) = 4-6 weeks
+  Complex features, significant architecture changes
+
+• XL (Extra Large) = 7+ weeks (2+ months)
+  Major platform changes, new agent development
+
+Why it matters: Helps balance workload and identify "quick wins" (low effort, high value). Used in priority calculations to favor features with better value-to-effort ratios.
+
+Priority Formula: (ARR × Replicability × Conversion Probability) ÷ Effort
+```
+
+**Technical Notes**:
+- Field name in data: `Effort_T-Shirt_Size` or `effort_tshirt_size`
+- Data type: Categorical (XS, S, M, L, XL)
+- Display format: Text with size abbreviation
+- Numeric conversion for calculations: XS=1, S=2, M=3, L=5, XL=8 (Fibonacci-like scale)
+- Used in: Priority Score calculations, Sprint planning, Capacity planning
+
+---
+
+## IMPLEMENTATION REQUIREMENTS
+
+### WHERE TO APPLY TOOLTIPS
+
+#### 1. DATA TABLE COLUMN HEADERS
+**Location**: All data tables/grids displaying features, JIRA tickets, or opportunities
+
+**Implementation**:
+```typescript
+// Example using a common React table library pattern
+<TableHeader>
+  <TableColumn 
+    label="Weighted ARR"
+    tooltip={{
+      icon: "💰",
+      title: "Weighted ARR",
+      content: "The expected revenue value...",
+      maxWidth: "400px"
+    }}
+  />
+</TableHeader>
+```
+
+**Apply to these tables**:
+- ✅ Executive Dashboard summary table
+- ✅ Sales View (PIVOT_Sales_View)
+- ✅ Engineering View (PIVOT_Engineering_View)
+- ✅ Management View (PIVOT_Management_View)
+- ✅ Product Roadmap table (PIVOT_Product_Roadmap)
+- ✅ Master Features table (Master_Data_Features)
+- ✅ JIRA Tickets table (Master_Data_JIRA_Tickets)
+
+---
+
+#### 2. METRIC CARDS / KPI DISPLAYS
+**Location**: Dashboard summary cards showing key performance indicators
+
+**Implementation**:
+```typescript
+// Example metric card with tooltip
+<MetricCard>
+  <MetricLabel>
+    Total Weighted ARR
+    <TooltipIcon 
+      icon="💰"
+      content="The expected revenue value of all opportunities..."
+    />
+  </MetricLabel>
+  <MetricValue>${totalWeightedARR}</MetricValue>
+</MetricCard>
+```
+
+**Apply to these metrics**:
+- ✅ Total Weighted ARR (sum across all opportunities)
+- ✅ Total ARR (sum of all contract values)
+- ✅ Average Replicability Score (across all features)
+- ✅ Average Conversion Probability (across pipeline)
+- ✅ Effort Distribution (breakdown by T-shirt size)
+- ✅ Priority Score (weighted formula result)
+
+---
+
+#### 3. CHART/VISUALIZATION LABELS
+**Location**: Any charts, graphs, or visualizations using these metrics
+
+**Implementation**:
+```typescript
+// Example chart with tooltip on axis label
+<BarChart>
+  <XAxis 
+    label={{
+      value: "Weighted ARR",
+      position: "bottom",
+      tooltip: "Expected revenue accounting for conversion probability"
+    }}
+  />
+  <YAxis 
+    label={{
+      value: "Replicability Score",
+      position: "left",
+      tooltip: "Number of clients who would benefit (1-10 scale)"
+    }}
+  />
+</BarChart>
+```
+
+**Apply to these charts** (if they exist in dashboard):
+- ✅ ARR vs. Replicability scatter plot
+- ✅ Effort distribution pie/bar chart
+- ✅ Conversion funnel visualization
+- ✅ Priority score distribution
+- ✅ Quarterly roadmap timeline
+- ✅ Client revenue breakdown
+
+---
+
+#### 4. FILTERS / DROPDOWNS
+**Location**: Any filter controls that use these terms
+
+**Implementation**:
+```typescript
+// Example filter with tooltip
+<FilterSelect>
+  <FilterLabel>
+    Effort Size
+    <TooltipIcon content="Engineering time required: XS(1-3d), S(1wk)..." />
+  </FilterLabel>
+  <Select options={['XS', 'S', 'M', 'L', 'XL']} />
+</FilterSelect>
+```
+
+**Apply to filters for**:
+- ✅ Effort T-Shirt Size filter
+- ✅ Replicability Score range filter
+- ✅ Conversion Probability range filter
+- ✅ ARR range filter
+
+---
+
+## TECHNICAL IMPLEMENTATION GUIDE
+
+### TOOLTIP COMPONENT REQUIREMENTS
+
+#### Option 1: Custom Tooltip Component (Recommended)
+```typescript
+// components/Tooltip.tsx
+import React, { useState } from 'react';
+
+interface TooltipProps {
+  icon?: string;
+  title?: string;
+  content: string;
+  maxWidth?: string;
+  children?: React.ReactNode;
+}
+
+export const Tooltip: React.FC<TooltipProps> = ({ 
+  icon, 
+  title, 
+  content, 
+  maxWidth = '400px',
+  children 
+}) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  return (
+    <div 
+      className="tooltip-container"
+      onMouseEnter={() => setIsVisible(true)}
+      onMouseLeave={() => setIsVisible(false)}
+    >
+      {children || (
+        <span className="tooltip-trigger">
+          {icon || 'ℹ️'}
+        </span>
+      )}
+      
+      {isVisible && (
+        <div 
+          className="tooltip-content"
+          style={{ maxWidth }}
+        >
+          {title && <div className="tooltip-title">{title}</div>}
+          <div className="tooltip-body">{content}</div>
+        </div>
+      )}
+    </div>
+  );
+};
+```
+
+#### CSS Styling Requirements
+```css
+/* styles/tooltip.css */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.tooltip-trigger {
+  margin-left: 6px;
+  font-size: 14px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.tooltip-trigger:hover {
+  opacity: 1;
+}
+
+.tooltip-content {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  padding: 12px 16px;
+  background: #1a1a1a;
+  color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  white-space: normal;
+  text-align: left;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+.tooltip-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 4px;
+}
+
+.tooltip-body {
+  font-weight: 400;
+}
+
+/* Arrow pointer */
+.tooltip-content::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #1a1a1a;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .tooltip-content {
+    max-width: 280px !important;
+    font-size: 12px;
+  }
+}
+```
+
+---
+
+#### Option 2: Use Existing UI Library (If Available)
+If your React app already uses a component library, leverage their tooltip component:
+
+**Radix UI:**
+```typescript
+import * as Tooltip from '@radix-ui/react-tooltip';
+
+<Tooltip.Provider>
+  <Tooltip.Root>
+    <Tooltip.Trigger>Weighted ARR</Tooltip.Trigger>
+    <Tooltip.Portal>
+      <Tooltip.Content>
+        The expected revenue value...
+      </Tooltip.Content>
+    </Tooltip.Portal>
+  </Tooltip.Root>
+</Tooltip.Provider>
+```
+
+**Material-UI (MUI):**
+```typescript
+import Tooltip from '@mui/material/Tooltip';
+
+<Tooltip title="The expected revenue value..." arrow>
+  <span>Weighted ARR ℹ️</span>
+</Tooltip>
+```
+
+**Shadcn/ui:**
+```typescript
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+
+<TooltipProvider>
+  <Tooltip>
+    <TooltipTrigger>Weighted ARR</TooltipTrigger>
+    <TooltipContent>
+      <p>The expected revenue value...</p>
+    </TooltipContent>
+  </Tooltip>
+</TooltipProvider>
+```
+
+---
+
+### TOOLTIP CONTENT MANAGEMENT
+
+#### Centralized Tooltip Configuration (Recommended Approach)
+Create a single source of truth for all tooltip content:
+
+```typescript
+// config/tooltips.ts
+export const TOOLTIP_DEFINITIONS = {
+  WEIGHTED_ARR: {
+    icon: '💰',
+    title: 'Weighted ARR',
+    content: `The expected revenue value of an opportunity, accounting for the likelihood it will actually close.
+
+Formula: ARR Amount × Conversion Probability
+
+Example: 
+• Deal worth $100,000/year
+• 50% chance of closing
+• Weighted ARR = $50,000
+
+Why it matters: Helps us prioritize opportunities based on realistic revenue expectations, not just potential contract values.`,
+    maxWidth: '400px'
+  },
+  
+  ARR: {
+    icon: '💵',
+    title: 'ARR (Annual Recurring Revenue)',
+    content: `The total annual contract value from a client for this feature or opportunity. This is the actual or projected recurring revenue per year.
+
+Example:
+• Client signs 3-year contract for $750K total
+• ARR = $250K/year
+
+Why it matters: ARR is the primary revenue metric we use to measure business value and prioritize features that drive sustainable, recurring income.
+
+Note: This is the "maximum potential" - see Weighted ARR for probability-adjusted values.`,
+    maxWidth: '400px'
+  },
+  
+  REPLICABILITY: {
+    icon: '🔄',
+    title: 'Replicability Score',
+    content: `How many clients would benefit from this feature. Higher scores mean the feature can be reused across multiple clients (platform feature), while lower scores indicate client-specific customization.
+
+Scale: 1-10
+• 10 = Benefits ALL clients (universal platform feature)
+• 7-9 = Benefits multiple clients (high reusability)
+• 4-6 = Benefits some clients (moderate reusability)
+• 1-3 = Benefits one client only (custom work)
+
+Why it matters: Platform features with high replicability create more long-term value than one-off customizations. We prioritize work that can serve multiple clients.
+
+Example: 
+• Email automation agent = 10 (all clients use email)
+• Custom DTCC integration = 2 (specific to one client)`,
+    maxWidth: '450px'
+  },
+  
+  CONVERSION_PROBABILITY: {
+    icon: '🎯',
+    title: 'Conversion Probability',
+    content: `The likelihood that a sales opportunity will close successfully and become a signed contract, expressed as a percentage.
+
+Scale: 0-100%
+• 90-100% = Contract signed or imminent
+• 70-89% = Strong interest, likely to close
+• 50-69% = Qualified opportunity, moderate confidence
+• 25-49% = Early stage, uncertain outcome
+• 0-24% = Long shot or exploratory
+
+Why it matters: Used to calculate Weighted ARR and helps us focus on opportunities most likely to generate revenue. Higher probability deals get higher priority.
+
+Example:
+• POC completed successfully = 80% probability
+• Initial discovery call only = 30% probability`,
+    maxWidth: '400px'
+  },
+  
+  EFFORT: {
+    icon: '⏱️',
+    title: 'Effort (T-Shirt Size)',
+    content: `Estimated engineering effort required to deliver the feature, categorized by complexity and time investment.
+
+Size Categories:
+• XS (Extra Small) = 1-3 days
+  Simple changes, minor UI updates, quick fixes
+
+• S (Small) = 4-7 days (1 week)
+  Small features, isolated changes, single component work
+
+• M (Medium) = 2-3 weeks
+  Standard feature development, multiple components
+
+• L (Large) = 4-6 weeks
+  Complex features, significant architecture changes
+
+• XL (Extra Large) = 7+ weeks (2+ months)
+  Major platform changes, new agent development
+
+Why it matters: Helps balance workload and identify "quick wins" (low effort, high value). Used in priority calculations to favor features with better value-to-effort ratios.
+
+Priority Formula: (ARR × Replicability × Conversion Probability) ÷ Effort`,
+    maxWidth: '450px'
+  }
+} as const;
+
+// Helper function to get tooltip config
+export const getTooltip = (key: keyof typeof TOOLTIP_DEFINITIONS) => {
+  return TOOLTIP_DEFINITIONS[key];
+};
+```
+
+**Usage in components:**
+```typescript
+import { getTooltip } from '@/config/tooltips';
+import { Tooltip } from '@/components/Tooltip';
+
+// In your component
+<TableColumn>
+  Weighted ARR
+  <Tooltip {...getTooltip('WEIGHTED_ARR')} />
+</TableColumn>
+```
+
+---
+
+## USAGE EXAMPLES BY DASHBOARD SECTION
+
+### Example 1: Data Table Implementation
+```typescript
+// components/FeaturesTable.tsx
+import { Tooltip } from '@/components/Tooltip';
+import { getTooltip } from '@/config/tooltips';
+
+const FeaturesTable = ({ features }) => {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Feature Name
+          </th>
+          <th>
+            Weighted ARR
+            <Tooltip {...getTooltip('WEIGHTED_ARR')} />
+          </th>
+          <th>
+            ARR
+            <Tooltip {...getTooltip('ARR')} />
+          </th>
+          <th>
+            Replicability
+            <Tooltip {...getTooltip('REPLICABILITY')} />
+          </th>
+          <th>
+            Conversion %
+            <Tooltip {...getTooltip('CONVERSION_PROBABILITY')} />
+          </th>
+          <th>
+            Effort
+            <Tooltip {...getTooltip('EFFORT')} />
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {features.map(feature => (
+          <tr key={feature.id}>
+            <td>{feature.name}</td>
+            <td>${feature.weighted_arr.toLocaleString()}</td>
+            <td>${feature.arr.toLocaleString()}</td>
+            <td>{feature.replicability}/10</td>
+            <td>{feature.conversion_probability}%</td>
+            <td>{feature.effort_size}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+};
+```
+
+---
+
+### Example 2: Metric Card Implementation
+```typescript
+// components/MetricCard.tsx
+import { Tooltip } from '@/components/Tooltip';
+import { getTooltip } from '@/config/tooltips';
+
+const MetricCard = ({ metric, value, tooltipKey }) => {
+  return (
+    <div className="metric-card">
+      <div className="metric-header">
+        <span className="metric-label">{metric}</span>
+        <Tooltip {...getTooltip(tooltipKey)} />
+      </div>
+      <div className="metric-value">{value}</div>
+    </div>
+  );
+};
+
+// Usage in dashboard
+<div className="metrics-grid">
+  <MetricCard 
+    metric="Total Weighted ARR" 
+    value={`$${totalWeightedARR.toLocaleString()}`}
+    tooltipKey="WEIGHTED_ARR"
+  />
+  <MetricCard 
+    metric="Avg Replicability" 
+    value={`${avgReplicability}/10`}
+    tooltipKey="REPLICABILITY"
+  />
+  <MetricCard 
+    metric="Avg Conversion %" 
+    value={`${avgConversion}%`}
+    tooltipKey="CONVERSION_PROBABILITY"
+  />
+</div>
+```
+
+---
+
+### Example 3: Filter Implementation
+```typescript
+// components/DashboardFilters.tsx
+import { Tooltip } from '@/components/Tooltip';
+import { getTooltip } from '@/config/tooltips';
+
+const DashboardFilters = ({ onFilterChange }) => {
+  return (
+    <div className="filters-panel">
+      <div className="filter-group">
+        <label>
+          Effort Size
+          <Tooltip {...getTooltip('EFFORT')} />
+        </label>
+        <select onChange={(e) => onFilterChange('effort', e.target.value)}>
+          <option value="">All Sizes</option>
+          <option value="XS">XS (1-3 days)</option>
+          <option value="S">S (1 week)</option>
+          <option value="M">M (2-3 weeks)</option>
+          <option value="L">L (4-6 weeks)</option>
+          <option value="XL">XL (7+ weeks)</option>
+        </select>
+      </div>
+      
+      <div className="filter-group">
+        <label>
+          Min Replicability
+          <Tooltip {...getTooltip('REPLICABILITY')} />
+        </label>
+        <input 
+          type="range" 
+          min="1" 
+          max="10" 
+          onChange={(e) => onFilterChange('replicability', e.target.value)}
+        />
+      </div>
+    </div>
+  );
+};
+```
+
+---
+
+## ACCESSIBILITY REQUIREMENTS
+
+### Keyboard Navigation
+```typescript
+// Ensure tooltips are keyboard accessible
+const Tooltip = ({ content, children }) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  return (
+    <span
+      role="tooltip"
+      tabIndex={0}
+      onMouseEnter={() => setIsVisible(true)}
+      onMouseLeave={() => setIsVisible(false)}
+      onFocus={() => setIsVisible(true)}
+      onBlur={() => setIsVisible(false)}
+      aria-label={content}
+    >
+      {children}
+    </span>
+  );
+};
+```
+
+### ARIA Labels
+- All tooltip triggers should have `aria-label` or `aria-describedby`
+- Tooltip content should have `role="tooltip"`
+- Ensure screen readers can access tooltip content
+
+### Mobile Considerations
+- On mobile, tooltips should appear on tap, not hover
+- Provide a close button for mobile tooltips
+- Ensure tooltip text is readable on small screens (min 12px font)
+
+```typescript
+// Mobile-friendly tooltip behavior
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+const handleTooltipInteraction = (e) => {
+  if (isMobile) {
+    e.preventDefault();
+    setIsVisible(!isVisible);
+  }
+};
+```
+
+---
+
+## TESTING CHECKLIST
+
+### Functional Testing
+- [ ] All 5 tooltip definitions display correctly
+- [ ] Tooltips appear on hover (desktop) and tap (mobile)
+- [ ] Tooltips dismiss when mouse leaves or on tap outside (mobile)
+- [ ] Tooltip positioning doesn't cause overflow or cut-off text
+- [ ] Icons display correctly across all browsers
+- [ ] Multi-line text formats properly with line breaks
+
+### Visual Testing
+- [ ] Tooltips are readable on both light and dark backgrounds
+- [ ] Font size is appropriate (13-14px recommended)
+- [ ] Max width prevents overly wide tooltips (400-450px)
+- [ ] Arrow pointer aligns correctly with trigger
+- [ ] Z-index ensures tooltips appear above all content
+
+### Cross-Browser Testing
+- [ ] Chrome/Edge (Chromium)
+- [ ] Firefox
+- [ ] Safari (desktop and iOS)
+- [ ] Mobile browsers (iOS Safari, Android Chrome)
+
+### Accessibility Testing
+- [ ] Keyboard navigation works (Tab to trigger, Esc to close)
+- [ ] Screen reader announces tooltip content
+- [ ] Sufficient color contrast (4.5:1 minimum)
+- [ ] Focus indicators are visible
+
+### Content Testing
+- [ ] All definitions are accurate and match DeepSee's methodology
+- [ ] Examples are relevant and helpful
+- [ ] Language is non-technical and Sales-appropriate
+- [ ] No typos or grammatical errors
+
+---
+
+## DEPLOYMENT NOTES
+
+### Performance Considerations
+- Tooltips should not impact page load time
+- Consider lazy loading tooltip content if using large datasets
+- Avoid re-rendering entire table when showing/hiding tooltips
+
+### Monitoring & Analytics (Optional)
+Consider tracking tooltip usage to understand which terms need most clarification:
+```typescript
+// Track tooltip views
+const handleTooltipView = (tooltipKey: string) => {
+  analytics.track('Tooltip Viewed', {
+    tooltip: tooltipKey,
+    page: window.location.pathname,
+    timestamp: new Date().toISOString()
+  });
+};
+```
+
+### Future Enhancements
+After initial deployment, consider:
+- Adding video explainers linked from tooltips
+- Creating a "Glossary" page with all definitions
+- Adding "Learn More" links to detailed documentation
+- Supporting user preferences (show/hide all tooltips)
+
+---
+
+## SUCCESS CRITERIA
+
+### Definition of Done
+- ✅ All 5 tooltip definitions implemented on all relevant locations
+- ✅ Tooltips are accessible via keyboard and screen readers
+- ✅ Mobile experience is smooth (tap to show/hide)
+- ✅ No visual bugs or positioning issues
+- ✅ Ryan and Steve approve tooltip content
+- ✅ Code is reviewed and merged to main branch
+- ✅ Deployed to production (Replit dashboard)
+
+### Stakeholder Approval
+Before marking complete:
+1. **Ryan reviews** tooltip content for accuracy
+2. **Steve tests** from Sales perspective (clarity, helpfulness)
+3. **Connor reviews** code implementation (if applicable)
+
+### User Feedback Metrics (Post-Launch)
+- Reduction in Slack questions about terminology
+- Faster dashboard adoption by new team members
+- Positive feedback from board presentation attendees
+
+---
+
+## FINAL DELIVERABLES
+
+Please provide:
+1. **Updated React components** with tooltip implementation
+2. **Tooltip configuration file** (`tooltips.ts`) with all definitions
+3. **CSS/styling updates** for tooltip appearance
+4. **Screenshots or video** showing tooltips in action
+5. **Any new dependencies** added (e.g., tooltip library)
+6. **Testing results** confirming all checklist items pass
+
+---
+
+## QUESTIONS FOR CLARIFICATION
+
+Before starting implementation, confirm:
+1. **Which UI component library** (if any) is currently in use? (MUI, Radix, Shadcn, custom?)
+2. **Color scheme preferences** for tooltips (dark background recommended for readability)
+3. **Animation preferences** (fade in/out, slide, instant?)
+4. **Priority order** for implementation (start with most-used dashboard sections?)
+5. **Timeline expectations** (target completion date?)
+
+---
+
+## CONTACT & SUPPORT
+
+**Product Owner**: Ryan McQueen (CEO/CPO)
+**Requester**: Gabriel Ignacio (Technical Product Manager)
+**Technical Review**: Lane Terry (Engineering Lead) and Connor Willison (Chief Architect)
+
+For questions during implementation, reach out via Slack in #product-team or #engineering channels.
+
+---
+
+**End of Comprehensive Replit Prompt**

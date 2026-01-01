@@ -1,0 +1,624 @@
+# COMPREHENSIVE REPLIT DASHBOARD UPDATE PROMPT
+## DeepSee AI Prioritization Dashboard - Board View Enhancement
+
+---
+
+## OBJECTIVE
+Update the DeepSee dashboard to include Steve's Board View requirements and Ryan's three-bucket categorization from Column D of the Master_Data_Features Excel sheet. The dashboard must serve both internal stakeholders (Engineering, Product) and external stakeholders (Board, Steve).
+
+---
+
+## STEVE'S 5 BOARD VIEW REQUIREMENTS
+
+The Board View tab must display:
+
+1. **Roadmap Delivered vs Plan**
+   - Show planned features by quarter (NOW/NEXT/LATER) vs actual completion status
+   - Visual progress tracker comparing planned vs delivered
+
+2. **Adoption of Top Value-Driving Features/Workflows**
+   - Highlight features with highest ARR impact
+   - Show adoption rates by client
+
+3. **Reliability/Security Milestones (Enterprise Readiness)**
+   - Track security vulnerability remediation progress
+   - Show compliance/audit readiness status
+   - Display infrastructure stability metrics
+
+4. **Implementation Time Trend; Time-to-First-Value**
+   - Track deployment duration from start to production
+   - Show client onboarding velocity
+
+5. **Support Volume and SLA Attainment**
+   - Track support ticket trends
+   - Display SLA compliance metrics
+
+---
+
+## RYAN'S THREE-BUCKET FRAMEWORK (FROM COLUMN D)
+
+Features are categorized into three strategic buckets:
+
+| Bucket | Count | Board Question | Description |
+|--------|-------|----------------|-------------|
+| **Make Money** | 45 | "How do we make money?" | Revenue-generating client activities, new contracts |
+| **Don't Lose Money** | 12 | "How do we not lose money?" | Speed improvements, retention, client risk mitigation |
+| **Innovation** | 17 | "How do we keep competitive advantage?" | Information graph, blueprint, cross-platform capabilities |
+
+---
+
+## RAW DATA: MASTER_DATA_FEATURES (74 Features)
+
+### BUCKET DISTRIBUTION
+- Make Money: 45 features (61%)
+- Innovation: 17 features (23%)
+- Don't Lose Money: 12 features (16%)
+
+### QUARTER DISTRIBUTION
+- NOW: 40 features
+- NEXT: 22 features
+- LATER: 12 features
+
+### AGENT TYPE DISTRIBUTION
+- Platform (All Agents): 31
+- Platform (Analytics): 10
+- DeepPilot: 6
+- DeepRecon: 5
+- Email Automation: 4
+- Core Reconciliation: 4
+- Trade Processing: 4
+- Matching Engine: 3
+- Security Settlements: 2
+- Standing Settlement Instructions: 2
+- HMDA/CRA: 1
+- Loan Operations: 1
+- WATCHTOWER: 1
+
+### COMPLETE FEATURE LIST WITH BUCKETS
+
+```json
+{
+  "features": [
+    {"id": "F-001", "name": "Mercury Extraction", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": true},
+    {"id": "F-002", "name": "Client Agent Interaction Enhancements", "bucket": "Innovation", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": true},
+    {"id": "F-003", "name": "DeepSee Service Fabric Internal Enhancements", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": true},
+    {"id": "F-004", "name": "Retention Prediction UI", "bucket": "Make", "agent": "Platform (Analytics)", "quarter": "NOW", "client": "BetaNXT", "artemis": false},
+    {"id": "F-005", "name": "Double-click to view dashboard messages", "bucket": "Make", "agent": "Platform (Analytics)", "quarter": "NOW", "client": "Broadridge", "artemis": false},
+    {"id": "F-007", "name": "Matching Engine UI", "bucket": "Make", "agent": "Matching Engine", "quarter": "NOW", "client": "Altaira", "artemis": true},
+    {"id": "F-008", "name": "Information Graph Enhanced Infrastructure", "bucket": "Innovation", "agent": "Platform (All Agents)", "quarter": "NEXT", "client": "All", "artemis": true},
+    {"id": "F-009", "name": "Enhanced Agent Outcome Reasoning and Planning", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": true},
+    {"id": "F-010", "name": "Inference / Training speed improvements", "bucket": "Don't Lose", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": true},
+    {"id": "F-011", "name": "Activity Tracing Across Agents", "bucket": "Innovation", "agent": "Platform (Analytics)", "quarter": "NOW", "client": "All", "artemis": true},
+    {"id": "F-012", "name": "Exception Prediction", "bucket": "Innovation", "agent": "Platform (Analytics)", "quarter": "LATER", "client": "All", "artemis": true},
+    {"id": "F-013", "name": "Simplified Agentic UI Implementation", "bucket": "Innovation", "agent": "Platform (All Agents)", "quarter": "NEXT", "client": "All", "artemis": true},
+    {"id": "F-014", "name": "Information Graph UI Design", "bucket": "Innovation", "agent": "Platform (Analytics)", "quarter": "NEXT", "client": "All", "artemis": true},
+    {"id": "F-015", "name": "MCP Integration with 3rd Party Agents", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "LATER", "client": "All", "artemis": true},
+    {"id": "F-016", "name": "Enhanced Integration with 3rd Party Applications - Outlook & Ops Console", "bucket": "Don't Lose", "agent": "Email Automation", "quarter": "NOW", "client": "All", "artemis": true},
+    {"id": "F-017", "name": "User configurable dashboards", "bucket": "Don't Lose", "agent": "Platform (Analytics)", "quarter": "LATER", "client": "Broadridge", "artemis": true},
+    {"id": "F-018", "name": "Process Mapping and Optimization Opportunities", "bucket": "Innovation", "agent": "Platform (Analytics)", "quarter": "LATER", "client": "All", "artemis": true},
+    {"id": "F-019", "name": "Information Graph UI Implementation", "bucket": "Innovation", "agent": "Platform (Analytics)", "quarter": "NEXT", "client": "All", "artemis": true},
+    {"id": "F-020", "name": "Technologist and Model Review UI implementation", "bucket": "Don't Lose", "agent": "Platform (Analytics)", "quarter": "NEXT", "client": "All", "artemis": true},
+    {"id": "F-021", "name": "DeepSee Service Fabric External Enhancements", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "LATER", "client": "All", "artemis": true},
+    {"id": "F-022", "name": "Integrated foreign language support", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "NEXT", "client": "BBVA", "artemis": true},
+    {"id": "F-023", "name": "Process variation highlights", "bucket": "Innovation", "agent": "Platform (Analytics)", "quarter": "LATER", "client": "All", "artemis": false},
+    {"id": "F-024", "name": "Agentic Card UI Implementation for 3rd Party Applications - Microsoft CoPilot", "bucket": "Innovation", "agent": "Platform (All Agents)", "quarter": "NEXT", "client": "All", "artemis": false},
+    {"id": "F-025", "name": "Enhanced Testing Suite UI Implementation", "bucket": "Don't Lose", "agent": "Platform (All Agents)", "quarter": "NEXT", "client": "All", "artemis": false},
+    {"id": "F-026", "name": "DTCC Agent Onboarding - Trade Processing Phase 1", "bucket": "Make", "agent": "Trade Processing", "quarter": "NEXT", "client": "DTCC", "effort": "L-Large 8wks", "artemis": false},
+    {"id": "F-027", "name": "DTCC Agent Onboarding - Trade Processing Phase 2", "bucket": "Make", "agent": "Trade Processing", "quarter": "NEXT", "client": "DTCC", "artemis": false},
+    {"id": "F-028", "name": "DTCC Agent Onboarding - Core Reconciliation", "bucket": "Make", "agent": "Core Reconciliation", "quarter": "NEXT", "client": "DTCC", "artemis": false},
+    {"id": "F-029", "name": "Trade Matching Engine Enhancement", "bucket": "Make", "agent": "Matching Engine", "quarter": "NEXT", "client": "Broadridge", "artemis": false},
+    {"id": "F-030", "name": "Email Automation Workflow", "bucket": "Make", "agent": "Email Automation", "quarter": "NOW", "client": "Broadridge", "effort": "L-Large 8wks", "artemis": false},
+    {"id": "F-031", "name": "Broadridge Critical Bug Fix - Email Processing", "bucket": "Don't Lose", "agent": "Trade Processing", "quarter": "NOW", "client": "Broadridge", "effort": "S-Small 2wks", "artemis": false, "tier": "Tier 0", "arr_at_risk": 500000},
+    {"id": "F-032", "name": "JP Morgan Monthly Reconciliation Enhancement", "bucket": "Don't Lose", "agent": "Core Reconciliation", "quarter": "LATER", "client": "JP Morgan", "artemis": false},
+    {"id": "F-033", "name": "DTCC Settlements Optimization", "bucket": "Make", "agent": "Security Settlements", "quarter": "LATER", "client": "DTCC", "artemis": false},
+    {"id": "F-034", "name": "Accenture Email Automation Deployment - HERA", "bucket": "Don't Lose", "agent": "Email Automation", "quarter": "NOW", "client": "Accenture", "effort": "L-Large 8wks", "artemis": false},
+    {"id": "F-036", "name": "HMDA / CRA Reporting - Colony Bank", "bucket": "Make", "agent": "HMDA / CRA", "quarter": "NOW", "client": "Regional Banks", "effort": "M-Medium 4wks", "artemis": false},
+    {"id": "F-037", "name": "Treasury Agent Deployment - Sunwest Bank", "bucket": "Make", "agent": "Standing Settlement Instructions", "quarter": "NOW", "client": "Regional Banks", "effort": "M-Medium 4wks", "artemis": false},
+    {"id": "F-038", "name": "Vantage Bank Custom Reconciliation (POC)", "bucket": "Don't Lose", "agent": "Core Reconciliation", "quarter": "NEXT", "client": "Regional Banks", "effort": "XL-Extra Large 12wks+", "artemis": false},
+    {"id": "F-039", "name": "Email Automation - Response Generation Enhancement", "bucket": "Make", "agent": "Email Automation", "quarter": "NOW", "client": "All", "artemis": false},
+    {"id": "F-040", "name": "Trade Processing - 100% Accuracy Validation", "bucket": "Make", "agent": "Trade Processing", "quarter": "NEXT", "client": "All", "artemis": false},
+    {"id": "F-041", "name": "Security Settlements - Break Resolution Automation", "bucket": "Make", "agent": "Security Settlements", "quarter": "NEXT", "client": "Multiple", "artemis": false},
+    {"id": "F-042", "name": "SSI - Real-time Data Validation", "bucket": "Make", "agent": "Standing Settlement Instructions", "quarter": "NEXT", "client": "Multiple", "artemis": false},
+    {"id": "F-043", "name": "Matching Engine - External Break Detection", "bucket": "Make", "agent": "Matching Engine", "quarter": "NEXT", "client": "Multiple", "artemis": false},
+    {"id": "F-045", "name": "Loan Operations - Application Automation", "bucket": "Make", "agent": "Loan Operations", "quarter": "NEXT", "client": "Multiple", "artemis": false},
+    {"id": "F-046", "name": "Core Reconciliation - Multi-System Support", "bucket": "Make", "agent": "Core Reconciliation", "quarter": "LATER", "client": "Multiple", "artemis": false},
+    {"id": "F-048", "name": "Ingest Email / Case (Outlook, GMAIL, ServiceNow, Salesforce, Dynamics)", "bucket": "Make", "agent": "DeepRecon", "quarter": "NOW", "client": "Multiple", "artemis": null},
+    {"id": "F-049", "name": "Ingest Content (Attachment, SharePoint, SFTP, API Call)", "bucket": "Make", "agent": "DeepPilot", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-050", "name": "Success / Failure and Retry of Ingestion Message", "bucket": "Don't Lose", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-051", "name": "Summary Extraction for Initial BluePrint Messaging", "bucket": "Innovation", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-052", "name": "Email Parsing and Normalization", "bucket": "Make", "agent": "DeepRecon", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-053", "name": "Ingestion of and Execution of Blueprint", "bucket": "Innovation", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-054", "name": "Classification of Email Message", "bucket": "Make", "agent": "DeepRecon", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-055", "name": "Determination of Follow-on Process from Request", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-056", "name": "Link to follow on Action (Agent/ API Call / Email Response)", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-057", "name": "Plan to generate Outcome from data", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-058", "name": "Call System for Additional Required Data (Form Message / Send / Receive) to generate Work Item", "bucket": "Make", "agent": "DeepRecon", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-059", "name": "Document Parser to identify multiple docs in a single file from Financial Services Content", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-060", "name": "Deep Content Extraction - Implementation of F-001 in ARTEMIS", "bucket": "Make", "agent": "DeepPilot", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-061", "name": "Application of Business Logic from Process Map", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-062", "name": "Reconciliation across all sources to find internal mismatches primarily system to content", "bucket": "Make", "agent": "DeepPilot", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-064", "name": "Capture HITL feedback for extraction", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-065", "name": "Capture HITL feedback to correct outcome", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-066", "name": "Incorporate HITL feedback to adjust outcome", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-067", "name": "Incorporate HITL feedback to adjust business logic and update blueprint", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "NEXT", "client": "All", "artemis": null},
+    {"id": "F-068", "name": "Highlight exceptions per checklist item (Missing Document, Missing Extracted term, Break, Flag for followup, Pending user feedback, pending other agent, Pending system)", "bucket": "Make", "agent": "DeepPilot", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-069", "name": "Summary of Agent's work including version of Agent, model, logic", "bucket": "Innovation", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-070", "name": "Generate and transmit system updates and payloads", "bucket": "Make", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-071", "name": "Track success of messages both outgoing and expected responses", "bucket": "Don't Lose", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-072", "name": "Incorporates incoming messages and routes them for email responses", "bucket": "Make", "agent": "DeepRecon", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-074", "name": "DeepGraph which captures all knowledge associated with these work items to feed insights and better response", "bucket": "Innovation", "agent": "Platform (All Agents)", "quarter": "NEXT", "client": "All", "artemis": null},
+    {"id": "F-075", "name": "DeepGraph Suggestions", "bucket": "Innovation", "agent": "Platform (All Agents)", "quarter": "LATER", "client": "All", "artemis": null},
+    {"id": "F-076", "name": "DeepPilot - Dashboards", "bucket": "Make", "agent": "DeepPilot", "quarter": "NEXT", "client": "All", "artemis": null},
+    {"id": "F-077", "name": "Ability to Create on demand Dashboards from DeepSee Information Graph", "bucket": "Don't Lose", "agent": "Platform (All Agents)", "quarter": "LATER", "client": "All", "artemis": null},
+    {"id": "F-078", "name": "Web Scraping Tool (Includes Login, Access Data, Structuring, and Use in Work item)", "bucket": "Make", "agent": "DeepPilot", "quarter": "LATER", "client": "All", "artemis": null},
+    {"id": "F-079", "name": "Agent Library and BluePrint Selection (Includes Categories,Terms, Schema, Checklist Items)", "bucket": "Innovation", "agent": "Platform (All Agents)", "quarter": "NOW", "client": "All", "artemis": null},
+    {"id": "F-080", "name": "Watchtower News Feed v1", "bucket": "Innovation", "agent": "WATCHTOWER", "quarter": "NEXT", "client": "Altaira", "artemis": null}
+  ]
+}
+```
+
+---
+
+## KEY METRICS TO DISPLAY
+
+### Summary Statistics
+- Total Features: 74
+- Total JIRA Tickets: 2,662 (across 6 projects: BACK, CI, FB, UI, SC, PR)
+- Sales Pipeline Opportunities: 16
+- ARR at Risk (Tier 0): $500K (Broadridge)
+
+### Bucket Summary
+| Bucket | Feature Count | % of Total |
+|--------|--------------|------------|
+| Make Money | 45 | 61% |
+| Innovation | 17 | 23% |
+| Don't Lose | 12 | 16% |
+
+### Quarter Summary
+| Quarter | Feature Count | % of Total |
+|---------|--------------|------------|
+| NOW | 40 | 54% |
+| NEXT | 22 | 30% |
+| LATER | 12 | 16% |
+
+---
+
+## DASHBOARD REQUIREMENTS
+
+### NEW TAB: Board View
+Create a new tab called "Board View" with the following components:
+
+#### 1. Strategic Bucket Overview (Hero Section)
+- Three large KPI cards showing each bucket:
+  - **Make Money** (green): 45 features | $X ARR potential
+  - **Don't Lose** (yellow/amber): 12 features | $500K at risk
+  - **Innovation** (blue): 17 features | Competitive advantage
+
+#### 2. Roadmap Delivered vs Plan Chart
+- Horizontal bar chart or timeline showing:
+  - X-axis: NOW | NEXT | LATER
+  - Y-axis: Feature count
+  - Color-coded by bucket (Make/Don't Lose/Innovation)
+  - Show completion % for each quarter
+
+#### 3. Feature Adoption Matrix
+- Heat map or grid showing:
+  - Rows: Top clients (Broadridge, DTCC, JP Morgan, Accenture, Regional Banks)
+  - Columns: Agent types
+  - Cell values: Feature count / adoption status
+
+#### 4. Security & Reliability Progress
+- Progress bars showing:
+  - Critical vulnerabilities: X/Y resolved
+  - High vulnerabilities: X/Y resolved
+  - Infrastructure upgrades: status
+
+#### 5. Time-to-Value Metrics
+- Line chart showing:
+  - Average deployment duration trend
+  - Client onboarding velocity
+
+#### 6. Filters
+- Bucket filter (Make/Don't Lose/Innovation)
+- Quarter filter (NOW/NEXT/LATER)
+- Client filter
+- Agent Type filter
+
+---
+
+## EXISTING TABS TO UPDATE
+
+### Engineering View
+- Add bucket column visualization
+- Show features by bucket breakdown
+- Sprint velocity by bucket
+
+### Product Roadmap View
+- Add bucket column
+- Color-code features by bucket
+- Filter by bucket
+
+### Executive Dashboard
+- Add bucket summary widgets
+- Show ARR by bucket
+- Display Tier 0 alerts prominently
+
+---
+
+## PRIORITY SCORING FORMULA (EXISTING)
+
+```
+Priority_Score = (ARR × Replicability × Conversion_Probability) / (Effort_Weeks × Confidence_Factor)
+```
+
+Where:
+- Confidence_Factor: 1 (High), 1.5 (Medium), 2-3 (Low)
+
+---
+
+## IMPLEMENTATION NOTES
+
+1. **Color Scheme**:
+   - Make Money: #28a745 (green)
+   - Don't Lose: #ffc107 (amber)
+   - Innovation: #007bff (blue)
+   - Tier 0 Alert: #dc3545 (red)
+
+2. **Password Protection**: Dashboard is password protected (password shared via DM)
+
+3. **Data Source**: Excel file at `2025-11-07-DeepSee-prioritization-dashboard-v3__4_.xlsx`
+
+4. **Update Frequency**: Dashboard should auto-refresh or allow manual refresh
+
+---
+
+---
+
+## SPRINT 1 LIVE DATA
+### Data Extracted: Sunday, December 7, 2025 @ 7:30 PM MT
+### For: Monday December 8, 2025 Daily Standup (Sprint Day 4)
+
+---
+
+### SPRINT SUMMARY
+
+| Metric | Dec 7 Value | Dec 5 Value | Change |
+|--------|-------------|-------------|--------|
+| Sprint Name | 2025.1 (Sprint 1) | Sprint 1 | - |
+| Sprint Goal | Wave 1 Security, Mercury Extraction, DeepRecon API | - | - |
+| Start Date | December 5, 2025 | - | - |
+| End Date | December 19, 2025 | - | - |
+| Total Tickets | **56** | 47 | **+9 scope creep** |
+| Story Points Remaining | **57** | 29 | +28 (scope added) |
+| Sprint Health | **🟡 YELLOW** | 🟢 GREEN | ⚠️ Downgraded |
+| Days Remaining | 12 | 14 | -2 |
+
+### STATUS BREAKDOWN (vs Dec 5)
+
+```json
+{
+  "sprintStatus": {
+    "toDo": { "count": 20, "prevCount": 17, "change": "+3", "points": 15, "percentage": 36 },
+    "inProgress": { "count": 13, "prevCount": 7, "change": "+6", "points": 24, "percentage": 23 },
+    "codeReview": { "count": 5, "prevCount": 4, "change": "+1", "points": 6, "percentage": 9 },
+    "done": { "count": 19, "prevCount": 20, "change": "-1", "points": 34, "percentage": 34 },
+    "blocked": { "count": 0, "prevCount": 0, "change": "0", "points": 0, "percentage": 0 }
+  },
+  "velocityNote": "Good movement - 6 tickets moved to In Progress since Dec 5"
+}
+```
+
+### WAVE 1 SECURITY STATUS - COMPLETE ✅
+
+**Target: 76% vulnerability reduction for Broadridge**
+**Result: 298/390 vulnerabilities addressed = 76% TARGET ACHIEVED**
+**Impact: $500K ARR Protected**
+
+```json
+{
+  "wave1Security": [
+    {
+      "ticket": "SC-302",
+      "summary": "Address PostgreSQL Vulnerabilities",
+      "vulnerabilities": 158,
+      "status": "DONE",
+      "assignee": "Jeff Hegerhorst",
+      "build": "PASSING",
+      "notes": "3 PRs merged, 6 commits"
+    },
+    {
+      "ticket": "SC-303",
+      "summary": "Address mlrig-box-to-tokens Vulnerabilities",
+      "vulnerabilities": 80,
+      "status": "DONE",
+      "assignee": "Chad Hegerhorst",
+      "build": "PASSING",
+      "notes": "Labels: broadridge-implementation, wave-1"
+    },
+    {
+      "ticket": "SC-304",
+      "summary": "Address Kafka Vulnerabilities",
+      "vulnerabilities": 60,
+      "status": "DONE",
+      "assignee": "Jeff Hegerhorst",
+      "build": "FAILING",
+      "notes": "⚠️ BUILD STILL FAILING - needs attention Monday"
+    }
+  ],
+  "totalVulnerabilitiesAddressed": 298,
+  "totalVulnerabilities": 390,
+  "reductionPercentage": 76,
+  "targetAchieved": true
+}
+```
+
+### NADIYA'S CONFIRMED TICKETS ✅
+
+```json
+{
+  "confirmedDone": [
+    { "ticket": "BACK-1117", "summary": "Implement intent-agent logic in extractor-service", "status": "DONE", "points": 8, "verified": true },
+    { "ticket": "BACK-1540", "summary": "Deep Pilot - unexisting extractions shown on Email Request", "status": "DONE", "verified": true },
+    { "ticket": "FB-2409", "summary": "Train models for subcategories for Accenture", "status": "DONE", "points": 3, "verified": true, "assignee": "Anna (mat leave)" }
+  ],
+  "note": "All 3 tickets confirmed Done as Nadiya reported on Dec 5"
+}
+```
+
+### LANE'S BROADRIDGE VS ACCENTURE FLAG ⚠️
+
+```json
+{
+  "labelIssue": {
+    "ticket": "BACK-1542",
+    "currentTitle": "Deploy v3 API to Accenture & Demo",
+    "correctTitle": "Deploy v3 API to Broadridge & Demo",
+    "currentLabels": "none",
+    "correctLabels": "broadridge-implementation",
+    "status": "NOT FIXED",
+    "owner": "Lane Terry",
+    "actionNeeded": "Relabel ticket from Accenture to Broadridge"
+  }
+}
+```
+
+### TICKETS IN PROGRESS (13)
+
+```json
+{
+  "inProgress": [
+    { "ticket": "BACK-1304", "summary": "Messages API (parent with 5 subtasks)", "assignee": "Lane Terry", "points": 13 },
+    { "ticket": "BACK-1436", "summary": "Deep Recon - Always run on import Automations (Broadridge)", "assignee": "Treven Trujillo", "points": 5 },
+    { "ticket": "BACK-1224", "summary": "Research and plan major scalability refactor", "assignee": "Lane Terry", "points": 5 },
+    { "ticket": "BACK-1531", "summary": "Fine-tune Mercury Extraction for Colony Bank", "assignee": null, "points": null },
+    { "ticket": "BACK-1532", "summary": "Fine-tune Mercury Extraction for Sunwest Bank", "assignee": null, "points": null },
+    { "ticket": "BACK-1560", "summary": "BBVA Reconciliation Output", "assignee": "Kannal Mutharasu", "points": null },
+    { "ticket": "BACK-1564", "summary": "Setup Colony HMDA Mercury Extraction Schema", "assignee": "Kalvin Willison", "points": null },
+    { "ticket": "BACK-1570", "summary": "Test HMDA Mercury Extraction End-to-End", "assignee": "Kalvin Willison", "points": 3, "dueDate": "2025-12-05", "status": "OVERDUE" },
+    { "ticket": "BACK-1325", "summary": "Workflows API", "assignee": "Ivan Peev", "points": null },
+    { "ticket": "UI-706", "summary": "Migrate Statistics APIs", "assignee": null, "points": 2 },
+    { "ticket": "UI-708", "summary": "Migrate GET Inboxes API", "assignee": "Owen Riley", "points": 3 }
+  ]
+}
+```
+
+### TICKETS IN CODE REVIEW (5)
+
+```json
+{
+  "codeReview": [
+    { "ticket": "BACK-1521", "summary": "Integrate SubCategory Model Calls into Prediction Pipeline", "assignee": "Aleksander Winski", "points": 3 },
+    { "ticket": "BACK-1318", "summary": "Counterparties API", "assignee": "Ivan Peev", "points": null, "daysInReview": 3 },
+    { "ticket": "BACK-1322", "summary": "ML Models API", "assignee": "Ivan Peev", "points": null, "daysInReview": 3 },
+    { "ticket": "BACK-1542", "summary": "Deploy v3 API to Accenture & Demo", "assignee": "Lane Terry", "points": null, "labelIssue": true }
+  ],
+  "stalledNote": "Ivan's tickets (BACK-1318, BACK-1322) in Code Review 3+ days - may need reviewer"
+}
+```
+
+### COMPLETED TICKETS (19) - KEY ITEMS
+
+```json
+{
+  "done": [
+    { "ticket": "BACK-760", "summary": "Implement RBAC for Message Endpoints", "assignee": "Treven Trujillo", "points": 5 },
+    { "ticket": "BACK-761", "summary": "Implement RBAC for Automation Endpoints", "assignee": "Darius Ouderkirk", "points": 3 },
+    { "ticket": "BACK-807", "summary": "Add Retries, Move to Kafka", "assignee": "Lane Terry", "points": 8 },
+    { "ticket": "BACK-806", "summary": "[BE] preprocessor high load fix", "assignee": "Aleksander Winski", "points": 8 },
+    { "ticket": "BACK-211", "summary": "Auto-generate RBAC Configuration", "assignee": "Darius Ouderkirk", "points": 3 },
+    { "ticket": "BACK-826", "summary": "Update Completed tab filter", "assignee": "Treven Trujillo", "points": 3 },
+    { "ticket": "BACK-831", "summary": "JPM doc keeps failing", "assignee": "Darius Ouderkirk", "points": null },
+    { "ticket": "BACK-870", "summary": "Misc Broadridge DeepView Issues", "assignee": "Darius Ouderkirk", "points": null },
+    { "ticket": "UI-429", "summary": "DeepRecon - Disable Mark Complete", "assignee": "Owen Riley", "points": 2 },
+    { "ticket": "UI-431", "summary": "DeepRecon - Flagged options", "assignee": "Owen Riley", "points": 1 },
+    { "ticket": "SC-302", "summary": "PostgreSQL Vulnerabilities (158 C+H)", "assignee": "Jeff Hegerhorst", "points": null },
+    { "ticket": "SC-303", "summary": "mlrig-box-to-tokens (80 C+H)", "assignee": "Chad Hegerhorst", "points": null },
+    { "ticket": "SC-304", "summary": "Kafka Vulnerabilities (60 C+H)", "assignee": "Jeff Hegerhorst", "points": null, "buildFailing": true }
+  ]
+}
+```
+
+### TICKETS ON HOLD
+
+```json
+{
+  "onHold": [
+    { "ticket": "BACK-1526", "summary": "Create new term type for checkbox extraction", "status": "TO DO (On Hold)", "reason": "Mercury may address this", "owner": "Kannal Mutharasu" }
+  ]
+}
+```
+
+### RISKS & ALERTS
+
+```json
+{
+  "risks": [
+    {
+      "severity": "HIGH",
+      "item": "SC-304 Build Failing",
+      "description": "Kafka vulnerability ticket merged but build STILL FAILING since Dec 5",
+      "owner": "Jeff Hegerhorst",
+      "standupQuestion": "Jeff - Kafka build still failing since Friday. Status?"
+    },
+    {
+      "severity": "HIGH",
+      "item": "BACK-1570 Overdue",
+      "description": "HMDA Mercury Extraction test was due Dec 5, still In Progress",
+      "owner": "Kalvin Willison",
+      "standupQuestion": "Kalvin - HMDA test was due Dec 5. What's blocking?"
+    },
+    {
+      "severity": "MEDIUM",
+      "item": "Scope Creep +9 Tickets",
+      "description": "Sprint grew from 47 to 56 tickets - 9 tickets added since Friday",
+      "owner": "Brandon Baguley",
+      "standupQuestion": "Brandon - we added 9 tickets since Friday. Intentional?"
+    },
+    {
+      "severity": "MEDIUM",
+      "item": "BACK-1542 Mislabeled",
+      "description": "Lane flagged this as Broadridge, not Accenture - still not fixed",
+      "owner": "Lane Terry",
+      "standupQuestion": "Lane - still shows Accenture, should be Broadridge. Can you fix?"
+    },
+    {
+      "severity": "LOW",
+      "item": "Ivan's Tickets Stalled",
+      "description": "BACK-1318, BACK-1322 in Code Review for 3+ days",
+      "owner": "Ivan Peev",
+      "standupQuestion": "Ivan - 1318 and 1322 in review 3+ days. Need reviewer?"
+    }
+  ],
+  "blocked": []
+}
+```
+
+### SPRINT 1 WINS 🎉
+
+```json
+{
+  "wins": [
+    {
+      "title": "Wave 1 Security Complete",
+      "description": "298/390 vulnerabilities addressed (76% reduction) - Broadridge $500K ARR protected",
+      "tickets": ["SC-302", "SC-303", "SC-304"],
+      "impact": "$500K ARR"
+    },
+    {
+      "title": "Zero Blocked Tickets",
+      "description": "No blockers in sprint - work is flowing",
+      "tickets": []
+    },
+    {
+      "title": "Good Velocity",
+      "description": "6 tickets moved from To Do to In Progress since Dec 5",
+      "tickets": []
+    },
+    {
+      "title": "Nadiya's Confirmations",
+      "description": "BACK-1117, BACK-1540, FB-2409 all verified Done",
+      "tickets": ["BACK-1117", "BACK-1540", "FB-2409"]
+    }
+  ]
+}
+```
+
+### CHANGES SINCE DECEMBER 5
+
+```json
+{
+  "changesSinceDec5": {
+    "ticketsAdded": 9,
+    "ticketsMovedToInProgress": 6,
+    "ticketsCompleted": -1,
+    "scopeChange": "+19% (47 to 56 tickets)",
+    "healthChange": "GREEN → YELLOW",
+    "keyChanges": [
+      "Sprint scope increased significantly",
+      "SC-304 build still failing (unresolved)",
+      "BACK-1570 now overdue (was due Dec 5)",
+      "BACK-1542 label still not fixed"
+    ]
+  }
+}
+```
+
+### MONDAY STANDUP PRIORITY ACTIONS
+
+```json
+{
+  "mondayActions": [
+    { "priority": 1, "action": "Fix SC-304 Build", "owner": "Jeff Hegerhorst", "reason": "Wave 1 critical, affects Broadridge" },
+    { "priority": 2, "action": "Check BACK-1570 Status", "owner": "Kalvin Willison", "reason": "Colony HMDA test overdue since Dec 5" },
+    { "priority": 3, "action": "Relabel BACK-1542", "owner": "Lane Terry", "reason": "Broadridge/Accenture client attribution" },
+    { "priority": 4, "action": "Review Scope Increase", "owner": "Brandon Baguley", "reason": "9 tickets added - intentional?" },
+    { "priority": 5, "action": "Unblock Ivan's Code Reviews", "owner": "Team", "reason": "BACK-1318, BACK-1322 stalled 3+ days" }
+  ]
+}
+```
+
+---
+
+## DASHBOARD SPRINT VIEW REQUIREMENTS
+
+### NEW COMPONENT: Sprint Status Widget
+
+Create a sprint status widget showing:
+
+1. **Sprint Health Indicator**
+   - Green circle if no blockers and >30% done
+   - **Yellow if risks exist or overdue items** ← Current state
+   - Red if critical blockers or sprint at risk
+
+2. **Progress Bar**
+   - Horizontal stacked bar showing To Do / In Progress / Code Review / Done
+   - Color coded: Gray (To Do), Blue (In Progress), Purple (Code Review), Green (Done)
+   - Current: 20 | 13 | 5 | 19 = 56 total
+
+3. **Key Metrics Cards**
+   - Total Tickets: **56** (was 47)
+   - Story Points Remaining: **57** (was 29)
+   - Blocked: **0**
+   - Days Remaining: **12**
+   - Overdue: **1** (BACK-1570)
+
+4. **Wave 1 Security Progress**
+   - Special callout showing 76% complete with checkmark
+   - "$500K ARR Protected" badge
+   - ⚠️ SC-304 build failing alert
+
+5. **Engineer Capacity Table**
+   - Show each engineer's workload
+   - Highlight overloaded (>15 pts) or underloaded (<5 pts)
+
+6. **Alerts Panel**
+   - 🔴 HIGH: SC-304 build failing, BACK-1570 overdue
+   - 🟡 MEDIUM: Scope creep +9, BACK-1542 mislabeled
+   - 🔵 LOW: Ivan's code reviews stalled
+
+---
+
+## VERIFICATION CHECKLIST
+
+After implementation, confirm:
+- [ ] Board View tab created with all 5 Steve requirements
+- [ ] Three-bucket filtering works (Make/Don't Lose/Innovation)
+- [ ] All 74 features are displayed correctly
+- [ ] Bucket distribution matches (45/12/17)
+- [ ] Quarter distribution matches (40/22/12)
+- [ ] Tier 0 alert is prominently displayed for Broadridge ($500K at risk)
+- [ ] Color coding is consistent across all views
+- [ ] Filters work correctly
+- [ ] Existing tabs updated with bucket column
+- [ ] Sprint 1 status widget displays correctly
+- [ ] **Sprint health shows YELLOW** (updated from GREEN)
+- [ ] Wave 1 Security shows 76% complete
+- [ ] **SC-304 build failing alert visible**
+- [ ] **BACK-1570 overdue alert visible**
+- [ ] Engineer workload table is accurate
+- [ ] Unassigned tickets are flagged
+- [ ] **Scope change (+9 tickets) is visible**
+
+---
+
+## END OF PROMPT

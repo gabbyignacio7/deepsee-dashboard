@@ -1,0 +1,1552 @@
+# DeepSee AI Prioritization Dashboard - Comprehensive Update
+## December 1, 2025 | 9:00 AM EST / 7:00 AM MT
+
+---
+
+## ⚠️ CRITICAL INSTRUCTION
+**UPDATE ONLY** - Do NOT delete or overwrite existing data. Add new records, update changed values, and preserve all historical data. Add `lastUpdated` timestamps to track changes.
+
+---
+
+## TABLE OF CONTENTS
+1. [Prioritization Formula Updates](#1-prioritization-formula-updates)
+2. [Engineering Allocation Data](#2-engineering-allocation-data)
+3. [Sales Pipeline Data](#3-sales-pipeline-data)
+4. [SC-299 Broadridge Security Status](#4-sc-299-broadridge-security-status)
+5. [JIRA Metrics Summary](#5-jira-metrics-summary)
+6. [Change Log Since Nov 23](#6-change-log-since-nov-23)
+7. [Implementation Steps](#7-implementation-steps)
+8. [Testing Checklist](#8-testing-checklist)
+
+---
+
+## 1. PRIORITIZATION FORMULA UPDATES
+
+### 1.1 T-Shirt Size to Weeks Lookup Table
+
+**File:** `client/src/data/lookupTables.ts` (or add to existing config)
+
+```typescript
+export const effortLookup: Record<string, number> = {
+  'S': 2,   // Small = 2 weeks
+  'M': 4,   // Medium = 4 weeks
+  'L': 8,   // Large = 8 weeks
+  'XL': 12  // Extra Large = 12 weeks
+};
+
+// Helper function to convert T-shirt size to weeks
+export const getEffortWeeks = (tshirtSize: string | null): number => {
+  if (!tshirtSize) return 4; // Default to Medium
+  return effortLookup[tshirtSize.toUpperCase()] || 4;
+};
+```
+
+### 1.2 Client Count for "All" Features
+
+When `Primary_Client === "All"`, set `Client_Count = 7`
+
+**Current Paying Clients (7):**
+| # | Client | ARR | Status |
+|---|--------|-----|--------|
+| 1 | DTCC | $416,200 | Won |
+| 2 | Accenture | $225,000 | Won |
+| 3 | Altaira | $150,000 | Won |
+| 4 | BetaNXT | $90,000 | Won |
+| 5 | Colony Bank | $59,000 | Won |
+| 6 | Broadridge | $500,000 | Won |
+| 7 | Sunwest Bank | $70,000 | Pipeline (90%) |
+
+### 1.3 ARR Default for Platform Features
+
+When `Primary_Client === "All"` AND `ARR_Amount` is blank/null, default to `$10,000,000`
+
+### 1.4 Priority Score Formula
+
+```typescript
+/**
+ * Priority Score Formula:
+ * (ARR × Replicability × Conversion%) / (Effort_Weeks × Confidence)
+ * 
+ * Tier Assignment:
+ * - Tier 0: Emergency (Revenue_at_Risk = "Yes")
+ * - Tier 1: Fast Track (Score >= 100)
+ * - Tier 2: Standard Delivery (Score 50-99)
+ * - Tier 3: Custom Engagement (Score 10-49)
+ * - Tier 4: Backlog (Score < 10)
+ */
+export const calculatePriorityScore = (feature: Feature): number => {
+  // Default ARR to $10M for platform features
+  const arr = feature.Primary_Client === 'All' && !feature.ARR_Amount 
+    ? 10000000 
+    : feature.ARR_Amount || 0;
+  
+  const replicability = feature.Replicability_Score || 1;
+  const conversion = feature.Conversion_Probability_Pct || 100; // Default 100% for platform
+  const effortWeeks = getEffortWeeks(feature.Effort_TShirt_Size);
+  const confidence = feature.Confidence_Level || 1;
+  
+  if (effortWeeks === 0 || confidence === 0) return 0;
+  return (arr * replicability * (conversion / 100)) / (effortWeeks * confidence);
+};
+
+export const getPriorityTier = (score: number, revenueAtRisk: boolean): string => {
+  if (revenueAtRisk) return "Tier 0: Emergency";
+  if (score >= 100) return "Tier 1: Fast Track";
+  if (score >= 50) return "Tier 2: Standard Delivery";
+  if (score >= 10) return "Tier 3: Custom Engagement";
+  return "Tier 4: Backlog";
+};
+```
+
+---
+
+## 2. ENGINEERING ALLOCATION DATA
+
+**File:** `client/src/data/engineerAllocationData.ts`
+
+**UPDATE** this file (preserve any additional fields/data that exist):
+
+```typescript
+export interface Ticket {
+  id: string;
+  title: string;
+  project: string;
+  status: string;
+  priority: string;
+  storyPoints: number | null;
+  daysInStatus: number;
+  epic: string;
+  labels: string;
+  jiraLink: string;
+}
+
+export interface Engineer {
+  name: string;
+  tickets: Ticket[];
+}
+
+export interface EngineerAllocationData {
+  lastUpdated: string;
+  engineers: Engineer[];
+}
+
+export const engineerAllocationData: EngineerAllocationData = {
+  lastUpdated: "December 1, 2025 9:00 AM EST",
+  
+  engineers: [
+    {
+      name: "Lane Terry",
+      tickets: [
+        {
+          id: "BACK-1542",
+          title: "Deploy v3 API to Accenture & Demo",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 5,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1542"
+        },
+        {
+          id: "BACK-1308",
+          title: "Get Message Details API",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 12,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1308"
+        },
+        {
+          id: "BACK-1307",
+          title: "Get Messages API",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 12,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1307"
+        },
+        {
+          id: "BACK-1304",
+          title: "Messages API",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 19,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1304"
+        },
+        {
+          id: "BACK-1224",
+          title: "Research and plan major scalability refactor",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 66,
+          epic: "Broadridge Scalability",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1224"
+        },
+        {
+          id: "BACK-1430",
+          title: "ArrayIndexOutOfBounds Processing Actors",
+          project: "BACK",
+          status: "To Do",
+          priority: "Critical",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1430"
+        },
+        {
+          id: "BACK-1196",
+          title: "Fix email status synchronization between Outlook and DeepView",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 13,
+          daysInStatus: 82,
+          epic: "Broadridge Scalability",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1196"
+        },
+        {
+          id: "BACK-1126",
+          title: "Auto Annotate SSI",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1126"
+        }
+      ]
+    },
+    {
+      name: "Jeff Hegerhorst",
+      tickets: [
+        {
+          id: "SC-304",
+          title: "Address Kafka Vulnerabilities (60 C+H)",
+          project: "SC",
+          status: "In Progress",
+          priority: "Critical",
+          storyPoints: 8,
+          daysInStatus: 5,
+          epic: "SC-299 Broadridge Security",
+          labels: "security;broadridge-implementation",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-304"
+        },
+        {
+          id: "SC-305",
+          title: "Address NATS Vulnerabilities (26 C+H)",
+          project: "SC",
+          status: "Code Review",
+          priority: "Critical",
+          storyPoints: 8,
+          daysInStatus: 9,
+          epic: "SC-299 Broadridge Security",
+          labels: "security;broadridge-implementation",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-305"
+        },
+        {
+          id: "SC-306",
+          title: "Address Argo Events Vulnerabilities (22 C+H)",
+          project: "SC",
+          status: "Code Review",
+          priority: "Critical",
+          storyPoints: 8,
+          daysInStatus: 9,
+          epic: "SC-299 Broadridge Security",
+          labels: "security;broadridge-implementation",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-306"
+        },
+        {
+          id: "CI-286",
+          title: "[Placeholder] Remaining Lambdas",
+          project: "CI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 22,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/CI-286"
+        },
+        {
+          id: "FB-786",
+          title: "Set up separate PROD/non-PROD Azure accounts",
+          project: "FB",
+          status: "Blocked",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 15,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-786"
+        },
+        {
+          id: "CI-481",
+          title: "Messages can be Developed Locally",
+          project: "CI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/CI-481"
+        },
+        {
+          id: "CI-283",
+          title: "Add database provisioning to the tiltfile",
+          project: "CI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/CI-283"
+        }
+      ]
+    },
+    {
+      name: "Aleksander Winski",
+      tickets: [
+        {
+          id: "BACK-1562",
+          title: "Include new terms in Preprocessor Prediction",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 3,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1562"
+        },
+        {
+          id: "BACK-1521",
+          title: "Integrate SubCategory Model Calls into Prediction",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 10,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1521"
+        },
+        {
+          id: "BACK-1099",
+          title: "[BE][SSLException] when connecting to prediction service",
+          project: "BACK",
+          status: "To Do",
+          priority: "Critical",
+          storyPoints: 13,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1099"
+        }
+      ]
+    },
+    {
+      name: "Darius Ouderkirk",
+      tickets: [
+        {
+          id: "BACK-1382",
+          title: "Export for Vantage Commercial Lending Work Items",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Critical",
+          storyPoints: 3,
+          daysInStatus: 35,
+          epic: "Regional Banks Onboarding",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1382"
+        },
+        {
+          id: "BACK-1501",
+          title: "Content Maps for the specific products",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 15,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1501"
+        },
+        {
+          id: "BACK-1484",
+          title: "Attachments from salesforce case emails",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 12,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1484"
+        },
+        {
+          id: "BACK-882",
+          title: "Update Classifier and DeepRecon API services",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 45,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-882"
+        },
+        {
+          id: "BACK-1117",
+          title: "Implement intent-agent logic in the extractor-service",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 13,
+          daysInStatus: 44,
+          epic: "Migrate Intent Agent to Extractor Service",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1117"
+        },
+        {
+          id: "PABE-582",
+          title: "Call shared action from deployment jobs",
+          project: "PABE",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/PABE-582"
+        },
+        {
+          id: "BACK-986",
+          title: "Design and implement enterprise-grade database",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 13,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-986"
+        }
+      ]
+    },
+    {
+      name: "Anna Kamionowska",
+      tickets: [
+        {
+          id: "FB-2409",
+          title: "Train models for subcategories for Accenture",
+          project: "FB",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 16,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-2409"
+        },
+        {
+          id: "FB-2190",
+          title: "Improve clustering for high frequency and groups",
+          project: "FB",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-2190"
+        },
+        {
+          id: "FB-2189",
+          title: "Train auto-labelling model for DeepRecon",
+          project: "FB",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 8,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-2189"
+        },
+        {
+          id: "FB-2124",
+          title: "[ML DeepRecon] Issues discovered in labelling",
+          project: "FB",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/FB-2124"
+        },
+        {
+          id: "BACK-35",
+          title: "BE - Improved signature cleaning",
+          project: "BACK",
+          status: "To Do",
+          priority: "Minor",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-35"
+        }
+      ]
+    },
+    {
+      name: "Ivan Peev",
+      tickets: [
+        {
+          id: "BACK-1322",
+          title: "ML Models API",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 5,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1322"
+        },
+        {
+          id: "BACK-1320",
+          title: "Inboxes/Data Sources API",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 5,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1320"
+        },
+        {
+          id: "BACK-1318",
+          title: "Counterparties API",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 5,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1318"
+        },
+        {
+          id: "BACK-1319",
+          title: "Datasets API",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "DeepRecon API",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1319"
+        }
+      ]
+    },
+    {
+      name: "Kannal Mutharasu",
+      tickets: [
+        {
+          id: "BACK-1560",
+          title: "BBVA Reconciliation Output",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 3,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1560"
+        },
+        {
+          id: "BACK-1526",
+          title: "Create new term type for checkbox extraction",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 10,
+          epic: "Regional Banks Onboarding",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1526"
+        },
+        {
+          id: "BACK-1468",
+          title: "Use equivalency lists on full strings",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 18,
+          epic: "FEEL / Equivalency matching",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1468"
+        },
+        {
+          id: "BACK-1540",
+          title: "Deep Pilot - unexisting extractions are shown",
+          project: "BACK",
+          status: "Code Review",
+          priority: "Critical",
+          storyPoints: 3,
+          daysInStatus: 2,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1540"
+        },
+        {
+          id: "BACK-1527",
+          title: "Populate the values for checkbox terms",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1527"
+        }
+      ]
+    },
+    {
+      name: "Kalvin Willison",
+      tickets: [
+        {
+          id: "BACK-1564",
+          title: "Setup Colony HMDA Mercury Extraction Schedule",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 2,
+          epic: "",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1564"
+        }
+      ]
+    },
+    {
+      name: "Loris D'Acunto",
+      tickets: [
+        {
+          id: "NSI-41",
+          title: "Dataset Normalization (Software)",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 26,
+          epic: "Data Anonymization",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-41"
+        },
+        {
+          id: "NSI-23",
+          title: "Change Message-ID domains and References",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 23,
+          epic: "Data Anonymization",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-23"
+        },
+        {
+          id: "NSI-20",
+          title: "Anonymization of sender and receivers",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 29,
+          epic: "Data Anonymization",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-20"
+        },
+        {
+          id: "NSI-19",
+          title: "Header Anonymization",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 31,
+          epic: "Data Anonymization",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-19"
+        },
+        {
+          id: "NSI-17",
+          title: "Dataset Normalization",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 36,
+          epic: "Data Anonymization",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-17"
+        },
+        {
+          id: "NSI-13",
+          title: "Conversion table with email domains",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 41,
+          epic: "Data Anonymization",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-13"
+        },
+        {
+          id: "NSI-11",
+          title: "Conversion Tables",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 45,
+          epic: "Data Anonymization",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-11"
+        },
+        {
+          id: "NSI-10",
+          title: "Set Up",
+          project: "NSI",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 50,
+          epic: "Data Anonymization",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-10"
+        },
+        {
+          id: "NSI-50",
+          title: "Reconstruction of EML file, starting from JSON",
+          project: "NSI",
+          status: "Code Review",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 3,
+          epic: "Data Anonymization",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-50"
+        },
+        {
+          id: "NSI-22",
+          title: "Sent time, change seconds and minutes",
+          project: "NSI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 0,
+          epic: "Data Anonymization",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-22"
+        },
+        {
+          id: "NSI-21",
+          title: "Replace in the subject the company names",
+          project: "NSI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 0,
+          epic: "Data Anonymization",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-21"
+        },
+        {
+          id: "NSI-18",
+          title: "Anonymization Pipeline",
+          project: "NSI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 0,
+          epic: "Data Anonymization",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-18"
+        },
+        {
+          id: "NSI-16",
+          title: "Conversion Table with shared mailboxes",
+          project: "NSI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 0,
+          epic: "Data Anonymization",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-16"
+        },
+        {
+          id: "NSI-15",
+          title: "Algo for anonymizing shared mailboxes",
+          project: "NSI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: null,
+          daysInStatus: 0,
+          epic: "Data Anonymization",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/NSI-15"
+        }
+      ]
+    },
+    {
+      name: "Konnor Willison",
+      tickets: []
+      // Note: Chief Architect - no active JIRA tickets as of Dec 1, 2025
+    }
+  ]
+};
+```
+
+---
+
+## 3. SALES PIPELINE DATA
+
+**File:** `client/src/data/salesPipelineData.ts`
+
+**CREATE** or **UPDATE** this file:
+
+```typescript
+export interface WonCustomer {
+  id: string;
+  company: string;
+  arr: number;
+  status: string;
+  segment: string;
+  product: string;
+  renewalDate: string;
+  notes?: string;
+}
+
+export interface ActiveDeal {
+  id: string;
+  company: string;
+  arr: number;
+  stage: string;
+  probability: number;
+  expectedClose: string | null;
+  owner: string;
+  product: string;
+  contact: string;
+  painPoints: string;
+  notes: string;
+  source: string;
+}
+
+export interface SalesPipelineData {
+  lastUpdated: string;
+  summary: {
+    currentARR: number;
+    activePipelineARR: number;
+    weightedPipelineARR: number;
+    totalDeals: number;
+    annualGoal: number;
+    goalProgress: number;
+  };
+  wonCustomers: WonCustomer[];
+  activeDeals: ActiveDeal[];
+  bySegment: Record<string, { wonARR: number; pipelineARR: number; dealCount: number }>;
+  byProduct: Record<string, { arr: number; deals: number }>;
+  dataQuality: {
+    dealsMissingARR: number;
+    dealsMissingProbability: number;
+    dealsMissingCloseDate: number;
+    dealsMissingOwner: number;
+    dealsMissingProduct: number;
+    notes: string;
+  };
+}
+
+export const salesPipelineData: SalesPipelineData = {
+  lastUpdated: "December 1, 2025 9:00 AM EST",
+  
+  summary: {
+    currentARR: 990200,           // Total won ARR
+    activePipelineARR: 570000,    // Includes Broadridge $500K
+    weightedPipelineARR: 513000,  // Weighted by probability
+    totalDeals: 8,
+    annualGoal: 2000000,
+    goalProgress: 49.5            // (990200 / 2000000) × 100
+  },
+  
+  wonCustomers: [
+    {
+      id: "won-1",
+      company: "DTCC - ITP SSI (ALERT)",
+      arr: 416200,
+      status: "Won",
+      segment: "Fin Market Infrastructure",
+      product: "SSI Automation",
+      renewalDate: "Q4-2025"
+    },
+    {
+      id: "won-2",
+      company: "Accenture",
+      arr: 225000,
+      status: "Won",
+      segment: "Fin Market Infrastructure",
+      product: "Email Automation",
+      renewalDate: "Q4-2025",
+      notes: "Orchestra Expansion in pipeline for additional $1.2M TCV"
+    },
+    {
+      id: "won-3",
+      company: "Altaira - BPO",
+      arr: 150000,
+      status: "Won",
+      segment: "Fin Market Infrastructure",
+      product: "Trade Reconciliation",
+      renewalDate: "Q2-2025"
+    },
+    {
+      id: "won-4",
+      company: "BetaNXT - UI",
+      arr: 90000,
+      status: "Won",
+      segment: "Fin Market Infrastructure",
+      product: "DeepRecon",
+      renewalDate: "Q3-2025"
+    },
+    {
+      id: "won-5",
+      company: "Colony Bank",
+      arr: 59000,
+      status: "Won",
+      segment: "Community",
+      product: "Loan Operations / HMDA",
+      renewalDate: "Q1-2026"
+    },
+    {
+      id: "won-6",
+      company: "Other Won Deals",
+      arr: 50000,
+      status: "Won",
+      segment: "Mixed",
+      product: "Various",
+      renewalDate: "Various"
+    }
+  ],
+  
+  activeDeals: [
+    {
+      id: "deal-1",
+      company: "Broadridge",
+      arr: 500000,
+      stage: "High Priority",
+      probability: 75,
+      expectedClose: "Q1-2025",
+      owner: "Steve Shillingford",
+      product: "Internal ELA - Reconciliation",
+      contact: "Tom Carey",
+      painPoints: "Internal use for various reconciliation activities",
+      notes: "Internal ELA - $500K ARR (from project knowledge)",
+      source: "Project Knowledge"
+    },
+    {
+      id: "deal-2",
+      company: "Sunwest Bank",
+      arr: 70000,
+      stage: "Active",
+      probability: 90,
+      expectedClose: "2025-02-04",
+      owner: "Steve Shillingford",
+      product: "Mercury Extraction",
+      contact: "",
+      painPoints: "",
+      notes: "At risk - showing warning indicator in Monday.com",
+      source: "Monday.com"
+    },
+    {
+      id: "deal-3",
+      company: "Vantage Bank",
+      arr: 0,
+      stage: "New",
+      probability: 10,
+      expectedClose: null,
+      owner: "",
+      product: "Loan Operations",
+      contact: "",
+      painPoints: "",
+      notes: "New prospect - no ARR value entered",
+      source: "Monday.com"
+    },
+    {
+      id: "deal-4",
+      company: "Carter Bank",
+      arr: 0,
+      stage: "New",
+      probability: 10,
+      expectedClose: null,
+      owner: "",
+      product: "",
+      contact: "",
+      painPoints: "",
+      notes: "New prospect - no ARR value entered",
+      source: "Monday.com"
+    },
+    {
+      id: "deal-5",
+      company: "Leader Bank",
+      arr: 0,
+      stage: "New",
+      probability: 10,
+      expectedClose: null,
+      owner: "",
+      product: "",
+      contact: "",
+      painPoints: "",
+      notes: "New prospect - no ARR value entered",
+      source: "Monday.com"
+    },
+    {
+      id: "deal-6",
+      company: "Academy Bank",
+      arr: 0,
+      stage: "New",
+      probability: 10,
+      expectedClose: null,
+      owner: "",
+      product: "",
+      contact: "",
+      painPoints: "",
+      notes: "New prospect - no ARR value entered",
+      source: "Monday.com"
+    },
+    {
+      id: "deal-7",
+      company: "Accenture - Orchestra Expansion",
+      arr: 0,
+      stage: "Active Prospect",
+      probability: 50,
+      expectedClose: "Q2-2025",
+      owner: "Ryan McQueen",
+      product: "Email Automation Expansion",
+      contact: "",
+      painPoints: "",
+      notes: "Expansion deal - $1.2M TCV mentioned (from project knowledge)",
+      source: "Monday.com + Project Knowledge"
+    }
+  ],
+  
+  bySegment: {
+    "Fin Market Infrastructure": {
+      wonARR: 881200,
+      pipelineARR: 500000,
+      dealCount: 5
+    },
+    "Community": {
+      wonARR: 109000,
+      pipelineARR: 70000,
+      dealCount: 6
+    }
+  },
+  
+  byProduct: {
+    "SSI Automation": { arr: 416200, deals: 1 },
+    "Email Automation": { arr: 225000, deals: 2 },
+    "Trade Reconciliation": { arr: 150000, deals: 1 },
+    "DeepRecon": { arr: 90000, deals: 1 },
+    "Loan Operations / HMDA": { arr: 59000, deals: 2 },
+    "Mercury Extraction": { arr: 70000, deals: 1 },
+    "Internal ELA": { arr: 500000, deals: 1 }
+  },
+  
+  dataQuality: {
+    dealsMissingARR: 5,
+    dealsMissingProbability: 4,
+    dealsMissingCloseDate: 5,
+    dealsMissingOwner: 6,
+    dealsMissingProduct: 4,
+    notes: "Most active deals in Monday.com lack key data fields. Broadridge $500K and Accenture expansion values from project knowledge, not Monday.com."
+  }
+};
+```
+
+---
+
+## 4. SC-299 BROADRIDGE SECURITY STATUS
+
+**File:** `client/src/data/sc299SecurityData.ts`
+
+**CREATE** or **UPDATE** this file:
+
+```typescript
+export interface SecuritySubtask {
+  id: string;
+  title: string;
+  status: string;
+  assignee: string | null;
+  vulnerabilityCount: number | null;
+  priority: string;
+}
+
+export interface SC299SecurityData {
+  lastUpdated: string;
+  epicId: string;
+  epicTitle: string;
+  totalSubtasks: number;
+  targetDate: string;
+  statusNote: string;
+  progress: {
+    completedCount: number;
+    inProgressCount: number;
+    codeReviewCount: number;
+    toDoAssignedCount: number;
+    toDoUnassignedCount: number;
+    percentComplete: number;
+  };
+  subtasks: SecuritySubtask[];
+}
+
+export const sc299SecurityData: SC299SecurityData = {
+  lastUpdated: "December 1, 2025 9:00 AM EST",
+  epicId: "SC-299",
+  epicTitle: "Broadridge Security Remediation",
+  totalSubtasks: 13,
+  targetDate: "November 24, 2025",
+  statusNote: "Behind schedule - 7 sub-tasks still in To Do (unassigned)",
+  
+  progress: {
+    completedCount: 3,
+    inProgressCount: 1,
+    codeReviewCount: 2,
+    toDoAssignedCount: 0,
+    toDoUnassignedCount: 7,
+    percentComplete: 23  // 3/13 = 23%
+  },
+  
+  subtasks: [
+    // COMPLETED
+    {
+      id: "SC-302",
+      title: "Security Remediation Sub-task",
+      status: "Done",
+      assignee: null,
+      vulnerabilityCount: null,
+      priority: "Critical"
+    },
+    {
+      id: "SC-308",
+      title: "Security Remediation Sub-task",
+      status: "Done",
+      assignee: null,
+      vulnerabilityCount: null,
+      priority: "Critical"
+    },
+    {
+      id: "SC-309",
+      title: "Security Remediation Sub-task",
+      status: "Done",
+      assignee: null,
+      vulnerabilityCount: null,
+      priority: "Critical"
+    },
+    
+    // IN PROGRESS
+    {
+      id: "SC-304",
+      title: "Address Kafka Vulnerabilities (60 C+H)",
+      status: "In Progress",
+      assignee: "Jeff Hegerhorst",
+      vulnerabilityCount: 60,
+      priority: "Critical"
+    },
+    
+    // CODE REVIEW
+    {
+      id: "SC-305",
+      title: "Address NATS Vulnerabilities (26 C+H)",
+      status: "Code Review",
+      assignee: "Jeff Hegerhorst",
+      vulnerabilityCount: 26,
+      priority: "Critical"
+    },
+    {
+      id: "SC-306",
+      title: "Address Argo Events Vulnerabilities (22 C+H)",
+      status: "Code Review",
+      assignee: "Jeff Hegerhorst",
+      vulnerabilityCount: 22,
+      priority: "Critical"
+    },
+    
+    // TO DO (UNASSIGNED)
+    {
+      id: "SC-303",
+      title: "Security Remediation Sub-task",
+      status: "To Do",
+      assignee: null,
+      vulnerabilityCount: null,
+      priority: "Critical"
+    },
+    {
+      id: "SC-307",
+      title: "Security Remediation Sub-task",
+      status: "To Do",
+      assignee: null,
+      vulnerabilityCount: null,
+      priority: "Critical"
+    },
+    {
+      id: "SC-310",
+      title: "Security Remediation Sub-task",
+      status: "To Do",
+      assignee: null,
+      vulnerabilityCount: null,
+      priority: "Critical"
+    },
+    {
+      id: "SC-311",
+      title: "Security Remediation Sub-task",
+      status: "To Do",
+      assignee: null,
+      vulnerabilityCount: null,
+      priority: "Critical"
+    },
+    {
+      id: "SC-312",
+      title: "Security Remediation Sub-task",
+      status: "To Do",
+      assignee: null,
+      vulnerabilityCount: null,
+      priority: "Critical"
+    },
+    {
+      id: "SC-313",
+      title: "Security Remediation Sub-task",
+      status: "To Do",
+      assignee: null,
+      vulnerabilityCount: null,
+      priority: "Critical"
+    },
+    {
+      id: "SC-314",
+      title: "Security Remediation Sub-task",
+      status: "To Do",
+      assignee: null,
+      vulnerabilityCount: null,
+      priority: "Critical"
+    }
+  ]
+};
+```
+
+---
+
+## 5. JIRA METRICS SUMMARY
+
+**File:** `client/src/data/jiraMetrics.ts`
+
+**CREATE** or **UPDATE** this file:
+
+```typescript
+export interface JiraMetrics {
+  lastUpdated: string;
+  extractionSource: string;
+  overall: {
+    totalActiveTickets: number;
+    totalInProgress: number;
+    totalToDo: number;
+    totalCodeReview: number;
+    totalBlocked: number;
+    totalWithStoryPoints: number;
+  };
+  engineerSummary: {
+    activeEngineers: number;
+    engineersWithNoTickets: string[];
+    highestLoad: { name: string; tickets: number }[];
+  };
+  longRunningTickets: Array<{
+    id: string;
+    title: string;
+    assignee: string;
+    status: string;
+    daysInStatus: number;
+    warningLevel: 'critical' | 'warning' | 'normal';
+  }>;
+}
+
+export const jiraMetrics: JiraMetrics = {
+  lastUpdated: "December 1, 2025 9:00 AM EST",
+  extractionSource: "JIRA - 20 queries executed",
+  
+  overall: {
+    totalActiveTickets: 561,
+    totalInProgress: 123,
+    totalToDo: 114,
+    totalCodeReview: 13,
+    totalBlocked: 17,
+    totalWithStoryPoints: 184
+  },
+  
+  engineerSummary: {
+    activeEngineers: 9,
+    engineersWithNoTickets: ["Konnor Willison"],
+    highestLoad: [
+      { name: "Jeff Hegerhorst", tickets: 30 },
+      { name: "Darius Ouderkirk", tickets: 24 },
+      { name: "Anna Kamionowska", tickets: 21 }
+    ]
+  },
+  
+  longRunningTickets: [
+    {
+      id: "BACK-1196",
+      title: "Fix email status synchronization between Outlook and DeepView",
+      assignee: "Lane Terry",
+      status: "To Do",
+      daysInStatus: 82,
+      warningLevel: "critical"
+    },
+    {
+      id: "BACK-1224",
+      title: "Research and plan major scalability refactor",
+      assignee: "Lane Terry",
+      status: "In Progress",
+      daysInStatus: 66,
+      warningLevel: "critical"
+    },
+    {
+      id: "NSI-10",
+      title: "Set Up",
+      assignee: "Loris D'Acunto",
+      status: "In Progress",
+      daysInStatus: 50,
+      warningLevel: "warning"
+    },
+    {
+      id: "BACK-882",
+      title: "Update Classifier and DeepRecon API services",
+      assignee: "Darius Ouderkirk",
+      status: "In Progress",
+      daysInStatus: 45,
+      warningLevel: "warning"
+    },
+    {
+      id: "BACK-1117",
+      title: "Implement intent-agent logic in extractor-service",
+      assignee: "Darius Ouderkirk",
+      status: "Code Review",
+      daysInStatus: 44,
+      warningLevel: "warning"
+    },
+    {
+      id: "BACK-1382",
+      title: "Export for Vantage Commercial Lending Work Items",
+      assignee: "Darius Ouderkirk",
+      status: "In Progress",
+      daysInStatus: 35,
+      warningLevel: "warning"
+    }
+  ]
+};
+```
+
+---
+
+## 6. CHANGE LOG SINCE NOV 23
+
+**File:** `client/src/data/changeLog.ts`
+
+**ADD** the following entry (preserve existing entries):
+
+```typescript
+export interface ChangeLogEntry {
+  date: string;
+  timestamp: string;
+  source: string;
+  engineerChanges: Array<{ engineer: string; change: string }>;
+  ticketStatusChanges: Array<{ ticketId: string; previousStatus?: string; newStatus?: string; note?: string }>;
+  metricsComparison: {
+    previous: { engineers: number; totalStoryPoints: number; trackedTickets: number };
+    current: { engineers: number; totalStoryPoints: number; trackedTickets: number };
+  };
+  dataUpdates: string[];
+}
+
+export const changeLogDec1: ChangeLogEntry = {
+  date: "December 1, 2025",
+  timestamp: "9:00 AM EST / 7:00 AM MT",
+  source: "JIRA + Monday.com + Project Knowledge",
+  
+  engineerChanges: [
+    { 
+      engineer: "Konnor Willison", 
+      change: "No longer has active JIRA tickets (was 2 tickets, 13 pts) - Chief Architect role" 
+    }
+  ],
+  
+  ticketStatusChanges: [
+    { 
+      ticketId: "SC-304", 
+      previousStatus: "To Do", 
+      newStatus: "In Progress", 
+      note: "Jeff Hegerhorst now working on Kafka vulnerabilities" 
+    },
+    { 
+      ticketId: "BACK-1224", 
+      note: "Still In Progress - now 66 days (was 58 days Nov 23)" 
+    },
+    { 
+      ticketId: "BACK-1196", 
+      note: "Still in To Do - now 82 days (was 74 days Nov 23)" 
+    },
+    { 
+      ticketId: "BACK-1117", 
+      note: "Still in Code Review - now 44 days (was 36 days Nov 23)" 
+    },
+    { 
+      ticketId: "BACK-1382", 
+      note: "Still In Progress - now 35 days (was 27 days Nov 23)" 
+    }
+  ],
+  
+  metricsComparison: {
+    previous: { engineers: 10, totalStoryPoints: 264, trackedTickets: 43 },
+    current: { engineers: 9, totalStoryPoints: 184, trackedTickets: 135 }
+  },
+  
+  dataUpdates: [
+    "Added T-shirt size to weeks lookup table (S=2, M=4, L=8, XL=12)",
+    "Updated Client_Count for 'All' features to 7",
+    "Updated ARR default for 'All' features to $10,000,000",
+    "Updated Sales Pipeline with Monday.com ARR values",
+    "Added Altaira ($150K) and BetaNXT ($90K) to Sales Pipeline",
+    "Updated SC-299 progress: SC-304 now In Progress"
+  ]
+};
+```
+
+---
+
+## 7. IMPLEMENTATION STEPS
+
+Execute these steps in order:
+
+### Step 1: Update Lookup Tables
+- Add/update `effortLookup` in `client/src/data/lookupTables.ts`
+- Verify T-shirt to weeks conversion works
+
+### Step 2: Update Engineering Data
+- Update `client/src/data/engineerAllocationData.ts` with new data
+- Preserve any additional fields that exist
+- Verify no syntax errors
+
+### Step 3: Create/Update Sales Pipeline
+- Create `client/src/data/salesPipelineData.ts` if it doesn't exist
+- Update with Monday.com + Project Knowledge data
+- Verify no syntax errors
+
+### Step 4: Create SC-299 Tracker
+- Create `client/src/data/sc299SecurityData.ts`
+- This tracks Broadridge security remediation progress
+
+### Step 5: Create JIRA Metrics
+- Create `client/src/data/jiraMetrics.ts`
+- Provides overall dashboard metrics
+
+### Step 6: Add Change Log Entry
+- Add entry to `client/src/data/changeLog.ts`
+- Preserve existing entries
+
+### Step 7: Update Priority Score Calculation
+- Update any components using priority score calculation
+- Ensure formula includes confidence level divisor
+
+### Step 8: Restart and Test
+- Restart the application
+- Test all dashboard views
+
+---
+
+## 8. TESTING CHECKLIST
+
+### Engineering Dashboard
+- [ ] Shows 9 active engineers (Konnor has 0 tickets)
+- [ ] Lane Terry shows 8 tickets
+- [ ] Jeff Hegerhorst shows SC-304 as "In Progress" (was To Do)
+- [ ] BACK-1196 shows 82 days with red/critical warning
+- [ ] BACK-1224 shows 66 days with red/critical warning
+- [ ] All JIRA links are clickable and work
+
+### Sales Dashboard
+- [ ] Shows $990,200 Current ARR
+- [ ] Shows $570,000 Pipeline ARR
+- [ ] Shows Broadridge at $500,000
+- [ ] Shows DTCC as largest customer ($416,200)
+- [ ] Shows data quality warning about missing fields
+
+### SC-299 Tracker
+- [ ] Shows 3 completed (SC-302, SC-308, SC-309)
+- [ ] Shows 1 in progress (SC-304 - Jeff)
+- [ ] Shows 2 in code review (SC-305, SC-306 - Jeff)
+- [ ] Shows 7 to do unassigned
+- [ ] Shows 23% complete
+
+### Prioritization
+- [ ] T-shirt sizes convert correctly (S=2, M=4, L=8, XL=12)
+- [ ] "All" client features show $10M ARR
+- [ ] "All" client features show Client_Count = 7
+- [ ] Priority Score formula includes confidence divisor
+
+---
+
+## DATA SOURCES
+
+| Data Type | Source | Extraction Date |
+|-----------|--------|-----------------|
+| JIRA Tickets | JIRA (20 queries) | Dec 1, 2025 8:45 AM EST |
+| Sales Pipeline | Monday.com | Dec 1, 2025 |
+| Broadridge ARR | Project Knowledge | Confirmed $500K |
+| Accenture Expansion | Project Knowledge | $1.2M TCV mentioned |
+| Prioritization Rules | Ryan's feedback | Nov 28, 2025 |
+
+---
+
+## TIMESTAMP
+
+**Update Applied:** December 1, 2025 9:00 AM EST / 7:00 AM MT  
+**Next Scheduled Update:** Wednesday cascade meeting  
+**Prepared By:** Gabriel Ignacio (TPM)
+
+---
+
+**END OF UPDATE PROMPT**

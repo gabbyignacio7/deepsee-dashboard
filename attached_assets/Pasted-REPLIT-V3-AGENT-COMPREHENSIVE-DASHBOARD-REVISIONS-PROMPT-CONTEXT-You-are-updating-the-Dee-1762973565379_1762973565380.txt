@@ -1,0 +1,952 @@
+REPLIT V3 AGENT - COMPREHENSIVE DASHBOARD REVISIONS PROMPT
+
+**CONTEXT:**
+You are updating the DeepSee Product Prioritization Dashboard based on stakeholder feedback from multiple meetings. The JIRA tickets data has already been updated (2,663 tickets from 6 active projects). This prompt covers ALL other required revisions to the dashboard functionality, data structure, and visualizations.
+
+**CURRENT STATE:**
+- Dashboard displays 47 product features with priority scoring
+- Priority Formula: (ARR × Replicability × Conversion Probability) / (Engineering Effort × Confidence Factor)
+- Three master data sources: Features, JIRA Tickets, Sales Pipeline (Monday.com)
+- Four main views: Executive, Sales, Engineering, Product Roadmap
+- Tier system: Tier 0 (Emergency) through Tier 4 (Backlog)
+
+---
+
+## REVISION 1: CONFIDENCE FACTOR INTEGRATION
+
+**Requirement:** Add a 3-point confidence scale to engineering effort calculations to account for unknowns and delivery viability.
+
+**Implementation:**
+
+```javascript
+// Confidence Factor Scale
+const confidenceScale = {
+  1: 'High Confidence - Can complete within a day',
+  2: 'Medium Confidence - Can complete within a week',
+  3: 'Low Confidence - Major unknowns, >1 week or unclear scope'
+};
+
+// Update Priority Score Calculation
+function calculatePriorityScore(feature) {
+  const confidenceFactor = feature.confidence_factor || 2; // Default to medium
+  
+  const priorityScore = (
+    feature.arr_amount * 
+    feature.replicability_score * 
+    (feature.conversion_probability / 100)
+  ) / (feature.engineering_effort_weeks * confidenceFactor);
+  
+  return priorityScore;
+}
+
+// Add to Feature Data Structure
+interface Feature {
+  // ... existing fields
+  confidence_factor: 1 | 2 | 3;
+  confidence_description: string; // Human-readable description
+}
+```
+
+**UI Requirements:**
+- Add "Confidence" column to feature table with dropdown: High (1), Medium (2), Low (3)
+- Display confidence badge on feature cards (Green=High, Yellow=Medium, Red=Low)
+- Include confidence in feature detail modal
+- Update tooltip: "Confidence affects priority score by multiplying engineering effort. Low confidence (3x) lowers priority score."
+
+**Data Updates:**
+- Add `confidence_factor` column to Master_Data_Features in Excel
+- Default all features to confidence_factor = 2 (Medium)
+- Allow manual override by product team
+
+---
+
+## REVISION 2: ARTEMIS PLATFORM WORK TRACKING
+
+**Requirement:** Separate and track strategic platform rebuild (Artemis) work vs. "keep alive" maintenance work for existing customers. This enables visibility into long-term strategic investment vs. short-term client support.
+
+**Implementation:**
+
+```javascript
+// Add Artemis Flag to Features
+interface Feature {
+  // ... existing fields
+  is_artemis_work: boolean;
+  artemis_category: 'Core Platform' | 'Client Migration' | 'New Capabilities' | null;
+}
+
+// Artemis Work Classification
+const artemisCategories = {
+  'Core Platform': 'Foundation work required for platform rebuild',
+  'Client Migration': 'Work to migrate existing clients to Artemis',
+  'New Capabilities': 'New features only available in Artemis'
+};
+
+// Calculate Artemis vs Keep-Alive Split
+function calculateWorkSplit(features, jiraTickets) {
+  const artemisFeatures = features.filter(f => f.is_artemis_work);
+  const keepAliveFeatures = features.filter(f => !f.is_artemis_work);
+  
+  const artemisEffort = artemisFeatures.reduce((sum, f) => 
+    sum + calculateFeatureEffort(f, jiraTickets), 0
+  );
+  
+  const keepAliveEffort = keepAliveFeatures.reduce((sum, f) => 
+    sum + calculateFeatureEffort(f, jiraTickets), 0
+  );
+  
+  return {
+    artemis_weeks: artemisEffort,
+    keep_alive_weeks: keepAliveEffort,
+    artemis_percentage: (artemisEffort / (artemisEffort + keepAliveEffort)) * 100,
+    total_weeks: artemisEffort + keepAliveEffort
+  };
+}
+```
+
+**UI Requirements:**
+
+1. **Executive View - Add Artemis Section:**
+```jsx
+<div className="artemis-summary">
+  <h3>Strategic Platform Work (Artemis)</h3>
+  <div className="split-metrics">
+    <div className="metric">
+      <label>Artemis Work</label>
+      <span>{artemisPercentage}%</span>
+      <span className="subtext">{artemisWeeks} weeks</span>
+    </div>
+    <div className="metric">
+      <label>Keep-Alive Work</label>
+      <span>{keepAlivePercentage}%</span>
+      <span className="subtext">{keepAliveWeeks} weeks</span>
+    </div>
+  </div>
+  <ProgressBar artemis={artemisPercentage} keepAlive={keepAlivePercentage} />
+</div>
+```
+
+2. **Feature Cards - Add Artemis Badge:**
+- Show "🚀 Artemis" badge on Artemis features
+- Different color scheme for Artemis features (blue vs. standard)
+- Filter option: "Show All | Artemis Only | Keep-Alive Only"
+
+3. **Product Roadmap View - Separate Tracks:**
+- Two swimlanes: "Artemis Platform" and "Client Support"
+- Visual separation with different background colors
+- Show feature count and effort for each track
+
+**Data Updates:**
+- Add `is_artemis_work` column (TRUE/FALSE) to Master_Data_Features
+- Add `artemis_category` column with dropdown options
+- Update dashboard to calculate and display split metrics
+
+---
+
+## REVISION 3: PRD & EPIC COMPLETION TRACKING
+
+**Requirement:** Track whether Product Requirements Documents (PRDs) are complete and whether features are logged as epics in JIRA to measure feature definition maturity.
+
+**Implementation:**
+
+```javascript
+// Add PRD & Epic Tracking Fields
+interface Feature {
+  // ... existing fields
+  prd_status: 'Not Started' | 'In Progress' | 'Complete' | 'Not Required';
+  prd_link: string | null; // URL to PRD document
+  jira_epic_id: string | null; // Epic key (e.g., BACK-123)
+  jira_epic_status: 'Not Created' | 'Created' | 'In Progress' | 'Done';
+  definition_completeness: number; // 0-100% based on PRD + Epic
+}
+
+// Calculate Definition Completeness
+function calculateDefinitionCompleteness(feature) {
+  let completeness = 0;
+  
+  // PRD contributes 50%
+  if (feature.prd_status === 'Complete') completeness += 50;
+  else if (feature.prd_status === 'In Progress') completeness += 25;
+  
+  // Epic contributes 50%
+  if (feature.jira_epic_status === 'Created' || feature.jira_epic_status === 'In Progress') {
+    completeness += 25;
+  }
+  if (feature.jira_epic_status === 'Done') completeness += 50;
+  
+  return completeness;
+}
+```
+
+**UI Requirements:**
+
+1. **Feature Detail View - Add Definition Section:**
+```jsx
+<div className="definition-tracking">
+  <h4>Definition Completeness: {completeness}%</h4>
+  <div className="definition-items">
+    <div className={`item ${prdComplete ? 'complete' : 'incomplete'}`}>
+      <span>📄 PRD</span>
+      <span className="status">{feature.prd_status}</span>
+      {feature.prd_link && <a href={feature.prd_link}>View PRD</a>}
+    </div>
+    <div className={`item ${epicCreated ? 'complete' : 'incomplete'}`}>
+      <span>📋 JIRA Epic</span>
+      <span className="status">{feature.jira_epic_status}</span>
+      {feature.jira_epic_id && <a href={`https://deepsee.atlassian.net/browse/${feature.jira_epic_id}`}>View Epic</a>}
+    </div>
+  </div>
+</div>
+```
+
+2. **Product Roadmap View - Add Completeness Indicator:**
+- Show colored dot on feature cards: Green (100%), Yellow (50-99%), Red (<50%)
+- Filter: "Show only features with PRD complete"
+- Sort option: "Sort by definition completeness"
+
+3. **Dashboard Metrics - Add Readiness Score:**
+```jsx
+<div className="readiness-metrics">
+  <span>Features with Complete PRDs: {prdCompleteCount}/{totalFeatures}</span>
+  <span>Features with JIRA Epics: {epicCreatedCount}/{totalFeatures}</span>
+  <span>Average Definition Completeness: {avgCompleteness}%</span>
+</div>
+```
+
+**Data Updates:**
+- Add `prd_status` column to Master_Data_Features
+- Add `prd_link` column for PRD URLs
+- Add `jira_epic_id` column for epic keys
+- Add `jira_epic_status` column with status tracking
+
+---
+
+## REVISION 4: CLIENT & DEPLOYMENT TRACKING
+
+**Requirement:** Support tracking multiple contracts/deployments per client (e.g., JP Morgan has 5 contracts, Wells Fargo has 6 use cases). View opportunities by contract/deployment rather than aggregated by client.
+
+**Implementation:**
+
+```javascript
+// Enhanced Client Tracking
+interface Opportunity {
+  // ... existing fields
+  client_name: string;
+  deployment_id: string; // Unique deployment identifier
+  deployment_name: string; // Human-readable name
+  contract_type: 'New' | 'Expansion' | 'Migration';
+  hosted_by: 'DeepSee' | 'Client';
+}
+
+// Deployment Aggregation
+function aggregateByDeployment(opportunities) {
+  const deployments = opportunities.reduce((acc, opp) => {
+    const key = `${opp.client_name}_${opp.deployment_id}`;
+    
+    if (!acc[key]) {
+      acc[key] = {
+        client_name: opp.client_name,
+        deployment_id: opp.deployment_id,
+        deployment_name: opp.deployment_name,
+        contracts: [],
+        total_arr: 0,
+        features: []
+      };
+    }
+    
+    acc[key].contracts.push(opp);
+    acc[key].total_arr += opp.arr_value;
+    acc[key].features.push(...opp.mapped_features);
+    
+    return acc;
+  }, {});
+  
+  return Object.values(deployments);
+}
+
+// Client Aggregation (Rollup View)
+function aggregateByClient(opportunities) {
+  return opportunities.reduce((acc, opp) => {
+    if (!acc[opp.client_name]) {
+      acc[opp.client_name] = {
+        client_name: opp.client_name,
+        deployments: [],
+        total_arr: 0,
+        contract_count: 0
+      };
+    }
+    
+    acc[opp.client_name].deployments.push(opp.deployment_id);
+    acc[opp.client_name].total_arr += opp.arr_value;
+    acc[opp.client_name].contract_count += 1;
+    
+    return acc;
+  }, {});
+}
+```
+
+**UI Requirements:**
+
+1. **Sales View - Add View Toggle:**
+```jsx
+<div className="view-toggle">
+  <button 
+    className={view === 'deployment' ? 'active' : ''}
+    onClick={() => setView('deployment')}
+  >
+    By Deployment
+  </button>
+  <button 
+    className={view === 'client' ? 'active' : ''}
+    onClick={() => setView('client')}
+  >
+    By Client (Aggregated)
+  </button>
+</div>
+```
+
+2. **Deployment Cards:**
+```jsx
+<div className="deployment-card">
+  <h4>{deployment.client_name} - {deployment.deployment_name}</h4>
+  <div className="deployment-details">
+    <span>Deployment ID: {deployment.deployment_id}</span>
+    <span>Contracts: {deployment.contracts.length}</span>
+    <span>Total ARR: ${deployment.total_arr.toLocaleString()}</span>
+    <span>Hosted By: {deployment.hosted_by}</span>
+  </div>
+  <div className="features-list">
+    <h5>Required Features:</h5>
+    <ul>
+      {deployment.features.map(f => <li key={f.id}>{f.name}</li>)}
+    </ul>
+  </div>
+</div>
+```
+
+3. **Client Rollup View:**
+```jsx
+<div className="client-rollup">
+  <h3>{client.client_name}</h3>
+  <div className="client-summary">
+    <span>Total ARR: ${client.total_arr.toLocaleString()}</span>
+    <span>Deployments: {client.deployments.length}</span>
+    <span>Contracts: {client.contract_count}</span>
+  </div>
+  <Accordion>
+    {client.deployments.map(deployment => (
+      <DeploymentCard key={deployment.id} deployment={deployment} />
+    ))}
+  </Accordion>
+</div>
+```
+
+**Data Updates:**
+- Add `deployment_id` and `deployment_name` columns to Sales Pipeline
+- Add `contract_type` column (New/Expansion/Migration)
+- Add `hosted_by` column (DeepSee/Client)
+- Update feature mapping to support multiple deployments per feature
+
+---
+
+## REVISION 5: OPERATIONAL & COMPLIANCE WORK ATTRIBUTION
+
+**Requirement:** Features not tied to new revenue (operational enhancements, compliance, latency improvements) should still be valued by tying them to existing contract ARR at risk of churn if not completed.
+
+**Implementation:**
+
+```javascript
+// Feature Revenue Attribution Types
+const revenueTypes = {
+  'New Revenue': 'New contract/client opportunity',
+  'Expansion Revenue': 'Upsell to existing client',
+  'Retention Revenue': 'Required to prevent churn',
+  'Compliance Revenue': 'Required to maintain contract compliance',
+  'Enhancement Revenue': 'Improves experience but not required'
+};
+
+interface Feature {
+  // ... existing fields
+  revenue_type: keyof typeof revenueTypes;
+  at_risk_contracts: string[]; // Array of contract IDs at risk if not completed
+  at_risk_arr: number; // Total ARR at risk
+  compliance_deadline: Date | null; // For compliance features
+}
+
+// Calculate Effective ARR (for prioritization)
+function calculateEffectiveARR(feature) {
+  switch (feature.revenue_type) {
+    case 'New Revenue':
+    case 'Expansion Revenue':
+      return feature.arr_amount * (feature.conversion_probability / 100);
+    
+    case 'Retention Revenue':
+    case 'Compliance Revenue':
+      // At-risk ARR gets 100% weight (no conversion discount)
+      return feature.at_risk_arr;
+    
+    case 'Enhancement Revenue':
+      // Enhancement gets 50% weight of at-risk ARR
+      return feature.at_risk_arr * 0.5;
+    
+    default:
+      return feature.arr_amount;
+  }
+}
+
+// Tier Assignment Logic Update
+function calculateTier(feature) {
+  const effectiveARR = calculateEffectiveARR(feature);
+  const priorityScore = calculatePriorityScore(feature);
+  
+  // Tier 0: Any retention/compliance with ARR at risk
+  if (feature.revenue_type === 'Retention Revenue' || 
+      feature.revenue_type === 'Compliance Revenue') {
+    if (feature.at_risk_arr > 0) return 'Tier 0';
+  }
+  
+  // Tier 1-4: Based on priority score
+  if (priorityScore > 100) return 'Tier 1';
+  if (priorityScore > 50) return 'Tier 2';
+  if (priorityScore > 10) return 'Tier 3';
+  return 'Tier 4';
+}
+```
+
+**UI Requirements:**
+
+1. **Feature Card - Show Revenue Type:**
+```jsx
+<div className="revenue-attribution">
+  <span className={`revenue-type ${feature.revenue_type}`}>
+    {feature.revenue_type}
+  </span>
+  {feature.at_risk_arr > 0 && (
+    <span className="at-risk-warning">
+      ⚠️ ${feature.at_risk_arr.toLocaleString()} ARR at Risk
+    </span>
+  )}
+  {feature.compliance_deadline && (
+    <span className="compliance-deadline">
+      📅 Compliance Due: {formatDate(feature.compliance_deadline)}
+    </span>
+  )}
+</div>
+```
+
+2. **Filter by Revenue Type:**
+- Add dropdown filter: "All | New Revenue | Retention | Compliance | Enhancement"
+- Show count per revenue type in dashboard metrics
+
+3. **Compliance Deadline Tracking:**
+- Visual calendar indicator for compliance features
+- Alert badge if deadline is <30 days away
+- Sort option: "Sort by compliance deadline"
+
+**Data Updates:**
+- Add `revenue_type` column to Master_Data_Features
+- Add `at_risk_contracts` column (comma-separated contract IDs)
+- Add `at_risk_arr` column (calculated from at-risk contracts)
+- Add `compliance_deadline` column (date field)
+
+---
+
+## REVISION 6: HEAT MAP & QUICK WINS VISUALIZATION
+
+**Requirement:** Create visual heat map showing features plotted by Effort vs. Replicability to identify quick wins, strategic investments, and questionable features.
+
+**Implementation:**
+
+```javascript
+// Heat Map Quadrant Classification
+function classifyFeature(feature) {
+  const effort = feature.engineering_effort_weeks;
+  const replicability = feature.replicability_score;
+  
+  // Thresholds
+  const lowEffort = 4; // weeks
+  const highReplicability = 3; // score out of 5
+  
+  if (effort <= lowEffort && replicability >= highReplicability) {
+    return { quadrant: 'Quick Wins', color: '#10b981', priority: 'High' };
+  }
+  
+  if (effort > lowEffort && replicability >= highReplicability) {
+    return { quadrant: 'Strategic Builds', color: '#3b82f6', priority: 'High' };
+  }
+  
+  if (effort <= lowEffort && replicability < highReplicability) {
+    return { quadrant: 'Low Hanging Fruit', color: '#f59e0b', priority: 'Medium' };
+  }
+  
+  return { quadrant: 'Questionable', color: '#ef4444', priority: 'Low' };
+}
+```
+
+**UI Requirements:**
+
+1. **Heat Map Chart Component:**
+```jsx
+<div className="heat-map">
+  <div className="chart-container">
+    <ScatterPlot
+      data={features.map(f => ({
+        x: f.engineering_effort_weeks,
+        y: f.replicability_score,
+        label: f.feature_name,
+        color: classifyFeature(f).color,
+        size: f.arr_amount / 100000 // Size by ARR
+      }))}
+      xAxis="Engineering Effort (Weeks)"
+      yAxis="Replicability Score (1-5)"
+      quadrants={[
+        { name: 'Quick Wins', x: [0, 4], y: [3, 5] },
+        { name: 'Strategic Builds', x: [4, 20], y: [3, 5] },
+        { name: 'Low Hanging Fruit', x: [0, 4], y: [1, 3] },
+        { name: 'Questionable', x: [4, 20], y: [1, 3] }
+      ]}
+    />
+  </div>
+  
+  <div className="quadrant-summary">
+    {Object.entries(quadrantCounts).map(([quadrant, count]) => (
+      <div key={quadrant} className="quadrant-stat">
+        <span className="quadrant-name">{quadrant}</span>
+        <span className="quadrant-count">{count} features</span>
+        <span className="quadrant-arr">${calculateQuadrantARR(quadrant)}</span>
+      </div>
+    ))}
+  </div>
+</div>
+```
+
+2. **Interactive Features:**
+- Hover over points to see feature details
+- Click point to open feature detail modal
+- Toggle to show/hide feature labels
+- Filter by quadrant (checkbox for each quadrant)
+
+3. **Recommendations Panel:**
+```jsx
+<div className="recommendations">
+  <h4>🎯 Recommended Actions</h4>
+  <ul>
+    <li>Focus on {quickWinsCount} Quick Wins for immediate value</li>
+    <li>Prioritize {strategicCount} Strategic Builds for long-term growth</li>
+    <li>Reconsider {questionableCount} Questionable features (high effort, low replicability)</li>
+  </ul>
+</div>
+```
+
+**Visualization Library:**
+- Use Recharts ScatterChart component (already available)
+- Custom tooltip showing: Feature name, ARR, Effort, Replicability, Client(s)
+- Color-coded quadrants with background shading
+
+---
+
+## REVISION 7: SPRINT SEQUENCING SUPPORT
+
+**Requirement:** Once prioritization reaches ~60% accuracy, support sequencing JIRA tickets into sprint cycles for engineering team. Dashboard should help plan sprint capacity and feature delivery.
+
+**Implementation:**
+
+```javascript
+// Sprint Planning Data Structure
+interface Sprint {
+  sprint_id: string;
+  sprint_name: string;
+  start_date: Date;
+  end_date: Date;
+  capacity_weeks: number; // Team capacity in engineer-weeks
+  assigned_tickets: string[]; // Array of JIRA ticket IDs
+  assigned_features: string[]; // Array of feature IDs
+  total_effort: number;
+  utilization: number; // percentage
+  status: 'Planned' | 'Active' | 'Completed';
+}
+
+// Sprint Assignment Logic
+function assignTicketsToSprint(tickets, features, sprint) {
+  // Sort tickets by feature priority
+  const sortedTickets = tickets.sort((a, b) => {
+    const featureA = features.find(f => f.feature_id === a.mapped_feature_id);
+    const featureB = features.find(f => f.feature_id === b.mapped_feature_id);
+    return (featureB?.priority_score || 0) - (featureA?.priority_score || 0);
+  });
+  
+  let remainingCapacity = sprint.capacity_weeks;
+  const assignedTickets = [];
+  
+  for (const ticket of sortedTickets) {
+    const ticketEffort = calculateEngineeringEffort(ticket);
+    
+    if (ticketEffort <= remainingCapacity) {
+      assignedTickets.push(ticket);
+      remainingCapacity -= ticketEffort;
+    }
+    
+    if (remainingCapacity <= 0) break;
+  }
+  
+  return {
+    assigned_tickets: assignedTickets,
+    utilization: ((sprint.capacity_weeks - remainingCapacity) / sprint.capacity_weeks) * 100
+  };
+}
+
+// Sprint Health Metrics
+function calculateSprintHealth(sprint, tickets, features) {
+  const blockedTickets = tickets.filter(t => t.jira_status === 'Blocked').length;
+  const tier0Features = features.filter(f => 
+    f.priority_tier === 'Tier 0' && 
+    sprint.assigned_features.includes(f.feature_id)
+  ).length;
+  
+  return {
+    health_score: 100 - (blockedTickets * 10) - (tier0Features === 0 ? 20 : 0),
+    blockers_count: blockedTickets,
+    has_tier0: tier0Features > 0,
+    on_track: sprint.utilization >= 70 && sprint.utilization <= 100
+  };
+}
+```
+
+**UI Requirements:**
+
+1. **Sprint Planning View:**
+```jsx
+<div className="sprint-planning">
+  <div className="sprint-header">
+    <h3>{sprint.sprint_name}</h3>
+    <span className="sprint-dates">
+      {formatDate(sprint.start_date)} - {formatDate(sprint.end_date)}
+    </span>
+  </div>
+  
+  <div className="sprint-capacity">
+    <ProgressBar 
+      value={sprint.utilization} 
+      max={100}
+      color={sprint.utilization > 100 ? 'red' : 'green'}
+    />
+    <span>{sprint.total_effort} / {sprint.capacity_weeks} weeks</span>
+    <span className="utilization">{sprint.utilization}% Utilized</span>
+  </div>
+  
+  <div className="sprint-features">
+    <h4>Features in Sprint ({sprint.assigned_features.length})</h4>
+    {sprint.assigned_features.map(featureId => {
+      const feature = features.find(f => f.feature_id === featureId);
+      return (
+        <FeatureCard 
+          key={featureId} 
+          feature={feature}
+          ticketCount={getFeatureTicketsInSprint(feature, sprint)}
+        />
+      );
+    })}
+  </div>
+  
+  <div className="sprint-health">
+    <h4>Sprint Health: {sprintHealth.health_score}/100</h4>
+    {sprintHealth.blockers_count > 0 && (
+      <Alert severity="warning">
+        {sprintHealth.blockers_count} blocked tickets
+      </Alert>
+    )}
+    {!sprintHealth.has_tier0 && (
+      <Alert severity="info">
+        No Tier 0 features in this sprint
+      </Alert>
+    )}
+  </div>
+</div>
+```
+
+2. **Drag & Drop Sprint Assignment:**
+- Drag tickets from backlog to sprint
+- Visual feedback when sprint is over/under capacity
+- Auto-calculate sprint utilization
+- Warning if mixing Tier 0 and Tier 3+ features
+
+3. **Sprint Comparison View:**
+```jsx
+<div className="sprint-comparison">
+  <table>
+    <thead>
+      <tr>
+        <th>Sprint</th>
+        <th>Capacity</th>
+        <th>Utilization</th>
+        <th>Features</th>
+        <th>Tier 0 Count</th>
+        <th>Health</th>
+      </tr>
+    </thead>
+    <tbody>
+      {sprints.map(sprint => (
+        <tr key={sprint.sprint_id}>
+          <td>{sprint.sprint_name}</td>
+          <td>{sprint.capacity_weeks}w</td>
+          <td>{sprint.utilization}%</td>
+          <td>{sprint.assigned_features.length}</td>
+          <td>{getTier0Count(sprint)}</td>
+          <td><HealthBadge score={sprint.health_score} /></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+```
+
+**Data Updates:**
+- Create new `sprints` data structure
+- Add sprint assignment interface
+- Link tickets and features to sprint IDs
+
+---
+
+## REVISION 8: WEEKLY MEETING VIEW
+
+**Requirement:** Create focused view for weekly product-sales-engineering prioritization meetings showing urgent tiers, stalled tickets, and quarterly goals.
+
+**Implementation:**
+
+```jsx
+// Meeting View Component
+function WeeklyMeetingView() {
+  const tier0Features = features.filter(f => f.priority_tier === 'Tier 0');
+  const tier1Features = features.filter(f => f.priority_tier === 'Tier 1');
+  const stalledTickets = tickets.filter(t => 
+    t.jira_status === 'Blocked' || 
+    (t.jira_status === 'In Progress' && daysSinceUpdate(t) > 7)
+  );
+  const quarterGoals = features.filter(f => 
+    f.quarter_planned === getCurrentQuarter() && 
+    f.status !== 'Completed'
+  );
+  
+  return (
+    <div className="meeting-view">
+      <div className="meeting-header">
+        <h2>Weekly Prioritization Meeting</h2>
+        <span className="meeting-date">{formatDate(new Date())}</span>
+      </div>
+      
+      {/* Section 1: Critical Items */}
+      <section className="critical-section">
+        <h3>🚨 Critical Items (Tier 0)</h3>
+        {tier0Features.length === 0 ? (
+          <div className="success-message">
+            ✅ No Tier 0 items - excellent!
+          </div>
+        ) : (
+          <div className="feature-list">
+            {tier0Features.map(feature => (
+              <CriticalFeatureCard 
+                key={feature.feature_id}
+                feature={feature}
+                showBlockers={true}
+                showProgress={true}
+              />
+            ))}
+          </div>
+        )}
+      </section>
+      
+      {/* Section 2: Fast Track Items */}
+      <section className="fast-track-section">
+        <h3>⚡ Fast Track (Tier 1)</h3>
+        <div className="tier1-summary">
+          <span>Total ARR: ${calculateTotalARR(tier1Features)}</span>
+          <span>Features: {tier1Features.length}</span>
+          <span>Est. Completion: {estimateCompletion(tier1Features)}</span>
+        </div>
+        <div className="feature-grid">
+          {tier1Features.slice(0, 6).map(feature => (
+            <CompactFeatureCard key={feature.feature_id} feature={feature} />
+          ))}
+        </div>
+      </section>
+      
+      {/* Section 3: Stalled Work */}
+      <section className="stalled-section">
+        <h3>⏸️ Stalled Tickets ({stalledTickets.length})</h3>
+        {stalledTickets.length > 0 && (
+          <div className="stalled-list">
+            {stalledTickets.map(ticket => (
+              <StalledTicketCard 
+                key={ticket.jira_ticket_id}
+                ticket={ticket}
+                daysSinceUpdate={daysSinceUpdate(ticket)}
+                blockerReason={ticket.blocker_reason}
+              />
+            ))}
+          </div>
+        )}
+      </section>
+      
+      {/* Section 4: Quarter Goals */}
+      <section className="quarter-goals">
+        <h3>📅 {getCurrentQuarter()} Goals</h3>
+        <ProgressBar 
+          value={getQuarterCompletion(quarterGoals)} 
+          label={`${getCompletedCount(quarterGoals)}/${quarterGoals.length} Features`}
+        />
+        <div className="goals-breakdown">
+          <span className="on-track">
+            {getOnTrackCount(quarterGoals)} On Track
+          </span>
+          <span className="at-risk">
+            {getAtRiskCount(quarterGoals)} At Risk
+          </span>
+          <span className="not-started">
+            {getNotStartedCount(quarterGoals)} Not Started
+          </span>
+        </div>
+      </section>
+      
+      {/* Section 5: Capacity Overview */}
+      <section className="capacity-overview">
+        <h3>👥 Engineering Capacity</h3>
+        <div className="capacity-grid">
+          <div className="capacity-card">
+            <label>Total Backlog</label>
+            <span className="value">{calculateTotalEffort(tickets)} weeks</span>
+          </div>
+          <div className="capacity-card">
+            <label>In Progress</label>
+            <span className="value">{calculateInProgressEffort(tickets)} weeks</span>
+          </div>
+          <div className="capacity-card">
+            <label>Available Capacity</label>
+            <span className="value">{getAvailableCapacity()} weeks</span>
+          </div>
+        </div>
+      </section>
+      
+      {/* Action Items Section */}
+      <section className="action-items">
+        <h3>📝 Action Items for This Week</h3>
+        <ul>
+          {generateActionItems(tier0Features, stalledTickets, quarterGoals).map((item, idx) => (
+            <li key={idx}>{item}</li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  );
+}
+```
+
+**UI Requirements:**
+- Print-friendly layout
+- Collapsible sections
+- Export to PDF option
+- Send email summary option
+
+---
+
+## GENERAL DASHBOARD IMPROVEMENTS
+
+### 1. Data Validation & Error Handling
+```javascript
+// Add data validation
+function validateFeatureData(feature) {
+  const errors = [];
+  
+  if (!feature.arr_amount || feature.arr_amount < 0) {
+    errors.push('Invalid ARR amount');
+  }
+  
+  if (!feature.replicability_score || feature.replicability_score < 1 || feature.replicability_score > 5) {
+    errors.push('Replicability score must be 1-5');
+  }
+  
+  if (!feature.conversion_probability || feature.conversion_probability < 0 || feature.conversion_probability > 100) {
+    errors.push('Conversion probability must be 0-100%');
+  }
+  
+  return errors;
+}
+
+// Show validation errors in UI
+{validationErrors.length > 0 && (
+  <Alert severity="error">
+    <h4>Data Quality Issues:</h4>
+    <ul>
+      {validationErrors.map((error, idx) => <li key={idx}>{error}</li>)}
+    </ul>
+  </Alert>
+)}
+```
+
+### 2. Export & Sharing
+```javascript
+// Add export functionality
+function ExportOptions() {
+  return (
+    <div className="export-menu">
+      <button onClick={exportToPDF}>Export to PDF</button>
+      <button onClick={exportToExcel}>Export to Excel</button>
+      <button onClick={copyShareableLink}>Copy Shareable Link</button>
+      <button onClick={scheduleEmailReport}>Schedule Email Report</button>
+    </div>
+  );
+}
+```
+
+### 3. Filter Persistence
+```javascript
+// Save filter state to localStorage
+function saveFilterState(filters) {
+  localStorage.setItem('dashboard_filters', JSON.stringify(filters));
+}
+
+// Restore on page load
+useEffect(() => {
+  const savedFilters = localStorage.getItem('dashboard_filters');
+  if (savedFilters) {
+    setFilters(JSON.parse(savedFilters));
+  }
+}, []);
+```
+
+### 4. Real-time Updates Indicator
+```jsx
+<div className="last-updated">
+  <span>Last updated: {formatRelativeTime(lastUpdateTime)}</span>
+  <button onClick={refreshData}>↻ Refresh</button>
+</div>
+```
+
+---
+
+## VALIDATION CHECKLIST
+
+After implementing all revisions, verify:
+
+✅ Confidence factor correctly multiplies engineering effort in priority formula
+✅ Artemis vs Keep-Alive split displays accurate percentages
+✅ PRD & Epic completion tracking shows correct status
+✅ Multiple deployments per client display correctly
+✅ Operational features correctly attribute at-risk ARR
+✅ Heat map plots all features in correct quadrants
+✅ Sprint planning view calculates utilization accurately
+✅ Weekly meeting view shows all critical sections
+✅ All filters work correctly and persist across sessions
+✅ Export functions generate correct output
+✅ Data validation catches errors and displays warnings
+✅ Performance remains fast with 2,663 JIRA tickets
+
+---
+
+## DEPLOYMENT NOTES
+
+1. Test all changes locally before deploying
+2. Update password (already set to DeepSee2025!)
+3. Verify Excel data structure matches new fields
+4. Test with real data from Ryan, Steve, Nick, Konnor
+5. Schedule demo meeting to show updates
+
+**Implement all revisions systematically. Prioritize Confidence Factor, Artemis Tracking, and PRD/Epic tracking as these were explicitly requested by stakeholders. Test thoroughly before deploying to production.**

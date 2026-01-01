@@ -1,0 +1,361 @@
+Update the DeepSee AI Sprint Dashboard with the following verified data from JIRA extraction. This replaces previous sprint data.
+
+---
+
+## SPRINT 2025-S1 STATUS (UPDATED)
+
+### METADATA
+```json
+{
+  "metadata": {
+    "extractedAt": "2025-12-09T16:45:00-07:00",
+    "forDate": "2025-12-09",
+    "sprintDay": 5,
+    "sprintName": "2025-S1",
+    "previousExtraction": "2025-12-07T19:30:00-07:00"
+  }
+}
+```
+
+### SPRINT SUMMARY
+```json
+{
+  "sprint": {
+    "name": "2025-S1",
+    "goal": "Secure Broadridge ($500K ARR) through Wave 1 security remediation, deliver Mercury Extraction for Colony/Sunwest, and complete DeepRecon API migration.",
+    "startDate": "2025-12-05",
+    "endDate": "2025-12-19",
+    "totalTickets": 100,
+    "previousTotalTickets": 59,
+    "ticketsAdded": 41,
+    "daysRemaining": 10,
+    "health": "YELLOW"
+  }
+}
+```
+
+### TICKETS BY PROJECT
+```json
+{
+  "projectBreakdown": {
+    "BACK": 75,
+    "SC": 14,
+    "UI": 7,
+    "FB": 1,
+    "CI": 1,
+    "Epics": 1
+  }
+}
+```
+
+### STATUS BREAKDOWN
+```json
+{
+  "statusBreakdown": {
+    "toDo": { "count": 43, "percentage": 43 },
+    "inProgress": { "count": 18, "percentage": 18 },
+    "codeReview": { "count": 6, "percentage": 6 },
+    "inTesting": { "count": 3, "percentage": 3 },
+    "done": { "count": 30, "percentage": 30 },
+    "blocked": { "count": 0, "percentage": 0 }
+  }
+}
+```
+
+### VERIFIED ENGINEER ROSTER
+IMPORTANT: Use ONLY these names. Previous fictitious names (Jake Sperry, Marcus, Elena, Alex) were data errors - they do NOT exist in JIRA.
+```json
+{
+  "engineers": [
+    {
+      "name": "Aleksander Winski",
+      "ticketCount": 7,
+      "status": "1 In Progress, 1 Code Review, 4 Done, 1 Cancelled",
+      "tickets": ["BACK-839", "BACK-850", "BACK-847", "BACK-840", "BACK-806", "BACK-849", "BACK-1521"]
+    },
+    {
+      "name": "Chad Hegerhorst",
+      "ticketCount": 2,
+      "status": "1 In Progress, 1 Done",
+      "tickets": ["FB-2407", "SC-303"]
+    },
+    {
+      "name": "Darius Ouderkirk",
+      "ticketCount": 4,
+      "status": "1 In Progress, 2 To Do, 1 Done",
+      "tickets": ["BACK-1382", "BACK-1491", "BACK-1548", "BACK-1484"]
+    },
+    {
+      "name": "Ivan Peev",
+      "ticketCount": 3,
+      "status": "1 In Progress, 2 Code Review",
+      "tickets": ["BACK-1318", "BACK-1322", "BACK-1567"]
+    },
+    {
+      "name": "Jeff Hegerhorst",
+      "ticketCount": 8,
+      "status": "All Done",
+      "tickets": ["SC-311", "SC-309", "SC-308", "SC-306", "SC-305", "SC-304", "SC-302", "CI-436"]
+    },
+    {
+      "name": "Kalvin Willison",
+      "ticketCount": 4,
+      "status": "2 In Progress, 1 To Do, 1 Done",
+      "tickets": ["BACK-1575", "BACK-1570", "BACK-1564", "BACK-1494"]
+    },
+    {
+      "name": "Kannal Mutharasu",
+      "ticketCount": 5,
+      "status": "4 In Progress, 1 In Testing",
+      "tickets": ["BACK-1573", "BACK-1572", "BACK-1560", "BACK-832", "BACK-1576"]
+    },
+    {
+      "name": "Konnor Willison",
+      "ticketCount": 5,
+      "status": "2 In Progress, 3 To Do",
+      "tickets": ["BACK-1532", "BACK-1531", "BACK-1530", "BACK-1529", "BACK-1528"]
+    },
+    {
+      "name": "Lane Terry",
+      "ticketCount": 1,
+      "status": "Done",
+      "tickets": ["BACK-1542"],
+      "flag": "BACK-1542 label still not updated to Broadridge"
+    },
+    {
+      "name": "Matthew Snow",
+      "ticketCount": 2,
+      "status": "1 In Progress, 1 Done",
+      "tickets": ["UI-690", "UI-701"]
+    },
+    {
+      "name": "Owen Riley",
+      "ticketCount": 4,
+      "status": "3 Code Review, 1 To Do",
+      "tickets": ["UI-712", "UI-708", "UI-706", "UI-693"]
+    },
+    {
+      "name": "Treven Trujillo",
+      "ticketCount": 3,
+      "status": "1 In Progress, 2 Done",
+      "tickets": ["BACK-1436", "BACK-826", "BACK-760"]
+    }
+  ],
+  "totalAssigned": 12,
+  "unassignedCount": 30
+}
+```
+
+### UNASSIGNED TICKETS (30 Total)
+```json
+{
+  "unassigned": [
+    { "id": "SC-314", "summary": "Verify promethia-api (0 C+H - Baseline)" },
+    { "id": "SC-313", "summary": "Address embeddings Vulnerabilities (1 C+H)" },
+    { "id": "SC-312", "summary": "Address preprocessor Vulnerabilities (2 C+H)" },
+    { "id": "SC-310", "summary": "Address deepview-status-service Vulnerabilities" },
+    { "id": "SC-307", "summary": "Address core-service Vulnerabilities (16 C+H)" },
+    { "id": "SC-299", "summary": "Priority: Address Wiz-Identified Assets (13 Assets)" },
+    { "id": "BACK-1489", "summary": "Update classification-api Base Image to Ubuntu" },
+    { "id": "BACK-1486", "summary": "Update core-service Base Image to Alpine 3" },
+    { "id": "BACK-1485", "summary": "Update preprocessor Base Image to Alpine 3" },
+    { "id": "BACK-1368", "summary": "Update Workflow API (subtask)" },
+    { "id": "BACK-1367", "summary": "Get Workflow Details API (subtask)" }
+  ],
+  "note": "Plus 19 more subtask/API tickets - mostly security vulnerabilities and API subtasks"
+}
+```
+
+### KEY TICKET STATUS
+```json
+{
+  "keyTickets": [
+    { "id": "SC-302", "summary": "PostgreSQL Vulnerabilities (158)", "assignee": "Jeff Hegerhorst", "status": "Done" },
+    { "id": "SC-303", "summary": "mlrig-box-to-tokens (80)", "assignee": "Chad Hegerhorst", "status": "Done" },
+    { "id": "SC-304", "summary": "Kafka Vulnerabilities (60)", "assignee": "Jeff Hegerhorst", "status": "Done" },
+    { "id": "SC-305", "summary": "NATS Vulnerabilities (26)", "assignee": "Jeff Hegerhorst", "status": "Done" },
+    { "id": "SC-306", "summary": "Argo Events Vulnerabilities (22)", "assignee": "Jeff Hegerhorst", "status": "Done" },
+    { "id": "SC-308", "summary": "Argo CLI Vulnerabilities (9)", "assignee": "Jeff Hegerhorst", "status": "Done" },
+    { "id": "SC-309", "summary": "Argo Workflow Controller Vulnerabilities", "assignee": "Jeff Hegerhorst", "status": "Done" },
+    { "id": "SC-311", "summary": "Istio Proxy Vulnerabilities (5)", "assignee": "Jeff Hegerhorst", "status": "Done" },
+    { "id": "BACK-1542", "summary": "Deploy v3 API to Broadridge & Demo", "assignee": "Lane Terry", "status": "Done", "flag": "Label NOT set to Broadridge" },
+    { "id": "BACK-1570", "summary": "Test HMDA Mercury Extraction End-to-End", "assignee": "Kalvin Willison", "status": "Done" },
+    { "id": "BACK-1572", "summary": "Manual tasks pushed back to allegro", "assignee": "Kannal Mutharasu", "status": "In Progress" },
+    { "id": "BACK-1576", "summary": "BBVA Term Type Adjustment", "assignee": "Kannal Mutharasu", "status": "In Testing" },
+    { "id": "BACK-1526", "summary": "Checkbox extraction term type", "assignee": "Kannal Mutharasu", "status": "Out of Sprint", "labels": ["on-hold"] }
+  ]
+}
+```
+
+### SECURITY TICKETS STATUS (Wave 1 + Wave 2)
+```json
+{
+  "securityStatus": {
+    "wave1Complete": true,
+    "wave1Tickets": [
+      { "id": "SC-302", "vulnerabilities": 158, "status": "Done", "assignee": "Jeff Hegerhorst" },
+      { "id": "SC-303", "vulnerabilities": 80, "status": "Done", "assignee": "Chad Hegerhorst" },
+      { "id": "SC-304", "vulnerabilities": 60, "status": "Done", "assignee": "Jeff Hegerhorst" }
+    ],
+    "wave1Total": 298,
+    "wave2Tickets": [
+      { "id": "SC-305", "vulnerabilities": 26, "status": "Done", "assignee": "Jeff Hegerhorst" },
+      { "id": "SC-306", "vulnerabilities": 22, "status": "Done", "assignee": "Jeff Hegerhorst" },
+      { "id": "SC-308", "vulnerabilities": 9, "status": "Done", "assignee": "Jeff Hegerhorst" },
+      { "id": "SC-309", "vulnerabilities": null, "status": "Done", "assignee": "Jeff Hegerhorst" },
+      { "id": "SC-311", "vulnerabilities": 5, "status": "Done", "assignee": "Jeff Hegerhorst" }
+    ],
+    "arrProtected": 500000,
+    "note": "Jeff completed ALL security tickets assigned to him"
+  }
+}
+```
+
+### WINS (Updated Dec 9)
+```json
+{
+  "wins": [
+    {
+      "title": "Security Remediation Crushed",
+      "description": "Jeff completed 8 security tickets including all Wave 1 and Wave 2 vulnerabilities",
+      "tickets": ["SC-302", "SC-303", "SC-304", "SC-305", "SC-306", "SC-308", "SC-309", "SC-311"],
+      "impact": "$500K ARR protected"
+    },
+    {
+      "title": "HMDA Test Complete",
+      "description": "BACK-1570 was overdue - now Done. Colony Bank Mercury extraction progressing.",
+      "tickets": ["BACK-1570"]
+    },
+    {
+      "title": "Zero Blocked Tickets",
+      "description": "No blockers in sprint - work is flowing"
+    },
+    {
+      "title": "Matt Snow Visible",
+      "description": "UI-690 completed, UI-701 in progress. Filter issue resolved."
+    },
+    {
+      "title": "Broadridge Release Shipped",
+      "description": "Lane completed BACK-1542 - v3 API deployed",
+      "tickets": ["BACK-1542"]
+    }
+  ]
+}
+```
+
+### REMAINING RISKS
+```json
+{
+  "risks": [
+    {
+      "severity": "MEDIUM",
+      "item": "BACK-1542 Label Not Set",
+      "description": "Ticket is Done but still missing Broadridge label for tracking",
+      "owner": "Lane Terry",
+      "action": "Add broadridge-implementation label"
+    },
+    {
+      "severity": "MEDIUM",
+      "item": "30 Unassigned Tickets",
+      "description": "30 tickets in sprint have no owner - mostly security and API subtasks",
+      "owner": "Brandon Baguley",
+      "action": "Assign owners or move to backlog"
+    },
+    {
+      "severity": "LOW",
+      "item": "Ivan Code Reviews Stalled",
+      "description": "BACK-1318, BACK-1322 still in Code Review",
+      "owner": "Ivan Peev",
+      "action": "Get reviewer assigned"
+    },
+    {
+      "severity": "LOW",
+      "item": "Owen Code Reviews Stacked",
+      "description": "3 tickets in Code Review (UI-712, UI-708, UI-706)",
+      "owner": "Owen Riley",
+      "action": "Get reviews completed"
+    }
+  ]
+}
+```
+
+### CHANGES SINCE DEC 7
+```json
+{
+  "changesSinceDec7": {
+    "ticketCount": "59 → 100 (+41)",
+    "reason": "Filter cleanup + new security tickets + API subtasks",
+    "doneCount": "19 → 30 (+11)",
+    "inProgressCount": "13 → 18 (+5)",
+    "keyResolutions": [
+      "BACK-1570 (HMDA test) - was overdue, now Done",
+      "SC-304 build issue - noted as expected, not blocking",
+      "Matt Snow visibility - resolved with UI-690",
+      "Darius visibility - resolved with BACK-1382, BACK-1484",
+      "BACK-1576 (BBVA) - assigned to Kannal, In Testing"
+    ],
+    "fictitiousNamesResolved": "Jake Sperry, Marcus, Elena, Alex were NOT in JIRA - dashboard had data mapping error"
+  }
+}
+```
+
+---
+
+## DASHBOARD DISPLAY REQUIREMENTS
+
+### 1. Remove Fictitious Names
+Delete these from any dropdown, filter, or display:
+- Jake Sperry
+- Marcus
+- Elena
+- Alex
+- Sean (if showing - verify first)
+- Karolina (if showing - verify first)
+
+### 2. Use Exact JIRA Names
+Update engineer display names to match JIRA exactly:
+- "Matthew Snow" (not "Matt Snow")
+- "Aleksander Winski" (not "Alex")
+- "Konnor Willison" (not "Connor")
+
+### 3. Status Colors
+```javascript
+const statusColors = {
+  "To Do": "#6c757d",       // Gray
+  "In Progress": "#007bff", // Blue
+  "Code Review": "#6f42c1", // Purple
+  "In Testing": "#17a2b8",  // Cyan
+  "Done": "#28a745",        // Green
+  "Blocked": "#dc3545",     // Red
+  "Cancelled": "#868e96"    // Dark Gray
+};
+```
+
+### 4. Health Indicator
+Keep as YELLOW:
+- 30 unassigned tickets
+- Code reviews stacking up
+- Label tracking issues
+
+### 5. Progress Bar Update
+Show: 43 To Do | 18 In Progress | 6 Code Review | 3 In Testing | 30 Done = 100 total
+
+---
+
+## VERIFICATION CHECKLIST
+
+After update, confirm:
+- [ ] No fictitious names appear anywhere (Jake, Marcus, Elena, Alex)
+- [ ] Engineer count shows 12 assigned engineers
+- [ ] Total tickets shows 100
+- [ ] Done count shows 30
+- [ ] Unassigned count shows 30
+- [ ] Security section shows all Wave 1 + Wave 2 complete
+- [ ] BACK-1570 shows Done (not overdue)
+- [ ] Matthew Snow appears (not "Matt Snow")
+- [ ] Sprint health shows YELLOW
+- [ ] Jeff Hegerhorst shows 8 tickets all Done
+
+---
+
+END OF PROMPT

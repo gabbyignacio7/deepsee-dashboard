@@ -1,0 +1,94 @@
+Fix Kalvin Willison's data on the DeepSee Dashboard (https://deepsee-dashboard-v1.replit.app/engineering)
+
+Brandon flagged that Kalvin shows fewer tickets and story points than actual.
+
+---
+
+KALVIN WILLISON - CORRECT DATA:
+
+| Metric | Current (Wrong) | Should Be |
+|--------|-----------------|-----------|
+| Total Tickets | ? | 19 |
+| Active Tickets | ? | 6 |
+| Done Tickets | ? | 13 |
+| Active Story Points | ? | 1 |
+| Done Story Points | ? | 3 |
+| Total Story Points | ? | 4 |
+
+---
+
+KALVIN'S ACTIVE TICKETS (6):
+
+| Key | Summary | Status | SP |
+|-----|---------|--------|-----|
+| BACK-1489 | Update classification-api Base Image to Ubuntu 24.04 LTS | Blocked | 1 |
+| BACK-1580 | Update dependencies: Review 8 Dependabot PRs | In Progress | 0 |
+| BACK-1586 | Update node-forge from 1.3.1 to 1.3.3 | In Progress | 0 |
+| BACK-1591 | More Feedback: Mercury Extraction for Colony Bank | In Progress | 0 |
+| BACK-1578 | Feedback: Mercury Extraction for Colony Bank | In Progress | 0 |
+| BACK-1589 | Update starlette from 0.45.3 to 0.49.1 | Code Review | 0 |
+
+---
+
+KALVIN'S DONE TICKETS (13):
+
+| Key | Summary | SP |
+|-----|---------|-----|
+| BACK-1570 | Test HMDA Mercury Extraction End-to-End | 3 |
+| BACK-1494 | Update promethia-api Base Image | 0 |
+| BACK-1493 | Update workflows-python-executor Base Image | 0 |
+| BACK-1492 | Update workflows-events-consumer Base Image | 0 |
+| BACK-1588 | Dependabot update | 0 |
+| BACK-1587 | Update urllib3 | 0 |
+| BACK-1575 | Enhance Mercury Extraction Schema Parameters | 0 |
+| BACK-1564 | Setup Colony HMDA Mercury Extraction Schema | 0 |
+| + 5 more dependency/base image updates | 0 |
+
+---
+
+POSSIBLE ROOT CAUSES TO CHECK:
+
+1. Dashboard filtering to Collective Board only (shows ~5-6 of Kalvin's tickets) instead of full Sprint 2025-S1 (19 tickets)
+
+2. Data source mismatch:
+   - Collective Board: ~5-6 Kalvin tickets visible
+   - JQL Sprint 2025-S1: 19 Kalvin tickets
+
+3. Sprint filter not correctly applied in data pull
+
+---
+
+FIX OPTIONS:
+
+OPTION A: Align to Collective Board (Brandon's source of truth)
+- Show only tickets visible on Collective Board Active Sprints
+- Kalvin would show ~5-6 tickets
+- This matches Brandon's 89-ticket view
+
+OPTION B: Show full JQL data
+- Show all 19 Kalvin tickets in Sprint 2025-S1
+- Includes Dependabot/security updates not on Collective Board
+- Total would be 121 tickets (not 89)
+
+RECOMMENDATION: Option A - align to Collective Board per Brandon's direction. But verify which Kalvin tickets appear on Collective Board Active Sprints view and show those.
+
+---
+
+STORY POINTS NOTE:
+
+Low story points (4 total) is accurate - most of Kalvin's tickets are unpointed Dependabot/security updates. This is a pointing practice issue, not a dashboard bug.
+
+If you want to display workload more accurately:
+- Count tickets as primary metric (19 total, 6 active)
+- Show story points as secondary (4 total, 1 active)
+- Or add a note: "X tickets unpointed"
+
+---
+
+VERIFICATION AFTER FIX:
+
+Kalvin's bar in "Workload by Engineer (Story Points)" chart should reflect:
+- If counting SP only: 4 total (will appear small)
+- If counting tickets: 19 total (will appear larger)
+
+Consider adding a toggle: "View by Story Points" vs "View by Ticket Count"

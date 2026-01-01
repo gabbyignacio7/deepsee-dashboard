@@ -1,0 +1,353 @@
+REPLIT AI ASSISTANT PROMPT - UPDATE DASHBOARD WITH NEW JIRA DATA
+
+**OBJECTIVE:**
+Update the DeepSee prioritization dashboard to import and display 2,663 JIRA tickets from 6 active projects (BACK, CI, FB, UI, SC, PR), automatically map them to product features, and calculate priority scores based on ARR values.
+
+**CURRENT STATE:**
+- Dashboard currently displays 188 tickets from deprecated DS project
+- Uses data from: Master_Data_Features (47 features), Master_Data_JIRA_Tickets (188 old tickets), Master_Data_Sales_Pipeline
+- Priority Score Formula: (ARR × Replicability × Conversion Probability) / (Engineering Effort × Confidence Factor)
+
+**NEW DATA TO INTEGRATE:**
+
+Total: 2,663 JIRA tickets from 6 active projects
+
+Project Breakdown:
+- BACK (Back End Development): 804 tickets
+- CI (Core-Infrastructure): 549 tickets  
+- PR (Product Roadmap): 526 tickets
+- FB (FILBERT): 367 tickets
+- SC (Security & Compliance): 236 tickets
+- UI (Front End Development): 181 tickets
+
+Status Distribution:
+- To Do: 1,180 tickets
+- Canceled: 591 tickets
+- Waiting for approval: 299 tickets
+- Backlog: 240 tickets
+- In Progress: 89 tickets
+- Planning: 82 tickets
+- Completed: 82 tickets
+- Others: ~100 tickets
+
+Story Points: 623 tickets have story_points (values: 1, 2, 3, 5, 8, 13)
+T-shirt Sizing: 47 tickets have effort_tshirt_size (Small, Medium, Large)
+
+**DATA FILES:**
+
+Input File: `JIRA_Tickets_Cleaned_6Projects.xlsx`
+
+Column Structure (15 columns):
+1. jira_ticket_id (e.g., BACK-1481, UI-694, PR-1555)
+2. jira_ticket_title (ticket description)
+3. jira_status (To Do, In Progress, Completed, etc.)
+4. jira_category (Back End Development, Front End Development, etc.)
+5. project_key (BACK, CI, PR, FB, SC, UI)
+6. client_name (empty - to be mapped)
+7. effort_tshirt_size (Small/Medium/Large or empty)
+8. story_points (1-13 or empty)
+9. mapped_feature_id (empty - to be auto-generated)
+10. mapped_feature_name (empty - to be auto-mapped)
+11. assigned_engineer (engineer name or empty)
+12. sprint (sprint name or empty)
+13. created_date (date)
+14. target_date (date or empty)
+15. completed_date (date or empty)
+
+**SAMPLE DATA (First 5 tickets):**
+
+PR-1555 | Enable Conditional Reconciliation | New | Product Roadmap | PR | [empty] | [empty] | [empty] | [empty] | [empty] | [empty] | [empty] | 11/12/2025 | [empty] | [empty]
+
+UI-694 | UI and Dashboard Improvements to DeepRecon to Support Boradridge | To Do | Front End Development | UI | [empty] | [empty] | [empty] | [empty] | [empty] | [empty] | [empty] | 11/11/2025 | [empty] | [empty]
+
+BACK-1481 | PDF Conversion fails for PNG files | To Do | Back End Development | BACK | [empty] | [empty] | [empty] | [empty] | [empty] | [empty] | [empty] | 11/11/2025 | [empty] | [empty]
+
+UI-693 | Add a new blockly block to use equivalency lists on full strings | To Do | Front End Development | UI | [empty] | [empty] | [empty] | [empty] | [empty] | [empty] | [empty] | 11/11/2025 | [empty] | [empty]
+
+UI-692 | Allow filtering and sorting by custom fields in Actionable data | To Do | Front End Development | UI | [empty] | [empty] | [empty] | [empty] | [empty] | [empty] | [empty] | 11/11/2025 | [empty] | [empty]
+
+**IMPLEMENTATION REQUIREMENTS:**
+
+**1. DATA IMPORT:**
+```javascript
+// Update src/data/jiraTickets.json to import from Excel file
+// Use SheetJS (xlsx library - already available) to parse JIRA_Tickets_Cleaned_6Projects.xlsx
+// Replace existing jiraTickets array with new 2,663 tickets
+
+import * as XLSX from 'xlsx';
+
+// Read Excel file
+const workbook = XLSX.read(excelFileData, { type: 'binary' });
+const worksheet = workbook.Sheets['Sheet1'];
+const jiraData = XLSX.utils.sheet_to_json(worksheet);
+
+// Transform to match existing data structure
+const jiraTickets = jiraData.map(row => ({
+  jira_ticket_id: row.jira_ticket_id,
+  jira_ticket_title: row.jira_ticket_title,
+  jira_status: row.jira_status,
+  jira_category: row.jira_category,
+  project_key: row.project_key,
+  client_name: row.client_name || null,
+  effort_tshirt_size: row.effort_tshirt_size || null,
+  story_points: row.story_points || null,
+  mapped_feature_id: row.mapped_feature_id || null,
+  mapped_feature_name: row.mapped_feature_name || null,
+  assigned_engineer: row.assigned_engineer || null,
+  sprint: row.sprint || null,
+  created_date: row.created_date,
+  target_date: row.target_date || null,
+  completed_date: row.completed_date || null
+}));
+```
+
+**2. AUTO-MAPPING LOGIC:**
+
+Map JIRA tickets to features based on keywords in ticket titles and project keys:
+
+```javascript
+// Mapping rules based on ticket content analysis
+const featureMappingRules = {
+  // Broadridge features
+  'Broadridge': 'F-031', // Broadridge Critical Bug Fix
+  'BROADRIDGE': 'F-031',
+  
+  // DTCC features
+  'DTCC': 'F-026', // DTCC Agent Onboarding - Trade Processing Phase 1
+  'dtcc': 'F-026',
+  
+  // Regional Banks
+  'Colony Bank': 'F-036', // SSI Agent Deployment - Colony Bank
+  'Regional Banks': 'F-036',
+  'SSI': 'F-036',
+  
+  // Email Automation
+  'Email': 'F-001', // Email Process Automation
+  'email automation': 'F-001',
+  
+  // Trade Processing
+  'Trade': 'F-002', // Bespoke Trade Reconciliation
+  'Reconciliation': 'F-002',
+  'reconciliation': 'F-002',
+  
+  // UI/UX improvements
+  'UI': 'F-004', // DeepSee Service Fabric Internal Enhancements - UI
+  'Dashboard': 'F-004',
+  'Front End': 'F-004',
+  
+  // Infrastructure
+  'Infra': 'F-003', // DeepSee Service Fabric Internal Enhancements
+  'Infrastructure': 'F-003',
+  'Core': 'F-003',
+  'Tenant': 'F-003',
+  
+  // Security
+  'Security': 'F-005', // Security & Compliance features
+  'CrowdStrike': 'F-005',
+  'scanning': 'F-005',
+};
+
+// Auto-mapping function
+function autoMapTicketToFeature(ticket) {
+  const title = ticket.jira_ticket_title.toLowerCase();
+  const category = ticket.jira_category.toLowerCase();
+  
+  // Check title for keywords
+  for (const [keyword, featureId] of Object.entries(featureMappingRules)) {
+    if (title.includes(keyword.toLowerCase())) {
+      return {
+        mapped_feature_id: featureId,
+        mapped_feature_name: getFeatureName(featureId) // Look up from features data
+      };
+    }
+  }
+  
+  // Check project key patterns
+  if (ticket.project_key === 'PR') return { mapped_feature_id: 'F-047', mapped_feature_name: 'Product Roadmap Planning' };
+  if (ticket.project_key === 'SC') return { mapped_feature_id: 'F-005', mapped_feature_name: 'Security & Compliance' };
+  if (ticket.project_key === 'UI') return { mapped_feature_id: 'F-004', mapped_feature_name: 'UI/UX Enhancements' };
+  if (ticket.project_key === 'CI') return { mapped_feature_id: 'F-003', mapped_feature_name: 'Core Infrastructure' };
+  
+  // Default: unmapped
+  return { mapped_feature_id: null, mapped_feature_name: null };
+}
+```
+
+**3. ENGINEERING EFFORT CALCULATION:**
+
+Convert story points and T-shirt sizes to weeks:
+
+```javascript
+function calculateEngineeringEffort(ticket) {
+  // Story points to weeks (assuming 1 story point = 0.5 weeks)
+  if (ticket.story_points) {
+    return ticket.story_points * 0.5;
+  }
+  
+  // T-shirt size to weeks
+  const tshirtToWeeks = {
+    'Small': 1,
+    'Medium': 2,
+    'Large': 4
+  };
+  
+  if (ticket.effort_tshirt_size && tshirtToWeeks[ticket.effort_tshirt_size]) {
+    return tshirtToWeeks[ticket.effort_tshirt_size];
+  }
+  
+  // Default estimate if no sizing
+  return 2; // 2 weeks default
+}
+```
+
+**4. PRIORITY SCORE CALCULATION:**
+
+Update dashboard to recalculate priority scores with new ticket data:
+
+```javascript
+// For each feature, aggregate JIRA tickets
+const featureWithTickets = features.map(feature => {
+  const relatedTickets = jiraTickets.filter(
+    ticket => ticket.mapped_feature_id === feature.feature_id
+  );
+  
+  const totalEffort = relatedTickets.reduce((sum, ticket) => 
+    sum + calculateEngineeringEffort(ticket), 0
+  );
+  
+  const priorityScore = (
+    feature.arr_amount * 
+    feature.replicability_score * 
+    (feature.conversion_probability / 100)
+  ) / (totalEffort * (feature.confidence_factor || 2));
+  
+  return {
+    ...feature,
+    jira_ticket_count: relatedTickets.length,
+    total_effort_weeks: totalEffort,
+    priority_score: priorityScore,
+    priority_tier: calculateTier(priorityScore, feature.arr_amount)
+  };
+});
+```
+
+**5. DASHBOARD UPDATES:**
+
+Update these dashboard components:
+
+```javascript
+// Executive View
+const executiveMetrics = {
+  totalARR: calculateTotalARR(features),
+  totalFeatures: features.length,
+  totalJiraTickets: jiraTickets.length, // NEW: Update from 188 to 2,663
+  totalEffortWeeks: calculateTotalEffort(jiraTickets), // NEW: Update from 62 to new total
+  criticalIssues: features.filter(f => f.priority_tier === 'Tier 0')
+};
+
+// Engineering View - Update ticket counts by project
+const ticketsByProject = {
+  'BACK': jiraTickets.filter(t => t.project_key === 'BACK').length, // 804
+  'CI': jiraTickets.filter(t => t.project_key === 'CI').length, // 549
+  'PR': jiraTickets.filter(t => t.project_key === 'PR').length, // 526
+  'FB': jiraTickets.filter(t => t.project_key === 'FB').length, // 367
+  'SC': jiraTickets.filter(t => t.project_key === 'SC').length, // 236
+  'UI': jiraTickets.filter(t => t.project_key === 'UI').length // 181
+};
+
+// Status breakdown chart
+const statusDistribution = jiraTickets.reduce((acc, ticket) => {
+  acc[ticket.jira_status] = (acc[ticket.jira_status] || 0) + 1;
+  return acc;
+}, {});
+```
+
+**6. FILTERING & DISPLAY:**
+
+Update dashboard filters to include new project keys:
+
+```javascript
+// Add project filter options
+const projectFilterOptions = ['All', 'BACK', 'CI', 'PR', 'FB', 'SC', 'UI'];
+
+// Update status filter with actual values
+const statusFilterOptions = [
+  'All',
+  'To Do',
+  'In Progress',
+  'Blocked',
+  'Planning',
+  'Code Review',
+  'Completed',
+  'Canceled',
+  'Waiting for approval',
+  'Backlog'
+];
+
+// Feature detail view - show related JIRA tickets
+function FeatureDetailPanel({ feature }) {
+  const relatedTickets = jiraTickets.filter(
+    t => t.mapped_feature_id === feature.feature_id
+  );
+  
+  return (
+    <div>
+      <h3>{feature.feature_name}</h3>
+      <p>ARR: ${feature.arr_amount.toLocaleString()}</p>
+      <p>JIRA Tickets: {relatedTickets.length}</p>
+      <ul>
+        {relatedTickets.map(ticket => (
+          <li key={ticket.jira_ticket_id}>
+            <strong>{ticket.jira_ticket_id}</strong>: {ticket.jira_ticket_title}
+            <span> - {ticket.jira_status}</span>
+            {ticket.story_points && <span> ({ticket.story_points} pts)</span>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+**VALIDATION REQUIREMENTS:**
+
+After implementation, verify:
+
+1. ✅ Dashboard shows 2,663 total JIRA tickets (not 188)
+2. ✅ Engineering capacity shows updated total effort weeks
+3. ✅ Feature cards display correct ticket counts
+4. ✅ Clicking a feature shows related JIRA tickets
+5. ✅ Filters work for all 6 projects (BACK, CI, PR, FB, SC, UI)
+6. ✅ Priority scores recalculate based on new ticket effort data
+7. ✅ Tier 0 features remain at top (Broadridge with $500K ARR at risk)
+8. ✅ Status distribution chart shows correct breakdown
+9. ✅ No console errors or broken functionality
+
+**CRITICAL NOTES:**
+
+- Do NOT change the priority scoring formula
+- Do NOT modify the features data (Master_Data_Features - keep all 47 features)
+- Do NOT change sales pipeline data (Master_Data_Sales_Pipeline)
+- ONLY update the JIRA tickets data source and mapping logic
+- Empty mapped_feature_id values are OK - these will be filled manually later
+- Preserve all existing dashboard functionality (filters, sorting, views)
+
+**FILE LOCATIONS:**
+
+Update these files:
+- `src/data/jiraTickets.json` - Replace with new 2,663 tickets
+- `src/utils/featureMapping.js` - Add auto-mapping logic
+- `src/components/Dashboard.jsx` - Update metrics display
+- `src/components/EngineeringView.jsx` - Update project breakdown
+- `src/components/FeatureCard.jsx` - Update ticket count display
+
+**EXPECTED OUTCOME:**
+
+Dashboard displays:
+- Total JIRA Tickets: 2,663 (up from 188)
+- Total Engineering Effort: ~1,800 weeks (up from 62) - approximate based on story points
+- Features with mapped tickets show accurate counts
+- Broadridge remains Tier 0 priority ($500K ARR at risk)
+- All filters and views work correctly with new data
+
+Execute this update now and confirm when complete. Provide summary of changes made and validation results.

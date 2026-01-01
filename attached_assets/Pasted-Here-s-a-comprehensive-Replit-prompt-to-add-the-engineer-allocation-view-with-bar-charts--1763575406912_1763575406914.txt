@@ -1,0 +1,437 @@
+Here's a comprehensive Replit prompt to add the engineer allocation view with bar charts:
+
+---
+
+```
+Hi Replit Agent,
+
+I need you to add a new "Engineer Allocation" view to the existing Engineering tab in our dashboard. This view will show real-time JIRA workload distribution across all engineers with visual bar charts by story points and ticket counts.
+
+================================================================================
+CONTEXT: EXISTING DASHBOARD
+================================================================================
+
+We have an existing priority dashboard at:
+- Dashboard URL: [Your Replit URL]
+- Current tabs: Priority Dashboard, Engineering, Board View
+- Framework: React/TypeScript
+- Data source: Currently uses Excel/CSV uploads
+- Styling: Tailwind CSS
+
+The Engineering tab currently exists but needs this new allocation view added.
+
+================================================================================
+OBJECTIVE
+================================================================================
+
+Add a comprehensive "Engineer Allocation" section to the Engineering tab that displays:
+
+1. Bar chart showing story points per engineer (horizontal bars)
+2. Ticket count breakdown by status per engineer
+3. Filterable/searchable engineer list
+4. Drill-down capability to see individual tickets
+5. Summary statistics at the top
+
+================================================================================
+DATA STRUCTURE
+================================================================================
+
+The data will come from a CSV with these columns:
+```
+Engineer,Ticket_ID,Ticket_Title,Project,Status,Priority,Story_Points,Days_In_Status,Epic,Labels
+```
+
+Example data:
+```
+Lane Terry,BACK-1324,Statistics API,BACK,In Progress,Major,5,7,DeepRecon API,broadridge-implementation
+Lane Terry,BACK-1304,Messages API,BACK,In Progress,Major,3,7,DeepRecon API,
+Lane Terry,BACK-1224,Scalability research,BACK,In Progress,Major,8,54,Broadridge Scalability,
+Aleksander Winski,BACK-1472,Add user defined key-value pairs,BACK,In Progress,Major,5,5,Add Custom Fields,
+Aleksander Winski,BACK-1470,Update prediction API,BACK,Code Review,Major,3,1,Add Custom Fields,
+Jeff Hegerhorst,SC-302,Address PostgreSQL Vulnerabilities,SC,In Progress,Critical,13,2,SC-299,wiz-priority;security
+Darius Ouderkirk,BACK-1382,Vantage export,BACK,In Progress,Critical,8,23,Regional Banks,
+Ivan Peev,BACK-1316,Labels API,BACK,Code Review,Major,5,5,DeepRecon API,
+```
+
+================================================================================
+UI/UX SPECIFICATIONS
+================================================================================
+
+LAYOUT:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  ENGINEER ALLOCATION DASHBOARD                                  │
+│                                                                  │
+│  Summary Cards:                                                 │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐              │
+│  │Total Eng: 20│ │Active: 120  │ │Avg SP: 12.5 │              │
+│  │  engineers  │ │  tickets    │ │  per eng    │              │
+│  └─────────────┘ └─────────────┘ └─────────────┘              │
+│                                                                  │
+│  Filters: [Search Engineer] [Project: All ▼] [Status: All ▼]  │
+│                                                                  │
+│  Sort by: [Story Points ▼] [Show: Active Only ☑]              │
+│                                                                  │
+│  ─────────────────────────────────────────────────────────────  │
+│                                                                  │
+│  WORKLOAD BY ENGINEER (Story Points)                           │
+│                                                                  │
+│  Lane Terry          ████████████████████████ 45 pts (5 tix)   │
+│  Jeff Hegerhorst     ████████████████ 32 pts (4 tix)           │
+│  Aleksander Winski   ████████████ 24 pts (3 tix)               │
+│  Darius Ouderkirk    ██████████ 20 pts (4 tix)                 │
+│  Ivan Peev           ████████ 16 pts (2 tix)                   │
+│  [Show More...]                                                 │
+│                                                                  │
+│  ─────────────────────────────────────────────────────────────  │
+│                                                                  │
+│  DETAILED BREAKDOWN                                             │
+│                                                                  │
+│  ▼ Lane Terry (5 tickets, 45 story points)                     │
+│    ┌─────────────────────────────────────────────────────────┐│
+│    │ In Progress (3): 25 pts                                  ││
+│    │ • BACK-1324: Statistics API (5 pts, 7 days)            ││
+│    │ • BACK-1304: Messages API (8 pts, 7 days)              ││
+│    │ • BACK-1224: Scalability research (12 pts, 54 days)    ││
+│    │                                                           ││
+│    │ To Do (2): 20 pts                                        ││
+│    │ • BACK-1196: Fix email sync (20 pts, 70 days)          ││
+│    └─────────────────────────────────────────────────────────┘│
+│                                                                  │
+│  ▶ Jeff Hegerhorst (4 tickets, 32 story points) [Click expand]│
+│                                                                  │
+│  ▶ Aleksander Winski (3 tickets, 24 story points)             │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+================================================================================
+COMPONENT SPECIFICATIONS
+================================================================================
+
+COMPONENT 1: Summary Cards (Top Row)
+
+Display 4 key metrics:
+1. Total Engineers (with active assignments)
+2. Total Active Tickets (not Done status)
+3. Average Story Points per engineer
+4. Total Story Points in backlog
+
+Style: Cards with large numbers, subtle borders, rounded corners
+
+COMPONENT 2: Filter Bar
+
+Filters needed:
+- Search box (filter by engineer name)
+- Project dropdown (BACK, SC, UI, PR, FB, CI, etc.)
+- Status dropdown (In Progress, To Do, Code Review, Blocked, All)
+- Sort dropdown (Story Points, Ticket Count, Name A-Z)
+- Toggle: "Show Active Only" (exclude engineers with 0 active tickets)
+
+COMPONENT 3: Horizontal Bar Chart
+
+Requirements:
+- Show top 15 engineers by story points (or ticket count)
+- X-axis: Story points (0 to max)
+- Y-axis: Engineer names
+- Bar color coding:
+  * Green (0-20 pts): Light load
+  * Yellow (21-40 pts): Moderate load
+  * Orange (41-60 pts): Heavy load
+  * Red (60+ pts): Very heavy load
+- Tooltip on hover showing: Engineer name, total story points, ticket count
+- Click bar to expand detailed breakdown below
+- Show "Show More..." button if >15 engineers
+
+COMPONENT 4: Detailed Breakdown (Expandable)
+
+For each engineer, show expandable section with:
+- Header: Engineer name, total tickets, total story points
+- Grouped by status:
+  * In Progress (count, story points)
+  * To Do (count, story points)
+  * Code Review (count, story points)
+  * Blocked (count, story points)
+- List of tickets under each status:
+  * Ticket ID (clickable link to JIRA)
+  * Ticket title
+  * Story points
+  * Days in status
+  * Priority indicator (color dot)
+- Color coding for days in status:
+  * Green: <7 days
+  * Yellow: 7-14 days
+  * Orange: 15-30 days
+  * Red: 30+ days
+
+================================================================================
+DATA PROCESSING LOGIC
+================================================================================
+
+CSV Upload Handler:
+
+```typescript
+// When CSV is uploaded, parse and transform:
+interface TicketData {
+  Engineer: string;
+  Ticket_ID: string;
+  Ticket_Title: string;
+  Project: string;
+  Status: string;
+  Priority: string;
+  Story_Points: number | null;
+  Days_In_Status: number;
+  Epic: string;
+  Labels: string;
+}
+
+// Aggregate by engineer:
+interface EngineerSummary {
+  name: string;
+  totalTickets: number;
+  totalStoryPoints: number;
+  tickets: {
+    inProgress: TicketData[];
+    toDo: TicketData[];
+    codeReview: TicketData[];
+    blocked: TicketData[];
+  };
+  storyPointsByStatus: {
+    inProgress: number;
+    toDo: number;
+    codeReview: number;
+    blocked: number;
+  };
+}
+
+// Calculate summary stats:
+interface SummaryStats {
+  totalEngineers: number;
+  totalActiveTickets: number;
+  avgStoryPointsPerEngineer: number;
+  totalStoryPoints: number;
+}
+```
+
+Story Points Handling:
+- If Story_Points is empty/null, show "No estimate" or "-"
+- Calculate totals only from tickets WITH story points
+- Show separate count for "Estimated" vs "Not Estimated" tickets
+- Option to use "Days_In_Status" as fallback metric if story points missing
+
+================================================================================
+COLOR SCHEME & STYLING
+================================================================================
+
+Use existing dashboard color scheme, but add these specific colors:
+
+Priority Indicators (dots):
+- Blocker: #DC2626 (red-600)
+- Critical: #F59E0B (amber-500)
+- Major: #3B82F6 (blue-500)
+- Minor: #10B981 (green-500)
+- Trivial: #6B7280 (gray-500)
+
+Status Colors:
+- In Progress: #3B82F6 (blue)
+- To Do: #6B7280 (gray)
+- Code Review: #8B5CF6 (purple)
+- Blocked: #DC2626 (red)
+- Done: #10B981 (green)
+
+Bar Chart Colors (by load):
+- Light (0-20): #34D399 (emerald-400)
+- Moderate (21-40): #FBBF24 (amber-400)
+- Heavy (41-60): #FB923C (orange-400)
+- Very Heavy (60+): #F87171 (red-400)
+
+================================================================================
+INTERACTIVE FEATURES
+================================================================================
+
+1. Click on bar chart → Scroll to and expand that engineer's details
+2. Click on engineer name in detailed view → Expand/collapse their tickets
+3. Click on ticket ID → Open ticket in JIRA (new tab): https://deepsee.atlassian.net/browse/{TICKET_ID}
+4. Hover over bar → Show tooltip with exact numbers
+5. Search box → Filter engineers in real-time
+6. Sort dropdown → Re-order engineers dynamically
+7. Export button → Download current filtered view as CSV
+
+================================================================================
+DATA REFRESH & UPDATE LOGIC
+================================================================================
+
+CSV Upload:
+- Provide "Upload JIRA Export" button in Engineering tab
+- Parse CSV on upload
+- Store in React state
+- Auto-refresh all visualizations
+- Show "Last Updated: [timestamp]" in top right
+
+Data Validation:
+- Check for required columns
+- Show warning if Story_Points column is mostly empty
+- Validate engineer names (non-empty)
+- Validate ticket IDs (format: PROJECT-NUMBER)
+
+Error Handling:
+- If CSV parsing fails → Show error message with details
+- If data is missing → Show placeholder: "Upload JIRA data to view allocation"
+- If story points are all empty → Show message: "Story points not tracked. Showing ticket counts only."
+
+================================================================================
+RESPONSIVE DESIGN
+================================================================================
+
+Desktop (>1024px):
+- Bar chart: Full width
+- Detailed breakdown: 2 columns
+- Summary cards: 4 across
+
+Tablet (768-1024px):
+- Bar chart: Full width, horizontal scroll if needed
+- Detailed breakdown: 1 column
+- Summary cards: 2 across, 2 rows
+
+Mobile (<768px):
+- Bar chart: Simplified, show top 10 only
+- Detailed breakdown: 1 column, simplified view
+- Summary cards: 1 across, stacked
+- Filters: Collapse into hamburger menu
+
+================================================================================
+IMPLEMENTATION STEPS
+================================================================================
+
+Step 1: Add CSV upload component to Engineering tab
+Step 2: Create data parsing and aggregation functions
+Step 3: Build summary cards component
+Step 4: Build horizontal bar chart component (use Recharts library)
+Step 5: Build filter bar component
+Step 6: Build detailed breakdown expandable component
+Step 7: Add click handlers and interactivity
+Step 8: Add tooltips and JIRA links
+Step 9: Style everything with Tailwind CSS
+Step 10: Test with sample data
+Step 11: Add responsive breakpoints
+Step 12: Add export functionality
+
+================================================================================
+SAMPLE DATA FOR TESTING
+================================================================================
+
+Use this CSV data for initial testing:
+
+```csv
+Engineer,Ticket_ID,Ticket_Title,Project,Status,Priority,Story_Points,Days_In_Status,Epic,Labels
+Lane Terry,BACK-1324,Statistics API,BACK,In Progress,Major,5,7,DeepRecon API,broadridge-implementation
+Lane Terry,BACK-1304,Messages API,BACK,In Progress,Major,8,7,DeepRecon API,
+Lane Terry,BACK-1224,Scalability research,BACK,In Progress,Major,12,54,Broadridge Scalability,
+Lane Terry,BACK-1196,Fix email sync,BACK,To Do,Major,20,70,Broadridge Scalability,
+Jeff Hegerhorst,SC-302,Address PostgreSQL Vulnerabilities,SC,In Progress,Critical,13,2,SC-299,wiz-priority;security
+Jeff Hegerhorst,SC-306,Address Argo Events Vulnerabilities,SC,To Do,Major,8,0,SC-299,
+Jeff Hegerhorst,SC-308,Address Argo CLI Vulnerabilities,SC,To Do,Major,5,0,SC-299,
+Jeff Hegerhorst,SC-309,Address Argo Workflow Controller,SC,To Do,Major,6,0,SC-299,
+Aleksander Winski,BACK-1472,Add user defined key-value pairs,BACK,In Progress,Major,8,5,Add Custom Fields,
+Aleksander Winski,BACK-1470,Update prediction API,BACK,Code Review,Major,5,1,Add Custom Fields,
+Aleksander Winski,BACK-1258,Research S3 migration,BACK,To Do,Major,11,5,Database Optimization,
+Darius Ouderkirk,BACK-1382,Vantage export,BACK,In Progress,Critical,8,23,Regional Banks,
+Darius Ouderkirk,BACK-1117,Intent agent migration,BACK,In Progress,Major,12,32,Intent Agent,
+Ivan Peev,BACK-1316,Labels API,BACK,Code Review,Major,5,5,DeepRecon API,
+Ivan Peev,BACK-1317,Actors API,BACK,Code Review,Major,3,1,DeepRecon API,
+Kannal Mutharasu,BACK-1468,Equivalency matching,BACK,In Progress,Major,5,7,FEEL,
+Kannal Mutharasu,BACK-1464,Colonybank checklist,BACK,Blocked,Major,8,6,Regional Banks,
+```
+
+================================================================================
+LIBRARIES TO USE
+================================================================================
+
+Required:
+- Recharts (for bar charts): Already in your project
+- React (already in your project)
+- Tailwind CSS (already in your project)
+- papaparse (for CSV parsing): If not installed, add it
+
+Optional:
+- react-icons (for icons)
+- date-fns (for date formatting)
+
+================================================================================
+CODE STRUCTURE
+================================================================================
+
+Create these new files/components:
+
+```
+/components
+  /engineering
+    EngineerAllocation.tsx       (Main container)
+    SummaryCards.tsx              (Top metrics cards)
+    FilterBar.tsx                 (Search and filters)
+    WorkloadChart.tsx             (Horizontal bar chart)
+    EngineerDetails.tsx           (Expandable breakdown)
+    CSVUploader.tsx               (Upload component)
+    /utils
+      dataParser.ts               (CSV parsing logic)
+      aggregations.ts             (Data aggregation)
+```
+
+================================================================================
+CRITICAL REQUIREMENTS
+================================================================================
+
+1. Must integrate seamlessly with existing Engineering tab
+2. Must handle missing story points gracefully (show ticket count as fallback)
+3. Must be responsive on all screen sizes
+4. Must link directly to JIRA tickets
+5. Must update in real-time when new CSV is uploaded
+6. Must maintain existing dashboard styling/theme
+7. Must show clear error messages for data issues
+8. Must perform well with 500+ tickets (optimize rendering)
+
+================================================================================
+VALIDATION & TESTING
+================================================================================
+
+Before considering complete, test:
+- Upload CSV with sample data
+- Verify bar chart displays correctly
+- Verify all filters work
+- Verify expandable sections work
+- Verify JIRA links open correctly
+- Verify responsive design on mobile
+- Verify sorting works
+- Verify search works
+- Test with empty story points
+- Test with 100+ engineers
+
+================================================================================
+DELIVERABLE
+================================================================================
+
+When complete:
+1. Show me the new Engineer Allocation view in the Engineering tab
+2. Provide sample CSV upload capability
+3. Demonstrate bar chart with test data
+4. Show expandable engineer details
+5. Confirm all filters and sorting work
+6. Confirm responsive design
+
+Begin implementation now. Thank you!
+```
+
+---
+
+**This prompt will:**
+- ✅ Add comprehensive engineer allocation view to existing dashboard
+- ✅ Create horizontal bar charts showing workload (Ryan's requested feature)
+- ✅ Handle story points and fallback to ticket counts
+- ✅ Provide drill-down capability to see individual tickets
+- ✅ Link directly to JIRA
+- ✅ Integrate with existing dashboard styling
+- ✅ Support CSV upload for easy data refresh
+- ✅ Include all Ryan's requested features (bar charts, story points per engineer, visual representation)
+
+**Ready to paste into Replit!**

@@ -1,0 +1,772 @@
+# REPLIT MEGA PROMPT: DeepSee Dashboard Architecture Update
+
+## OBJECTIVE
+Update the existing DeepSee Prioritization Dashboard to replace the old 7-pillar architecture categories with the new "Agent Outcome Configuration" naming convention. This includes updating the dashboard tab, Excel data structure, mapping logic, and all visual components.
+
+---
+
+## PART 1: CATEGORY NAME CHANGES
+
+### OLD → NEW MAPPING TABLE
+
+Replace all instances of the old category names with the new names:
+
+| Old Category Name | New Category Name | Layer # |
+|-------------------|-------------------|---------|
+| DeepSee Service Fabric | Service Fabric and Integrations | 1 |
+| Orchestration Layer | Automation and Orchestration | 2 |
+| PRIMER Agents | *REMOVED - Merge into Layer 4* | - |
+| Blueprint Catalog | Blueprint | 3 |
+| Agentic Engine | Agentic Engine | 4 |
+| DeepGraph | DeepGraph | 5 |
+| Compliance-First Assurance | Process Certainty | 6 |
+| Agent-First SaS | Complex Services | 7 |
+
+**IMPORTANT:** PRIMER Agents category is removed. All features/tickets previously mapped to PRIMER Agents should now map to Layer 4 (Agentic Engine).
+
+---
+
+## PART 2: DATA STRUCTURE UPDATES
+
+### 2.1 Update Architecture_Layer Dropdown Values
+
+In the Excel/data source, update the `Architecture_Layer` column dropdown to these exact values:
+
+```javascript
+const ARCHITECTURE_LAYERS = {
+  1: "Service Fabric and Integrations",
+  2: "Automation and Orchestration", 
+  3: "Blueprint",
+  4: "Agentic Engine",
+  5: "DeepGraph",
+  6: "Process Certainty",
+  7: "Complex Services"
+};
+```
+
+### 2.2 Update Layer Descriptions
+
+```javascript
+const LAYER_DESCRIPTIONS = {
+  1: "Secure backbone connecting agents, data, and enterprise systems",
+  2: "Reasoning-first runtime with agent registry, memory, and built-in guardrails",
+  3: "Industry-specific use cases with 80%+ out-of-the-box readiness",
+  4: "AI-governed agents powering client enablement with governed execution (includes all 9 PRIMER agents)",
+  5: "Knowledge graph infrastructure for firm-specific intelligence",
+  6: "Test-driven trust layer delivering replayable, firm-specific production models",
+  7: "Dynamic UI built for real outcomes with complete workflows and 3rd party integrations"
+};
+```
+
+### 2.3 Add New Column: PRD_Link
+
+Add a new column to Master_Data_Features:
+
+```
+PRD_Link (text field) - URL or reference to associated PRD document
+```
+
+### 2.4 Add New Column: PRD_Name
+
+Add a new column to Master_Data_Features:
+
+```
+PRD_Name (text field) - Name of the PRD this feature belongs to
+```
+
+---
+
+## PART 3: FEATURE → CATEGORY AUTO-MAPPING LOGIC
+
+### 3.1 Mapping Rules Function
+
+Implement this auto-mapping function to assign features to architecture layers based on feature name keywords:
+
+```javascript
+function mapFeatureToArchitectureLayer(featureName) {
+  const name = featureName.toLowerCase();
+  
+  // Layer 1: Service Fabric and Integrations
+  if (name.includes('service fabric') || 
+      name.includes('connector') || 
+      name.includes('integration gateway') ||
+      name.includes('inference') ||
+      name.includes('training speed') ||
+      name.includes('terraform') ||
+      name.includes('infrastructure') && !name.includes('graph') ||
+      name.includes('sftp') ||
+      name.includes('api') && name.includes('integration') ||
+      name.includes('foreign language')) {
+    return 1;
+  }
+  
+  // Layer 2: Automation and Orchestration
+  if (name.includes('reasoning') || 
+      name.includes('orchestration') || 
+      name.includes('mcp') ||
+      name.includes('planning') && !name.includes('sprint') ||
+      name.includes('activity tracing') ||
+      name.includes('multi-agent')) {
+    return 2;
+  }
+  
+  // Layer 3: Blueprint
+  if (name.includes('blueprint') || 
+      name.includes('configuration') && name.includes('agent') ||
+      name.includes('template') && name.includes('agent') ||
+      name.includes('client agent interaction')) {
+    return 3;
+  }
+  
+  // Layer 4: Agentic Engine (includes all agents)
+  if (name.includes('agent') && !name.includes('blueprint') && !name.includes('interaction') ||
+      name.includes('extraction') ||
+      name.includes('mercury') ||
+      name.includes('email automation') ||
+      name.includes('trade') && (name.includes('processing') || name.includes('reconciliation')) ||
+      name.includes('ssi') ||
+      name.includes('settlement') && !name.includes('ui') ||
+      name.includes('matching engine') && !name.includes('ui') ||
+      name.includes('loan') ||
+      name.includes('core reconciliation') ||
+      name.includes('deeppilot') ||
+      name.includes('one view') ||
+      name.includes('llm-enhanced')) {
+    return 4;
+  }
+  
+  // Layer 5: DeepGraph
+  if (name.includes('graph') || 
+      name.includes('deepgraph') || 
+      name.includes('kag') ||
+      name.includes('knowledge') && name.includes('graph') ||
+      name.includes('information graph')) {
+    return 5;
+  }
+  
+  // Layer 6: Process Certainty
+  if (name.includes('compliance') || 
+      name.includes('audit') || 
+      name.includes('hitl') ||
+      name.includes('human-in-the-loop') ||
+      name.includes('testing suite') ||
+      name.includes('exception prediction') ||
+      name.includes('retention prediction') ||
+      name.includes('model review') ||
+      name.includes('certainty') ||
+      name.includes('validation') ||
+      name.includes('security') && name.includes('vulnerability')) {
+    return 6;
+  }
+  
+  // Layer 7: Complex Services
+  if (name.includes('ui') || 
+      name.includes('ux') || 
+      name.includes('dashboard') ||
+      name.includes('copilot') ||
+      name.includes('opsconsole') ||
+      name.includes('3rd party') ||
+      name.includes('third party') ||
+      name.includes('outlook') && name.includes('integration') ||
+      name.includes('agentic card') ||
+      name.includes('double-click')) {
+    return 7;
+  }
+  
+  // Default: Return 4 (Agentic Engine) as catch-all
+  return 4;
+}
+```
+
+### 3.2 PRD Mapping Function
+
+```javascript
+function mapFeatureToPRD(featureName, architectureLayer) {
+  const name = featureName.toLowerCase();
+  
+  const PRD_MAPPINGS = {
+    // Layer 1: Service Fabric and Integrations
+    'service fabric': 'Fabric PRD',
+    'integration gateway': 'Integration Gateway PRD',
+    'connector': 'Integration Gateway PRD',
+    'inference': 'Performance Optimization PRD',
+    'training speed': 'Performance Optimization PRD',
+    'microsoft fabric': 'Microsoft Fabric Integration PRD',
+    
+    // Layer 2: Automation and Orchestration
+    'reasoning': 'Reasoning PRD',
+    'mcp': 'MCP Integration PRD',
+    'orchestration': 'Orchestration PRD',
+    'activity tracing': 'Observability PRD',
+    
+    // Layer 3: Blueprint
+    'blueprint': 'AI Blueprint Template PRD',
+    'client agent interaction': 'Client Configuration PRD',
+    
+    // Layer 4: Agentic Engine
+    'mercury': 'Mercury Extraction PRD',
+    'extraction': 'Mercury Extraction PRD',
+    'email automation': 'Email Automation PRD',
+    'trade': 'Trade Reconciliation PRD',
+    'ssi': 'SSI PRD',
+    'settlement': 'Security Settlements PRD',
+    'matching engine': 'Matching Engine PRD',
+    'loan': 'Loan Operations PRD',
+    'core reconciliation': 'Core Reconciliation PRD',
+    'deeppilot': 'DeepPilot PRD',
+    'one view': 'One View PRD',
+    
+    // Layer 5: DeepGraph
+    'graph': 'Information Graph PRD',
+    'deepgraph': 'DeepGraph PRD',
+    
+    // Layer 6: Process Certainty
+    'compliance': 'Compliance & Audit PRD',
+    'audit': 'Compliance & Audit PRD',
+    'hitl': 'HITL PRD',
+    'testing': 'Testing Suite PRD',
+    'exception': 'Exception Handling PRD',
+    'retention': 'Retention Prediction PRD',
+    'security vulnerability': 'Broadridge Security PRD',
+    
+    // Layer 7: Complex Services
+    'ui design': 'UI/UX PRD',
+    'ui implementation': 'UI/UX PRD',
+    'dashboard': 'Dashboard PRD',
+    'copilot': '3rd Party Integration PRD',
+    'opsconsole': '3rd Party Integration PRD',
+    'outlook': 'Outlook Integration PRD',
+    'agentic card': '3rd Party Integration PRD'
+  };
+  
+  for (const [keyword, prd] of Object.entries(PRD_MAPPINGS)) {
+    if (name.includes(keyword)) {
+      return prd;
+    }
+  }
+  
+  return 'TBD';
+}
+```
+
+---
+
+## PART 4: JIRA TICKET → ARCHITECTURE LAYER MAPPING
+
+### 4.1 Ticket Category to Architecture Layer Mapping
+
+```javascript
+function mapTicketToArchitectureLayer(ticketCategory, ticketTitle) {
+  const title = ticketTitle.toLowerCase();
+  const category = ticketCategory.toLowerCase();
+  
+  // First try to map by title keywords (more specific)
+  const layerFromTitle = mapFeatureToArchitectureLayer(title);
+  if (layerFromTitle) return layerFromTitle;
+  
+  // Fall back to category-based mapping
+  const CATEGORY_TO_LAYER = {
+    'core infrastructure': 1,  // Service Fabric and Integrations
+    'api development': 1,      // Service Fabric and Integrations
+    'client-specific work': 4, // Agentic Engine
+    'platform improvements': 4, // Agentic Engine (default, may vary)
+    'bug fixes': 6             // Process Certainty
+  };
+  
+  return CATEGORY_TO_LAYER[category] || 4;
+}
+```
+
+### 4.2 Pre-populated Ticket Mappings
+
+Apply these mappings to existing JIRA tickets:
+
+```javascript
+const TICKET_RANGE_MAPPINGS = [
+  // Layer 1: Service Fabric and Integrations
+  { prefix: 'DS-001', range: [1, 20], layer: 1, prd: 'Fabric PRD' },
+  { prefix: 'DS-301', range: [301, 314], layer: 1, prd: 'Integration Gateway PRD' },
+  
+  // Layer 4: Agentic Engine (Client-Specific)
+  { prefix: 'DS-101', range: [101, 110], layer: 4, prd: 'Email Automation PRD', client: 'Broadridge/Accenture' },
+  { prefix: 'DS-111', range: [111, 120], layer: 4, prd: 'Trade Reconciliation PRD', client: 'JP Morgan/DTCC' },
+  { prefix: 'DS-121', range: [121, 130], layer: 4, prd: 'SSI PRD', client: 'Colony Bank/Sunwest' },
+  { prefix: 'DS-131', range: [131, 140], layer: 4, prd: 'Security Settlements PRD' },
+  { prefix: 'DS-141', range: [141, 150], layer: 4, prd: 'Matching Engine PRD' },
+  { prefix: 'DS-151', range: [151, 160], layer: 4, prd: 'One View PRD' },
+  { prefix: 'DS-161', range: [161, 170], layer: 4, prd: 'Loan Operations PRD' },
+  { prefix: 'DS-171', range: [171, 180], layer: 4, prd: 'Core Reconciliation PRD' },
+  { prefix: 'DS-181', range: [181, 190], layer: 4, prd: 'DeepPilot PRD' },
+  
+  // Layer 5: DeepGraph
+  { prefix: 'DS-191', range: [191, 200], layer: 5, prd: 'Information Graph PRD' },
+  
+  // Layer 6: Process Certainty
+  { prefix: 'DS-401', range: [401, 420], layer: 6, prd: 'Testing Suite PRD' },
+  
+  // Layer 7: Complex Services
+  { prefix: 'DS-201', range: [201, 232], layer: 7, prd: 'UI/UX PRD' }
+];
+```
+
+---
+
+## PART 5: DASHBOARD UI UPDATES
+
+### 5.1 Update Platform Architecture Tab
+
+Replace the existing 7-pillar view with new category names:
+
+```javascript
+const ARCHITECTURE_CARDS = [
+  {
+    layer: 1,
+    name: "Service Fabric and Integrations",
+    icon: "🔗",
+    color: "#1a365d",
+    description: "Secure backbone connecting agents, data, and enterprise systems"
+  },
+  {
+    layer: 2,
+    name: "Automation and Orchestration",
+    icon: "⚙️",
+    color: "#2c5282",
+    description: "Reasoning-first runtime with agent registry, memory, and guardrails"
+  },
+  {
+    layer: 3,
+    name: "Blueprint",
+    icon: "📋",
+    color: "#2b6cb0",
+    description: "Industry-specific use cases with 80%+ out-of-the-box readiness"
+  },
+  {
+    layer: 4,
+    name: "Agentic Engine",
+    icon: "🤖",
+    color: "#3182ce",
+    description: "AI-governed agents powering client enablement (9 PRIMER agents)"
+  },
+  {
+    layer: 5,
+    name: "DeepGraph",
+    icon: "🕸️",
+    color: "#4299e1",
+    description: "Knowledge graph infrastructure for firm-specific intelligence"
+  },
+  {
+    layer: 6,
+    name: "Process Certainty",
+    icon: "✅",
+    color: "#63b3ed",
+    description: "Test-driven trust layer with replayable, firm-specific models"
+  },
+  {
+    layer: 7,
+    name: "Complex Services",
+    icon: "🖥️",
+    color: "#90cdf4",
+    description: "Dynamic UI for real outcomes with 3rd party integrations"
+  }
+];
+```
+
+### 5.2 Card Display Component
+
+Each architecture card should display:
+
+```html
+<div class="architecture-card" data-layer="{layer}">
+  <div class="card-header">
+    <span class="layer-icon">{icon}</span>
+    <span class="layer-number">[{layer}]</span>
+    <span class="layer-name">{name}</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" style="width: {progress}%"></div>
+    <span class="progress-marker playable-threshold"></span>
+  </div>
+  <div class="card-stats">
+    <span class="progress-percent">{progress}%</span>
+    <span class="threshold-status">{threshold_icon}</span>
+  </div>
+  <div class="card-counts">
+    <span>Features: {feature_count}</span>
+    <span>Tickets: {tickets_done}/{tickets_total}</span>
+  </div>
+  <div class="status-breakdown">
+    <span class="now">Now: {now_count}</span>
+    <span class="next">Next: {next_count}</span>
+    <span class="later">Later: {later_count}</span>
+  </div>
+  <div class="prd-list">
+    <span>PRDs: {prd_names}</span>
+  </div>
+</div>
+```
+
+### 5.3 Drill-Down View Update
+
+When clicking a card, show filtered table with columns:
+
+```
+| Feature_ID | Feature_Name | PRD_Name | Status | Quarter | JIRA Tickets | Progress |
+```
+
+Add PRD grouping option:
+- Group by PRD checkbox
+- When enabled, features grouped under their PRD name
+
+---
+
+## PART 6: CALCULATIONS UPDATE
+
+### 6.1 Progress Calculations
+
+```javascript
+function calculateLayerProgress(layerNumber, featuresData, ticketsData) {
+  // Filter features for this layer
+  const layerFeatures = featuresData.filter(f => f.Architecture_Layer === layerNumber);
+  
+  // Get all tickets mapped to these features
+  const featureIds = layerFeatures.map(f => f.Feature_ID);
+  const layerTickets = ticketsData.filter(t => featureIds.includes(t.Mapped_Feature_ID));
+  
+  // Calculate progress
+  const totalTickets = layerTickets.length;
+  const doneTickets = layerTickets.filter(t => t.JIRA_Status === 'Done').length;
+  
+  if (totalTickets === 0) return 0;
+  return Math.round((doneTickets / totalTickets) * 100);
+}
+
+function calculateThresholdStatus(progress) {
+  if (progress >= 70) return { icon: '✓', status: 'Production Ready', color: 'green' };
+  if (progress >= 50) return { icon: '⚡', status: 'Near Threshold', color: 'yellow' };
+  return { icon: '○', status: 'In Development', color: 'gray' };
+}
+
+function calculateStatusCounts(layerNumber, featuresData) {
+  const layerFeatures = featuresData.filter(f => f.Architecture_Layer === layerNumber);
+  
+  return {
+    now: layerFeatures.filter(f => f.Status === 'Now').length,
+    next: layerFeatures.filter(f => f.Status === 'Next').length,
+    later: layerFeatures.filter(f => f.Status === 'Later').length
+  };
+}
+
+function getPRDsForLayer(layerNumber, featuresData) {
+  const layerFeatures = featuresData.filter(f => f.Architecture_Layer === layerNumber);
+  const prds = [...new Set(layerFeatures.map(f => f.PRD_Name).filter(p => p && p !== 'TBD'))];
+  return prds;
+}
+```
+
+### 6.2 Overall Platform Progress
+
+```javascript
+function calculateOverallProgress(featuresData, ticketsData) {
+  let totalProgress = 0;
+  for (let layer = 1; layer <= 7; layer++) {
+    totalProgress += calculateLayerProgress(layer, featuresData, ticketsData);
+  }
+  return Math.round(totalProgress / 7);
+}
+
+function countLayersAtThreshold(featuresData, ticketsData) {
+  let count = 0;
+  for (let layer = 1; layer <= 7; layer++) {
+    const progress = calculateLayerProgress(layer, featuresData, ticketsData);
+    if (progress >= 70) count++;
+  }
+  return count;
+}
+```
+
+---
+
+## PART 7: SUMMARY TABLE UPDATE
+
+### 7.1 Summary Table Structure
+
+```html
+<table class="architecture-summary">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Category</th>
+      <th>Now</th>
+      <th>Next</th>
+      <th>Later</th>
+      <th>Progress</th>
+      <th>Threshold</th>
+      <th>PRDs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-layer="1">
+      <td>1</td>
+      <td>Service Fabric and Integrations</td>
+      <td>{now_count}</td>
+      <td>{next_count}</td>
+      <td>{later_count}</td>
+      <td><div class="mini-progress-bar">{progress}%</div></td>
+      <td>{threshold_icon}</td>
+      <td>{prd_count}</td>
+    </tr>
+    <!-- Repeat for layers 2-7 -->
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2"><strong>Overall Platform</strong></td>
+      <td>{total_now}</td>
+      <td>{total_next}</td>
+      <td>{total_later}</td>
+      <td><strong>{overall_progress}%</strong></td>
+      <td>{layers_at_threshold}/7</td>
+      <td>{total_prds}</td>
+    </tr>
+  </tfoot>
+</table>
+```
+
+---
+
+## PART 8: SAMPLE DATA TO UPDATE
+
+### 8.1 Features with New Architecture Mappings
+
+Update/add these features with correct Architecture_Layer:
+
+```json
+[
+  {"Feature_ID": "F-001", "Feature_Name": "LLM-Enhanced Extraction", "Architecture_Layer": 4, "PRD_Name": "Mercury Extraction PRD", "Status": "Next", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-002", "Feature_Name": "DeepSee Service Fabric Internal Enhancements", "Architecture_Layer": 1, "PRD_Name": "Fabric PRD", "Status": "Next", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-003", "Feature_Name": "DeepSee Service Fabric External Enhancements", "Architecture_Layer": 1, "PRD_Name": "Fabric PRD", "Status": "Later", "Quarter": "Q3 2026"},
+  {"Feature_ID": "F-004", "Feature_Name": "Integration Gateway Connectors", "Architecture_Layer": 1, "PRD_Name": "Integration Gateway PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-005", "Feature_Name": "Inference/Training Speed Improvements", "Architecture_Layer": 1, "PRD_Name": "Performance Optimization PRD", "Status": "Next", "Quarter": "Q1 2026"},
+  {"Feature_ID": "F-006", "Feature_Name": "Integrated Foreign Language Support", "Architecture_Layer": 1, "PRD_Name": "Fabric PRD", "Status": "Later", "Quarter": "Q3 2026"},
+  
+  {"Feature_ID": "F-007", "Feature_Name": "Enhanced Agent Outcome Reasoning and Planning", "Architecture_Layer": 2, "PRD_Name": "Reasoning PRD", "Status": "Next", "Quarter": "Q1 2026"},
+  {"Feature_ID": "F-008", "Feature_Name": "MCP Integration with 3rd Party Agents", "Architecture_Layer": 2, "PRD_Name": "MCP Integration PRD", "Status": "Later", "Quarter": "Q2 2026"},
+  {"Feature_ID": "F-009", "Feature_Name": "Activity Tracing Across Agents", "Architecture_Layer": 2, "PRD_Name": "Observability PRD", "Status": "Next", "Quarter": "Q1 2026"},
+  
+  {"Feature_ID": "F-010", "Feature_Name": "Agent Blueprint Template", "Architecture_Layer": 3, "PRD_Name": "AI Blueprint Template PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-011", "Feature_Name": "Client Agent Interaction Enhancements", "Architecture_Layer": 3, "PRD_Name": "Client Configuration PRD", "Status": "Next", "Quarter": "Q4 2025"},
+  
+  {"Feature_ID": "F-012", "Feature_Name": "Email Automation Agent", "Architecture_Layer": 4, "PRD_Name": "Email Automation PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-013", "Feature_Name": "Trade Reconciliation Agent", "Architecture_Layer": 4, "PRD_Name": "Trade Reconciliation PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-014", "Feature_Name": "Security Settlements Agent", "Architecture_Layer": 4, "PRD_Name": "Security Settlements PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-015", "Feature_Name": "SSI Agent", "Architecture_Layer": 4, "PRD_Name": "SSI PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-016", "Feature_Name": "Matching Engine Agent", "Architecture_Layer": 4, "PRD_Name": "Matching Engine PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-017", "Feature_Name": "One View Agent", "Architecture_Layer": 4, "PRD_Name": "One View PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-018", "Feature_Name": "Loan Operations Agent", "Architecture_Layer": 4, "PRD_Name": "Loan Operations PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-019", "Feature_Name": "Core Reconciliation Agent", "Architecture_Layer": 4, "PRD_Name": "Core Reconciliation PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-020", "Feature_Name": "DeepPilot Agent", "Architecture_Layer": 4, "PRD_Name": "DeepPilot PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-021", "Feature_Name": "Mercury Extraction", "Architecture_Layer": 4, "PRD_Name": "Mercury Extraction PRD", "Status": "Next", "Quarter": "Q4 2025"},
+  
+  {"Feature_ID": "F-022", "Feature_Name": "Information Graph Enhanced Infrastructure", "Architecture_Layer": 5, "PRD_Name": "Information Graph PRD", "Status": "Next", "Quarter": "Q1 2026"},
+  {"Feature_ID": "F-023", "Feature_Name": "Information Graph UI Design", "Architecture_Layer": 5, "PRD_Name": "Information Graph PRD", "Status": "Next", "Quarter": "Q1 2026"},
+  {"Feature_ID": "F-024", "Feature_Name": "Information Graph UI Implementation", "Architecture_Layer": 5, "PRD_Name": "Information Graph PRD", "Status": "Later", "Quarter": "Q2 2026"},
+  {"Feature_ID": "F-025", "Feature_Name": "Knowledge Augmented Generation (KAG)", "Architecture_Layer": 5, "PRD_Name": "DeepGraph PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  
+  {"Feature_ID": "F-026", "Feature_Name": "Audit Trail & Explainability", "Architecture_Layer": 6, "PRD_Name": "Compliance & Audit PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-027", "Feature_Name": "Human-in-the-Loop Verification", "Architecture_Layer": 6, "PRD_Name": "HITL PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-028", "Feature_Name": "Enhanced Testing Suite UI Implementation", "Architecture_Layer": 6, "PRD_Name": "Testing Suite PRD", "Status": "Later", "Quarter": "Q3 2026"},
+  {"Feature_ID": "F-029", "Feature_Name": "Exception Prediction", "Architecture_Layer": 6, "PRD_Name": "Exception Handling PRD", "Status": "Next", "Quarter": "Q1 2026"},
+  {"Feature_ID": "F-030", "Feature_Name": "Retention Prediction UI", "Architecture_Layer": 6, "PRD_Name": "Retention Prediction PRD", "Status": "Next", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-031", "Feature_Name": "Technologist and Model Review UI", "Architecture_Layer": 6, "PRD_Name": "Model Review PRD", "Status": "Later", "Quarter": "Q2 2026"},
+  {"Feature_ID": "F-032", "Feature_Name": "Broadridge Security Vulnerability Remediation", "Architecture_Layer": 6, "PRD_Name": "Broadridge Security PRD", "Status": "Now", "Quarter": "Q4 2025"},
+  
+  {"Feature_ID": "F-033", "Feature_Name": "Simplified Agentic UI Design", "Architecture_Layer": 7, "PRD_Name": "UI/UX PRD", "Status": "Next", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-034", "Feature_Name": "Simplified Agentic UI Implementation", "Architecture_Layer": 7, "PRD_Name": "UI/UX PRD", "Status": "Next", "Quarter": "Q1 2026"},
+  {"Feature_ID": "F-035", "Feature_Name": "Matching Engine UI", "Architecture_Layer": 7, "PRD_Name": "UI/UX PRD", "Status": "Next", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-036", "Feature_Name": "Double-click to view dashboard messages", "Architecture_Layer": 7, "PRD_Name": "Dashboard PRD", "Status": "Next", "Quarter": "Q4 2025"},
+  {"Feature_ID": "F-037", "Feature_Name": "User Configurable Dashboards", "Architecture_Layer": 7, "PRD_Name": "Dashboard PRD", "Status": "Later", "Quarter": "Q2 2026"},
+  {"Feature_ID": "F-038", "Feature_Name": "Process Mapping and Optimization Opportunities", "Architecture_Layer": 7, "PRD_Name": "Dashboard PRD", "Status": "Later", "Quarter": "Q2 2026"},
+  {"Feature_ID": "F-039", "Feature_Name": "Process Variation Highlights", "Architecture_Layer": 7, "PRD_Name": "Dashboard PRD", "Status": "Later", "Quarter": "Q3 2026"},
+  {"Feature_ID": "F-040", "Feature_Name": "Agentic Card UI for 3rd Party Applications", "Architecture_Layer": 7, "PRD_Name": "3rd Party Integration PRD", "Status": "Later", "Quarter": "Q3 2026"},
+  {"Feature_ID": "F-041", "Feature_Name": "Enhanced Integration - Outlook & Ops Console", "Architecture_Layer": 7, "PRD_Name": "Outlook Integration PRD", "Status": "Later", "Quarter": "Q2 2026"}
+]
+```
+
+---
+
+## PART 9: CSS STYLING
+
+### 9.1 Architecture Card Styles
+
+```css
+.architecture-card {
+  background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+  border-radius: 12px;
+  padding: 20px;
+  color: white;
+  margin: 10px;
+  min-width: 280px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.architecture-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(26, 54, 93, 0.3);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.layer-icon {
+  font-size: 24px;
+}
+
+.layer-number {
+  background: rgba(255,255,255,0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.layer-name {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.progress-bar {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  height: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #48bb78 0%, #38a169 100%);
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+.playable-threshold {
+  position: absolute;
+  left: 70%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #f6e05e;
+}
+
+.card-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.status-breakdown {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.status-breakdown .now {
+  color: #68d391;
+}
+
+.status-breakdown .next {
+  color: #f6e05e;
+}
+
+.status-breakdown .later {
+  color: #a0aec0;
+}
+
+.prd-list {
+  margin-top: 10px;
+  font-size: 11px;
+  opacity: 0.8;
+}
+```
+
+---
+
+## PART 10: NAVIGATION UPDATE
+
+### 10.1 Add Tab to Navigation
+
+Add "Platform Architecture" or "Agent Outcome Config" tab to existing navigation:
+
+```javascript
+const NAVIGATION_TABS = [
+  { id: 'overview', name: 'Overview', icon: '📊' },
+  { id: 'engineering', name: 'Engineering', icon: '⚙️' },
+  { id: 'product', name: 'Product Roadmap', icon: '🗺️' },
+  { id: 'sales', name: 'Sales Pipeline', icon: '💰' },
+  { id: 'client', name: 'Client View', icon: '🏢' },
+  { id: 'architecture', name: 'Platform Architecture', icon: '🏗️' },  // NEW TAB
+  { id: 'sprint', name: 'Sprint Planning', icon: '🏃' }
+];
+```
+
+---
+
+## PART 11: EXPORT FUNCTIONALITY
+
+### 11.1 Export Architecture Summary
+
+Add export button that generates:
+
+```javascript
+function exportArchitectureSummary() {
+  const data = [];
+  
+  for (let layer = 1; layer <= 7; layer++) {
+    const layerData = {
+      'Layer': layer,
+      'Category': ARCHITECTURE_LAYERS[layer],
+      'Description': LAYER_DESCRIPTIONS[layer],
+      'Progress': calculateLayerProgress(layer, features, tickets) + '%',
+      'Threshold Status': calculateThresholdStatus(progress).status,
+      'Features (Now)': getStatusCounts(layer).now,
+      'Features (Next)': getStatusCounts(layer).next,
+      'Features (Later)': getStatusCounts(layer).later,
+      'PRDs': getPRDsForLayer(layer).join(', '),
+      'Total Tickets': getTicketCount(layer),
+      'Tickets Done': getTicketsDone(layer)
+    };
+    data.push(layerData);
+  }
+  
+  // Export as CSV or Excel
+  exportToExcel(data, 'DeepSee_Architecture_Progress.xlsx');
+}
+```
+
+---
+
+## EXECUTION CHECKLIST
+
+1. [ ] Update Architecture_Layer dropdown values (Part 2.1)
+2. [ ] Add PRD_Name and PRD_Link columns (Part 2.3, 2.4)
+3. [ ] Implement feature mapping function (Part 3.1)
+4. [ ] Implement PRD mapping function (Part 3.2)
+5. [ ] Implement ticket mapping function (Part 4.1)
+6. [ ] Update dashboard UI cards (Part 5)
+7. [ ] Update calculations (Part 6)
+8. [ ] Update summary table (Part 7)
+9. [ ] Load sample data (Part 8)
+10. [ ] Apply CSS styling (Part 9)
+11. [ ] Add navigation tab (Part 10)
+12. [ ] Add export functionality (Part 11)
+13. [ ] Test all views and calculations
+14. [ ] Verify drill-down filtering works
+
+---
+
+## END OF MEGA PROMPT

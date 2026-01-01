@@ -1,0 +1,388 @@
+# 🎯 Comprehensive Prompt for Replit v3 Agent: Add Column Sorters
+
+## Prompt for Replit Agent
+
+```
+Add sortable columns to all dashboard tables in the DeepSee Priority Dashboard.
+
+CONTEXT:
+This is a Next.js 14 + TypeScript dashboard with 5 views. I need to add column sorting functionality to every table in the application.
+
+CURRENT STATE:
+- Tables exist in 4 main views: Executive Summary, Sales Pipeline, Engineering Capacity, Product Roadmap
+- Tables are currently NOT sortable
+- Built with React + TypeScript + Tailwind CSS
+
+OBJECTIVE:
+Add click-to-sort functionality on ALL table column headers with visual indicators (arrows) showing sort direction.
+
+---
+
+IMPLEMENTATION REQUIREMENTS:
+
+1. AFFECTED FILES TO MODIFY:
+   - components/views/ExecutiveDashboard.tsx (Top 10 Features table)
+   - components/views/SalesDashboard.tsx (Feature-to-Deal Mapping table)
+   - components/views/EngineeringDashboard.tsx (No tables currently, skip)
+   - components/views/ProductRoadmap.tsx (Agent Type Portfolio table)
+   - components/views/FeatureDetail.tsx (Linked JIRA Tickets, Linked Opportunities tables)
+
+2. SORTING BEHAVIOR:
+   - First click: Sort ascending (A→Z, 0→9, oldest→newest)
+   - Second click: Sort descending (Z→A, 9→0, newest→oldest)
+   - Third click: Return to default/unsorted state
+   - Only ONE column can be sorted at a time
+
+3. VISUAL INDICATORS:
+   - Unsorted: Show neutral icon (e.g., ↕️ or ⇅)
+   - Ascending: Show up arrow (↑ or ▲)
+   - Descending: Show down arrow (↓ or ▼)
+   - Add hover effect on column headers to indicate they're clickable
+   - Make sorted column header visually distinct (bold or different color)
+
+4. SORTING LOGIC BY DATA TYPE:
+
+   STRING SORTING (case-insensitive):
+   - Feature names, client names, status values
+   - Example: "DTCC" should equal "dtcc" in sort order
+
+   NUMBER SORTING:
+   - Priority scores, ARR amounts, effort estimates, percentages
+   - Handle negative numbers correctly
+   - Handle zero values
+
+   DATE SORTING:
+   - Target dates, close dates
+   - Parse date strings correctly
+   - Handle empty/null dates (push to end)
+
+   CURRENCY SORTING:
+   - Format: "$1,234,567"
+   - Strip $ and commas before comparing numerically
+
+5. CODE STRUCTURE:
+
+   Add useState for sort state:
+   ```typescript
+   const [sortConfig, setSortConfig] = useState<{
+     key: string | null;
+     direction: 'asc' | 'desc' | null;
+   }>({ key: null, direction: null });
+   ```
+
+   Create sorting function:
+   ```typescript
+   const handleSort = (key: string) => {
+     setSortConfig((prev) => {
+       if (prev.key === key) {
+         if (prev.direction === 'asc') return { key, direction: 'desc' };
+         if (prev.direction === 'desc') return { key: null, direction: null };
+       }
+       return { key, direction: 'asc' };
+     });
+   };
+   ```
+
+   Apply sorting to data:
+   ```typescript
+   const sortedData = useMemo(() => {
+     if (!sortConfig.key || !sortConfig.direction) return data;
+     
+     return [...data].sort((a, b) => {
+       const aVal = a[sortConfig.key];
+       const bVal = b[sortConfig.key];
+       
+       // Handle null/undefined
+       if (aVal == null) return 1;
+       if (bVal == null) return -1;
+       
+       // Numeric comparison
+       if (typeof aVal === 'number' && typeof bVal === 'number') {
+         return sortConfig.direction === 'asc' ? aVal - bVal : bVal - aVal;
+       }
+       
+       // String comparison (case-insensitive)
+       const aStr = String(aVal).toLowerCase();
+       const bStr = String(bVal).toLowerCase();
+       
+       if (sortConfig.direction === 'asc') {
+         return aStr.localeCompare(bStr);
+       }
+       return bStr.localeCompare(aStr);
+     });
+   }, [data, sortConfig]);
+   ```
+
+6. UI COMPONENTS FOR COLUMN HEADERS:
+
+   Create reusable SortableColumnHeader component:
+   ```typescript
+   interface SortableHeaderProps {
+     label: string;
+     sortKey: string;
+     currentSort: { key: string | null; direction: 'asc' | 'desc' | null };
+     onSort: (key: string) => void;
+   }
+
+   function SortableColumnHeader({ label, sortKey, currentSort, onSort }: SortableHeaderProps) {
+     const isActive = currentSort.key === sortKey;
+     const direction = isActive ? currentSort.direction : null;
+
+     return (
+       <th
+         onClick={() => onSort(sortKey)}
+         className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer hover:bg-gray-100 transition-colors select-none"
+       >
+         <div className="flex items-center space-x-1">
+           <span className={isActive ? 'font-bold text-gray-900' : ''}>{label}</span>
+           <span className="text-gray-400">
+             {!isActive && '⇅'}
+             {direction === 'asc' && '↑'}
+             {direction === 'desc' && '↓'}
+           </span>
+         </div>
+       </th>
+     );
+   }
+   ```
+
+7. SPECIFIC TABLES TO UPDATE:
+
+   A. EXECUTIVE DASHBOARD - Top 10 Features Table:
+      Sortable columns:
+      - Rank (number)
+      - Feature (string)
+      - Priority Score (number)
+      - Tier (string - sort by tier number: 0,1,2,3,4)
+      - Weighted ARR (currency/number)
+      - Effort (number - strip "w" suffix)
+      - Client (string)
+      - Status (string)
+
+   B. SALES DASHBOARD - Feature-to-Deal Mapping:
+      Sortable columns:
+      - Feature (string)
+      - Priority Tier (string - sort by tier number)
+      - Required For Deals (string - by deal count or alphabetically)
+      - Total Deal Value (currency/number)
+      - Status (string)
+
+   C. PRODUCT ROADMAP - Agent Type Portfolio:
+      Sortable columns:
+      - Agent Type (string)
+      - Feature Count (number)
+      - Total Weighted ARR (currency/number)
+      - Total Effort (number)
+
+   D. FEATURE DETAIL - Linked JIRA Tickets:
+      Sortable columns:
+      - Ticket ID (string/number)
+      - Title (string)
+      - Status (string)
+      - Story Points (number)
+
+   E. FEATURE DETAIL - Linked Opportunities:
+      Sortable columns:
+      - Opportunity (string)
+      - Client (string)
+      - Stage (string - by pipeline order: Introduction→Qualification→Proposal→POC→Negotiation→Won)
+      - ARR Value (currency/number)
+      - Probability (number/percentage)
+
+8. ACCESSIBILITY:
+   - Add aria-label to column headers: "Sort by [column name]"
+   - Add aria-sort attribute: "ascending" | "descending" | "none"
+   - Keyboard support: Enter/Space key to trigger sort
+   - Focus styles for keyboard navigation
+
+9. SPECIAL CASES:
+
+   TIER SORTING:
+   Extract number from "Tier X: Description" format:
+   ```typescript
+   const tierValue = (tier: string) => {
+     const match = tier.match(/Tier (\d+)/);
+     return match ? parseInt(match[1]) : 999;
+   };
+   ```
+
+   CURRENCY SORTING:
+   Strip formatting before comparing:
+   ```typescript
+   const currencyValue = (val: string | number) => {
+     if (typeof val === 'number') return val;
+     return parseFloat(val.replace(/[$,]/g, '')) || 0;
+   };
+   ```
+
+   EFFORT WEEKS SORTING:
+   Strip "w" or "weeks" suffix:
+   ```typescript
+   const effortValue = (val: string | number) => {
+     if (typeof val === 'number') return val;
+     return parseFloat(val.replace(/[^\d.]/g, '')) || 0;
+   };
+   ```
+
+10. TESTING CHECKLIST:
+    After implementation, verify:
+    - ✅ Click column header sorts ascending
+    - ✅ Click again sorts descending
+    - ✅ Click third time returns to unsorted
+    - ✅ Arrows update correctly
+    - ✅ Only one column sorted at a time
+    - ✅ Numeric values sort numerically (not as strings)
+    - ✅ Currency values sort correctly
+    - ✅ Null/empty values handled properly
+    - ✅ Sorted column header is visually distinct
+    - ✅ Hover effect works on all headers
+    - ✅ Mobile responsive (arrows don't break layout)
+
+11. PERFORMANCE:
+    - Use useMemo to prevent unnecessary re-sorts
+    - Sort happens on client-side (data is already loaded)
+    - No API calls needed for sorting
+    - Should handle 200+ rows smoothly
+
+12. MAINTAIN EXISTING FUNCTIONALITY:
+    - DO NOT break existing filters
+    - Sorting should work WITH filters (sort filtered results)
+    - Keep existing click-to-drill-down on table rows
+    - Maintain existing styling and colors
+    - Keep existing hover effects on rows
+
+13. STYLING GUIDELINES:
+    - Match existing Tailwind CSS theme
+    - Column headers: hover:bg-gray-100
+    - Active sort header: font-bold text-gray-900
+    - Sort arrows: text-gray-400 (inactive), text-gray-600 (active)
+    - Cursor: cursor-pointer on headers
+    - Transition: transition-colors for smooth hover
+
+---
+
+EXPECTED OUTPUT:
+
+After implementation:
+1. All table column headers should be clickable
+2. Clicking toggles sort direction with visual feedback
+3. Data updates instantly without page reload
+4. Works seamlessly with existing filters
+5. Mobile responsive
+6. Accessible via keyboard
+
+FILE MODIFICATIONS SUMMARY:
+- components/views/ExecutiveDashboard.tsx: 1 table
+- components/views/SalesDashboard.tsx: 1 table
+- components/views/ProductRoadmap.tsx: 1 table
+- components/views/FeatureDetail.tsx: 2 tables
+
+TOTAL: 5 tables across 4 files
+
+---
+
+ADDITIONAL NOTES:
+- TypeScript strict mode is enabled
+- All props must be properly typed
+- Use existing utility functions from lib/utils.ts if needed
+- Follow existing code patterns and conventions
+- Test on both desktop and mobile views
+- Ensure no console errors or warnings
+
+---
+
+DO NOT:
+- Add external dependencies (use React hooks only)
+- Change existing table structure
+- Modify data fetching logic
+- Break existing filtering functionality
+- Change table styling drastically
+- Add pagination (not requested)
+
+DO:
+- Add sorting to ALL tables
+- Make it visually clear which column is sorted
+- Handle all data types correctly
+- Maintain performance
+- Keep code clean and readable
+- Use TypeScript properly
+- Test thoroughly
+
+---
+
+PRIORITY:
+HIGH - This is a critical UX improvement for the dashboard.
+
+START WITH: ExecutiveDashboard.tsx Top 10 Features table as the first implementation, then replicate to other tables.
+```
+
+---
+
+## 📋 Additional Context for Replit Agent
+
+### Current Tech Stack:
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS
+- **State**: React hooks (useState, useMemo, useEffect)
+- **No external table libraries** (custom tables)
+
+### Files Location:
+```
+/components/views/ExecutiveDashboard.tsx
+/components/views/SalesDashboard.tsx
+/components/views/EngineeringDashboard.tsx
+/components/views/ProductRoadmap.tsx
+/components/views/FeatureDetail.tsx
+```
+
+### Example Table Structure Currently:
+```typescript
+<table className="min-w-full divide-y divide-gray-200">
+  <thead className="bg-gray-50">
+    <tr>
+      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+        Column Name
+      </th>
+    </tr>
+  </thead>
+  <tbody className="bg-white divide-y divide-gray-200">
+    {data.map((item) => (
+      <tr onClick={() => onFeatureClick(item.id)}>
+        <td className="px-4 py-3">{item.value}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+```
+
+---
+
+## 🎯 Success Criteria
+
+The implementation is successful when:
+
+1. ✅ All 5 tables have sortable column headers
+2. ✅ Visual indicators (arrows) show sort state
+3. ✅ Sorting works correctly for all data types
+4. ✅ Performance is smooth (no lag)
+5. ✅ Existing filters still work
+6. ✅ Mobile responsive
+7. ✅ No TypeScript errors
+8. ✅ Code follows existing patterns
+
+---
+
+## 💡 Optional Enhancements (If Time Permits)
+
+Consider adding:
+- Remember sort preference per view (localStorage)
+- Multi-column sort (hold Shift)
+- Sort direction indicator in column name
+- Subtle animation on sort change
+
+But **primary goal is basic single-column sorting on all tables first!**
+
+---
+
+**Copy the prompt above and paste it into Replit v3 Agent. It has everything needed to implement sortable columns across your entire dashboard!** 🚀
