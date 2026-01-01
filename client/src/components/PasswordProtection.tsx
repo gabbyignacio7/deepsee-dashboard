@@ -4,6 +4,10 @@ interface PasswordProtectionProps {
   children: ReactNode;
 }
 
+// Simple client-side password for static hosting (GitHub Pages)
+const VALID_PASSWORD = 'DeepSee2025!';
+const SESSION_KEY = 'deepsee_auth';
+
 export default function PasswordProtection({ children }: PasswordProtectionProps) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
@@ -11,40 +15,24 @@ export default function PasswordProtection({ children }: PasswordProtectionProps
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check authentication status on mount
-    fetch('/api/auth/status')
-      .then(res => res.json())
-      .then(data => {
-        setIsAuthenticated(data.authenticated);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+    // Check if already authenticated in session storage
+    const authStatus = sessionStorage.getItem(SESSION_KEY);
+    if (authStatus === 'true') {
+      setIsAuthenticated(true);
+    }
+    setLoading(false);
   }, []);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password })
-      });
 
-      const data = await response.json();
-
-      if (data.success) {
-        setIsAuthenticated(true);
-        setPassword('');
-      } else {
-        setError('Incorrect password. Please try again.');
-        setPassword('');
-      }
-    } catch (err) {
-      setError('Login failed. Please try again.');
+    if (password === VALID_PASSWORD) {
+      sessionStorage.setItem(SESSION_KEY, 'true');
+      setIsAuthenticated(true);
+      setPassword('');
+    } else {
+      setError('Incorrect password. Please try again.');
       setPassword('');
     }
   };
