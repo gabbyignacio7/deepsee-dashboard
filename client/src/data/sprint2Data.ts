@@ -1,8 +1,8 @@
-// SPRINT 2 STATUS DATA - Auto-extracted from JIRA
-// Generated: December 29, 2025 at 8:30 PM MT
+// SPRINT DATA - Auto-extracted from JIRA
+// Generated: January 1, 2026 at 9:00 PM MT
 // Source: DeepSee Collective Board > Active Sprints
-// Sprint: 2025-S2 (Holiday Sprint)
-// Note: 55% capacity due to holidays
+// Sprint: 2026-S1
+// Goal: Complete S2 carryover, stabilize Mercury Extraction for Colony/Sunwest production
 
 export interface SprintTicket {
   id: string;
