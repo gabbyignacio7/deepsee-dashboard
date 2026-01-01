@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DashboardProvider } from "@/components/dashboard-context";
+import PasswordProtection from "@/components/PasswordProtection";
 import Navigation from "@/components/Navigation";
 import ExecutiveDashboard from "@/pages/executive";
 import SalesDashboard from "@/pages/sales";
@@ -42,12 +43,14 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={BASE_PATH}>
-          <DashboardProvider>
-            <Toaster />
-            <AppRouter />
-          </DashboardProvider>
-        </WouterRouter>
+        <PasswordProtection>
+          <WouterRouter base={BASE_PATH}>
+            <DashboardProvider>
+              <Toaster />
+              <AppRouter />
+            </DashboardProvider>
+          </WouterRouter>
+        </PasswordProtection>
       </TooltipProvider>
     </QueryClientProvider>
   );
