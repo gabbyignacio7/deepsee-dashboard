@@ -1,8 +1,9 @@
 // SPRINT DATA - Auto-extracted from JIRA
-// Generated: January 5, 2026 at 1:30 AM MT
+// Generated: January 5, 2026 at 3:00 AM MT
 // Source: DeepSee Collective Board > Active Sprints
 // Sprint: 2026-S1
 // Goal: Complete S2 carryover, stabilize Mercury Extraction for Colony/Sunwest production, and deliver BBVA term type extraction
+// PRD Linking: See prdData.ts for comprehensive PRD ↔ Ticket mappings
 
 export interface SprintTicket {
   id: string;
@@ -178,7 +179,7 @@ export const SPRINT_2_DATA = {
     goal: "Complete S2 carryover, stabilize Mercury Extraction for Colony/Sunwest production, and deliver BBVA term type extraction",
     startDate: "2026-01-02",
     endDate: "2026-01-16",
-    dataExtracted: "2026-01-05T01:30:00-07:00",
+    dataExtracted: "2026-01-05T03:00:00-07:00",
     sprintDay: 3,
     daysRemaining: 11,
     totalDays: 14,
