@@ -1,14 +1,16 @@
 // PRD Data - Comprehensive PRD to JIRA Ticket Mapping
-// Generated: January 5, 2026 at 3:00 AM MT
-// Source: Confluence + JIRA
+// Generated: January 5, 2026 at 4:00 AM MT
+// Source: Confluence + JIRA + SharePoint
+// Update: Added SharePoint PRD discovery integration
 
 export interface PRD {
   id: string;
   name: string;
   shortName: string;
   confluenceUrl: string | null;
-  sharepointUrl: string | null;
-  status: "Active" | "Draft" | "Completed" | "Archived";
+  sharepointFile: string | null;
+  sharepointFolder: "working" | "completed" | null;
+  status: "Active" | "Draft" | "Completed" | "Archived" | "SharePoint Only";
   owner: string;
   relatedTickets: string[];
   totalPoints: number | null;
@@ -16,8 +18,10 @@ export interface PRD {
   labels: string[];
   keywords: string[];
   description: string;
-  category: "Core Product" | "Platform" | "Automation" | "AI/Agent";
+  category: "Core Product" | "Platform" | "Automation" | "AI/Agent" | "SharePoint Only";
   color: string;
+  note?: string;
+  alert?: string;
 }
 
 export interface PRDTicket {
@@ -35,6 +39,12 @@ export interface PRDTicket {
   project: "BACK" | "UI" | "CI" | "FB" | "SC";
 }
 
+// SharePoint Base URLs
+export const sharepointBase = {
+  working: "https://deepseehq-my.sharepoint.com/personal/ryan_mcqueen_deepsee_ai/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fryan%5Fmcqueen%5Fdeepsee%5Fai%2FDocuments%2FProduct%2F0%20%2D%20PRDs%2FWorking",
+  completed: "https://deepseehq-my.sharepoint.com/personal/ryan_mcqueen_deepsee_ai/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fryan%5Fmcqueen%5Fdeepsee%5Fai%2FDocuments%2FProduct%2F0%20%2D%20PRDs%2FCompleted"
+};
+
 // PRD Color Mapping
 export const prdColors: Record<string, string> = {
   "prd-mercury": "#3B82F6",      // Blue
@@ -46,10 +56,18 @@ export const prdColors: Record<string, string> = {
   "prd-automation-orchestration": "#14B8A6", // Teal
   "prd-agent-reasoning": "#F97316", // Orange
   "prd-agentic-engine": "#EF4444", // Red
-  "prd-epa-resolution": "#6366F1"  // Indigo
+  "prd-epa-resolution": "#6366F1",  // Indigo
+  // SharePoint-only PRDs
+  "prd-trade-recon": "#84CC16",     // Lime
+  "prd-sec-filing": "#A855F7",      // Fuchsia
+  "prd-broadridge-bpo": "#F472B6",  // Pink
+  "prd-browser-control": "#22D3EE", // Cyan
+  "prd-ssi-avaloq": "#FB923C",      // Orange
+  "prd-client-interaction": "#94A3B8", // Slate
+  "prd-fabric": "#64748B"           // Slate darker
 };
 
-// All PRDs Master List
+// All PRDs Master List (17 total: 10 Confluence + 7 SharePoint-only)
 export const allPRDs: PRD[] = [
   // ========== CORE PRODUCT PRDs ==========
   {
@@ -57,7 +75,8 @@ export const allPRDs: PRD[] = [
     name: "Mercury Extraction PRD",
     shortName: "Mercury",
     confluenceUrl: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2814476289",
-    sharepointUrl: null,
+    sharepointFile: "Mercury_Extraction_PRD_v1.0.docx",
+    sharepointFolder: "working",
     status: "Active",
     owner: "Ryan McQueen",
     relatedTickets: [
@@ -77,7 +96,8 @@ export const allPRDs: PRD[] = [
     name: "Document Classifier and Parser PRD",
     shortName: "Parser",
     confluenceUrl: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815524865",
-    sharepointUrl: null,
+    sharepointFile: "Document_Classifier_Parser_PRD",
+    sharepointFolder: "working",
     status: "Active",
     owner: "Ryan McQueen",
     relatedTickets: [
@@ -96,7 +116,8 @@ export const allPRDs: PRD[] = [
     name: "BluePrint PRD",
     shortName: "BluePrint",
     confluenceUrl: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824306710",
-    sharepointUrl: null,
+    sharepointFile: "BluePrint_PRD_Full.docx",
+    sharepointFolder: "working",
     status: "Active",
     owner: "Ryan McQueen",
     relatedTickets: [
@@ -117,7 +138,8 @@ export const allPRDs: PRD[] = [
     name: "Platform PRD",
     shortName: "Platform",
     confluenceUrl: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823847948",
-    sharepointUrl: null,
+    sharepointFile: "Platform_PRD_Full.docx",
+    sharepointFolder: "working",
     status: "Active",
     owner: "Ryan McQueen",
     relatedTickets: [
@@ -131,14 +153,16 @@ export const allPRDs: PRD[] = [
     keywords: ["platform", "deep recon", "deep pilot", "infrastructure"],
     description: "Core platform capabilities, Deep Recon, and Deep Pilot features",
     category: "Platform",
-    color: "#F59E0B"
+    color: "#F59E0B",
+    note: "Fallback PRD for Deep Recon and Deep Pilot tickets"
   },
   {
     id: "prd-artemis",
     name: "Project ARTEMIS PRD",
     shortName: "ARTEMIS",
     confluenceUrl: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824044546",
-    sharepointUrl: null,
+    sharepointFile: "Project_ARTEMIS_PRD_Full.docx",
+    sharepointFolder: "working",
     status: "Active",
     owner: "Ryan McQueen",
     relatedTickets: [],
@@ -157,12 +181,11 @@ export const allPRDs: PRD[] = [
     name: "Email Automation Workflow PRD",
     shortName: "Email Automation",
     confluenceUrl: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815852545",
-    sharepointUrl: null,
+    sharepointFile: null,
+    sharepointFolder: null,
     status: "Active",
     owner: "Ryan McQueen",
-    relatedTickets: [
-      "BACK-1666"
-    ],
+    relatedTickets: ["BACK-1666"],
     totalPoints: null,
     completedPoints: 0,
     labels: ["email-automation"],
@@ -176,7 +199,8 @@ export const allPRDs: PRD[] = [
     name: "Automation and Orchestration PRD",
     shortName: "Orchestration",
     confluenceUrl: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823913475",
-    sharepointUrl: null,
+    sharepointFile: "Automation_Orchestration_PRD_Full.docx",
+    sharepointFolder: "working",
     status: "Active",
     owner: "Ryan McQueen",
     relatedTickets: [],
@@ -195,12 +219,11 @@ export const allPRDs: PRD[] = [
     name: "Enhanced Agent Outcome Reasoning PRD",
     shortName: "Agent Reasoning",
     confluenceUrl: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2814803970",
-    sharepointUrl: null,
+    sharepointFile: "AGNT-OUTCOME-001_Enhanced_PRD_v2",
+    sharepointFolder: "completed",
     status: "Active",
     owner: "Ryan McQueen",
-    relatedTickets: [
-      "BACK-1602"
-    ],
+    relatedTickets: ["BACK-1602"],
     totalPoints: null,
     completedPoints: 0,
     labels: ["agent-reasoning"],
@@ -214,7 +237,8 @@ export const allPRDs: PRD[] = [
     name: "DeepSee Agentic Engine PRD",
     shortName: "Agentic Engine",
     confluenceUrl: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824372269",
-    sharepointUrl: null,
+    sharepointFile: "Agentic_Engine_PRD_Full.docx",
+    sharepointFolder: "working",
     status: "Active",
     owner: "Ryan McQueen",
     relatedTickets: [],
@@ -231,7 +255,8 @@ export const allPRDs: PRD[] = [
     name: "DeepSee AI's EPA - Automated Resolution PRD",
     shortName: "EPA Resolution",
     confluenceUrl: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2825879553",
-    sharepointUrl: null,
+    sharepointFile: "EPA_Automated_Resolution_PRD_Full.docx",
+    sharepointFolder: "working",
     status: "Active",
     owner: "Ryan McQueen",
     relatedTickets: [],
@@ -242,6 +267,138 @@ export const allPRDs: PRD[] = [
     description: "Exception Processing Agent automated resolution capabilities",
     category: "AI/Agent",
     color: "#6366F1"
+  },
+
+  // ========== SHAREPOINT-ONLY PRDs (Not in Confluence) ==========
+  {
+    id: "prd-trade-recon",
+    name: "Trade Reconciliation PRD",
+    shortName: "Trade Recon",
+    confluenceUrl: null,
+    sharepointFile: "Base Blueprint Trade Reconciliation.docx",
+    sharepointFolder: "working",
+    status: "SharePoint Only",
+    owner: "Ryan McQueen",
+    relatedTickets: [],
+    totalPoints: null,
+    completedPoints: 0,
+    labels: ["trade-recon"],
+    keywords: ["trade", "reconciliation", "blueprint"],
+    description: "Trade reconciliation base blueprint for financial workflows",
+    category: "SharePoint Only",
+    color: "#84CC16",
+    alert: "Needs migration to Confluence"
+  },
+  {
+    id: "prd-sec-filing",
+    name: "SEC Filing Parser PRD (Broadridge)",
+    shortName: "SEC Filing",
+    confluenceUrl: null,
+    sharepointFile: "SEC_Filing_Parser_PRD_Broadridge.docx",
+    sharepointFolder: "working",
+    status: "SharePoint Only",
+    owner: "Ryan McQueen",
+    relatedTickets: [],
+    totalPoints: null,
+    completedPoints: 0,
+    labels: ["sec-filing", "broadridge"],
+    keywords: ["sec", "filing", "parser", "broadridge"],
+    description: "SEC filing parser for Broadridge financial documents",
+    category: "SharePoint Only",
+    color: "#A855F7",
+    alert: "v1 and v2 available"
+  },
+  {
+    id: "prd-broadridge-bpo",
+    name: "Broadridge BPO Automation PRD",
+    shortName: "Broadridge BPO",
+    confluenceUrl: null,
+    sharepointFile: "Broadridge BPO Automation.docx",
+    sharepointFolder: "working",
+    status: "SharePoint Only",
+    owner: "Ryan McQueen",
+    relatedTickets: [],
+    totalPoints: null,
+    completedPoints: 0,
+    labels: ["broadridge", "bpo", "automation"],
+    keywords: ["broadridge", "bpo", "automation", "business process"],
+    description: "Broadridge BPO automation workflows",
+    category: "SharePoint Only",
+    color: "#F472B6",
+    alert: "Needs migration to Confluence"
+  },
+  {
+    id: "prd-browser-control",
+    name: "Browser Control Agent PRD",
+    shortName: "Browser Control",
+    confluenceUrl: null,
+    sharepointFile: "Browser_Control_Agent_PRD_v1.docx",
+    sharepointFolder: "working",
+    status: "SharePoint Only",
+    owner: "Ryan McQueen",
+    relatedTickets: [],
+    totalPoints: null,
+    completedPoints: 0,
+    labels: ["browser-control", "agent"],
+    keywords: ["browser", "control", "agent", "automation"],
+    description: "Browser control agent for web automation tasks",
+    category: "SharePoint Only",
+    color: "#22D3EE"
+  },
+  {
+    id: "prd-ssi-avaloq",
+    name: "Avaloq and Statement Workflow PRD",
+    shortName: "SSI/Avaloq",
+    confluenceUrl: null,
+    sharepointFile: "Avaloq and Statement Workflow.docx",
+    sharepointFolder: "working",
+    status: "SharePoint Only",
+    owner: "Ryan McQueen",
+    relatedTickets: [],
+    totalPoints: null,
+    completedPoints: 0,
+    labels: ["ssi", "avaloq", "statement"],
+    keywords: ["avaloq", "statement", "workflow", "ssi"],
+    description: "Avaloq and statement workflow integration",
+    category: "SharePoint Only",
+    color: "#FB923C",
+    note: "Possibly SSI related"
+  },
+  {
+    id: "prd-client-interaction",
+    name: "Client Agent Interaction PRD",
+    shortName: "Client Interaction",
+    confluenceUrl: null,
+    sharepointFile: "AGNT-UI-001_Client_Agent_Interaction_P",
+    sharepointFolder: "completed",
+    status: "Completed",
+    owner: "Ryan McQueen",
+    relatedTickets: [],
+    totalPoints: null,
+    completedPoints: 0,
+    labels: ["client", "agent", "interaction"],
+    keywords: ["client", "agent", "interaction", "ui"],
+    description: "Client agent interaction patterns and UI guidelines",
+    category: "SharePoint Only",
+    color: "#94A3B8"
+  },
+  {
+    id: "prd-fabric",
+    name: "DeepSee Fabric PRD",
+    shortName: "Fabric",
+    confluenceUrl: null,
+    sharepointFile: "DeepSee_Fabric_PRD_v0.1",
+    sharepointFolder: "completed",
+    status: "Completed",
+    owner: "Ryan McQueen",
+    relatedTickets: [],
+    totalPoints: null,
+    completedPoints: 0,
+    labels: ["fabric"],
+    keywords: ["fabric", "infrastructure", "platform"],
+    description: "DeepSee Fabric infrastructure layer",
+    category: "SharePoint Only",
+    color: "#64748B"
   }
 ];
 
@@ -914,24 +1071,39 @@ export const allPRDTickets: PRDTicket[] = [
   }
 ];
 
-// PRD Summary Statistics
+// PRD Summary Statistics (Updated with SharePoint discovery)
 export const prdSummary = {
-  totalPRDs: 10,
+  totalPRDs: 17,
+  inConfluence: 10,
+  sharepointOnly: 7,
   activePRDs: 10,
-  totalLinkedTickets: 34,
-  totalUnlinkedTickets: 25,
+  completedPRDs: 2,
+
+  withLinkedTickets: 7,
+  totalLinkedTickets: 35,
+  totalUnlinkedTickets: 23,
 
   byCategory: {
     "Core Product": ["prd-mercury", "prd-parser", "prd-blueprint"],
     "Platform": ["prd-platform", "prd-artemis"],
     "Automation": ["prd-email-automation", "prd-automation-orchestration"],
-    "AI/Agent": ["prd-agent-reasoning", "prd-agentic-engine", "prd-epa-resolution"]
+    "AI/Agent": ["prd-agent-reasoning", "prd-agentic-engine", "prd-epa-resolution"],
+    "SharePoint Only": ["prd-trade-recon", "prd-sec-filing", "prd-broadridge-bpo", "prd-browser-control", "prd-ssi-avaloq", "prd-client-interaction", "prd-fabric"]
+  },
+
+  byStatus: {
+    active: 10,
+    sharepointOnly: 5,
+    completed: 2
   },
 
   storyPointsByPRD: {
-    mercury: { total: 24, completed: 0, percent: 0 },
-    parser: { total: 31, completed: 0, percent: 0 },
-    blueprint: { total: 34, completed: 0, percent: 0 }
+    mercury: { total: 24, completed: 0, percent: 0, tickets: 11 },
+    parser: { total: 31, completed: 0, percent: 0, tickets: 6 },
+    blueprint: { total: 34, completed: 0, percent: 0, tickets: 5 },
+    platform: { total: null, completed: 0, percent: null, tickets: 9 },
+    emailAutomation: { total: null, completed: 0, percent: null, tickets: 1 },
+    agentReasoning: { total: null, completed: 0, percent: null, tickets: 1 }
   },
 
   ticketCountByPRD: {
@@ -941,7 +1113,210 @@ export const prdSummary = {
     platform: 9,
     emailAutomation: 1,
     agentReasoning: 1,
-    unlinked: 25
+    unlinked: 23
+  },
+
+  alerts: [
+    { type: "warning", message: "7 PRDs in SharePoint need migration to Confluence" },
+    { type: "info", message: "Deep Recon & Deep Pilot have no dedicated PRDs (using Platform as fallback)" }
+  ]
+};
+
+// SharePoint PRD Inventory
+export const sharepointInventory = {
+  title: "SharePoint PRD Inventory",
+  description: "PRDs stored in Ryan's SharePoint folders",
+
+  workingFolder: {
+    url: sharepointBase.working,
+    files: [
+      { name: "EPA_Automated_Resolution_PRD_Full.docx", inConfluence: true, recentlyModified: true },
+      { name: "Agentic_Engine_PRD_Full.docx", inConfluence: true, recentlyModified: true },
+      { name: "Broadridge BPO Automation.docx", inConfluence: false, alert: "Migrate to Confluence" },
+      { name: "PRD Tracker.xlsx", inConfluence: false, type: "tracker" },
+      { name: "BluePrint_PRD_Full.docx", inConfluence: true },
+      { name: "Platform_PRD_Full.docx", inConfluence: true },
+      { name: "Automation_Orchestration_PRD_Full.docx", inConfluence: true },
+      { name: "Project_ARTEMIS_PRD_Full.docx", inConfluence: true },
+      { name: "SEC_Filing_Parser_PRD_Broadridge.docx", inConfluence: false, versions: "v1 and v2" },
+      { name: "Mercury_Extraction_PRD_v1.0.docx", inConfluence: true },
+      { name: "Base Blueprint Trade Reconciliation.docx", inConfluence: false, alert: "Migrate to Confluence" },
+      { name: "Document_Classifier_Parser_PRD", inConfluence: true },
+      { name: "Browser_Control_Agent_PRD_v1.docx", inConfluence: false },
+      { name: "Avaloq and Statement Workflow.docx", inConfluence: false, note: "Possibly SSI related" }
+    ],
+    totalFiles: 14,
+    inConfluence: 8,
+    needsMigration: 6
+  },
+
+  completedFolder: {
+    url: sharepointBase.completed,
+    files: [
+      { name: "AGNT-OUTCOME-001_Enhanced_PRD_v2", inConfluence: true },
+      { name: "AGNT-UI-001_Client_Agent_Interaction_P", inConfluence: false },
+      { name: "DeepSee_Fabric_PRD_v0.1", inConfluence: false },
+      { name: "Mercury_Extraction_PRD_v1.0.docx", inConfluence: true },
+      { name: "Wells Fargo SSI Output.docx", inConfluence: false, note: "SSI related" }
+    ],
+    totalFiles: 5,
+    inConfluence: 2,
+    needsMigration: 3
+  },
+
+  summary: {
+    totalSharePointPRDs: 19,
+    inConfluence: 10,
+    needsMigration: 9,
+    percentSynced: 53
+  }
+};
+
+// PRD Action Items
+export const prdActionItems = [
+  {
+    priority: "HIGH" as const,
+    category: "Migration",
+    title: "Migrate Trade Reconciliation PRD to Confluence",
+    details: "Base Blueprint Trade Reconciliation.docx exists in SharePoint but not Confluence",
+    owner: "Ryan McQueen",
+    sharepointFile: "Base Blueprint Trade Reconciliation.docx"
+  },
+  {
+    priority: "HIGH" as const,
+    category: "Creation",
+    title: "Create Deep Recon PRD",
+    details: "5 tickets using Platform PRD as fallback - no dedicated Deep Recon PRD exists",
+    relatedTickets: ["UI-691", "UI-718", "UI-719", "UI-727", "UI-731"],
+    owner: "Product"
+  },
+  {
+    priority: "HIGH" as const,
+    category: "Creation",
+    title: "Create Deep Pilot PRD",
+    details: "2 tickets using Platform PRD as fallback - no dedicated Deep Pilot PRD exists",
+    relatedTickets: ["BACK-1402", "BACK-1649"],
+    owner: "Product"
+  },
+  {
+    priority: "MEDIUM" as const,
+    category: "Migration",
+    title: "Migrate Broadridge BPO Automation PRD",
+    details: "SharePoint only - needs Confluence page",
+    sharepointFile: "Broadridge BPO Automation.docx",
+    owner: "Ryan McQueen"
+  },
+  {
+    priority: "MEDIUM" as const,
+    category: "Migration",
+    title: "Migrate SEC Filing Parser PRD",
+    details: "SharePoint has v1 and v2 - needs Confluence page",
+    sharepointFile: "SEC_Filing_Parser_PRD_Broadridge.docx",
+    owner: "Ryan McQueen"
+  },
+  {
+    priority: "LOW" as const,
+    category: "Consolidation",
+    title: "Consolidate SSI-related PRDs",
+    details: "Multiple docs may be SSI related: Avaloq and Statement Workflow.docx, Wells Fargo SSI Output.docx",
+    owner: "Product"
+  },
+  {
+    priority: "LOW" as const,
+    category: "Cleanup",
+    title: "Review Browser Control Agent PRD",
+    details: "v1 in SharePoint - determine if active or archived",
+    sharepointFile: "Browser_Control_Agent_PRD_v1.docx",
+    owner: "Product"
+  }
+];
+
+// Missing PRD Alerts
+export const missingPRDAlerts = [
+  {
+    type: "warning" as const,
+    feature: "Deep Recon",
+    ticketCount: 5,
+    fallbackPRD: "Platform PRD",
+    message: "No dedicated Deep Recon PRD found in Confluence or SharePoint",
+    action: "Consider creating Deep Recon PRD"
+  },
+  {
+    type: "warning" as const,
+    feature: "Deep Pilot",
+    ticketCount: 2,
+    fallbackPRD: "Platform PRD",
+    message: "No dedicated Deep Pilot PRD found in Confluence or SharePoint",
+    action: "Consider creating Deep Pilot PRD"
+  },
+  {
+    type: "info" as const,
+    feature: "Trade Reconciliation",
+    ticketCount: 0,
+    location: "SharePoint Only",
+    message: "PRD exists in SharePoint but not Confluence",
+    action: "Migrate to Confluence"
+  }
+];
+
+// PRD Sync Status Widget
+export const prdSyncWidget = {
+  title: "PRD Sync Status",
+  subtitle: "Confluence ↔ SharePoint",
+
+  stats: {
+    totalPRDs: 17,
+    inBoth: 8,
+    confluenceOnly: 2,
+    sharepointOnly: 7
+  },
+
+  syncPercent: 47,
+
+  chart: {
+    type: "donut",
+    data: [
+      { label: "Synced (Both)", value: 8, color: "#10B981" },
+      { label: "Confluence Only", value: 2, color: "#3B82F6" },
+      { label: "SharePoint Only", value: 7, color: "#F59E0B" }
+    ]
+  },
+
+  alert: "7 PRDs need migration to Confluence"
+};
+
+// PRD Coverage Widget
+export const prdCoverageWidget = {
+  title: "PRD Coverage",
+  subtitle: "Sprint 2026-S1 Tickets",
+
+  stats: {
+    totalTickets: 58,
+    withPRD: 35,
+    withoutPRD: 23,
+    coveragePercent: 60
+  },
+
+  breakdown: {
+    coreProduct: { tickets: 22, withPRD: 22, percent: 100 },
+    platform: { tickets: 9, withPRD: 9, percent: 100 },
+    automation: { tickets: 1, withPRD: 1, percent: 100 },
+    aiAgent: { tickets: 1, withPRD: 1, percent: 100 },
+    infrastructure: { tickets: 15, withPRD: 0, percent: 0 },
+    other: { tickets: 10, withPRD: 2, percent: 20 }
+  },
+
+  chart: {
+    type: "bar",
+    data: [
+      { label: "Mercury", linked: 11, total: 11 },
+      { label: "Parser", linked: 6, total: 6 },
+      { label: "BluePrint", linked: 5, total: 5 },
+      { label: "Platform", linked: 9, total: 9 },
+      { label: "Email Auto", linked: 1, total: 1 },
+      { label: "Agent Reasoning", linked: 1, total: 1 },
+      { label: "No PRD", linked: 0, total: 23 }
+    ]
   }
 };
 
@@ -951,11 +1326,19 @@ export const prdFilterOptions = [
   { value: "with-prd", label: "With PRD Link", count: allPRDTickets.filter(t => t.prdId).length },
   { value: "no-prd", label: "No PRD Link", count: allPRDTickets.filter(t => !t.prdId).length },
   { value: "divider", label: "──────────", disabled: true },
-  ...allPRDs.map(prd => ({
+  ...allPRDs.filter(p => p.confluenceUrl).map(prd => ({
     value: prd.id,
     label: prd.shortName,
     count: prd.relatedTickets.length,
     url: prd.confluenceUrl,
+    color: prd.color
+  })),
+  { value: "divider2", label: "── SharePoint Only ──", disabled: true },
+  ...allPRDs.filter(p => !p.confluenceUrl).map(prd => ({
+    value: prd.id,
+    label: `${prd.shortName} (SP)`,
+    count: prd.relatedTickets.length,
+    url: null,
     color: prd.color
   }))
 ];
@@ -993,10 +1376,20 @@ export const prdSidebar = {
         { id: "prd-agentic-engine", name: "Agentic Engine", count: 0, color: "#EF4444" },
         { id: "prd-epa-resolution", name: "EPA Resolution", count: 0, color: "#6366F1" }
       ]
+    },
+    {
+      title: "SharePoint Only",
+      items: [
+        { id: "prd-trade-recon", name: "Trade Recon", count: 0, color: "#84CC16", alert: true },
+        { id: "prd-sec-filing", name: "SEC Filing", count: 0, color: "#A855F7", alert: true },
+        { id: "prd-broadridge-bpo", name: "Broadridge BPO", count: 0, color: "#F472B6", alert: true },
+        { id: "prd-browser-control", name: "Browser Control", count: 0, color: "#22D3EE" },
+        { id: "prd-ssi-avaloq", name: "SSI/Avaloq", count: 0, color: "#FB923C" }
+      ]
     }
   ],
   footer: {
-    unlinkedTickets: 25,
+    unlinkedTickets: 23,
     label: "No PRD Link"
   }
 };
@@ -1057,11 +1450,44 @@ export const prdProgressWidget = {
     }
   ],
   summary: {
-    totalPRDs: 10,
-    totalTickets: 34,
+    totalPRDs: 17,
+    totalTickets: 35,
     totalPoints: 89,
     completedTickets: 0,
     completedPoints: 0
+  }
+};
+
+// Dashboard Metadata
+export const dashboardMeta = {
+  lastUpdated: "January 5, 2026, 4:00 AM MT",
+
+  dataSources: {
+    jira: {
+      lastSync: "January 5, 2026, 3:00 AM MT",
+      sprint: "2026-S1",
+      totalTickets: 58
+    },
+    confluence: {
+      lastSync: "January 5, 2026, 2:00 AM MT",
+      totalPRDs: 10
+    },
+    sharepoint: {
+      lastSync: "January 5, 2026, 2:30 AM MT",
+      workingPRDs: 14,
+      completedPRDs: 5
+    },
+    monday: {
+      lastSync: "January 5, 2026, 3:00 AM MT",
+      totalPipeline: 11830000,
+      activeDeals: 78
+    }
+  },
+
+  prdLinkStatus: {
+    totalLinked: 35,
+    linkedThisSession: 11,
+    remaining: 0
   }
 };
 
@@ -1135,6 +1561,18 @@ export function getPRDDetail(prdId: string) {
   };
 }
 
+export function getSharepointOnlyPRDs(): PRD[] {
+  return allPRDs.filter(p => !p.confluenceUrl && p.sharepointFile);
+}
+
+export function getConfluencePRDs(): PRD[] {
+  return allPRDs.filter(p => p.confluenceUrl);
+}
+
+export function getPRDsNeedingMigration(): PRD[] {
+  return allPRDs.filter(p => !p.confluenceUrl && p.sharepointFile && p.status !== "Completed");
+}
+
 // Data Timestamp
-export const prdDataLastUpdated = "January 5, 2026 3:00 AM MT";
-export const prdDataSource = "JIRA + Confluence";
+export const prdDataLastUpdated = "January 5, 2026 4:00 AM MT";
+export const prdDataSource = "JIRA + Confluence + SharePoint";
