@@ -45,7 +45,7 @@ const PRD_LINKS = {
   agentReasoning: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824110090',
   agenticEngine: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824372269',
   epaResolution: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2825879553',
-  fabric: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2825879553', // TBD - placeholder
+  fabric: '', // TBD - SharePoint migration to Confluence pending
   prdIndex: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2813558785/Product+Requirements+Documents+PRDs',
 };
 

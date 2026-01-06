@@ -47,9 +47,9 @@
     "Confidence_Factor": 3,
     "Confidence_Description": "High Confidence",
     "PRD_Link": "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823847948",
-    "Epic_Key": "BACK-1699",
+    "Epic_Key": "BACK-1680",
     "Total_Tickets": 22,
-    "Total_Story_Points": 127
+    "Total_Story_Points": 150
   },
   {
     "Feature_ID": "F-FABRIC",
@@ -98,8 +98,8 @@
     "Epic_in_JIRA": "Yes",
     "Confidence_Factor": 3,
     "Confidence_Description": "High Confidence",
-    "PRD_Link": "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2825879553",
-    "Epic_Key": "BACK-1729",
+    "PRD_Link": "TBD",
+    "Epic_Key": "BACK-1704",
     "Total_Tickets": 8,
     "Total_Story_Points": 50
   },

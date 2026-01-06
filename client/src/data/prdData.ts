@@ -160,7 +160,7 @@ export const allPRDs: PRD[] = [
     id: "prd-artemis",
     name: "Project ARTEMIS PRD",
     shortName: "ARTEMIS",
-    confluenceUrl: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824044546",
+    confluenceUrl: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823782401",
     sharepointFile: "Project_ARTEMIS_PRD_Full.docx",
     sharepointFolder: "working",
     status: "Active",
