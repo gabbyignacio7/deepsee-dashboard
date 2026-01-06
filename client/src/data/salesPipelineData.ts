@@ -586,7 +586,7 @@ export const probabilityScale = {
   "Closed Won": { label: "Closed Won", probability: 100, description: "Deal completed (100%)" }
 };
 
-export const dataLastUpdated = "January 5, 2026 4:00 AM MT";
+export const dataLastUpdated = "January 6, 2026 9:00 AM MT";
 export const dataSource = "Monday.com CRM Export";
 export const updatedBy = "Gabriel Ignacio";
 
@@ -637,7 +637,7 @@ export interface SalesPipelineData {
 }
 
 export const salesPipelineData: SalesPipelineData = {
-  lastUpdated: "January 5, 2026 4:00 AM MT",
+  lastUpdated: "January 6, 2026 9:00 AM MT",
   currentARR: pipelineMetrics.closed_won_arr,
   pipelineARR: pipelineMetrics.total_pipeline_arr - pipelineMetrics.closed_won_arr,
   weightedPipeline: pipelineMetrics.weighted_pipeline_arr,

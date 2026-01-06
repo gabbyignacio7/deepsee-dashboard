@@ -1574,5 +1574,5 @@ export function getPRDsNeedingMigration(): PRD[] {
 }
 
 // Data Timestamp
-export const prdDataLastUpdated = "January 5, 2026 4:00 AM MT";
+export const prdDataLastUpdated = "January 6, 2026 9:00 AM MT";
 export const prdDataSource = "JIRA + Confluence + SharePoint";
