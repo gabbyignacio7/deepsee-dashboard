@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Layers, CheckCircle2, Zap, Circle, ChevronRight, BarChart2, ExternalLink, Link, Cog, FileText, Bot, Network, Monitor, Info } from "lucide-react";
+import { Layers, CheckCircle2, Zap, Circle, ChevronRight, BarChart2, ExternalLink, Link, Cog, FileText, Bot, Network, Monitor, Info, BookOpen } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -33,25 +33,73 @@ const LAYER_ICONS: Record<ArchitectureLayer, JSX.Element> = {
   7: <Monitor className="w-4 h-4" />
 };
 
+// All PRD Links - Confluence URLs
+const PRD_LINKS = {
+  artemis: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823782401',
+  platform: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823847948',
+  automation: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823880714',
+  mercury: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823913473',
+  parser: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823946244',
+  blueprint: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823979015',
+  email: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824044548',
+  agentReasoning: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824110090',
+  agenticEngine: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824372269',
+  epaResolution: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2825879553',
+  fabric: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2825879553', // TBD - placeholder
+  prdIndex: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2813558785/Product+Requirements+Documents+PRDs',
+};
+
 const ARTEMIS_CONFIG = {
   header: {
     name: "Project ARTEMIS",
     description: "Next-generation AI platform for capital markets automation",
-    prdLink: "https://deepseehq-my.sharepoint.com/:w:/r/personal/ryan_mcqueen_deepsee_ai/_layouts/15/Doc.aspx?sourcedoc=%7B4A345503-C611-45C6-885A-C47A19821F9B%7D&file=Project_ARTEMIS_PRD_Full.docx&action=default&mobileredirect=true"
+    prdLink: PRD_LINKS.artemis
   },
   pillars: {
     1: {
       name: "Platform",
       description: "Communication, storage, and processing infrastructure for ARTEMIS",
-      prdLink: "https://deepseehq-my.sharepoint.com/:w:/r/personal/ryan_mcqueen_deepsee_ai/_layouts/15/Doc.aspx?sourcedoc=%7B698AB87A-61B5-4E84-B79A-E64A233C0334%7D&file=Platform_PRD_Full.docx&action=default&mobileredirect=true"
+      prdLink: PRD_LINKS.platform
     },
     2: {
       name: "Automation and Orchestration",
       description: "Visibility, auditability, and multi-agent coordination",
-      prdLink: "https://deepseehq-my.sharepoint.com/:w:/r/personal/ryan_mcqueen_deepsee_ai/_layouts/15/Doc.aspx?sourcedoc=%7B6394B6C3-43F2-4A2B-BD28-7019A131303F%7D&file=Automation_Orchestration_PRD_Full.docx&action=default&mobileredirect=true"
+      prdLink: PRD_LINKS.automation
+    },
+    3: {
+      name: "Mercury Extraction",
+      description: "Document extraction service for loan packages and financial documents",
+      prdLink: PRD_LINKS.mercury
+    },
+    4: {
+      name: "Document Parser",
+      description: "Multi-format intelligent document parsing and classification",
+      prdLink: PRD_LINKS.parser
+    },
+    5: {
+      name: "BluePrint",
+      description: "Agent configuration framework for outcome templates",
+      prdLink: PRD_LINKS.blueprint
+    },
+    6: {
+      name: "Email Automation",
+      description: "Intelligent email processing and response automation",
+      prdLink: PRD_LINKS.email
+    },
+    7: {
+      name: "Enhanced Agent Reasoning",
+      description: "Advanced reasoning capabilities for agent decision-making",
+      prdLink: PRD_LINKS.agentReasoning
     }
   } as Record<number, { name: string; description: string; prdLink: string }>
 };
+
+// Additional PRDs not mapped to layers but accessible
+const ADDITIONAL_PRDS = [
+  { name: "Agentic Engine", prdLink: PRD_LINKS.agenticEngine, description: "Core agent execution engine" },
+  { name: "EPA Automated Resolution", prdLink: PRD_LINKS.epaResolution, description: "Exception processing automation" },
+  { name: "DeepSee Fabric", prdLink: PRD_LINKS.fabric, description: "Microsoft Fabric integration for analytics" },
+];
 
 interface LayerStats {
   layer: ArchitectureLayer;
@@ -441,12 +489,98 @@ export default function PlatformArchitecture() {
 
       <MercuryExtractionSection />
 
+      {/* PRD Links Section */}
+      <Card data-testid="card-prd-links">
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-purple-600" />
+              Product Requirements Documents (PRDs)
+            </CardTitle>
+            <a
+              href={PRD_LINKS.prdIndex}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-purple-600 hover:underline flex items-center gap-1"
+            >
+              View All PRDs in Confluence
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Quick access to all ARTEMIS PRDs - click any link to view full documentation
+          </p>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {/* Core ARTEMIS PRD */}
+            <a
+              href={PRD_LINKS.artemis}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 p-3 rounded-lg border bg-gradient-to-r from-blue-50 to-purple-50 hover:from-blue-100 hover:to-purple-100 transition-colors"
+            >
+              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
+                <Layers className="w-5 h-5 text-white" />
+              </div>
+              <div className="flex-1">
+                <p className="font-semibold text-sm">Project ARTEMIS</p>
+                <p className="text-xs text-muted-foreground">Master PRD</p>
+              </div>
+              <ExternalLink className="w-4 h-4 text-gray-400" />
+            </a>
+
+            {/* Layer PRDs */}
+            {Object.entries(ARTEMIS_CONFIG.pillars).map(([layer, config]) => (
+              <a
+                key={layer}
+                href={config.prdLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-3 rounded-lg border hover:bg-gray-50 transition-colors"
+              >
+                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                  {LAYER_ICONS[parseInt(layer) as ArchitectureLayer]}
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold text-sm">{config.name}</p>
+                  <p className="text-xs text-muted-foreground truncate" title={config.description}>
+                    {config.description.length > 40 ? config.description.slice(0, 40) + '...' : config.description}
+                  </p>
+                </div>
+                <ExternalLink className="w-4 h-4 text-gray-400" />
+              </a>
+            ))}
+
+            {/* Additional PRDs */}
+            {ADDITIONAL_PRDS.map((prd) => (
+              <a
+                key={prd.name}
+                href={prd.prdLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-3 rounded-lg border hover:bg-gray-50 transition-colors"
+              >
+                <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold text-sm">{prd.name}</p>
+                  <p className="text-xs text-muted-foreground">{prd.description}</p>
+                </div>
+                <ExternalLink className="w-4 h-4 text-gray-400" />
+              </a>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
       <Card className="bg-blue-50 border-blue-200">
         <CardContent className="py-4">
           <p className="text-sm text-blue-800">
-            <strong>Note:</strong> Progress is calculated based on ticket completion ratios (Done/Total). 
+            <strong>Note:</strong> Progress is calculated based on ticket completion ratios (Done/Total).
             Ticket counts are estimated from PRD status and Epic linkage when direct JIRA data is unavailable.
-            Features are auto-mapped to architecture layers based on their name and category patterns. 
+            Features are auto-mapped to architecture layers based on their name and category patterns.
             Click any layer card to view detailed feature breakdown. 70%+ progress indicates Production Ready status.
           </p>
         </CardContent>
