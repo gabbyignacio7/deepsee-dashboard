@@ -637,7 +637,7 @@ export interface SalesPipelineData {
 }
 
 export const salesPipelineData: SalesPipelineData = {
-  lastUpdated: "January 6, 2026 9:00 AM MT",
+  lastUpdated: "January 11, 2026 4:15 PM MT",
   currentARR: pipelineMetrics.closed_won_arr,
   pipelineARR: pipelineMetrics.total_pipeline_arr - pipelineMetrics.closed_won_arr,
   weightedPipeline: pipelineMetrics.weighted_pipeline_arr,

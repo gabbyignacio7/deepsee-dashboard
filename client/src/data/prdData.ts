@@ -1460,7 +1460,7 @@ export const prdProgressWidget = {
 
 // Dashboard Metadata
 export const dashboardMeta = {
-  lastUpdated: "January 5, 2026, 4:00 AM MT",
+  lastUpdated: "January 11, 2026 4:15 PM MT",
 
   dataSources: {
     jira: {

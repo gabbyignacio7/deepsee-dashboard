@@ -280,7 +280,7 @@ export const SPRINT_3_DATA = {
 
   // Engineer Workload (Brandon's Two-View Method)
   engineerWorkload: {
-    lastUpdated: "2026-01-06T10:42:00-07:00",
+    lastUpdated: "2026-01-11T16:15:00-07:00",
     sprint: "2026-S3",
     capacityTarget: 15,
     engineers: [
@@ -452,7 +452,7 @@ export const SPRINT_3_DATA = {
 
   // Metadata
   meta: {
-    lastUpdated: "2026-01-06T10:42:00-07:00",
+    lastUpdated: "2026-01-11T16:15:00-07:00",
     source: "Browser Agent JIRA Extraction",
     notes: [
       "S3 is a future sprint - not yet started",
