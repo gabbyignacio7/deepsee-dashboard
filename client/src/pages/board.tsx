@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { DollarSign, Shield, Rocket, LayoutDashboard, AlertTriangle, TrendingUp, Clock, CheckCircle2, Target, Users, Calendar, ChevronRight, Activity, Zap, Bug, UserCheck, Bot } from "lucide-react";
+import { DollarSign, Shield, Rocket, LayoutDashboard, AlertTriangle, TrendingUp, Clock, CheckCircle2, Target, Users, Calendar, ChevronRight, Activity, Zap, Bug, UserCheck, Bot, BarChart3 } from "lucide-react";
 import AgenticPlatformSection from "@/components/AgenticPlatform/AgenticPlatformSection";
+import SprintAllocationSection from "@/components/SprintAllocation/SprintAllocationSection";
 import { useDashboard } from "@/components/dashboard-context";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
@@ -90,7 +91,7 @@ export default function BoardView() {
 
       {/* Tab Navigation */}
       <Tabs defaultValue="strategic" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-6 lg:w-auto gap-1">
+        <TabsList className="grid w-full grid-cols-7 lg:w-auto gap-1">
           <TabsTrigger value="strategic" data-testid="tab-strategic-buckets">
             <Target className="w-4 h-4 mr-2" />
             Strategic
@@ -98,6 +99,10 @@ export default function BoardView() {
           <TabsTrigger value="roadmap" data-testid="tab-roadmap">
             <Calendar className="w-4 h-4 mr-2" />
             Roadmap
+          </TabsTrigger>
+          <TabsTrigger value="sprint" data-testid="tab-sprint-allocation">
+            <BarChart3 className="w-4 h-4 mr-2" />
+            Sprint
           </TabsTrigger>
           <TabsTrigger value="revenue" data-testid="tab-revenue-growth">
             <DollarSign className="w-4 h-4 mr-2" />
@@ -131,10 +136,15 @@ export default function BoardView() {
 
         {/* Roadmap Tab - Visual Progress Tracker */}
         <TabsContent value="roadmap" className="space-y-6">
-          <RoadmapDeliveryView 
+          <RoadmapDeliveryView
             roadmapProgress={roadmapProgress}
             quarterStats={quarterStats}
           />
+        </TabsContent>
+
+        {/* Sprint Allocation Tab - Engineering Allocation */}
+        <TabsContent value="sprint" className="space-y-6">
+          <SprintAllocationSection />
         </TabsContent>
 
         {/* Revenue Growth Tab */}
