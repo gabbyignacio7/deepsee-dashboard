@@ -1,5 +1,5 @@
 // Sprint Allocation Data - 2026-S1
-// Last Updated: January 11, 2026 @ 3:35 PM MT
+// Last Updated: January 11, 2026 @ 4:15 PM MT
 // Source: Browser Agent JIRA Extraction
 
 export type CapacityStatus = 'green' | 'yellow' | 'red' | 'unassigned';
@@ -86,7 +86,7 @@ export const sprint2026S1Data: SprintAllocationData = {
     sprint: "2026-S1",
     startDate: "2026-01-06",
     endDate: "2026-01-17",
-    asOf: "2026-01-11T15:35:00-07:00",
+    asOf: "2026-01-11T16:15:00-07:00",
     totalTickets: 49,
     completion: 33,
     unassignedCount: 11,
