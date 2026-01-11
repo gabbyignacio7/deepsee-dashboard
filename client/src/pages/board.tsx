@@ -2,6 +2,7 @@ import { useState } from "react";
 import { DollarSign, Shield, Rocket, LayoutDashboard, AlertTriangle, TrendingUp, Clock, CheckCircle2, Target, Users, Calendar, ChevronRight, Activity, Zap, Bug, UserCheck, Bot, BarChart3 } from "lucide-react";
 import AgenticPlatformSection from "@/components/AgenticPlatform/AgenticPlatformSection";
 import SprintAllocationSection from "@/components/SprintAllocation/SprintAllocationSection";
+import SalesPipelineSection from "@/components/SalesPipeline/SalesPipelineSection";
 import { useDashboard } from "@/components/dashboard-context";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
@@ -91,7 +92,7 @@ export default function BoardView() {
 
       {/* Tab Navigation */}
       <Tabs defaultValue="strategic" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-7 lg:w-auto gap-1">
+        <TabsList className="grid w-full grid-cols-8 lg:w-auto gap-1">
           <TabsTrigger value="strategic" data-testid="tab-strategic-buckets">
             <Target className="w-4 h-4 mr-2" />
             Strategic
@@ -103,6 +104,10 @@ export default function BoardView() {
           <TabsTrigger value="sprint" data-testid="tab-sprint-allocation">
             <BarChart3 className="w-4 h-4 mr-2" />
             Sprint
+          </TabsTrigger>
+          <TabsTrigger value="pipeline" data-testid="tab-sales-pipeline">
+            <TrendingUp className="w-4 h-4 mr-2" />
+            Pipeline
           </TabsTrigger>
           <TabsTrigger value="revenue" data-testid="tab-revenue-growth">
             <DollarSign className="w-4 h-4 mr-2" />
@@ -145,6 +150,11 @@ export default function BoardView() {
         {/* Sprint Allocation Tab - Engineering Allocation */}
         <TabsContent value="sprint" className="space-y-6">
           <SprintAllocationSection />
+        </TabsContent>
+
+        {/* Sales Pipeline Tab - Monday.com CRM Data */}
+        <TabsContent value="pipeline" className="space-y-6">
+          <SalesPipelineSection />
         </TabsContent>
 
         {/* Revenue Growth Tab */}
