@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { DollarSign, Shield, Rocket, LayoutDashboard, AlertTriangle, TrendingUp, Clock, CheckCircle2, Target, Users, Calendar, ChevronRight, Activity, Zap, Bug, UserCheck } from "lucide-react";
+import { DollarSign, Shield, Rocket, LayoutDashboard, AlertTriangle, TrendingUp, Clock, CheckCircle2, Target, Users, Calendar, ChevronRight, Activity, Zap, Bug, UserCheck, Bot } from "lucide-react";
+import AgenticPlatformSection from "@/components/AgenticPlatform/AgenticPlatformSection";
 import { useDashboard } from "@/components/dashboard-context";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
@@ -89,7 +90,7 @@ export default function BoardView() {
 
       {/* Tab Navigation */}
       <Tabs defaultValue="strategic" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-5 lg:w-auto gap-1">
+        <TabsList className="grid w-full grid-cols-6 lg:w-auto gap-1">
           <TabsTrigger value="strategic" data-testid="tab-strategic-buckets">
             <Target className="w-4 h-4 mr-2" />
             Strategic
@@ -109,6 +110,10 @@ export default function BoardView() {
           <TabsTrigger value="innovation" data-testid="tab-innovation">
             <Rocket className="w-4 h-4 mr-2" />
             Innovation
+          </TabsTrigger>
+          <TabsTrigger value="agentic" data-testid="tab-agentic-platform">
+            <Bot className="w-4 h-4 mr-2" />
+            Agentic
           </TabsTrigger>
         </TabsList>
 
@@ -152,6 +157,11 @@ export default function BoardView() {
         {/* Innovation Tab */}
         <TabsContent value="innovation" className="space-y-6">
           <InnovationView metrics={innovationMetrics} />
+        </TabsContent>
+
+        {/* Agentic Platform Tab - PR-1561 Initiative */}
+        <TabsContent value="agentic" className="space-y-6">
+          <AgenticPlatformSection />
         </TabsContent>
       </Tabs>
     </div>

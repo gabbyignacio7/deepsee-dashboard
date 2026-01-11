@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-06T09:00:00-07:00",
+  "lastUpdated": "2026-01-11T16:00:00-07:00",
   "artemisSummary": {
     "epics": [
       {
@@ -105,5 +105,48 @@
       "fabric": { "tickets": 5, "points": 32 },
       "total": { "tickets": 15, "points": 99 }
     }
+  },
+  "agenticPlatformInitiative": {
+    "key": "PR-1561",
+    "summary": "DeepSee Agentic Platform",
+    "totalMilestones": 5,
+    "totalEpics": 42,
+    "status": "Backlog",
+    "reporter": "Konnor Willison",
+    "milestones": {
+      "infrastructure": {
+        "key": "PR-1562",
+        "summary": "Infrastructure and Deployment Foundation",
+        "epics": 6,
+        "primaryPillars": ["Platform"],
+        "isFoundational": true
+      },
+      "orchestration": {
+        "key": "PR-1563",
+        "summary": "Agent Orchestration Platform",
+        "epics": 8,
+        "primaryPillars": ["Automation & Orchestration", "Agentic Engine", "BluePrint"]
+      },
+      "identity": {
+        "key": "PR-1564",
+        "summary": "Identity and Access Management",
+        "epics": 8,
+        "primaryPillars": ["Platform"]
+      },
+      "dataIngestion": {
+        "key": "PR-1565",
+        "summary": "Data Ingestion and Content Understanding",
+        "epics": 8,
+        "primaryPillars": ["Mercury Extraction", "Document Parser"]
+      },
+      "observability": {
+        "key": "PR-1566",
+        "summary": "Observability and Governance",
+        "epics": 12,
+        "primaryPillars": ["Platform", "Enhanced Agent Reasoning"]
+      }
+    },
+    "pillarGaps": ["Email Automation", "EPA Automated Resolution"],
+    "executionSequence": ["PR-1562", "PR-1564", "PR-1565", "PR-1563", "PR-1566"]
   }
 }
