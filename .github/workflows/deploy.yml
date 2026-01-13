@@ -27,11 +27,17 @@ jobs:
           node-version: '20'
           # Disabled cache to force fresh build - Jan 13 2026
 
+      - name: Clean npm cache
+        run: npm cache clean --force
+
       - name: Install dependencies
         run: npm ci
 
       - name: Build
         run: npm run build
+
+      - name: List built files
+        run: ls -la dist/assets/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
