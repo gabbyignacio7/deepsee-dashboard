@@ -33,19 +33,19 @@ const LAYER_ICONS: Record<ArchitectureLayer, JSX.Element> = {
   7: <Monitor className="w-4 h-4" />
 };
 
-// All PRD Links - Confluence URLs
+// All PRD Links - Confluence URLs (Updated January 13, 2026)
 const PRD_LINKS = {
-  artemis: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823782401',
-  platform: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823847948',
-  automation: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823880714',
-  mercury: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823913473',
-  parser: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823946244',
-  blueprint: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823979015',
-  email: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824044548',
-  agentReasoning: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824110090',
-  agenticEngine: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824372269',
-  epaResolution: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2825879553',
-  fabric: '', // TBD - SharePoint migration to Confluence pending
+  artemis: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824044546/Project+ARTEMIS+PRD',
+  platform: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823847948/Platform+PRD',
+  automation: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823913475/Automation+and+Orchestration+PRD',
+  mercury: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2814476289/Mercury+Extraction',
+  parser: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815524865/Document+Classifier+and+Parser+PRD+Automating+Document+Processing+for+Colony+Bank+and+Broadridge',
+  blueprint: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824306710/Blue+Print+PRD',
+  email: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815852545/Email+Automation+Workflow+for+Enhanced+Triage+and+Management+in+Shared+Inboxes',
+  agentReasoning: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2816147457/Enhanced+Outcome+Reasoning+and+Planning+for+Agentic+Platform+Agents',
+  agenticEngine: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824372269/DeepSee+Agentic+Engine+Standardizing+Skill+Agents+for+Enhanced+Platform+Efficiency+and+Client+Support',
+  epaResolution: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2825879553/DeepSee+AI+s+EPA+Automated+Resolution+Enhancing+Email+Workflow+Automation+for+Capital+Markets',
+  fabric: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815721483/DeepSee+Fabric+Unified+Data+Pipeline+for+Agentic+Workflow+Orchestration+on+Microsoft+Fabric',
   prdIndex: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2813558785/Product+Requirements+Documents+PRDs',
 };
 
