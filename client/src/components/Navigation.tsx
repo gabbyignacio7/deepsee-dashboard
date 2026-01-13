@@ -9,6 +9,7 @@ interface NavView {
   path: string;
 }
 
+// Navigation component - Updated Jan 13, 2026
 export default function Navigation() {
   const [location] = useLocation();
 
