@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'wouter';
-import { BarChart2, DollarSign, Settings, Map, Presentation, Layers, LogOut, type LucideIcon } from 'lucide-react';
+import { BarChart2, DollarSign, Settings, Map, Presentation, Layers, LogOut, Target, Bot, type LucideIcon } from 'lucide-react';
 import logoImage from '@assets/image_1762727809845.png';
 
 interface NavView {
@@ -19,6 +19,8 @@ export default function Navigation() {
     { id: 'product', label: 'Product Roadmap', icon: Map, path: '/product' },
     { id: 'board', label: 'Board View', icon: Presentation, path: '/board' },
     { id: 'architecture', label: 'Architecture', icon: Layers, path: '/architecture' },
+    { id: 'artemis', label: 'ARTEMIS', icon: Target, path: '/artemis' },
+    { id: 'agents', label: 'Agent Families', icon: Bot, path: '/agents' },
   ];
 
   const isActive = (path: string) => location === path || (path === '/executive' && location === '/');
