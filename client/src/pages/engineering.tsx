@@ -5,9 +5,10 @@ import ClientFilter from '@/components/ClientFilter';
 import DeprecationFilter from '@/components/DeprecationFilter';
 import MetricTooltip from '@/components/MetricTooltip';
 import EngineerAllocation from '@/components/engineer-allocation/EngineerAllocation';
+import SprintAnalysis from '@/components/SprintAnalysis';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { AlertTriangle, Users, LayoutDashboard } from 'lucide-react';
+import { AlertTriangle, Users, LayoutDashboard, CalendarDays } from 'lucide-react';
 
 export default function EngineeringDashboard() {
   const { features, jiraTickets, loading, error, allFeatures, selectedClients, setSelectedClients } = useDashboard();
@@ -61,8 +62,12 @@ export default function EngineeringDashboard() {
         <p className="text-gray-600 mt-1">Team workload, capacity, and allocation</p>
       </div>
 
-      <Tabs defaultValue="capacity" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-2 lg:w-auto">
+      <Tabs defaultValue="sprint-analysis" className="space-y-6">
+        <TabsList className="grid w-full grid-cols-3 lg:w-auto">
+          <TabsTrigger value="sprint-analysis" data-testid="tab-sprint-analysis">
+            <CalendarDays className="w-4 h-4 mr-2" />
+            Sprint Analysis
+          </TabsTrigger>
           <TabsTrigger value="capacity" data-testid="tab-capacity">
             <LayoutDashboard className="w-4 h-4 mr-2" />
             Capacity View
@@ -72,6 +77,10 @@ export default function EngineeringDashboard() {
             Engineer Allocation
           </TabsTrigger>
         </TabsList>
+
+        <TabsContent value="sprint-analysis" className="space-y-6">
+          <SprintAnalysis />
+        </TabsContent>
 
         <TabsContent value="capacity" className="space-y-6">
           <div className="grid gap-4 md:grid-cols-2">
