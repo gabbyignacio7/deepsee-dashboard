@@ -163,6 +163,22 @@ export const NEXT_SPRINT_CLIENT_ITEMS: NextSprintClientItem[] = [
   { key: 'UI-738', summary: 'Deep Recon UI enhancement', client: 'Accenture' }
 ];
 
+// Rollover candidates - High risk items that may not complete
+export const ROLLOVER_HIGH_RISK: SprintItem[] = [
+  { key: 'BACK-1653', summary: '[MERCURY] Sunwest Bank - Extraction model fine-tuning', category: 'ARTEMIS', staleDays: 13 },
+  { key: 'BACK-1651', summary: '[MERCURY] Core extraction engine performance optimization', category: 'ARTEMIS', staleDays: 14 },
+  { key: 'BACK-1655', summary: '[MERCURY] API documentation and developer guide', category: 'ARTEMIS', staleDays: 14 },
+  { key: 'BACK-1658', summary: '[PARSER] HTML structured file parsing for SEC filings', category: 'ARTEMIS', staleDays: 14 },
+  { key: 'BACK-1657', summary: '[PARSER] PDF extraction for multi-page documents', category: 'ARTEMIS', staleDays: 14 },
+  { key: 'BACK-1661', summary: '[PARSER] Integration between Document Parser and Mercury', category: 'ARTEMIS', staleDays: 14 },
+  { key: 'BACK-1659', summary: '[PARSER] Automatic document type classification', category: 'ARTEMIS', staleDays: 13 },
+  { key: 'BACK-1663', summary: '[BLUEPRINT] Define data model and storage infrastructure', category: 'ARTEMIS', unassigned: true },
+  { key: 'UI-732', summary: 'UI Agentic Rules: Definitions and Adoption', category: 'ARTEMIS', unassigned: true },
+  { key: 'UI-698', summary: 'Create "Recategorized By HITL"', category: 'Client', client: 'Broadridge', staleDays: 56 },
+  { key: 'UI-715', summary: 'Update Status page to pull correct data', category: 'Client', client: 'Broadridge', staleDays: 34 },
+  { key: 'UI-716', summary: 'Update Overview > Breakout chart calculations', category: 'Client', client: 'Broadridge', staleDays: 34 }
+];
+
 // Blocked Items in current sprint
 export const BLOCKED_ITEMS: SprintItem[] = [
   { key: 'BACK-1603', summary: 'Deep Recon - DTCC Sync to DeepSee', category: 'Client', client: 'DTCC', blockedDays: 35 },
