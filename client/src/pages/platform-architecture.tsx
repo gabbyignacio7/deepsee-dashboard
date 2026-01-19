@@ -4,6 +4,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import DataFreshness from "@/components/DataFreshness";
 import {
   Table,
   TableBody,
@@ -214,27 +215,28 @@ export default function PlatformArchitecture() {
   return (
     <TooltipProvider>
     <div className="container mx-auto p-6 space-y-6 max-w-[1600px]">
-      <div className="space-y-4">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <a
-              href={ARTEMIS_CONFIG.header.prdLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg"
-              data-testid="link-artemis-header"
-            >
-              <span className="font-bold text-lg tracking-wide">PROJECT ARTEMIS</span>
-              <Info className="w-4 h-4 opacity-80" />
-            </a>
-          </TooltipTrigger>
+      <div className="flex justify-between items-start">
+        <div className="space-y-4">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <a
+                href={ARTEMIS_CONFIG.header.prdLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg"
+                data-testid="link-artemis-header"
+              >
+                <span className="font-bold text-lg tracking-wide">PROJECT ARTEMIS</span>
+                <Info className="w-4 h-4 opacity-80" />
+              </a>
+            </TooltipTrigger>
           <TooltipContent side="right" className="max-w-xs">
             <p className="font-medium">{ARTEMIS_CONFIG.header.name}</p>
             <p className="text-xs text-muted-foreground mt-1">{ARTEMIS_CONFIG.header.description}</p>
             <p className="text-xs text-blue-400 mt-1">Click to view PRD</p>
           </TooltipContent>
         </Tooltip>
-        
+
         <div className="space-y-2">
           <h1 className="text-3xl font-bold tracking-tight flex items-center gap-3" data-testid="text-architecture-title">
             <Layers className="w-8 h-8 text-blue-600" />
@@ -244,6 +246,8 @@ export default function PlatformArchitecture() {
             Agent Outcome Configuration • 7 Layers Progress View • {masterFeaturesData.length} Total Features
           </p>
         </div>
+        </div>
+        <DataFreshness />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

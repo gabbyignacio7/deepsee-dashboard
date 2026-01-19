@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
+import DataFreshness from "@/components/DataFreshness";
+import ArtemisFoundationTracker from "@/components/ArtemisFoundationTracker";
 import {
   ARTEMIS_INITIATIVE,
   ARTEMIS_MILESTONES,
@@ -258,21 +260,27 @@ export default function ArtemisInitiative() {
             Epic hierarchy and milestone tracking for DeepSee Agentic Platform
           </p>
         </div>
-        <div className="flex gap-2">
-          <Link href="/artemis">
-            <Button variant="outline" className="flex items-center gap-2">
-              <Layers className="w-4 h-4" />
-              Architecture
-            </Button>
-          </Link>
-          <Link href="/agents">
-            <Button variant="outline" className="flex items-center gap-2">
-              <Bot className="w-4 h-4" />
-              Agent Families
-            </Button>
-          </Link>
+        <div className="flex items-center gap-4">
+          <DataFreshness />
+          <div className="flex gap-2">
+            <Link href="/artemis">
+              <Button variant="outline" className="flex items-center gap-2">
+                <Layers className="w-4 h-4" />
+                Architecture
+              </Button>
+            </Link>
+            <Link href="/agents">
+              <Button variant="outline" className="flex items-center gap-2">
+                <Bot className="w-4 h-4" />
+                Agent Families
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
+
+      {/* ARTEMIS Foundation Tracker */}
+      <ArtemisFoundationTracker maxItems={6} />
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">

@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import MetricTooltip from "@/components/MetricTooltip";
+import DataFreshness from "@/components/DataFreshness";
 import {
   calculateRevenueMetrics,
   calculateOperationsMetrics,
@@ -77,17 +78,20 @@ export default function BoardView() {
   return (
     <div className="container mx-auto p-6 space-y-6 max-w-[1600px]">
       {/* Header */}
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight" data-testid="text-board-title">
-          DeepSee Executive Dashboard
-        </h1>
-        <p className="text-muted-foreground">
-          Board Meeting Preparation •{" "}
-          {new Date().toLocaleDateString("en-US", {
-            month: "long",
-            year: "numeric"
-          })}
-        </p>
+      <div className="flex justify-between items-start">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-bold tracking-tight" data-testid="text-board-title">
+            DeepSee Executive Dashboard
+          </h1>
+          <p className="text-muted-foreground">
+            Board Meeting Preparation •{" "}
+            {new Date().toLocaleDateString("en-US", {
+              month: "long",
+              year: "numeric"
+            })}
+          </p>
+        </div>
+        <DataFreshness />
       </div>
 
       {/* Tab Navigation */}

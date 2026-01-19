@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tooltip as UITooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import DataFreshness from "@/components/DataFreshness";
 import {
   Table,
   TableBody,
@@ -337,19 +338,22 @@ export default function ArtemisArchitecture() {
               {totalTickets} tickets categorized across 8 architecture layers | Business Category Mapping
             </p>
           </div>
-          <div className="flex gap-2">
-            <Link href="/initiative">
-              <Button variant="outline" className="flex items-center gap-2">
-                <Target className="w-4 h-4" />
-                View Initiative
-              </Button>
-            </Link>
-            <Link href="/agents">
-              <Button variant="outline" className="flex items-center gap-2">
-                <Users className="w-4 h-4" />
-                Agent Families
-              </Button>
-            </Link>
+          <div className="flex items-center gap-4">
+            <DataFreshness />
+            <div className="flex gap-2">
+              <Link href="/initiative">
+                <Button variant="outline" className="flex items-center gap-2">
+                  <Target className="w-4 h-4" />
+                  View Initiative
+                </Button>
+              </Link>
+              <Link href="/agents">
+                <Button variant="outline" className="flex items-center gap-2">
+                  <Users className="w-4 h-4" />
+                  Agent Families
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
 

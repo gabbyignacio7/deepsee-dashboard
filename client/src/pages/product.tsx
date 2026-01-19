@@ -7,6 +7,7 @@ import { getUniqueClients } from '@/lib/client-utils';
 import ClientFilter from '@/components/ClientFilter';
 import SortableColumnHeader from '@/components/SortableColumnHeader';
 import MetricTooltip from '@/components/MetricTooltip';
+import DataFreshness from '@/components/DataFreshness';
 import { useSortableTable, comparators } from '@/hooks/useSortableTable';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ZAxis } from 'recharts';
 import { Target, Rocket, Zap, AlertCircle } from 'lucide-react';
@@ -75,9 +76,12 @@ export default function ProductRoadmap() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900" data-testid="heading-product">Product Roadmap Dashboard</h1>
-        <p className="text-gray-600 mt-1">Feature timeline and portfolio analysis</p>
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900" data-testid="heading-product">Product Roadmap Dashboard</h1>
+          <p className="text-gray-600 mt-1">Feature timeline and portfolio analysis</p>
+        </div>
+        <DataFreshness />
       </div>
 
       <ClientFilter

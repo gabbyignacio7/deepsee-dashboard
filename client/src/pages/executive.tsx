@@ -8,6 +8,10 @@ import SortableColumnHeader from '@/components/SortableColumnHeader';
 import ConfidenceBadge from '@/components/ConfidenceBadge';
 import ClientFilter from '@/components/ClientFilter';
 import MetricTooltip from '@/components/MetricTooltip';
+import DataFreshness from '@/components/DataFreshness';
+import SprintOverview from '@/components/SprintOverview';
+import BlockedItemsAlert from '@/components/BlockedItemsAlert';
+import SprintHealthScorecard from '@/components/SprintHealthScorecard';
 import { useSortableTable, comparators } from '@/hooks/useSortableTable';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { Download, DollarSign, BarChart2, Settings, Target, AlertTriangle, Rocket, Shield } from 'lucide-react';
@@ -121,14 +125,26 @@ export default function ExecutiveDashboard() {
           <h1 className="text-3xl font-bold text-gray-900" data-testid="heading-executive">Executive Summary Dashboard</h1>
           <p className="text-gray-600 mt-1">Unified priority scoring and portfolio overview</p>
         </div>
-        <button
-          onClick={() => exportToCSV(filteredFeatures, 'features-export.csv')}
-          className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          data-testid="button-export-data"
-        >
-          <Download className="w-4 h-4 mr-2" />
-          Export Data
-        </button>
+        <div className="flex items-center gap-4">
+          <DataFreshness />
+          <button
+            onClick={() => exportToCSV(filteredFeatures, 'features-export.csv')}
+            className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            data-testid="button-export-data"
+          >
+            <Download className="w-4 h-4 mr-2" />
+            Export Data
+          </button>
+        </div>
+      </div>
+
+      {/* Sprint Overview */}
+      <SprintOverview />
+
+      {/* Sprint Health and Blocked Items */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <SprintHealthScorecard />
+        <BlockedItemsAlert maxItems={5} />
       </div>
 
       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">

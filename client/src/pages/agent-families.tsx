@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
+import DataFreshness from "@/components/DataFreshness";
 import {
   Table,
   TableBody,
@@ -284,19 +285,22 @@ export default function AgentFamilies() {
             4 Agent Families with {totalBlueprints} Blueprint configurations | ARTEMIS Agent Templates
           </p>
         </div>
-        <div className="flex gap-2">
-          <Link href="/artemis">
-            <Button variant="outline" className="flex items-center gap-2">
-              <Layers className="w-4 h-4" />
-              Architecture
-            </Button>
-          </Link>
-          <Link href="/initiative">
-            <Button variant="outline" className="flex items-center gap-2">
-              <Target className="w-4 h-4" />
-              Initiative
-            </Button>
-          </Link>
+        <div className="flex items-center gap-4">
+          <DataFreshness />
+          <div className="flex gap-2">
+            <Link href="/artemis">
+              <Button variant="outline" className="flex items-center gap-2">
+                <Layers className="w-4 h-4" />
+                Architecture
+              </Button>
+            </Link>
+            <Link href="/initiative">
+              <Button variant="outline" className="flex items-center gap-2">
+                <Target className="w-4 h-4" />
+                Initiative
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
 

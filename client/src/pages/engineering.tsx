@@ -4,6 +4,8 @@ import { getUniqueClients } from '@/lib/client-utils';
 import ClientFilter from '@/components/ClientFilter';
 import DeprecationFilter from '@/components/DeprecationFilter';
 import MetricTooltip from '@/components/MetricTooltip';
+import DataFreshness from '@/components/DataFreshness';
+import WorkMixChart from '@/components/WorkMixChart';
 import EngineerAllocation from '@/components/engineer-allocation/EngineerAllocation';
 import SprintAnalysis from '@/components/SprintAnalysis';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -57,9 +59,12 @@ export default function EngineeringDashboard() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900" data-testid="heading-engineering">Engineering Dashboard</h1>
-        <p className="text-gray-600 mt-1">Team workload, capacity, and allocation</p>
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900" data-testid="heading-engineering">Engineering Dashboard</h1>
+          <p className="text-gray-600 mt-1">Team workload, capacity, and allocation</p>
+        </div>
+        <DataFreshness />
       </div>
 
       <Tabs defaultValue="sprint-analysis" className="space-y-6">
@@ -135,6 +140,9 @@ export default function EngineeringDashboard() {
               </div>
             </div>
           )}
+
+          {/* Work Mix Chart */}
+          <WorkMixChart />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">

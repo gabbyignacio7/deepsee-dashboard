@@ -6,6 +6,7 @@ import { getUniqueClients } from '@/lib/client-utils';
 import ClientFilter from '@/components/ClientFilter';
 import SortableColumnHeader from '@/components/SortableColumnHeader';
 import MetricTooltip from '@/components/MetricTooltip';
+import DataFreshness from '@/components/DataFreshness';
 import { useSortableTable, comparators } from '@/hooks/useSortableTable';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
@@ -69,9 +70,12 @@ export default function SalesDashboard() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900" data-testid="heading-sales">Sales Pipeline Dashboard</h1>
-        <p className="text-gray-600 mt-1">Revenue forecast and deal-feature mapping</p>
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900" data-testid="heading-sales">Sales Pipeline Dashboard</h1>
+          <p className="text-gray-600 mt-1">Revenue forecast and deal-feature mapping</p>
+        </div>
+        <DataFreshness />
       </div>
 
       <ClientFilter
