@@ -1,8 +1,8 @@
 // Sprint Data - Updated January 18, 2026
-// Source: JIRA Extract
+// Source: Monday.com CRM + JIRA
 
-export const EXTRACTION_TIMESTAMP = "2026-01-18T15:45:00-07:00"; // MT timezone
-export const DATA_SOURCE = "JIRA Extract";
+export const EXTRACTION_TIMESTAMP = "2026-01-18T18:59:00-07:00"; // MT timezone
+export const DATA_SOURCE = "Monday.com CRM + JIRA";
 
 export interface SprintStatus {
   toDo: number;
