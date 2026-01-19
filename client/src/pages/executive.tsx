@@ -9,14 +9,15 @@ import ConfidenceBadge from '@/components/ConfidenceBadge';
 import ClientFilter from '@/components/ClientFilter';
 import MetricTooltip from '@/components/MetricTooltip';
 import DataFreshness from '@/components/DataFreshness';
-import SprintOverview from '@/components/SprintOverview';
-import BlockedItemsAlert from '@/components/BlockedItemsAlert';
-import SprintHealthScorecard from '@/components/SprintHealthScorecard';
 import { useSortableTable, comparators } from '@/hooks/useSortableTable';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { Download, DollarSign, BarChart2, Settings, Target, AlertTriangle, Rocket, Shield } from 'lucide-react';
 import { masterFeaturesData, getBucketStats, BUCKET_CONFIG, type Bucket } from '@/data/masterFeaturesData';
 import { Badge } from '@/components/ui/badge';
+import { blockedSummary } from '@/data/blockedItemsData';
+import { CURRENT_SPRINT } from '@/data/sprintData';
+import { overallHealth } from '@/data/sprintHealthData';
+import { artemisReadiness } from '@/data/artemisFoundationData';
 
 export default function ExecutiveDashboard() {
   const { features, salesOpportunities, allFeatures, selectedClients, setSelectedClients, loading, error } = useDashboard();
@@ -138,13 +139,52 @@ export default function ExecutiveDashboard() {
         </div>
       </div>
 
-      {/* Sprint Overview */}
-      <SprintOverview />
-
-      {/* Sprint Health and Blocked Items */}
+      {/* Key Highlights - Executive Summary */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <SprintHealthScorecard />
-        <BlockedItemsAlert maxItems={5} />
+        {/* Key Highlights */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <h3 className="font-semibold text-gray-900 mb-3">Key Highlights</h3>
+          <ul className="space-y-2 text-sm">
+            <li className="flex items-start gap-2">
+              <span className="text-red-500 mt-0.5">●</span>
+              <span>Sprint {CURRENT_SPRINT.id}: {CURRENT_SPRINT.completionRate}% complete, {CURRENT_SPRINT.daysRemaining} days remaining - <strong className="text-red-600">{overallHealth} status</strong></span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-red-500 mt-0.5">●</span>
+              <span>ARTEMIS Foundation: {artemisReadiness.started}/{artemisReadiness.totalEpics} epics started - needs immediate attention</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-red-500 mt-0.5">●</span>
+              <span>{blockedSummary.total} blocked items requiring escalation (avg {blockedSummary.avgDaysBlocked} days blocked)</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-yellow-500 mt-0.5">●</span>
+              <span>DTCC ELA ($1.85M) in Contracting & Close - 80% probability</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-blue-500 mt-0.5">●</span>
+              <span>Work mix: {CURRENT_SPRINT.mix.artemis}% ARTEMIS vs 50-60% target - rebalancing needed</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Critical Alerts (P0 only) */}
+        <div className="bg-red-50 border-l-4 border-red-500 rounded-lg p-4">
+          <h3 className="font-semibold text-red-800 mb-2 flex items-center gap-2">
+            <AlertTriangle className="w-4 h-4" />
+            Critical Alerts (P0)
+          </h3>
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="px-2 py-1 bg-red-100 text-red-800 rounded text-xs font-bold">P0</span>
+              <a href="https://deepsee.atlassian.net/browse/BACK-1603" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm">BACK-1603</a>
+              <span className="text-sm text-gray-700">Deep Recon - DTCC Sync blocked 35 days</span>
+            </div>
+            <div className="text-sm text-red-600 mt-2">
+              {blockedSummary.total} total blocked items → <a href="/engineering" className="underline hover:no-underline">See Engineering tab</a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
