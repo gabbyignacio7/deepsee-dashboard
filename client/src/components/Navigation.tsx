@@ -43,8 +43,8 @@ export default function Navigation() {
               className="h-8" 
               data-testid="logo"
             />
-            <span className="text-gray-400 text-sm hidden md:inline">|</span>
-            <span className="text-gray-600 text-sm font-medium hidden md:inline">
+            <span className="text-gray-400 text-sm hidden md:inline select-none">|</span>
+            <span className="text-gray-600 text-sm font-medium hidden md:inline whitespace-nowrap">
               Priority Dashboard
             </span>
           </div>
