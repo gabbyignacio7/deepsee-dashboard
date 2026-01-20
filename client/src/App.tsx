@@ -10,6 +10,7 @@ import ExecutiveDashboard from "@/pages/executive";
 import SalesDashboard from "@/pages/sales";
 import EngineeringDashboard from "@/pages/engineering";
 import ProductRoadmap from "@/pages/product";
+import RoadmapPage from "@/pages/roadmap";
 import BoardView from "@/pages/board";
 import PlatformArchitecture from "@/pages/platform-architecture";
 import ArtemisArchitecture from "@/pages/artemis-architecture";
@@ -32,6 +33,7 @@ function AppRouter() {
           <Route path="/sales" component={SalesDashboard} />
           <Route path="/engineering" component={EngineeringDashboard} />
           <Route path="/product" component={ProductRoadmap} />
+          <Route path="/roadmap" component={RoadmapPage} />
           <Route path="/board" component={BoardView} />
           <Route path="/architecture" component={PlatformArchitecture} />
           <Route path="/artemis" component={ArtemisArchitecture} />
