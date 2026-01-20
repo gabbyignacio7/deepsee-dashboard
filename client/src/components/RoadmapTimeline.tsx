@@ -118,7 +118,7 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Product Roadmap Timeline</h1>
           <p className="text-muted-foreground">
-            Q1-Q3 2026 • Updated {new Date(ROADMAP_CONFIG.lastUpdated).toLocaleDateString()}
+            Q1-Q3 2026 • Updated January 20, 2026 1:00 PM MT
           </p>
         </div>
 
