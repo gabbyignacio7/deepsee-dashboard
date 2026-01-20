@@ -115,7 +115,61 @@ export const changeLogDec1: ChangeLogEntry = {
   ]
 };
 
+export const changeLogJan20: ChangeLogEntry = {
+  date: "January 20, 2026",
+  timestamp: "12:00 PM MT",
+  source: "JIRA Sprint 2026-S2 + Monday.com PoV & Client Tracker",
+
+  engineerChanges: [
+    {
+      engineer: "Treven Trujillo",
+      change: "BACK-1603 blocked 8 days - waiting for DTCC customer samples"
+    },
+    {
+      engineer: "Unassigned",
+      change: "BACK-1489 (40 days) and UI-719 (20 days) need immediate assignment"
+    }
+  ],
+
+  ticketStatusChanges: [
+    {
+      ticketId: "BACK-1603",
+      previousStatus: "In Progress",
+      newStatus: "Blocked",
+      note: "DTCC Sync - waiting for additional samples from customer"
+    },
+    {
+      ticketId: "UI-719",
+      previousStatus: "To Do",
+      newStatus: "Blocked",
+      note: "Accenture - needs assignment/clarification (20 days)"
+    },
+    {
+      ticketId: "BACK-1489",
+      note: "Still blocked - 40 days, needs assignment"
+    }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 12, totalStoryPoints: 131, trackedTickets: 131 },
+    current: { engineers: 12, totalStoryPoints: 137, trackedTickets: 70 }
+  },
+
+  dataUpdates: [
+    "Sprint 2026-S2 status update: 21% complete (29/137 pts), 7 days remaining",
+    "Over-commitment identified: 137 pts vs 80 pt avg velocity (71% over)",
+    "Burndown: 20-25 points behind ideal line",
+    "Scope creep: +32 points added mid-sprint",
+    "3 blocked items requiring immediate action",
+    "Created clientTrackerData.ts for Monday.com PoV & Client Tracker",
+    "Updated existing customer ARR to $990,200 (6 live clients)",
+    "Client pipeline: 6 Live, 3 Implementation, 5 Active PoVs",
+    "Epic progress: UI-694 30%, BACK-1232/1650/1656 at 0%"
+  ]
+};
+
 export const changeLog: ChangeLogEntry[] = [
+  changeLogJan20,
   changeLogDec1,
   changeLogNov23
 ];

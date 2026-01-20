@@ -1,6 +1,6 @@
 // Sales Pipeline Data - Monday.com CRM
-// Last Updated: January 11, 2026 @ 5:07 PM MT
-// Source: Browser Agent Monday.com Extraction
+// Last Updated: January 20, 2026 @ 12:00 PM MT
+// Source: Browser Agent Monday.com Extraction + PoV & Client Tracker
 
 export type RiskLevel = 'green' | 'yellow' | 'red';
 export type Priority = 'P0' | 'P1' | 'P2' | 'P3';
@@ -78,14 +78,14 @@ export interface MondaySalesPipelineData {
 
 export const mondaySalesPipelineData: MondaySalesPipelineData = {
   overview: {
-    asOf: "2026-01-11T17:07:00-07:00",
+    asOf: "2026-01-20T12:00:00-07:00",
     totalPipeline: 10720000,
     weightedPipeline: 1610000,
     activeDeals: 84,
     avgOpportunityAge: 148,
     closingQ1_2026: 2900000,
     closingThisMonth: 340000, // BetaNxt
-    existingCustomerArr: 990200
+    existingCustomerArr: 990200 // Updated from Monday.com Client Tracker
   },
 
   stageDistribution: [
@@ -251,10 +251,12 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     { family: "Reconciliation", arr: 313000 }
   ],
 
+  // Updated from Monday.com PoV & Client Tracker - January 20, 2026
+  // Total Live ARR: $990,200
   existingCustomers: [
-    { client: "DTCC - ITP SSI", arr: 416200, tcv3yr: 1162200, status: "Active" },
+    { client: "DTCC", arr: 416200, tcv3yr: 1162200, status: "Active" },
     { client: "Accenture", arr: 225000, tcv3yr: 725000, status: "Active" },
-    { client: "Altaira - BPO", arr: 150000, tcv3yr: 450000, status: "Active" },
+    { client: "Altaira", arr: 150000, tcv3yr: 450000, status: "Active" },
     { client: "BetaNXT - UI", arr: 90000, tcv3yr: 90000, status: "Active" },
     { client: "Colony Bank", arr: 59000, tcv3yr: 177000, status: "Active" },
     { client: "Vantage Bank Texas", arr: 50000, tcv3yr: 150000, status: "Active" }

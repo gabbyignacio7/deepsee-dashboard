@@ -1,13 +1,28 @@
 export interface JiraMetrics {
   lastUpdated: string;
   extractionSource: string;
+  sprintInfo: {
+    name: string;
+    dates: string;
+    daysRemaining: number;
+    totalStoryPoints: number;
+    avgVelocity: number;
+    overCommitment: string;
+  };
   overall: {
     totalActiveTickets: number;
     totalInProgress: number;
     totalToDo: number;
     totalCodeReview: number;
     totalBlocked: number;
+    totalDone: number;
     totalWithStoryPoints: number;
+  };
+  storyPoints: {
+    completed: number;
+    inProgress: number;
+    notStarted: number;
+    completionRate: number;
   };
   engineerSummary: {
     activeEngineers: number;
@@ -21,22 +36,40 @@ export interface JiraMetrics {
     status: string;
     daysInStatus: number;
     warningLevel: 'critical' | 'warning' | 'normal';
+    reason?: string;
   }>;
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 11, 2026 4:15 PM MT",
-  extractionSource: "JIRA - Sprint 2026-S1",
-  
+  lastUpdated: "January 20, 2026 12:00 PM MT",
+  extractionSource: "JIRA - Sprint 2026-S2",
+
+  sprintInfo: {
+    name: "2026-S2",
+    dates: "Jan 16 - Jan 30, 2026",
+    daysRemaining: 7,
+    totalStoryPoints: 137,
+    avgVelocity: 80,
+    overCommitment: "71% over average velocity"
+  },
+
   overall: {
-    totalActiveTickets: 100,
-    totalInProgress: 18,
-    totalToDo: 43,
-    totalCodeReview: 6,
-    totalBlocked: 0,
+    totalActiveTickets: 70,
+    totalInProgress: 13,
+    totalToDo: 44,
+    totalCodeReview: 3,
+    totalBlocked: 3,
+    totalDone: 8,
     totalWithStoryPoints: 70
   },
-  
+
+  storyPoints: {
+    completed: 29,
+    inProgress: 44,
+    notStarted: 64,
+    completionRate: 21
+  },
+
   engineerSummary: {
     activeEngineers: 12,
     engineersWithNoTickets: [],
@@ -46,55 +79,55 @@ export const jiraMetrics: JiraMetrics = {
       { name: "Kannal Mutharasu", tickets: 5 }
     ]
   },
-  
+
   longRunningTickets: [
     {
-      id: "BACK-1196",
-      title: "Fix email status synchronization between Outlook and DeepView",
-      assignee: "Lane Terry",
-      status: "To Do",
-      daysInStatus: 82,
-      warningLevel: "critical"
+      id: "BACK-1489",
+      title: "Update classification-api Base Image to Ubuntu 24.04 LTS",
+      assignee: "Unassigned",
+      status: "Blocked",
+      daysInStatus: 40,
+      warningLevel: "critical",
+      reason: "Technical dependency - needs assignment"
     },
     {
-      id: "BACK-1224",
-      title: "Research and plan major scalability refactor",
-      assignee: "Lane Terry",
-      status: "In Progress",
-      daysInStatus: 66,
-      warningLevel: "critical"
+      id: "UI-719",
+      title: "DeepRecon - Add To column to Actionable Data Pages (Accenture)",
+      assignee: "Unassigned",
+      status: "Blocked",
+      daysInStatus: 20,
+      warningLevel: "critical",
+      reason: "Needs assignment/clarification"
     },
     {
-      id: "NSI-10",
-      title: "Set Up",
-      assignee: "Loris D'Acunto",
-      status: "In Progress",
-      daysInStatus: 50,
-      warningLevel: "warning"
-    },
-    {
-      id: "BACK-882",
-      title: "Update Classifier and DeepRecon API services",
-      assignee: "Darius Ouderkirk",
-      status: "In Progress",
-      daysInStatus: 45,
-      warningLevel: "warning"
-    },
-    {
-      id: "BACK-1117",
-      title: "Implement intent-agent logic in extractor-service",
-      assignee: "Darius Ouderkirk",
-      status: "Code Review",
-      daysInStatus: 44,
-      warningLevel: "warning"
-    },
-    {
-      id: "BACK-1382",
-      title: "Export for Vantage Commercial Lending Work Items",
-      assignee: "Darius Ouderkirk",
-      status: "In Progress",
-      daysInStatus: 35,
-      warningLevel: "warning"
+      id: "BACK-1603",
+      title: "Deep Recon - DTCC Sync to DeepSee - extend data from additional fields",
+      assignee: "Treven Trujillo",
+      status: "Blocked",
+      daysInStatus: 8,
+      warningLevel: "warning",
+      reason: "Waiting for additional samples from customer"
     }
   ]
+};
+
+// Epic Progress - Updated January 20, 2026
+export interface EpicProgress {
+  key: string;
+  description: string;
+  progress: number;
+  status: 'not_started' | 'in_progress' | 'complete';
+}
+
+export const epicProgress: EpicProgress[] = [
+  { key: "UI-694", description: "UI and Dashboard Improvements (DeepRecon)", progress: 30, status: 'in_progress' },
+  { key: "BACK-1232", description: "DTCC Scalability", progress: 0, status: 'not_started' },
+  { key: "BACK-1650", description: "Mercury Extraction - Unified Document Service", progress: 0, status: 'not_started' },
+  { key: "BACK-1656", description: "Document Parser - Multi-Format Parsing", progress: 0, status: 'not_started' }
+];
+
+// Sprint Comparison Data
+export const sprintComparison = {
+  s1: { sprint: "2026-S1", committed: 131, completed: 129, rate: 98.5 },
+  s2: { sprint: "2026-S2", committed: 137, completed: 29, rate: 21, status: "in_progress" }
 };

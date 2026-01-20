@@ -1,7 +1,8 @@
-// Sprint Data - Updated January 18, 2026
+// Sprint Data - Updated January 20, 2026
 // Source: Monday.com CRM + JIRA
+// Sprint 2026-S2 Status Update
 
-export const EXTRACTION_TIMESTAMP = "2026-01-18T18:59:00-07:00"; // MT timezone
+export const EXTRACTION_TIMESTAMP = "2026-01-20T12:00:00-07:00"; // MT timezone
 export const DATA_SOURCE = "Monday.com CRM + JIRA";
 
 export interface SprintStatus {
@@ -58,26 +59,28 @@ export interface NextSprintClientItem {
 }
 
 // Current Sprint Data - 2026-S2 (Active)
+// Updated: January 20, 2026 - 7 days remaining
 export const CURRENT_SPRINT: Sprint = {
   id: '2026-S2',
   name: 'Sprint 2026-S2',
   startDate: '2026-01-16',
   endDate: '2026-01-30',
   status: 'active',
-  totalTickets: 74,
+  totalTickets: 70,
   completion: {
-    toDo: 49,
+    toDo: 44,
     blocked: 3,
     inProgress: 13,
     codeReview: 3,
-    done: 6
+    done: 8
   },
-  completionRate: 8.1, // 6/74
-  daysRemaining: 12,
+  completionRate: 21, // 29 points completed / 137 total points
+  daysRemaining: 7,
+  likelyRollovers: 20, // Recommended to descope 20-30 points
   mix: {
     artemis: 23,
-    client: 19,
-    infrastructure: 11
+    client: 32,
+    infrastructure: 15
   },
   assessment: 'client-heavy'
 };
@@ -179,11 +182,11 @@ export const ROLLOVER_HIGH_RISK: SprintItem[] = [
   { key: 'UI-716', summary: 'Update Overview > Breakout chart calculations', category: 'Client', client: 'Broadridge', staleDays: 34 }
 ];
 
-// Blocked Items in current sprint
+// Blocked Items in current sprint - Updated January 20, 2026
 export const BLOCKED_ITEMS: SprintItem[] = [
-  { key: 'BACK-1603', summary: 'Deep Recon - DTCC Sync to DeepSee', category: 'Client', client: 'DTCC', blockedDays: 35 },
-  { key: 'BACK-1489', summary: 'Update classification-api Base Image to Ubuntu', category: 'Infrastructure', blockedDays: 70 },
-  { key: 'UI-719', summary: 'DeepRecon - Add To column (Accenture)', category: 'Client', client: 'Accenture', blockedDays: 40 }
+  { key: 'BACK-1603', summary: 'Deep Recon - DTCC Sync to DeepSee - extend data from additional fields', category: 'Client', client: 'DTCC', blockedDays: 8 },
+  { key: 'UI-719', summary: 'DeepRecon - Add To column to Actionable Data Pages (Accenture)', category: 'Client', client: 'Accenture', blockedDays: 20, unassigned: true },
+  { key: 'BACK-1489', summary: 'Update classification-api Base Image to Ubuntu 24.04 LTS', category: 'Infrastructure', blockedDays: 40, unassigned: true }
 ];
 
 // ARTEMIS Backlog Items

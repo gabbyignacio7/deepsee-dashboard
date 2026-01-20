@@ -1,5 +1,5 @@
-// Blocked Items Data - Updated January 18, 2026
-// Source: JIRA Extract
+// Blocked Items Data - Updated January 20, 2026
+// Source: JIRA Extract - Sprint 2026-S2
 
 export interface BlockedItem {
   key: string;
@@ -9,9 +9,46 @@ export interface BlockedItem {
   category: string;
   priority: "P0" | "P1" | "P2";
   jiraUrl: string;
+  reason?: string;
 }
 
+// Current Sprint Blocked Items (3 items requiring immediate action)
+export const sprintBlockedItems: BlockedItem[] = [
+  {
+    key: "BACK-1603",
+    summary: "Deep Recon - DTCC Sync to DeepSee - extend data from additional fields",
+    assignee: "Treven Trujillo",
+    daysBlocked: 8,
+    category: "Client - DTCC",
+    priority: "P0",
+    jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1603",
+    reason: "Waiting for additional samples from customer"
+  },
+  {
+    key: "UI-719",
+    summary: "DeepRecon - Add To column to Actionable Data Pages (Accenture)",
+    assignee: "Unassigned",
+    daysBlocked: 20,
+    category: "Client - Accenture",
+    priority: "P1",
+    jiraUrl: "https://deepsee.atlassian.net/browse/UI-719",
+    reason: "Needs assignment/clarification"
+  },
+  {
+    key: "BACK-1489",
+    summary: "Update classification-api Base Image to Ubuntu 24.04 LTS",
+    assignee: "Unassigned",
+    daysBlocked: 40,
+    category: "Infrastructure",
+    priority: "P1",
+    jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1489",
+    reason: "Technical dependency - needs assignment"
+  }
+];
+
+// All blocked items including backlog
 export const blockedItems: BlockedItem[] = [
+  ...sprintBlockedItems,
   {
     key: "CI-739",
     summary: "Update Pretoken-Generator Lambda",
@@ -92,43 +129,18 @@ export const blockedItems: BlockedItem[] = [
     category: "UI/Feature",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/UI-692"
-  },
-  {
-    key: "BACK-1603",
-    summary: "Deep Recon - DTCC Sync to DeepSee",
-    assignee: "Treven Trujillo",
-    daysBlocked: 35,
-    category: "Client - DTCC",
-    priority: "P0",
-    jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1603"
-  },
-  {
-    key: "UI-719",
-    summary: "DeepRecon - Add To column (Accenture)",
-    assignee: "Unassigned",
-    daysBlocked: 40,
-    category: "Client",
-    priority: "P1",
-    jiraUrl: "https://deepsee.atlassian.net/browse/UI-719"
-  },
-  {
-    key: "BACK-1489",
-    summary: "Update classification-api Base Image to Ubuntu",
-    assignee: "Konnor Willison",
-    daysBlocked: 70,
-    category: "Infrastructure",
-    priority: "P1",
-    jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1489"
   }
 ];
 
 export const blockedSummary = {
   total: 12,
+  sprintBlocked: 3,
   p0Count: 1,
   p1Count: 4,
   p2Count: 7,
-  avgDaysBlocked: 128,
-  oldestBlocked: "CI-739 (330 days)"
+  avgDaysBlocked: 23, // Average for sprint blocked items
+  oldestBlocked: "BACK-1489 (40 days)",
+  unassignedCount: 2
 };
 
 // Get blocked items by priority

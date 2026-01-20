@@ -1,5 +1,5 @@
-// Work Mix Data - Updated January 18, 2026
-// Source: JIRA Extract
+// Work Mix Data - Updated January 20, 2026
+// Source: JIRA Extract - Sprint 2026-S2
 
 export interface WorkCategory {
   category: string;
@@ -21,24 +21,24 @@ export const workMix: WorkCategory[] = [
   },
   {
     category: "Client Work",
-    s2Tickets: 14,
-    s2Percentage: 19,
+    s2Tickets: 22,
+    s2Percentage: 31,
     target: "30-35%",
-    status: "below",
+    status: "on-target",
     color: "#F59E0B" // amber
   },
   {
     category: "Infrastructure",
-    s2Tickets: 8,
-    s2Percentage: 11,
+    s2Tickets: 10,
+    s2Percentage: 14,
     target: "10-15%",
     status: "on-target",
     color: "#10B981" // green
   },
   {
-    category: "Other",
-    s2Tickets: 35,
-    s2Percentage: 47,
+    category: "Bug Fixes/Tech Debt",
+    s2Tickets: 21,
+    s2Percentage: 30,
     target: "-",
     status: "above",
     color: "#6B7280" // gray
@@ -50,28 +50,31 @@ export interface ClientWorkBreakdown {
   s2Tickets: number;
   s2Points: number;
   arrAtRisk: number;
+  status?: string;
 }
 
+// Client work breakdown - Updated January 20, 2026
 export const clientBreakdown: ClientWorkBreakdown[] = [
-  { client: "Broadridge", s2Tickets: 3, s2Points: 0, arrAtRisk: 500000 },
-  { client: "Colony Bank", s2Tickets: 3, s2Points: 0, arrAtRisk: 200000 },
-  { client: "DTCC", s2Tickets: 3, s2Points: 11, arrAtRisk: 1850000 },
-  { client: "BBVA", s2Tickets: 2, s2Points: 0, arrAtRisk: 325000 },
-  { client: "CTC", s2Tickets: 2, s2Points: 0, arrAtRisk: 0 },
-  { client: "Accenture", s2Tickets: 1, s2Points: 0, arrAtRisk: 0 }
+  { client: "Accenture", s2Tickets: 4, s2Points: 0, arrAtRisk: 225000, status: "UI improvements (30% complete, 1 blocked)" },
+  { client: "Broadridge", s2Tickets: 3, s2Points: 0, arrAtRisk: 500000, status: "DeepRecon enhancements" },
+  { client: "DTCC", s2Tickets: 3, s2Points: 11, arrAtRisk: 416200, status: "Scalability (0%), Sync blocked" },
+  { client: "Colony Bank", s2Tickets: 3, s2Points: 0, arrAtRisk: 59000, status: "HMDA/CRA ongoing" },
+  { client: "BBVA", s2Tickets: 2, s2Points: 0, arrAtRisk: 325000, status: "Mercury Extraction" },
+  { client: "Sunwest Bank", s2Tickets: 2, s2Points: 0, arrAtRisk: 0, status: "Active tickets" }
 ];
 
 export const workMixSummary = {
-  totalTickets: 74,
+  totalTickets: 70,
+  totalPoints: 137,
   artemisPercentage: 23,
   artemisTarget: 55, // midpoint of 50-60%
-  clientPercentage: 19,
+  clientPercentage: 31,
   clientTarget: 32.5, // midpoint of 30-35%
-  infrastructurePercentage: 11,
+  infrastructurePercentage: 14,
   infrastructureTarget: 12.5, // midpoint of 10-15%
   gap: {
-    artemis: -32, // 23 - 55
-    client: -13.5 // 19 - 32.5
+    artemis: -32, // 23 - 55 (significant gap)
+    client: -1.5 // 31 - 32.5 (on target)
   }
 };
 
