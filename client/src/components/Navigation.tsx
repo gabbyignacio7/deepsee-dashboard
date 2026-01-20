@@ -36,15 +36,15 @@ export default function Navigation() {
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center space-x-3">
-            <img 
-              src={logoImage} 
-              alt="DeepSee AI" 
-              className="h-8" 
+          <div className="flex items-center space-x-3 flex-shrink-0">
+            <img
+              src={logoImage}
+              alt="DeepSee AI"
+              className="h-8"
               data-testid="logo"
             />
-            <span className="text-gray-400 text-sm hidden md:inline select-none">|</span>
-            <span className="text-gray-600 text-sm font-medium hidden md:inline whitespace-nowrap">
+            <span className="text-gray-400 text-sm hidden lg:inline select-none">|</span>
+            <span className="text-gray-600 text-sm font-medium hidden lg:inline whitespace-nowrap">
               Priority Dashboard
             </span>
           </div>

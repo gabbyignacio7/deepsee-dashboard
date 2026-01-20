@@ -241,8 +241,9 @@ export function getSprintMixChartData() {
   ];
 }
 
-// Format timestamp for display
+// Format timestamp for display - always show MT timezone
 export function formatDataTimestamp(isoString: string = EXTRACTION_TIMESTAMP): string {
+  // Parse the ISO string and format with MT timezone
   const date = new Date(isoString);
   return date.toLocaleDateString('en-US', {
     month: 'long',
@@ -250,6 +251,6 @@ export function formatDataTimestamp(isoString: string = EXTRACTION_TIMESTAMP): s
     year: 'numeric',
     hour: 'numeric',
     minute: '2-digit',
-    timeZoneName: 'short'
-  });
+    timeZone: 'America/Denver'
+  }) + ' MT';
 }
