@@ -117,7 +117,7 @@ export const changeLogDec1: ChangeLogEntry = {
 
 export const changeLogJan20: ChangeLogEntry = {
   date: "January 20, 2026",
-  timestamp: "12:00 PM MT",
+  timestamp: "1:00 PM MT",
   source: "JIRA Sprint 2026-S2 + Monday.com PoV & Client Tracker",
 
   engineerChanges: [

@@ -1,5 +1,5 @@
 // Sales Pipeline Data - Monday.com CRM
-// Last Updated: January 20, 2026 @ 12:00 PM MT
+// Last Updated: January 20, 2026 @ 1:00 PM MT
 // Source: Browser Agent Monday.com Extraction + PoV & Client Tracker
 
 export type RiskLevel = 'green' | 'yellow' | 'red';
@@ -78,7 +78,7 @@ export interface MondaySalesPipelineData {
 
 export const mondaySalesPipelineData: MondaySalesPipelineData = {
   overview: {
-    asOf: "2026-01-20T12:00:00-07:00",
+    asOf: "2026-01-20T13:00:00-07:00",
     totalPipeline: 10720000,
     weightedPipeline: 1610000,
     activeDeals: 84,

@@ -2,7 +2,7 @@
 // Source: Monday.com CRM + JIRA
 // Sprint 2026-S2 Status Update
 
-export const EXTRACTION_TIMESTAMP = "2026-01-20T12:00:00-07:00"; // MT timezone
+export const EXTRACTION_TIMESTAMP = "2026-01-20T13:00:00-07:00"; // MT timezone
 export const DATA_SOURCE = "Monday.com CRM + JIRA";
 
 export interface SprintStatus {
