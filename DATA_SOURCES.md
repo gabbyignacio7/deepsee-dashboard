@@ -7,11 +7,11 @@
 
 ## Overview
 
-The dashboard aggregates data from multiple sources. Currently, data collection is **manual** with plans to automate via GitHub Actions.
+The dashboard aggregates data from multiple sources. JIRA data is now **automated** via GitHub Actions.
 
 | Source | Update Frequency | Collection Method | Owner |
 |--------|------------------|-------------------|-------|
-| JIRA | As-needed | Manual JQL export | Gabriel |
+| JIRA | Every 5 minutes | **Automated via API** | Automated |
 | Monday.com | Weekly | Manual export | Gabriel |
 | Roadmap | As-needed | Product input | Ryan/Gabriel |
 | Client/ARR | Monthly | Monday.com sync | Gabriel |
@@ -262,52 +262,53 @@ Full PRD Hub: https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2813558785
 
 ---
 
-## Automation (Planned)
+## Automation (Active)
 
 ### JIRA API Automation
 
-To automate JIRA data refresh via GitHub Actions:
+JIRA data is automatically synced via GitHub Actions every 5 minutes.
 
-1. **Create JIRA API Token:**
-   - Go to: https://id.atlassian.com/manage-profile/security/api-tokens
-   - Create token, copy value
+**Script:** `scripts/fetch-jira-data.js`
 
-2. **Add GitHub Secret:**
-   - Repo → Settings → Secrets → Actions
-   - Add `JIRA_API_TOKEN`
-   - Add `JIRA_EMAIL` (your Atlassian email)
+**Generated Files:**
+- `client/src/data/sprintData.ts` - Sprint metrics, completion rates, work mix
+- `client/src/data/blockedItemsData.ts` - Blocked ticket details
+- `client/src/data/jiraMetrics.ts` - Overall JIRA metrics and engineer stats
+- `client/public/data/jira.json` - Raw ticket data for dashboard components
 
-3. **GitHub Action Workflow:**
-   ```yaml
-   # .github/workflows/sync-jira.yml
-   name: Sync JIRA Data
-   on:
-     schedule:
-       - cron: '0 6 * * *'  # Daily at 6am UTC
-     workflow_dispatch:      # Manual trigger
+**JQL Query:**
+```
+project IN ("Product Roadmap", "Back End Development", "Security & Compliance", 
+FILBERT, "Core-Infrastructure", "Front End Development", "Neuro-Symbolic Intelligence", 
+InfraRig) AND Sprint in openSprints() ORDER BY Rank ASC
+```
 
-   jobs:
-     sync:
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v3
-         - name: Fetch JIRA Data
-           run: |
-             curl -u ${{ secrets.JIRA_EMAIL }}:${{ secrets.JIRA_API_TOKEN }} \
-               "https://deepsee.atlassian.net/rest/api/3/search?jql=project%20IN%20(BACK,UI)%20AND%20Sprint%20in%20openSprints()" \
-               -o client/src/data/jira-raw.json
-         - name: Transform Data
-           run: node scripts/transform-jira.js
-         - name: Commit & Push
-           run: |
-             git config user.name "GitHub Action"
-             git config user.email "action@github.com"
-             git add client/src/data/sprintData.ts
-             git commit -m "chore: auto-sync JIRA data" || exit 0
-             git push
-   ```
+**Setup (already configured):**
 
-### Monday.com API Automation
+1. **GitHub Secrets Required:**
+   - `JIRA_BASE_URL` - https://deepsee.atlassian.net
+   - `JIRA_USER_EMAIL` - Atlassian account email
+   - `JIRA_API_TOKEN` - API token from https://id.atlassian.com/manage-profile/security/api-tokens
+
+2. **Workflow:** `.github/workflows/deploy.yml`
+   - Runs every 5 minutes via cron
+   - Fetches JIRA data via API
+   - Generates TypeScript data files
+   - Commits changes to main
+   - Builds and deploys to GitHub Pages
+
+**Manual Run:**
+```bash
+# Set environment variables
+export JIRA_BASE_URL="https://deepsee.atlassian.net"
+export JIRA_USER_EMAIL="your-email@deepsee.ai"
+export JIRA_API_TOKEN="your-api-token"
+
+# Run the script
+npm run fetch-jira
+```
+
+### Monday.com API Automation (Planned)
 
 Similar approach using Monday.com GraphQL API:
 - API Docs: https://developer.monday.com/api-reference/docs

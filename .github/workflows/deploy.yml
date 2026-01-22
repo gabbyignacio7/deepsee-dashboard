@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -32,7 +34,7 @@ jobs:
         run: npm ci
 
       - name: Fetch JIRA Data
-        if: ${{ env.JIRA_BASE_URL != '' }}
+        if: ${{ secrets.JIRA_BASE_URL != '' }}
         env:
           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
           JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
@@ -41,6 +43,18 @@ jobs:
           echo "Fetching latest JIRA data..."
           node scripts/fetch-jira-data.js
           echo "JIRA data updated successfully"
+
+      - name: Commit Generated Data Files
+        if: ${{ secrets.JIRA_BASE_URL != '' }}
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add client/src/data/sprintData.ts
+          git add client/src/data/blockedItemsData.ts
+          git add client/src/data/jiraMetrics.ts
+          git add client/public/data/jira.json
+          git diff --staged --quiet || git commit -m "chore: auto-sync JIRA data [$(date -u +%Y-%m-%dT%H:%M:%SZ)]"
+          git push || echo "No changes to push"
 
       - name: Build
         run: npm run build
