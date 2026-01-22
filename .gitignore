@@ -10,3 +10,6 @@ vite.config.ts.*
 replit.md
 project-download.zip
 downloads
+
+# Local exploration scripts
+scripts/explore-sprints.sh

@@ -19,7 +19,7 @@ export const sprintBlockedItems: BlockedItem[] = [
     key: "BACK-1603",
     summary: "Deep Recon - DTCC Sync to DeepSee - extend data from additional fields to be imported from SFDC case",
     assignee: "Treven Trujillo",
-    daysBlocked: 6,
+    daysBlocked: 10,
     category: "client",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1603"
@@ -28,25 +28,25 @@ export const sprintBlockedItems: BlockedItem[] = [
     key: "UI-719",
     summary: "DeepRecon - Add To column to Actionable Data Pages (Accenture)",
     assignee: "Unassigned",
-    daysBlocked: 6,
+    daysBlocked: 22,
     category: "client",
-    priority: "P2",
+    priority: "P1",
     jiraUrl: "https://deepsee.atlassian.net/browse/UI-719"
   },
   {
     key: "BACK-1489",
     summary: "Update classification-api Base Image to Ubuntu 24.04 LTS",
     assignee: "Unassigned",
-    daysBlocked: 6,
+    daysBlocked: 42,
     category: "infrastructure",
-    priority: "P2",
+    priority: "P0",
     jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1489"
   },
   {
     key: "BACK-1796",
     summary: "Automatically refresh the Allegro password before expiry",
     assignee: "Kannal Mutharasu",
-    daysBlocked: 0,
+    daysBlocked: 1,
     category: "artemis",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1796"
@@ -59,7 +59,7 @@ export const blockedItems: BlockedItem[] = [
     key: "BACK-1603",
     summary: "Deep Recon - DTCC Sync to DeepSee - extend data from additional fields to be imported from SFDC case",
     assignee: "Treven Trujillo",
-    daysBlocked: 6,
+    daysBlocked: 10,
     category: "client",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1603"
@@ -68,25 +68,25 @@ export const blockedItems: BlockedItem[] = [
     key: "UI-719",
     summary: "DeepRecon - Add To column to Actionable Data Pages (Accenture)",
     assignee: "Unassigned",
-    daysBlocked: 6,
+    daysBlocked: 22,
     category: "client",
-    priority: "P2",
+    priority: "P1",
     jiraUrl: "https://deepsee.atlassian.net/browse/UI-719"
   },
   {
     key: "BACK-1489",
     summary: "Update classification-api Base Image to Ubuntu 24.04 LTS",
     assignee: "Unassigned",
-    daysBlocked: 6,
+    daysBlocked: 42,
     category: "infrastructure",
-    priority: "P2",
+    priority: "P0",
     jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1489"
   },
   {
     key: "BACK-1796",
     summary: "Automatically refresh the Allegro password before expiry",
     assignee: "Kannal Mutharasu",
-    daysBlocked: 0,
+    daysBlocked: 1,
     category: "artemis",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1796"
@@ -96,11 +96,11 @@ export const blockedItems: BlockedItem[] = [
 export const blockedSummary = {
   total: 4,
   sprintBlocked: 4,
-  p0Count: 0,
-  p1Count: 0,
-  p2Count: 4,
-  avgDaysBlocked: 5,
-  oldestBlocked: "BACK-1603 (6 days)",
+  p0Count: 1,
+  p1Count: 1,
+  p2Count: 2,
+  avgDaysBlocked: 19,
+  oldestBlocked: "BACK-1489 (42 days)",
   unassignedCount: 2
 };
 

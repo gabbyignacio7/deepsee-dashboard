@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 22, 2026 at 2:31 PM MT",
+  lastUpdated: "January 22, 2026 at 2:48 PM MT",
   extractionSource: "JIRA API - 2026-S2",
 
   sprintInfo: {
@@ -86,6 +86,22 @@ export const jiraMetrics: JiraMetrics = {
 
   longRunningTickets: [
     {
+      id: "BACK-1489",
+      title: "Update classification-api Base Image to Ubuntu 24.04 LTS",
+      assignee: "Unassigned",
+      status: "Blocked",
+      daysInStatus: 42,
+      warningLevel: "critical"
+    },
+    {
+      id: "UI-719",
+      title: "DeepRecon - Add To column to Actionable Data Pages (Accenture)",
+      assignee: "Unassigned",
+      status: "Blocked",
+      daysInStatus: 22,
+      warningLevel: "warning"
+    },
+    {
       id: "BACK-1689",
       title: "Implement data partitioning strategy",
       assignee: "Unassigned",
@@ -104,22 +120,6 @@ export const jiraMetrics: JiraMetrics = {
     {
       id: "BACK-1692",
       title: "Implement agent container health monitoring",
-      assignee: "Unassigned",
-      status: "To Do",
-      daysInStatus: 16,
-      warningLevel: "warning"
-    },
-    {
-      id: "BACK-1695",
-      title: "API Gateway rate limiting implementation",
-      assignee: "Unassigned",
-      status: "To Do",
-      daysInStatus: 16,
-      warningLevel: "warning"
-    },
-    {
-      id: "BACK-1696",
-      title: "Connector Framework base implementation",
       assignee: "Unassigned",
       status: "To Do",
       daysInStatus: 16,
@@ -149,6 +149,6 @@ export const epicProgress: EpicProgress[] = [
 
 // Sprint Comparison Data - Historical data preserved, current sprint updated
 export const sprintComparison = {
-  s1: { sprint: "2026-S1", committed: 131, completed: 129, rate: 98.5 },
-  s2: { sprint: "2026-S2", committed: 180, completed: 62, rate: 34, status: "in_progress" }
+  s2: { sprint: "2026-S2", committed: 180, completed: 62, rate: 34, status: "in_progress" },
+  s1: { sprint: "2026-S1", committed: 94, completed: 91, rate: 97, status: "complete" }
 };

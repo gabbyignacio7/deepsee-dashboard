@@ -32,8 +32,23 @@ const __dirname = path.dirname(__filename);
 
 const JIRA_BASE_URL = process.env.JIRA_BASE_URL;
 
-// JQL Query - fetches issues from specified projects in open sprints
-const JQL_QUERY = `project IN ("Product Roadmap", "Back End Development", "Security & Compliance", FILBERT, "Core-Infrastructure", "Front End Development", "Neuro-Symbolic Intelligence", InfraRig) AND Sprint in openSprints() ORDER BY Rank ASC`;
+// Base project filter used across all queries
+const PROJECT_FILTER = `project IN ("Product Roadmap", "Back End Development", "Security & Compliance", FILBERT, "Core-Infrastructure", "Front End Development", "Neuro-Symbolic Intelligence", InfraRig)`;
+
+// JQL Queries for different data sets
+const JQL_QUERIES = {
+  // Current active sprint tickets
+  openSprints: `${PROJECT_FILTER} AND Sprint in openSprints() ORDER BY Rank ASC`,
+  
+  // Future sprint tickets (planned work)
+  futureSprints: `${PROJECT_FILTER} AND Sprint in futureSprints() ORDER BY Rank ASC`,
+  
+  // Closed/historical sprints (for sprint comparison data)
+  closedSprints: `${PROJECT_FILTER} AND Sprint in closedSprints() ORDER BY updated DESC`,
+  
+  // Backlog items (no sprint assigned, not done)
+  backlog: `${PROJECT_FILTER} AND Sprint is EMPTY AND status != Done ORDER BY priority DESC, Rank ASC`,
+};
 
 // Custom Field IDs
 const CUSTOM_FIELDS = {
@@ -183,20 +198,21 @@ class JiraClient {
     return response.json();
   }
 
-  async searchIssues(jql, fields = []) {
+  async searchIssues(jql, fields = [], options = {}) {
     const allIssues = [];
     let nextPageToken = null;
     let isLast = false;
     let pageCount = 0;
+    const maxResults = options.maxResults || 500; // Default limit to prevent excessive fetching
 
     console.log(`Fetching issues with JQL: ${jql.substring(0, 80)}...`);
 
-    while (!isLast) {
+    while (!isLast && allIssues.length < maxResults) {
       const params = new URLSearchParams({
         jql,
-        maxResults: PAGE_SIZE.toString(),
+        maxResults: Math.min(PAGE_SIZE, maxResults - allIssues.length).toString(),
         fields: fields.join(','),
-        expand: 'names',
+        expand: options.expand || 'names',
       });
 
       if (nextPageToken) {
@@ -217,6 +233,32 @@ class JiraClient {
     }
 
     return allIssues;
+  }
+  
+  /**
+   * Get sprints from a board using the Agile API
+   */
+  async getBoardSprints(boardId, state = 'active,future') {
+    try {
+      const response = await this.request(`/rest/agile/1.0/board/${boardId}/sprint?state=${state}&maxResults=20`);
+      return response.values || [];
+    } catch (error) {
+      console.warn(`  Warning: Could not fetch board sprints: ${error.message}`);
+      return [];
+    }
+  }
+  
+  /**
+   * Find boards for project
+   */
+  async findBoards(projectKey) {
+    try {
+      const response = await this.request(`/rest/agile/1.0/board?projectKeyOrId=${projectKey}&maxResults=5`);
+      return response.values || [];
+    } catch (error) {
+      console.warn(`  Warning: Could not fetch boards: ${error.message}`);
+      return [];
+    }
   }
 }
 
@@ -274,6 +316,40 @@ function getDaysInStatus(createdDate, updatedDate) {
   return Math.floor((now - updated) / (1000 * 60 * 60 * 24));
 }
 
+/**
+ * Extract accurate blocked date from changelog
+ * Finds when status changed TO "Blocked"
+ */
+function getBlockedDateFromChangelog(changelog) {
+  if (!changelog || !changelog.histories) return null;
+  
+  // Find the most recent status change TO Blocked
+  for (const history of changelog.histories) {
+    for (const item of history.items || []) {
+      if (item.field === 'status' && item.toString === 'Blocked') {
+        return history.created;
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Calculate days blocked using changelog data
+ */
+function calculateDaysBlocked(issue) {
+  const blockedDate = getBlockedDateFromChangelog(issue.changelog);
+  
+  if (blockedDate) {
+    const now = new Date();
+    const blocked = new Date(blockedDate);
+    return Math.floor((now - blocked) / (1000 * 60 * 60 * 24));
+  }
+  
+  // Fallback to days since update if no changelog
+  return getDaysInStatus(issue.fields?.created, issue.fields?.updated);
+}
+
 function getDaysSinceDate(dateStr) {
   if (!dateStr) return 0;
   const now = new Date();
@@ -308,9 +384,10 @@ function getDisplayTimestamp() {
 // DATA PROCESSING
 // ============================================================================
 
-function processIssues(rawIssues) {
+function processIssues(rawIssues, options = {}) {
   const tickets = [];
   const sprintMap = new Map();
+  const { useChangelog = false, sprintState = 'active' } = options;
   
   for (const issue of rawIssues) {
     const fields = issue.fields || {};
@@ -318,15 +395,25 @@ function processIssues(rawIssues) {
     const sprintInfo = extractSprintInfo(sprintField);
     const storyPoints = fields[CUSTOM_FIELDS.storyPoints] || 0;
     const status = fields.status?.name || 'To Do';
+    const statusKey = STATUS_MAP[status] || 'toDo';
     const projectKey = fields.project?.key || '';
     const summary = fields.summary || '';
     const labels = fields.labels || [];
+    
+    // Calculate days blocked/in status - use changelog if available
+    let daysInStatus;
+    if (useChangelog && statusKey === 'blocked') {
+      daysInStatus = calculateDaysBlocked(issue);
+    } else {
+      daysInStatus = getDaysInStatus(fields.created, fields.updated);
+    }
     
     // Track sprint metadata
     if (sprintInfo && sprintInfo.name) {
       if (!sprintMap.has(sprintInfo.name)) {
         sprintMap.set(sprintInfo.name, {
           ...sprintInfo,
+          state: sprintState,
           tickets: [],
           totalPoints: 0,
           statusCounts: { toDo: 0, inProgress: 0, codeReview: 0, blocked: 0, done: 0 },
@@ -336,7 +423,6 @@ function processIssues(rawIssues) {
       }
       
       const sprint = sprintMap.get(sprintInfo.name);
-      const statusKey = STATUS_MAP[status] || 'toDo';
       const category = classifyTicket(summary, projectKey, labels);
       
       sprint.tickets.push(issue);
@@ -351,7 +437,7 @@ function processIssues(rawIssues) {
       key: issue.key,
       summary,
       status,
-      statusKey: STATUS_MAP[status] || 'toDo',
+      statusKey,
       projectKey,
       projectName: fields.project?.name || '',
       assignee: fields.assignee?.displayName || 'Unassigned',
@@ -366,7 +452,7 @@ function processIssues(rawIssues) {
       epicKey: fields.parent?.key || fields[CUSTOM_FIELDS.epicLink] || '',
       labels,
       category: classifyTicket(summary, projectKey, labels),
-      daysInStatus: getDaysInStatus(fields.created, fields.updated),
+      daysInStatus,
     });
   }
   
@@ -377,12 +463,19 @@ function processIssues(rawIssues) {
 // TYPESCRIPT FILE GENERATORS
 // ============================================================================
 
-function generateSprintDataTs(sprintMap, tickets, timestamp) {
+function generateSprintDataTs(sprintMap, tickets, timestamp, extraData = {}) {
+  const { backlogTickets = [], futureTickets = [] } = extraData;
+  
   // Sort sprints by name to get current, next, future
   const sprints = Array.from(sprintMap.values()).sort((a, b) => a.name.localeCompare(b.name));
   
   const currentSprint = sprints.find(s => s.state === 'active') || sprints[0];
-  const nextSprint = sprints.find(s => s.state === 'future' || (s.name > (currentSprint?.name || ''))) || null;
+  
+  // Find next sprint - look for future state first, then any sprint after current
+  let nextSprint = sprints.find(s => s.state === 'future' && s.name > (currentSprint?.name || ''));
+  if (!nextSprint) {
+    nextSprint = sprints.find(s => s.name > (currentSprint?.name || '')) || null;
+  }
   
   if (!currentSprint) {
     console.warn('Warning: No active sprint found');
@@ -422,15 +515,35 @@ function generateSprintDataTs(sprintMap, tickets, timestamp) {
     (t.daysInStatus > 7 || t.assignee === 'Unassigned')
   );
   
-  // Get ARTEMIS backlog items (To Do items in next sprint or unassigned)
-  const artemisBacklog = tickets.filter(t => 
-    t.category === 'artemis' && 
-    t.statusKey === 'toDo' &&
-    (!t.sprintName || t.sprintName !== currentSprint.name)
-  ).slice(0, 10);
+  // Get ARTEMIS backlog items from dedicated backlog query
+  // Prioritize items with 'artemis' category from actual backlog (no sprint assigned)
+  const artemisBacklog = backlogTickets
+    .filter(t => t.category === 'artemis')
+    .slice(0, 10);
   
-  // Get next sprint items
-  const nextSprintTickets = nextSprint ? tickets.filter(t => t.sprintName === nextSprint.name) : [];
+  // If not enough, supplement with To Do items not in current sprint
+  if (artemisBacklog.length < 10) {
+    const supplemental = tickets
+      .filter(t => 
+        t.category === 'artemis' && 
+        t.statusKey === 'toDo' &&
+        t.sprintName !== currentSprint.name &&
+        !artemisBacklog.find(b => b.key === t.key)
+      )
+      .slice(0, 10 - artemisBacklog.length);
+    artemisBacklog.push(...supplemental);
+  }
+  
+  // Get next sprint items - use futureTickets if we have them
+  let nextSprintTickets = [];
+  if (nextSprint) {
+    // First check futureTickets from the dedicated query
+    nextSprintTickets = futureTickets.filter(t => t.sprintName === nextSprint.name);
+    // If empty, fall back to checking tickets array
+    if (nextSprintTickets.length === 0) {
+      nextSprintTickets = tickets.filter(t => t.sprintName === nextSprint.name);
+    }
+  }
   const nextArtemisItems = nextSprintTickets.filter(t => t.category === 'artemis').slice(0, 12);
   const nextClientItems = nextSprintTickets.filter(t => t.category === 'client').slice(0, 9);
 
@@ -835,7 +948,9 @@ function computeEpicProgress(tickets) {
     .slice(0, 10); // Limit to top 10 epics
 }
 
-function generateJiraMetricsTs(sprintMap, tickets, timestamp, existingFilePath) {
+function generateJiraMetricsTs(sprintMap, tickets, timestamp, existingFilePath, extraData = {}) {
+  const { closedSprintMap = new Map(), backlogTickets = [] } = extraData;
+  
   const sprints = Array.from(sprintMap.values());
   const currentSprint = sprints.find(s => s.state === 'active') || sprints[0];
   
@@ -876,15 +991,47 @@ function generateJiraMetricsTs(sprintMap, tickets, timestamp, existingFilePath) 
   // Compute epic progress from ticket data
   const epicProgressData = computeEpicProgress(sprintTickets);
   
-  // Preserve historical sprint comparison data
+  // Preserve historical sprint comparison data from existing file
   const existingComparison = parseExistingSprintComparison(existingFilePath);
   
-  // Build sprint comparison - preserve historical, update current
-  // Extract sprint number from name (e.g., "2026-S2" -> "s2")
+  // Build sprint comparison - merge historical, closed sprints from API, and current
+  const sprintComparison = { ...existingComparison };
+  
+  // Add data from closed sprints fetched from API
+  // Only include sprints matching YYYY-SN pattern (e.g., 2026-S1, 2025-S52)
+  const sprintNamePattern = /^(\d{4})-S(\d+)$/i;
+  
+  for (const [name, closedSprint] of closedSprintMap) {
+    const patternMatch = name.match(sprintNamePattern);
+    
+    // Skip sprints that don't match the YYYY-SN pattern
+    if (!patternMatch) {
+      continue;
+    }
+    
+    const sprintKey = `s${patternMatch[2]}`; // e.g., "s1" from "2026-S1"
+    
+    // Only add if not already in existing data (preserve existing data)
+    if (!sprintComparison[sprintKey]) {
+      const closedTotal = closedSprint.totalPoints || 0;
+      const closedCompleted = closedSprint.pointsByStatus?.done || 0;
+      const closedRate = closedTotal > 0 ? Math.round((closedCompleted / closedTotal) * 100) : 0;
+      
+      sprintComparison[sprintKey] = {
+        sprint: name,
+        committed: closedTotal,
+        completed: closedCompleted,
+        rate: closedRate,
+        status: 'complete'
+      };
+      console.log(`  Added historical sprint from API: ${name} (${closedCompleted}/${closedTotal} points, ${closedRate}%)`);
+    }
+  }
+  
+  // Update current sprint data
   const sprintNumMatch = currentSprint.name.match(/S(\d+)/i);
   const sprintKey = sprintNumMatch ? `s${sprintNumMatch[1]}` : currentSprint.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
   
-  const sprintComparison = { ...existingComparison };
   sprintComparison[sprintKey] = {
     sprint: currentSprint.name,
     committed: totalPoints,
@@ -1091,40 +1238,146 @@ async function main() {
   const timestamp = getTimestamp();
 
   try {
-    // Fetch all issues
-    const rawIssues = await client.searchIssues(JQL_QUERY, JIRA_FIELDS);
-    console.log(`\nFetched ${rawIssues.length} issues from JIRA\n`);
+    // --------------------------------------------------------
+    // STEP 1: Fetch open sprint issues (with changelog for blocked items)
+    // --------------------------------------------------------
+    console.log('\n[1/5] Fetching OPEN sprint issues (with changelog)...');
+    const openIssues = await client.searchIssues(
+      JQL_QUERIES.openSprints, 
+      JIRA_FIELDS, 
+      { expand: 'names,changelog', maxResults: 500 }
+    );
+    console.log(`  Fetched ${openIssues.length} open sprint issues\n`);
 
-    // Process issues
-    const { tickets, sprintMap } = processIssues(rawIssues);
-    
-    console.log('Sprint Summary:');
-    for (const [name, sprint] of sprintMap) {
-      console.log(`  ${name}: ${sprint.tickets.length} tickets, ${sprint.totalPoints} points`);
+    // --------------------------------------------------------
+    // STEP 2: Fetch future sprint issues
+    // --------------------------------------------------------
+    console.log('[2/5] Fetching FUTURE sprint issues...');
+    const futureIssues = await client.searchIssues(
+      JQL_QUERIES.futureSprints, 
+      JIRA_FIELDS, 
+      { maxResults: 200 }
+    );
+    console.log(`  Fetched ${futureIssues.length} future sprint issues\n`);
+
+    // --------------------------------------------------------
+    // STEP 3: Fetch closed sprint issues (for historical comparison)
+    // --------------------------------------------------------
+    console.log('[3/5] Fetching CLOSED sprint issues (for historical data)...');
+    const closedIssues = await client.searchIssues(
+      JQL_QUERIES.closedSprints, 
+      JIRA_FIELDS, 
+      { maxResults: 300 }
+    );
+    console.log(`  Fetched ${closedIssues.length} closed sprint issues\n`);
+
+    // --------------------------------------------------------
+    // STEP 4: Fetch backlog items
+    // --------------------------------------------------------
+    console.log('[4/5] Fetching BACKLOG items (no sprint)...');
+    const backlogIssues = await client.searchIssues(
+      JQL_QUERIES.backlog, 
+      JIRA_FIELDS, 
+      { maxResults: 100 }
+    );
+    console.log(`  Fetched ${backlogIssues.length} backlog items\n`);
+
+    // --------------------------------------------------------
+    // STEP 5: Get sprint metadata from Agile API
+    // --------------------------------------------------------
+    console.log('[5/5] Fetching sprint metadata from Agile API...');
+    const boards = await client.findBoards('BACK');
+    let sprintMetadata = [];
+    if (boards.length > 0) {
+      const boardId = boards[0].id;
+      console.log(`  Using board ID: ${boardId}`);
+      sprintMetadata = await client.getBoardSprints(boardId, 'active,future,closed');
+      console.log(`  Found ${sprintMetadata.length} sprints\n`);
     }
+
+    // --------------------------------------------------------
+    // Process all data
+    // --------------------------------------------------------
+    console.log('Processing issues...');
+    
+    // Process open sprints (with changelog for accurate blocked dates)
+    const { tickets: openTickets, sprintMap } = processIssues(openIssues, { 
+      useChangelog: true, 
+      sprintState: 'active' 
+    });
+    
+    // Process future sprints
+    const { tickets: futureTickets, sprintMap: futureSprintMap } = processIssues(futureIssues, { 
+      sprintState: 'future' 
+    });
+    
+    // Process closed sprints (for historical data)
+    const { tickets: closedTickets, sprintMap: closedSprintMap } = processIssues(closedIssues, { 
+      sprintState: 'closed' 
+    });
+    
+    // Process backlog (no sprint)
+    const { tickets: backlogTickets } = processIssues(backlogIssues);
+    
+    // Merge future sprint map into main sprint map
+    for (const [name, sprint] of futureSprintMap) {
+      if (!sprintMap.has(name)) {
+        sprint.state = 'future';
+        sprintMap.set(name, sprint);
+      }
+    }
+    
+    // Add sprint metadata (dates) from Agile API
+    for (const meta of sprintMetadata) {
+      if (sprintMap.has(meta.name)) {
+        const sprint = sprintMap.get(meta.name);
+        sprint.startDate = meta.startDate ? meta.startDate.split('T')[0] : sprint.startDate;
+        sprint.endDate = meta.endDate ? meta.endDate.split('T')[0] : sprint.endDate;
+        sprint.state = meta.state;
+      }
+    }
+    
+    // Combine all tickets for jira.json output
+    const allTickets = [...openTickets, ...futureTickets];
+    
+    console.log('\nSprint Summary:');
+    const sortedSprints = Array.from(sprintMap.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+    for (const [name, sprint] of sortedSprints) {
+      console.log(`  ${name} (${sprint.state}): ${sprint.tickets.length} tickets, ${sprint.totalPoints} points`);
+    }
+    console.log(`  Backlog: ${backlogTickets.length} items`);
     console.log('');
 
-    // Generate TypeScript files
+    // --------------------------------------------------------
+    // Generate output files
+    // --------------------------------------------------------
     const dataDir = path.join(__dirname, '..', 'client', 'src', 'data');
     const publicDataDir = path.join(__dirname, '..', 'client', 'public', 'data');
 
-    // Generate sprintData.ts
-    const sprintDataContent = generateSprintDataTs(sprintMap, tickets, timestamp);
+    // Generate sprintData.ts (pass backlog and future data)
+    const sprintDataContent = generateSprintDataTs(sprintMap, openTickets, timestamp, {
+      backlogTickets,
+      futureTickets,
+      closedSprintMap,
+    });
     if (sprintDataContent) {
       const sprintDataPath = path.join(dataDir, 'sprintData.ts');
       fs.writeFileSync(sprintDataPath, sprintDataContent);
       console.log(`Generated: ${sprintDataPath}`);
     }
 
-    // Generate blockedItemsData.ts
-    const blockedItemsContent = generateBlockedItemsDataTs(tickets, timestamp);
+    // Generate blockedItemsData.ts (open sprint blocked items have accurate dates)
+    const blockedItemsContent = generateBlockedItemsDataTs(openTickets, timestamp);
     const blockedItemsPath = path.join(dataDir, 'blockedItemsData.ts');
     fs.writeFileSync(blockedItemsPath, blockedItemsContent);
     console.log(`Generated: ${blockedItemsPath}`);
 
-    // Generate jiraMetrics.ts (passing existing file path to preserve historical data)
+    // Generate jiraMetrics.ts (pass closed sprint data for historical comparison)
     const jiraMetricsPath = path.join(dataDir, 'jiraMetrics.ts');
-    const jiraMetricsContent = generateJiraMetricsTs(sprintMap, tickets, timestamp, jiraMetricsPath);
+    const jiraMetricsContent = generateJiraMetricsTs(sprintMap, openTickets, timestamp, jiraMetricsPath, {
+      closedSprintMap,
+      backlogTickets,
+    });
     if (jiraMetricsContent) {
       fs.writeFileSync(jiraMetricsPath, jiraMetricsContent);
       console.log(`Generated: ${jiraMetricsPath}`);
@@ -1133,16 +1386,17 @@ async function main() {
     // Generate jira.json for dashboard-context compatibility
     const featureNames = loadFeatureNames();
     console.log(`Loaded ${Object.keys(featureNames).length} feature names for mapping`);
-    const jiraJson = generateJiraJson(tickets, featureNames);
+    const jiraJson = generateJiraJson(allTickets, featureNames);
     const jiraJsonPath = path.join(publicDataDir, 'jira.json');
     fs.writeFileSync(jiraJsonPath, JSON.stringify(jiraJson, null, 2));
     console.log(`Generated: ${jiraJsonPath}`);
 
-    console.log(`\nTotal tickets processed: ${tickets.length}`);
+    console.log(`\nTotal tickets processed: ${allTickets.length} active + ${backlogTickets.length} backlog + ${closedTickets.length} historical`);
     console.log('\nDone!');
 
   } catch (error) {
     console.error(`\nError: ${error.message}`);
+    if (error.stack) console.error(error.stack);
     process.exit(1);
   }
 }
