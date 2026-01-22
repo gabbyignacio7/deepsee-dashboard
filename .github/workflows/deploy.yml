@@ -4,6 +4,9 @@ on:
   push:
     branches: ['main']
   workflow_dispatch:
+  schedule:
+    # Run every 5 minutes to refresh JIRA data
+    - cron: '*/5 * * * *'
 
 permissions:
   contents: write
@@ -27,6 +30,17 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Fetch JIRA Data
+        if: ${{ env.JIRA_BASE_URL != '' }}
+        env:
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+        run: |
+          echo "Fetching latest JIRA data..."
+          node scripts/fetch-jira-data.js
+          echo "JIRA data updated successfully"
 
       - name: Build
         run: npm run build
