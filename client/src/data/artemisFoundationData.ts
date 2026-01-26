@@ -1,5 +1,6 @@
-// ARTEMIS Foundation Data - Updated January 18, 2026
-// Source: JIRA Extract
+// ARTEMIS Foundation Data - Updated January 26, 2026 at 12:40 PM MT
+// Source: JIRA Extract - Sprint 2026-S2
+// CRITICAL ALERT: 0% ARTEMIS work started in current sprint
 
 export interface ArtemisEpic {
   key: string;

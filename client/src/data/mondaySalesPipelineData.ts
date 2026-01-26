@@ -1,5 +1,5 @@
 // Sales Pipeline Data - Monday.com CRM
-// Last Updated: January 20, 2026 @ 1:00 PM MT
+// Last Updated: January 26, 2026 @ 12:40 PM MT
 // Source: Browser Agent Monday.com Extraction + PoV & Client Tracker
 
 export type RiskLevel = 'green' | 'yellow' | 'red';
@@ -78,21 +78,21 @@ export interface MondaySalesPipelineData {
 
 export const mondaySalesPipelineData: MondaySalesPipelineData = {
   overview: {
-    asOf: "2026-01-20T13:00:00-07:00",
-    totalPipeline: 10720000,
-    weightedPipeline: 1610000,
-    activeDeals: 84,
-    avgOpportunityAge: 148,
-    closingQ1_2026: 2900000,
-    closingThisMonth: 340000, // BetaNxt
+    asOf: "2026-01-26T12:40:00-07:00",
+    totalPipeline: 11180000,
+    weightedPipeline: 1660000,
+    activeDeals: 96,
+    avgOpportunityAge: 142,
+    closingQ1_2026: 3100000,
+    closingThisMonth: 340000, // BetaNxt - closing January 31
     existingCustomerArr: 990200 // Updated from Monday.com Client Tracker
   },
 
   stageDistribution: [
-    { stage: "Qualified Lead/Discovery", probability: 5, count: 50, totalArr: 4140000 },
-    { stage: "Problem Validation & Value Framing", probability: 10, count: 6, totalArr: 1107000 },
-    { stage: "Solution Fit/Technical Validation", probability: 25, count: 10, totalArr: 1726000 },
-    { stage: "Business Case & Champion Commit", probability: 40, count: 4, totalArr: 1754000 },
+    { stage: "Qualified Lead/Discovery", probability: 5, count: 58, totalArr: 4540000 },
+    { stage: "Problem Validation & Value Framing", probability: 10, count: 8, totalArr: 1207000 },
+    { stage: "Solution Fit/Technical Validation", probability: 25, count: 12, totalArr: 1826000 },
+    { stage: "Business Case & Champion Commit", probability: 40, count: 5, totalArr: 1854000 },
     { stage: "Commercial Alignment", probability: 60, count: 1, totalArr: 340000 },
     { stage: "Contracting & Close", probability: 80, count: 1, totalArr: 1850000 }
   ],
