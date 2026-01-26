@@ -1,8 +1,8 @@
-// Sprint Data - Updated January 20, 2026
+// Sprint Data - Updated January 26, 2026 at 12:40 PM MT
 // Source: Monday.com CRM + JIRA
 // Sprint 2026-S2 Status Update
 
-export const EXTRACTION_TIMESTAMP = "2026-01-20T13:00:00-07:00"; // MT timezone
+export const EXTRACTION_TIMESTAMP = "2026-01-26T12:40:00-07:00"; // MT timezone
 export const DATA_SOURCE = "Monday.com CRM + JIRA";
 
 export interface SprintStatus {
@@ -11,6 +11,8 @@ export interface SprintStatus {
   inProgress: number;
   codeReview: number;
   done: number;
+  cancelled?: number;
+  backlog?: number;
 }
 
 export interface SprintMix {
@@ -29,9 +31,14 @@ export interface Sprint {
   completion: SprintStatus;
   completionRate: number;
   daysRemaining: number;
+  daysElapsed?: number;
+  totalPoints?: number;
+  completedPoints?: number;
+  scopeCreep?: number;
   likelyRollovers?: number;
   mix: SprintMix;
   assessment: 'artemis-focused' | 'balanced' | 'client-heavy';
+  healthStatus?: 'GREEN' | 'YELLOW' | 'RED';
 }
 
 export interface SprintItem {
@@ -59,30 +66,37 @@ export interface NextSprintClientItem {
 }
 
 // Current Sprint Data - 2026-S2 (Active)
-// Updated: January 20, 2026 - 7 days remaining
+// Updated: January 26, 2026 - 4 days remaining
 export const CURRENT_SPRINT: Sprint = {
   id: '2026-S2',
   name: 'Sprint 2026-S2',
   startDate: '2026-01-16',
   endDate: '2026-01-30',
   status: 'active',
-  totalTickets: 70,
+  totalTickets: 96,
+  totalPoints: 200,
+  completedPoints: 90,
+  daysElapsed: 10,
+  daysRemaining: 4,
+  scopeCreep: 82, // % increase from original 110 pts
   completion: {
-    toDo: 44,
-    blocked: 3,
-    inProgress: 13,
+    toDo: 32,
+    blocked: 4,
+    inProgress: 14,
     codeReview: 3,
-    done: 8
+    done: 40,
+    cancelled: 2,
+    backlog: 1
   },
-  completionRate: 21, // 29 points completed / 137 total points
-  daysRemaining: 7,
-  likelyRollovers: 20, // Recommended to descope 20-30 points
+  completionRate: 42, // 90 points completed / ~200 total points
+  likelyRollovers: 25, // Recommended to descope 25-30 points
   mix: {
-    artemis: 23,
-    client: 32,
-    infrastructure: 15
+    artemis: 0, // CRITICAL: 0% ARTEMIS work started
+    client: 45,
+    infrastructure: 55
   },
-  assessment: 'client-heavy'
+  assessment: 'client-heavy',
+  healthStatus: 'RED'
 };
 
 export const NEXT_SPRINT: Sprint = {
@@ -100,7 +114,7 @@ export const NEXT_SPRINT: Sprint = {
     done: 0
   },
   completionRate: 0,
-  daysRemaining: 26,
+  daysRemaining: 18,
   mix: {
     artemis: 50,
     client: 30,
@@ -124,7 +138,7 @@ export const FUTURE_SPRINT: Sprint = {
     done: 0
   },
   completionRate: 0,
-  daysRemaining: 40,
+  daysRemaining: 32,
   mix: {
     artemis: 60,
     client: 25,
@@ -168,25 +182,26 @@ export const NEXT_SPRINT_CLIENT_ITEMS: NextSprintClientItem[] = [
 
 // Rollover candidates - High risk items that may not complete
 export const ROLLOVER_HIGH_RISK: SprintItem[] = [
-  { key: 'BACK-1653', summary: '[MERCURY] Sunwest Bank - Extraction model fine-tuning', category: 'ARTEMIS', staleDays: 13 },
-  { key: 'BACK-1651', summary: '[MERCURY] Core extraction engine performance optimization', category: 'ARTEMIS', staleDays: 14 },
-  { key: 'BACK-1655', summary: '[MERCURY] API documentation and developer guide', category: 'ARTEMIS', staleDays: 14 },
-  { key: 'BACK-1658', summary: '[PARSER] HTML structured file parsing for SEC filings', category: 'ARTEMIS', staleDays: 14 },
-  { key: 'BACK-1657', summary: '[PARSER] PDF extraction for multi-page documents', category: 'ARTEMIS', staleDays: 14 },
-  { key: 'BACK-1661', summary: '[PARSER] Integration between Document Parser and Mercury', category: 'ARTEMIS', staleDays: 14 },
-  { key: 'BACK-1659', summary: '[PARSER] Automatic document type classification', category: 'ARTEMIS', staleDays: 13 },
+  { key: 'BACK-1653', summary: '[MERCURY] Sunwest Bank - Extraction model fine-tuning', category: 'ARTEMIS', staleDays: 19 },
+  { key: 'BACK-1651', summary: '[MERCURY] Core extraction engine performance optimization', category: 'ARTEMIS', staleDays: 20 },
+  { key: 'BACK-1655', summary: '[MERCURY] API documentation and developer guide', category: 'ARTEMIS', staleDays: 20 },
+  { key: 'BACK-1658', summary: '[PARSER] HTML structured file parsing for SEC filings', category: 'ARTEMIS', staleDays: 20 },
+  { key: 'BACK-1657', summary: '[PARSER] PDF extraction for multi-page documents', category: 'ARTEMIS', staleDays: 20 },
+  { key: 'BACK-1661', summary: '[PARSER] Integration between Document Parser and Mercury', category: 'ARTEMIS', staleDays: 20 },
+  { key: 'BACK-1659', summary: '[PARSER] Automatic document type classification', category: 'ARTEMIS', staleDays: 19 },
   { key: 'BACK-1663', summary: '[BLUEPRINT] Define data model and storage infrastructure', category: 'ARTEMIS', unassigned: true },
   { key: 'UI-732', summary: 'UI Agentic Rules: Definitions and Adoption', category: 'ARTEMIS', unassigned: true },
-  { key: 'UI-698', summary: 'Create "Recategorized By HITL"', category: 'Client', client: 'Broadridge', staleDays: 56 },
-  { key: 'UI-715', summary: 'Update Status page to pull correct data', category: 'Client', client: 'Broadridge', staleDays: 34 },
-  { key: 'UI-716', summary: 'Update Overview > Breakout chart calculations', category: 'Client', client: 'Broadridge', staleDays: 34 }
+  { key: 'UI-698', summary: 'Create "Recategorized By HITL"', category: 'Client', client: 'Broadridge', staleDays: 62 },
+  { key: 'UI-715', summary: 'Update Status page to pull correct data', category: 'Client', client: 'Broadridge', staleDays: 40 },
+  { key: 'UI-716', summary: 'Update Overview > Breakout chart calculations', category: 'Client', client: 'Broadridge', staleDays: 40 }
 ];
 
-// Blocked Items in current sprint - Updated January 20, 2026
+// Blocked Items in current sprint - Updated January 26, 2026
 export const BLOCKED_ITEMS: SprintItem[] = [
-  { key: 'BACK-1603', summary: 'Deep Recon - DTCC Sync to DeepSee - extend data from additional fields', category: 'Client', client: 'DTCC', blockedDays: 8 },
-  { key: 'UI-719', summary: 'DeepRecon - Add To column to Actionable Data Pages (Accenture)', category: 'Client', client: 'Accenture', blockedDays: 20, unassigned: true },
-  { key: 'BACK-1489', summary: 'Update classification-api Base Image to Ubuntu 24.04 LTS', category: 'Infrastructure', blockedDays: 40, unassigned: true }
+  { key: 'BACK-1603', summary: 'Deep Recon - DTCC Sync to DeepSee - extend data from additional fields', category: 'Client', client: 'DTCC', blockedDays: 42 },
+  { key: 'BACK-1489', summary: 'Update classification-api Base Image to Ubuntu 24.04 LTS', category: 'Infrastructure', blockedDays: 75, unassigned: true },
+  { key: 'UI-719', summary: 'DeepRecon - Add To column to Actionable Data Pages (Accenture)', category: 'Client', client: 'Accenture', blockedDays: 46, unassigned: true },
+  { key: 'BACK-1796', summary: 'Automatically refresh the Allegro password before expiry', category: 'Infrastructure', blockedDays: 6 }
 ];
 
 // ARTEMIS Backlog Items
