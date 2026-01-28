@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 28, 2026 at 2:55 PM MT",
+  lastUpdated: "January 28, 2026 at 3:04 PM MT",
   extractionSource: "JIRA API - 2026-S2",
 
   sprintInfo: {
@@ -94,14 +94,6 @@ export const jiraMetrics: JiraMetrics = {
       warningLevel: "warning"
     },
     {
-      id: "BACK-1691",
-      title: "Kubernetes workload autoscaling configuration",
-      assignee: "Unassigned",
-      status: "To Do",
-      daysInStatus: 22,
-      warningLevel: "warning"
-    },
-    {
       id: "BACK-1692",
       title: "Implement agent container health monitoring",
       assignee: "Unassigned",
@@ -120,6 +112,14 @@ export const jiraMetrics: JiraMetrics = {
     {
       id: "BACK-1696",
       title: "Connector Framework base implementation",
+      assignee: "Unassigned",
+      status: "To Do",
+      daysInStatus: 22,
+      warningLevel: "warning"
+    },
+    {
+      id: "BACK-1698",
+      title: "OAuth 2.0 client credential flow for APIs",
       assignee: "Unassigned",
       status: "To Do",
       daysInStatus: 22,
