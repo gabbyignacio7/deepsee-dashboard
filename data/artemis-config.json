@@ -1,0 +1,152 @@
+{
+  "lastUpdated": "2026-01-11T16:15:00-07:00",
+  "artemisSummary": {
+    "epics": [
+      {
+        "key": "BACK-1680",
+        "name": "Platform Infrastructure - ARTEMIS Foundation",
+        "status": "To Do",
+        "totalTickets": 22,
+        "s2": { "tickets": 12, "points": 83 },
+        "s3": { "tickets": 10, "points": 67 },
+        "totalPoints": 150,
+        "prd": "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823847948"
+      },
+      {
+        "key": "BACK-1704",
+        "name": "DeepSee Fabric Integration - Microsoft Ecosystem",
+        "status": "To Do",
+        "totalTickets": 8,
+        "s2": { "tickets": 3, "points": 18 },
+        "s3": { "tickets": 5, "points": 32 },
+        "totalPoints": 50,
+        "prd": "TBD"
+      }
+    ],
+    "totals": {
+      "epics": 2,
+      "stories": 30,
+      "s2Points": 101,
+      "s3Points": 99,
+      "totalPoints": 200
+    }
+  },
+  "prdLinks": [
+    {
+      "name": "Project ARTEMIS",
+      "url": "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823782401",
+      "status": "Published"
+    },
+    {
+      "name": "Platform",
+      "url": "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823847948",
+      "status": "Published"
+    },
+    {
+      "name": "Automation & Orchestration",
+      "url": "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823880714",
+      "status": "Published"
+    },
+    {
+      "name": "Mercury Extraction",
+      "url": "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823913473",
+      "status": "Published"
+    },
+    {
+      "name": "Document Parser",
+      "url": "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823946244",
+      "status": "Published"
+    },
+    {
+      "name": "BluePrint",
+      "url": "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823979015",
+      "status": "Published"
+    },
+    {
+      "name": "Email Automation",
+      "url": "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824044548",
+      "status": "Published"
+    },
+    {
+      "name": "Enhanced Agent Reasoning",
+      "url": "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824110090",
+      "status": "Published"
+    },
+    {
+      "name": "Agentic Engine",
+      "url": "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824372269",
+      "status": "Published"
+    },
+    {
+      "name": "EPA Automated Resolution",
+      "url": "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2825879553",
+      "status": "Published"
+    },
+    {
+      "name": "Fabric Integration",
+      "url": "TBD",
+      "status": "Pending"
+    }
+  ],
+  "sprintSummary": {
+    "2026-S2": {
+      "name": "Sprint 2026-S2",
+      "startDate": "2026-01-13",
+      "endDate": "2026-01-24",
+      "platform": { "tickets": 12, "points": 83 },
+      "fabric": { "tickets": 3, "points": 18 },
+      "total": { "tickets": 15, "points": 101 }
+    },
+    "2026-S3": {
+      "name": "Sprint 2026-S3",
+      "startDate": "2026-01-27",
+      "endDate": "2026-02-07",
+      "platform": { "tickets": 10, "points": 67 },
+      "fabric": { "tickets": 5, "points": 32 },
+      "total": { "tickets": 15, "points": 99 }
+    }
+  },
+  "agenticPlatformInitiative": {
+    "key": "PR-1561",
+    "summary": "DeepSee Agentic Platform",
+    "totalMilestones": 5,
+    "totalEpics": 42,
+    "status": "Backlog",
+    "reporter": "Konnor Willison",
+    "milestones": {
+      "infrastructure": {
+        "key": "PR-1562",
+        "summary": "Infrastructure and Deployment Foundation",
+        "epics": 6,
+        "primaryPillars": ["Platform"],
+        "isFoundational": true
+      },
+      "orchestration": {
+        "key": "PR-1563",
+        "summary": "Agent Orchestration Platform",
+        "epics": 8,
+        "primaryPillars": ["Automation & Orchestration", "Agentic Engine", "BluePrint"]
+      },
+      "identity": {
+        "key": "PR-1564",
+        "summary": "Identity and Access Management",
+        "epics": 8,
+        "primaryPillars": ["Platform"]
+      },
+      "dataIngestion": {
+        "key": "PR-1565",
+        "summary": "Data Ingestion and Content Understanding",
+        "epics": 8,
+        "primaryPillars": ["Mercury Extraction", "Document Parser"]
+      },
+      "observability": {
+        "key": "PR-1566",
+        "summary": "Observability and Governance",
+        "epics": 12,
+        "primaryPillars": ["Platform", "Enhanced Agent Reasoning"]
+      }
+    },
+    "pillarGaps": ["Email Automation", "EPA Automated Resolution"],
+    "executionSequence": ["PR-1562", "PR-1564", "PR-1565", "PR-1563", "PR-1566"]
+  }
+}
