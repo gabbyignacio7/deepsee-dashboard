@@ -19,7 +19,7 @@ export const sprintBlockedItems: BlockedItem[] = [
     key: "BACK-1796",
     summary: "Automatically refresh the Allegro password before expiry",
     assignee: "Kannal Mutharasu",
-    daysBlocked: 6,
+    daysBlocked: 7,
     category: "artemis",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1796"
@@ -32,7 +32,7 @@ export const blockedItems: BlockedItem[] = [
     key: "BACK-1796",
     summary: "Automatically refresh the Allegro password before expiry",
     assignee: "Kannal Mutharasu",
-    daysBlocked: 6,
+    daysBlocked: 7,
     category: "artemis",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1796"
@@ -45,8 +45,8 @@ export const blockedSummary = {
   p0Count: 0,
   p1Count: 0,
   p2Count: 1,
-  avgDaysBlocked: 6,
-  oldestBlocked: "BACK-1796 (6 days)",
+  avgDaysBlocked: 7,
+  oldestBlocked: "BACK-1796 (7 days)",
   unassignedCount: 0
 };
 
