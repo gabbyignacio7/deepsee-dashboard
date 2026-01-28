@@ -1934,7 +1934,7 @@
   {
     "Ticket_ID": "UI-748",
     "Ticket_Summary": "Implement basic XML support in Artemis",
-    "Status": "In Progress",
+    "Status": "Done",
     "Category": "Front End Development",
     "Project_Key": "UI",
     "Client_Name": " ",
@@ -1946,7 +1946,7 @@
     "Sprint": "2026-S2",
     "Created_Date": "2026-01-27",
     "Target_Date": "",
-    "Completed_Date": "",
+    "Completed_Date": "2026-01-28",
     "Product_Proposed_To_Deprecate": "N",
     "Deprecation_Notes": "",
     "Epic_Key": "UI-745",

@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 28, 2026 at 11:18 AM MT",
+  lastUpdated: "January 28, 2026 at 11:34 AM MT",
   extractionSource: "JIRA API - 2026-S2",
 
   sprintInfo: {
@@ -59,19 +59,19 @@ export const jiraMetrics: JiraMetrics = {
 
   overall: {
     totalActiveTickets: 100,
-    totalInProgress: 14,
+    totalInProgress: 13,
     totalToDo: 31,
     totalCodeReview: 4,
     totalBlocked: 1,
-    totalDone: 50,
+    totalDone: 51,
     totalWithStoryPoints: 68
   },
 
   storyPoints: {
-    completed: 113,
-    inProgress: 52,
+    completed: 116,
+    inProgress: 49,
     notStarted: 39,
-    completionRate: 55
+    completionRate: 57
   },
 
   engineerSummary: {
@@ -137,7 +137,6 @@ export interface EpicProgress {
 
 export const epicProgress: EpicProgress[] = [
   { key: "BACK-1292", description: "BACK-1292 - 3 tickets", progress: 67, status: 'in_progress' },
-  { key: "UI-745", description: "UI-745 - 3 tickets", progress: 67, status: 'in_progress' },
   { key: "BACK-1234", description: "BACK-1234 - 8 tickets", progress: 63, status: 'in_progress' },
   { key: "UI-694", description: "UI-694 - 9 tickets", progress: 56, status: 'in_progress' },
   { key: "BACK-1232", description: "BACK-1232 - 4 tickets", progress: 50, status: 'in_progress' },
@@ -145,12 +144,13 @@ export const epicProgress: EpicProgress[] = [
   { key: "BACK-1656", description: "BACK-1656 - 4 tickets", progress: 0, status: 'in_progress' },
   { key: "PR-1562", description: "PR-1562 - 2 tickets", progress: 0, status: 'in_progress' },
   { key: "BACK-1583", description: "BACK-1583 - 4 tickets", progress: 100, status: 'complete' },
+  { key: "UI-745", description: "UI-745 - 3 tickets", progress: 100, status: 'complete' },
   { key: "BACK-1680", description: "BACK-1680 - 7 tickets", progress: 0, status: 'not_started' }
 ];
 
 // Sprint Comparison Data - Historical data preserved, current sprint updated
 export const sprintComparison = {
-  s2: { sprint: "2026-S2", committed: 204, completed: 113, rate: 55, status: "in_progress" },
+  s2: { sprint: "2026-S2", committed: 204, completed: 116, rate: 57, status: "in_progress" },
   s1: { sprint: "2026-S1", committed: 94, completed: 91, rate: 97, status: "complete" },
   s3: { sprint: "2026-S3", committed: 5, completed: 0, rate: 0, status: "complete" }
 };
