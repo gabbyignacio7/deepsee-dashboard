@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 28, 2026 at 1:28 PM MT",
+  lastUpdated: "January 28, 2026 at 1:46 PM MT",
   extractionSource: "JIRA API - 2026-S2",
 
   sprintInfo: {
@@ -59,17 +59,17 @@ export const jiraMetrics: JiraMetrics = {
 
   overall: {
     totalActiveTickets: 100,
-    totalInProgress: 14,
+    totalInProgress: 13,
     totalToDo: 30,
     totalCodeReview: 4,
     totalBlocked: 1,
-    totalDone: 51,
+    totalDone: 52,
     totalWithStoryPoints: 68
   },
 
   storyPoints: {
-    completed: 116,
-    inProgress: 54,
+    completed: 117,
+    inProgress: 53,
     notStarted: 34,
     completionRate: 57
   },
@@ -136,8 +136,8 @@ export interface EpicProgress {
 }
 
 export const epicProgress: EpicProgress[] = [
+  { key: "BACK-1234", description: "BACK-1234 - 8 tickets", progress: 75, status: 'in_progress' },
   { key: "BACK-1292", description: "BACK-1292 - 3 tickets", progress: 67, status: 'in_progress' },
-  { key: "BACK-1234", description: "BACK-1234 - 8 tickets", progress: 63, status: 'in_progress' },
   { key: "UI-694", description: "UI-694 - 9 tickets", progress: 56, status: 'in_progress' },
   { key: "BACK-1232", description: "BACK-1232 - 4 tickets", progress: 50, status: 'in_progress' },
   { key: "BACK-1650", description: "BACK-1650 - 3 tickets", progress: 33, status: 'in_progress' },
@@ -150,7 +150,7 @@ export const epicProgress: EpicProgress[] = [
 
 // Sprint Comparison Data - Historical data preserved, current sprint updated
 export const sprintComparison = {
-  s2: { sprint: "2026-S2", committed: 204, completed: 116, rate: 57, status: "in_progress" },
+  s2: { sprint: "2026-S2", committed: 204, completed: 117, rate: 57, status: "in_progress" },
   s1: { sprint: "2026-S1", committed: 94, completed: 91, rate: 97, status: "complete" },
   s3: { sprint: "2026-S3", committed: 5, completed: 0, rate: 0, status: "complete" }
 };

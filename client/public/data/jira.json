@@ -86,7 +86,7 @@
   {
     "Ticket_ID": "BACK-1827",
     "Ticket_Summary": "Colony: Extraction Feedback - Live Loan 8555926",
-    "Status": "In Progress",
+    "Status": "Done",
     "Category": "Back End Development",
     "Project_Key": "BACK",
     "Client_Name": " ",
@@ -98,7 +98,7 @@
     "Sprint": "2026-S2",
     "Created_Date": "2026-01-26",
     "Target_Date": "",
-    "Completed_Date": "",
+    "Completed_Date": "2026-01-28",
     "Product_Proposed_To_Deprecate": "N",
     "Deprecation_Notes": "",
     "Epic_Key": "BACK-1234",
