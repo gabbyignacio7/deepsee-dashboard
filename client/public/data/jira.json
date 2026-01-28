@@ -1933,7 +1933,7 @@
   },
   {
     "Ticket_ID": "UI-748",
-    "Ticket_Summary": "Implement XML support in Artemis",
+    "Ticket_Summary": "Implement basic XML support in Artemis",
     "Status": "In Progress",
     "Category": "Front End Development",
     "Project_Key": "UI",
