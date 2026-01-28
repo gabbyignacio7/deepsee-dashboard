@@ -11,6 +11,7 @@ import SprintAnalysis from '@/components/SprintAnalysis';
 import SprintOverview from '@/components/SprintOverview';
 import SprintHealthScorecard from '@/components/SprintHealthScorecard';
 import BlockedItemsAlert from '@/components/BlockedItemsAlert';
+import NextSprintReadiness from '@/components/NextSprintReadiness';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { AlertTriangle, Users, LayoutDashboard, CalendarDays } from 'lucide-react';
@@ -89,6 +90,9 @@ export default function EngineeringDashboard() {
         <TabsContent value="sprint-analysis" className="space-y-6">
           {/* Sprint Overview Cards */}
           <SprintOverview />
+
+          {/* Next Sprint Readiness Alert */}
+          <NextSprintReadiness />
 
           {/* Sprint Health and Blocked Items */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

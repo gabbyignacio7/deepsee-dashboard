@@ -1,9 +1,9 @@
-// Sprint Data - Updated January 26, 2026 at 12:40 PM MT
-// Source: Monday.com CRM + JIRA
+// Sprint Data - Updated January 28, 2026 at 11:00 AM MT
+// Source: JIRA Sprint Extraction
 // Sprint 2026-S2 Status Update
 
-export const EXTRACTION_TIMESTAMP = "2026-01-26T12:40:00-07:00"; // MT timezone
-export const DATA_SOURCE = "Monday.com CRM + JIRA";
+export const EXTRACTION_TIMESTAMP = "2026-01-28T11:00:00-07:00"; // MT timezone
+export const DATA_SOURCE = "JIRA Sprint Extraction";
 
 export interface SprintStatus {
   toDo: number;
@@ -59,24 +59,24 @@ export interface NextSprintClientItem {
 }
 
 // Current Sprint Data - 2026-S2 (Active)
-// Updated: January 26, 2026 - 4 days remaining
+// Updated: January 28, 2026 - 2 days remaining
 export const CURRENT_SPRINT: Sprint = {
   id: '2026-S2',
   name: 'Sprint 2026-S2',
   startDate: '2026-01-16',
   endDate: '2026-01-30',
   status: 'active',
-  totalTickets: 96,
+  totalTickets: 95,
   completion: {
-    toDo: 32,
-    blocked: 4,
+    toDo: 25,
+    blocked: 2,
     inProgress: 14,
-    codeReview: 3,
-    done: 40
+    codeReview: 6,
+    done: 48
   },
-  completionRate: 42, // 90/200 story points
-  daysRemaining: 4,
-  likelyRollovers: 25,
+  completionRate: 48, // 48/95 tickets
+  daysRemaining: 2,
+  likelyRollovers: 47, // ~47 tickets may roll over
   mix: {
     artemis: 0, // CRITICAL: 0% ARTEMIS work started
     client: 45,
@@ -91,22 +91,60 @@ export const NEXT_SPRINT: Sprint = {
   startDate: '2026-01-30',
   endDate: '2026-02-13',
   status: 'planned',
-  totalTickets: 15,
+  totalTickets: 37,
   completion: {
-    toDo: 15,
+    toDo: 37,
     blocked: 0,
     inProgress: 0,
     codeReview: 0,
     done: 0
   },
   completionRate: 0,
-  daysRemaining: 18,
+  daysRemaining: 16,
   mix: {
     artemis: 50,
     client: 30,
     infrastructure: 20
   },
   assessment: 'artemis-focused'
+};
+
+// Next Sprint Readiness Data - 2026-S3
+export interface NextSprintReadinessData {
+  totalTickets: number;
+  assigned: number;
+  unassigned: number;
+  withStoryPoints: number;
+  missingEstimates: number;
+  readinessStatus: 'READY' | 'NEEDS_WORK' | 'NOT_READY';
+  projectBreakdown: { project: string; count: number }[];
+  assignedEngineers: { name: string; tickets: number }[];
+  blockers: string[];
+}
+
+export const NEXT_SPRINT_READINESS: NextSprintReadinessData = {
+  totalTickets: 37,
+  assigned: 2,
+  unassigned: 35,
+  withStoryPoints: 11,
+  missingEstimates: 26,
+  readinessStatus: 'NOT_READY',
+  projectBreakdown: [
+    { project: 'BACK', count: 27 },
+    { project: 'SC', count: 6 },
+    { project: 'CI', count: 3 },
+    { project: 'UI', count: 1 },
+    { project: 'FB', count: 0 }
+  ],
+  assignedEngineers: [
+    { name: 'Chad Hegerhorst', tickets: 1 },
+    { name: 'Darius Ouderkirk', tickets: 1 }
+  ],
+  blockers: [
+    '🔴 Assignment Session Needed - 35 tickets unassigned (95%)',
+    '🔴 Pointing Session Needed - 26 tickets missing estimates (70%)',
+    '⚠️ Carryover from S2 - ~47 tickets may roll over (2 days left)'
+  ]
 };
 
 export const FUTURE_SPRINT: Sprint = {
@@ -127,7 +165,11 @@ export const SPRINTS = [CURRENT_SPRINT, NEXT_SPRINT, FUTURE_SPRINT];
 export const sprints = SPRINTS;
 export const currentSprint = CURRENT_SPRINT;
 
-// Next Sprint Planned Items
+// Next Sprint Planned Items - Updated January 28, 2026
+// Brandon's Recent Additions (Jan 27, 2026):
+// - 6 SC tickets (pentest items #PT34600)
+// - 3 CI tickets (infrastructure/Artemis)
+// - BACK-1832 (Common Known Passwords)
 export const NEXT_SPRINT_ARTEMIS_ITEMS: NextSprintArtemisItem[] = [
   { key: 'BACK-1382', summary: 'Export for Vantage Commercial Lending Work Items', category: 'artemis' },
   { key: 'BACK-1654', summary: '[MERCURY] BBVA - Term type extraction for reconciliation', category: 'artemis' },
@@ -140,7 +182,31 @@ export const NEXT_SPRINT_ARTEMIS_ITEMS: NextSprintArtemisItem[] = [
   { key: 'BACK-1702', summary: 'Self-healing agent restart logic', category: 'artemis' },
   { key: 'BACK-1703', summary: 'Create platform health dashboard', category: 'artemis' },
   { key: 'BACK-1710', summary: 'Power BI embedded dashboards', category: 'artemis' },
-  { key: 'BACK-1711', summary: 'Fabric Real-Time Analytics integration', category: 'artemis' }
+  { key: 'BACK-1711', summary: 'Fabric Real-Time Analytics integration', category: 'artemis' },
+  { key: 'BACK-1832', summary: 'Common Known Passwords implementation', category: 'security' }
+];
+
+export interface SecurityTicketItem {
+  key: string;
+  summary: string;
+  category: 'pentest' | 'security';
+}
+
+// Pentest items (#PT34600) added for S3
+export const NEXT_SPRINT_SECURITY_ITEMS: SecurityTicketItem[] = [
+  { key: 'SC-301', summary: 'Pentest finding #PT34600-1', category: 'pentest' },
+  { key: 'SC-302', summary: 'Pentest finding #PT34600-2', category: 'pentest' },
+  { key: 'SC-303', summary: 'Pentest finding #PT34600-3', category: 'pentest' },
+  { key: 'SC-304', summary: 'Pentest finding #PT34600-4', category: 'pentest' },
+  { key: 'SC-305', summary: 'Pentest finding #PT34600-5', category: 'pentest' },
+  { key: 'SC-306', summary: 'Pentest finding #PT34600-6', category: 'pentest' }
+];
+
+// Infrastructure/CI items added for S3
+export const NEXT_SPRINT_CI_ITEMS: NextSprintArtemisItem[] = [
+  { key: 'CI-901', summary: 'Artemis infrastructure setup', category: 'infrastructure' },
+  { key: 'CI-902', summary: 'CI/CD pipeline updates', category: 'infrastructure' },
+  { key: 'CI-903', summary: 'Environment configuration', category: 'infrastructure' }
 ];
 
 export const NEXT_SPRINT_CLIENT_ITEMS: NextSprintClientItem[] = [

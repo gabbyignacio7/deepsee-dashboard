@@ -15,8 +15,8 @@ import { Download, DollarSign, BarChart2, Settings, Target, AlertTriangle, Rocke
 import { masterFeaturesData, getBucketStats, BUCKET_CONFIG, type Bucket } from '@/data/masterFeaturesData';
 import { Badge } from '@/components/ui/badge';
 import { blockedSummary } from '@/data/blockedItemsData';
-import { CURRENT_SPRINT } from '@/data/sprintData';
-import { overallHealth } from '@/data/sprintHealthData';
+import { CURRENT_SPRINT, NEXT_SPRINT_READINESS } from '@/data/sprintData';
+import { overallHealth, sprintPlanningAlert } from '@/data/sprintHealthData';
 import { artemisReadiness } from '@/data/artemisFoundationData';
 
 export default function ExecutiveDashboard() {
@@ -139,6 +139,33 @@ export default function ExecutiveDashboard() {
         </div>
       </div>
 
+      {/* Sprint Planning Alert Banner */}
+      <div className="bg-red-50 border-2 border-red-300 rounded-lg p-4">
+        <div className="flex items-center gap-3">
+          <AlertTriangle className="w-6 h-6 text-red-600 flex-shrink-0" />
+          <div className="flex-1">
+            <h3 className="font-bold text-red-800">SPRINT PLANNING ALERT</h3>
+            <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div>
+                <span className="text-gray-700">Current Sprint ({sprintPlanningAlert.currentSprint.id}):</span>
+                <span className="ml-2 font-medium">{sprintPlanningAlert.currentSprint.completionRate}% complete, {sprintPlanningAlert.currentSprint.daysRemaining} days remaining</span>
+              </div>
+              <div>
+                <span className="text-gray-700">Next Sprint ({sprintPlanningAlert.nextSprint.id}):</span>
+                <span className="ml-2 font-medium text-red-700">⚠️ {sprintPlanningAlert.nextSprint.totalTickets} tickets populated but NOT READY</span>
+              </div>
+            </div>
+            <div className="mt-2 text-sm text-red-700">
+              <span className="font-medium">{sprintPlanningAlert.nextSprint.unassignedPercent}% unassigned</span> ({NEXT_SPRINT_READINESS.unassigned} of {NEXT_SPRINT_READINESS.totalTickets}) |
+              <span className="font-medium ml-2">{sprintPlanningAlert.nextSprint.missingEstimatesPercent}% missing estimates</span>
+            </div>
+            <div className="mt-2 text-sm font-medium text-red-800">
+              ACTION NEEDED: {sprintPlanningAlert.actionNeeded}
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Key Highlights - Executive Summary */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Key Highlights */}
@@ -151,15 +178,15 @@ export default function ExecutiveDashboard() {
             </li>
             <li className="flex items-start gap-2">
               <span className="text-red-500 mt-0.5">●</span>
+              <span>Next Sprint (S3): ⚠️ {NEXT_SPRINT_READINESS.totalTickets} tickets but {NEXT_SPRINT_READINESS.unassigned} unassigned - needs assignment + pointing session</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-red-500 mt-0.5">●</span>
               <span>ARTEMIS Foundation: {artemisReadiness.started}/{artemisReadiness.totalEpics} epics started - needs immediate attention</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-red-500 mt-0.5">●</span>
               <span>{blockedSummary.total} blocked items requiring escalation (avg {blockedSummary.avgDaysBlocked} days blocked)</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-yellow-500 mt-0.5">●</span>
-              <span>DTCC ELA ($1.85M) in Contracting & Close - 80% probability</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-blue-500 mt-0.5">●</span>
