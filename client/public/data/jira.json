@@ -779,7 +779,7 @@
   {
     "Ticket_ID": "BACK-1695",
     "Ticket_Summary": "API Gateway rate limiting implementation",
-    "Status": "To Do",
+    "Status": "Done",
     "Category": "Back End Development",
     "Project_Key": "BACK",
     "Client_Name": " ",
@@ -791,7 +791,7 @@
     "Sprint": "2026-S2",
     "Created_Date": "2026-01-06",
     "Target_Date": "",
-    "Completed_Date": "",
+    "Completed_Date": "2026-01-28",
     "Product_Proposed_To_Deprecate": "N",
     "Deprecation_Notes": "",
     "Epic_Key": "BACK-1680",
