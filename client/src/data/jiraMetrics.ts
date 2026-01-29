@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 29, 2026 at 1:19 AM MT",
+  lastUpdated: "January 29, 2026 at 1:36 AM MT",
   extractionSource: "JIRA API - 2026-S2",
 
   sprintInfo: {
@@ -98,7 +98,7 @@ export const jiraMetrics: JiraMetrics = {
       title: "Implement agent container health monitoring",
       assignee: "Unassigned",
       status: "To Do",
-      daysInStatus: 22,
+      daysInStatus: 23,
       warningLevel: "warning"
     },
     {
