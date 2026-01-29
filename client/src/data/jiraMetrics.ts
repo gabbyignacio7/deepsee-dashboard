@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 29, 2026 at 3:23 AM MT",
+  lastUpdated: "January 29, 2026 at 3:41 AM MT",
   extractionSource: "JIRA API - 2026-S2",
 
   sprintInfo: {
@@ -114,7 +114,7 @@ export const jiraMetrics: JiraMetrics = {
       title: "OAuth 2.0 client credential flow for APIs",
       assignee: "Unassigned",
       status: "To Do",
-      daysInStatus: 22,
+      daysInStatus: 23,
       warningLevel: "warning"
     },
     {
