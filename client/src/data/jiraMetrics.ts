@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 29, 2026 at 8:22 AM MT",
+  lastUpdated: "January 29, 2026 at 8:39 AM MT",
   extractionSource: "JIRA API - 2026-S2",
 
   sprintInfo: {
@@ -59,9 +59,9 @@ export const jiraMetrics: JiraMetrics = {
 
   overall: {
     totalActiveTickets: 96,
-    totalInProgress: 13,
-    totalToDo: 26,
-    totalCodeReview: 4,
+    totalInProgress: 11,
+    totalToDo: 27,
+    totalCodeReview: 5,
     totalBlocked: 1,
     totalDone: 52,
     totalWithStoryPoints: 68
@@ -69,8 +69,8 @@ export const jiraMetrics: JiraMetrics = {
 
   storyPoints: {
     completed: 117,
-    inProgress: 53,
-    notStarted: 34,
+    inProgress: 45,
+    notStarted: 42,
     completionRate: 57
   },
 
@@ -141,10 +141,10 @@ export const epicProgress: EpicProgress[] = [
   { key: "UI-694", description: "UI-694 - 9 tickets", progress: 56, status: 'in_progress' },
   { key: "BACK-1232", description: "BACK-1232 - 4 tickets", progress: 50, status: 'in_progress' },
   { key: "BACK-1650", description: "BACK-1650 - 3 tickets", progress: 33, status: 'in_progress' },
-  { key: "BACK-1656", description: "BACK-1656 - 4 tickets", progress: 0, status: 'in_progress' },
   { key: "PR-1562", description: "PR-1562 - 2 tickets", progress: 0, status: 'in_progress' },
   { key: "BACK-1583", description: "BACK-1583 - 4 tickets", progress: 100, status: 'complete' },
   { key: "UI-745", description: "UI-745 - 3 tickets", progress: 100, status: 'complete' },
+  { key: "BACK-1656", description: "BACK-1656 - 4 tickets", progress: 0, status: 'not_started' },
   { key: "BACK-1680", description: "BACK-1680 - 7 tickets", progress: 0, status: 'not_started' }
 ];
 

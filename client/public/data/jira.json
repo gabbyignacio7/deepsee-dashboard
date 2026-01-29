@@ -212,7 +212,7 @@
   {
     "Ticket_ID": "BACK-1657",
     "Ticket_Summary": "[PARSER] PDF extraction for multi-page documents that have multiple documents within",
-    "Status": "In Progress",
+    "Status": "Waiting for approval",
     "Category": "Back End Development",
     "Project_Key": "BACK",
     "Client_Name": " ",
@@ -1955,7 +1955,7 @@
   {
     "Ticket_ID": "BACK-1821",
     "Ticket_Summary": "ACN Updates for IsReply",
-    "Status": "In Progress",
+    "Status": "Code Review",
     "Category": "Back End Development",
     "Project_Key": "BACK",
     "Client_Name": " ",
