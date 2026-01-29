@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 29, 2026 at 12:28 AM MT",
+  lastUpdated: "January 29, 2026 at 12:46 AM MT",
   extractionSource: "JIRA API - 2026-S2",
 
   sprintInfo: {
@@ -90,7 +90,7 @@ export const jiraMetrics: JiraMetrics = {
       title: "Implement data partitioning strategy",
       assignee: "Unassigned",
       status: "To Do",
-      daysInStatus: 22,
+      daysInStatus: 23,
       warningLevel: "warning"
     },
     {
