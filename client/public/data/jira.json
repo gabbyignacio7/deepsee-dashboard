@@ -1577,7 +1577,7 @@
   {
     "Ticket_ID": "BACK-1796",
     "Ticket_Summary": "Automatically refresh the Allegro password before expiry",
-    "Status": "Blocked",
+    "Status": "In Progress",
     "Category": "Back End Development",
     "Project_Key": "BACK",
     "Client_Name": " ",

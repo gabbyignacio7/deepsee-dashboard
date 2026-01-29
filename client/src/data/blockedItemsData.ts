@@ -13,40 +13,24 @@ export interface BlockedItem {
   reason?: string;
 }
 
-// Current Sprint Blocked Items (1 items requiring immediate action)
+// Current Sprint Blocked Items (0 items requiring immediate action)
 export const sprintBlockedItems: BlockedItem[] = [
-  {
-    key: "BACK-1796",
-    summary: "Automatically refresh the Allegro password before expiry",
-    assignee: "Kannal Mutharasu",
-    daysBlocked: 7,
-    category: "artemis",
-    priority: "P2",
-    jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1796"
-  }
+
 ];
 
 // All blocked items including backlog
 export const blockedItems: BlockedItem[] = [
-  {
-    key: "BACK-1796",
-    summary: "Automatically refresh the Allegro password before expiry",
-    assignee: "Kannal Mutharasu",
-    daysBlocked: 7,
-    category: "artemis",
-    priority: "P2",
-    jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1796"
-  }
+
 ];
 
 export const blockedSummary = {
-  total: 1,
-  sprintBlocked: 1,
+  total: 0,
+  sprintBlocked: 0,
   p0Count: 0,
   p1Count: 0,
-  p2Count: 1,
-  avgDaysBlocked: 7,
-  oldestBlocked: "BACK-1796 (7 days)",
+  p2Count: 0,
+  avgDaysBlocked: 0,
+  oldestBlocked: "None",
   unassignedCount: 0
 };
 
