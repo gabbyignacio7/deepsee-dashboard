@@ -1367,7 +1367,7 @@
   {
     "Ticket_ID": "BACK-1782",
     "Ticket_Summary": "[FEEL Refactor] Create Java methods for slow FEEL functions",
-    "Status": "In Progress",
+    "Status": "Done",
     "Category": "Back End Development",
     "Project_Key": "BACK",
     "Client_Name": " ",
@@ -1379,7 +1379,7 @@
     "Sprint": "2026-S2",
     "Created_Date": "2026-01-13",
     "Target_Date": "",
-    "Completed_Date": "",
+    "Completed_Date": "2026-01-29",
     "Product_Proposed_To_Deprecate": "N",
     "Deprecation_Notes": "",
     "Epic_Key": "BACK-1232",
