@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 30, 2026 at 4:12 PM MT",
+  lastUpdated: "January 30, 2026 at 4:25 PM MT",
   extractionSource: "JIRA API - 2026-S3",
 
   sprintInfo: {
@@ -59,19 +59,19 @@ export const jiraMetrics: JiraMetrics = {
 
   overall: {
     totalActiveTickets: 81,
-    totalInProgress: 13,
+    totalInProgress: 11,
     totalToDo: 61,
     totalCodeReview: 6,
     totalBlocked: 0,
-    totalDone: 1,
+    totalDone: 3,
     totalWithStoryPoints: 34
   },
 
   storyPoints: {
-    completed: 1,
-    inProgress: 46,
+    completed: 10,
+    inProgress: 37,
     notStarted: 79,
-    completionRate: 1
+    completionRate: 8
   },
 
   engineerSummary: {
@@ -136,9 +136,9 @@ export interface EpicProgress {
 }
 
 export const epicProgress: EpicProgress[] = [
-  { key: "BACK-1650", description: "BACK-1650 - 3 tickets", progress: 0, status: 'in_progress' },
+  { key: "BACK-1234", description: "BACK-1234 - 2 tickets", progress: 50, status: 'in_progress' },
+  { key: "BACK-1650", description: "BACK-1650 - 3 tickets", progress: 33, status: 'in_progress' },
   { key: "PR-1562", description: "PR-1562 - 2 tickets", progress: 0, status: 'in_progress' },
-  { key: "BACK-1234", description: "BACK-1234 - 2 tickets", progress: 0, status: 'in_progress' },
   { key: "BACK-1656", description: "BACK-1656 - 4 tickets", progress: 0, status: 'not_started' },
   { key: "BACK-1680", description: "BACK-1680 - 15 tickets", progress: 0, status: 'not_started' },
   { key: "UI-694", description: "UI-694 - 3 tickets", progress: 0, status: 'not_started' },
@@ -150,5 +150,5 @@ export const epicProgress: EpicProgress[] = [
 export const sprintComparison = {
   s2: { sprint: "2026-S2", committed: 204, completed: 124, rate: 61, status: "in_progress" },
   s1: { sprint: "2026-S1", committed: 94, completed: 91, rate: 97, status: "complete" },
-  s3: { sprint: "2026-S3", committed: 126, completed: 1, rate: 1, status: "in_progress" }
+  s3: { sprint: "2026-S3", committed: 126, completed: 10, rate: 8, status: "in_progress" }
 };
