@@ -1619,7 +1619,7 @@
   {
     "Ticket_ID": "BACK-1858",
     "Ticket_Summary": "Purge test work items from the Colony RV/Marine instance",
-    "Status": "To Do",
+    "Status": "In Progress",
     "Category": "Back End Development",
     "Project_Key": "BACK",
     "Client_Name": " ",

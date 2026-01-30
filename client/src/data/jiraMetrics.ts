@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 30, 2026 at 9:19 AM MT",
+  lastUpdated: "January 30, 2026 at 9:36 AM MT",
   extractionSource: "JIRA API - 2026-S3",
 
   sprintInfo: {
@@ -59,8 +59,8 @@ export const jiraMetrics: JiraMetrics = {
 
   overall: {
     totalActiveTickets: 78,
-    totalInProgress: 11,
-    totalToDo: 62,
+    totalInProgress: 12,
+    totalToDo: 61,
     totalCodeReview: 5,
     totalBlocked: 0,
     totalDone: 0,
@@ -69,8 +69,8 @@ export const jiraMetrics: JiraMetrics = {
 
   storyPoints: {
     completed: 0,
-    inProgress: 43,
-    notStarted: 62,
+    inProgress: 44,
+    notStarted: 61,
     completionRate: 0
   },
 
