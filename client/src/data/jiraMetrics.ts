@@ -45,32 +45,32 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 30, 2026 at 2:41 PM MT",
+  lastUpdated: "January 30, 2026 at 2:51 PM MT",
   extractionSource: "JIRA API - 2026-S3",
 
   sprintInfo: {
     name: "2026-S3",
     dates: "Jan 30 - Feb 13, 2026",
     daysRemaining: 14,
-    totalStoryPoints: 113,
+    totalStoryPoints: 118,
     avgVelocity: 80,
-    overCommitment: "41% over average velocity"
+    overCommitment: "48% over average velocity"
   },
 
   overall: {
-    totalActiveTickets: 80,
+    totalActiveTickets: 81,
     totalInProgress: 12,
-    totalToDo: 62,
+    totalToDo: 63,
     totalCodeReview: 5,
     totalBlocked: 0,
     totalDone: 1,
-    totalWithStoryPoints: 32
+    totalWithStoryPoints: 33
   },
 
   storyPoints: {
     completed: 1,
     inProgress: 46,
-    notStarted: 66,
+    notStarted: 71,
     completionRate: 1
   },
 
@@ -78,9 +78,9 @@ export const jiraMetrics: JiraMetrics = {
     activeEngineers: 12,
     engineersWithNoTickets: [],
     highestLoad: [
+      { name: "Treven Trujillo", tickets: 3 },
       { name: "Aleksander Winski", tickets: 3 },
-      { name: "Ivan Peev", tickets: 3 },
-      { name: "Treven Trujillo", tickets: 2 }
+      { name: "Ivan Peev", tickets: 3 }
     ]
   },
 
@@ -150,5 +150,5 @@ export const epicProgress: EpicProgress[] = [
 export const sprintComparison = {
   s2: { sprint: "2026-S2", committed: 204, completed: 124, rate: 61, status: "in_progress" },
   s1: { sprint: "2026-S1", committed: 94, completed: 91, rate: 97, status: "complete" },
-  s3: { sprint: "2026-S3", committed: 113, completed: 1, rate: 1, status: "in_progress" }
+  s3: { sprint: "2026-S3", committed: 118, completed: 1, rate: 1, status: "in_progress" }
 };
