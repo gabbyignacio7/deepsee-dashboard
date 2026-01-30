@@ -1661,7 +1661,7 @@
   {
     "Ticket_ID": "BACK-1860",
     "Ticket_Summary": "[Mercury Extraction] Update the model call for extraction to use GPT5.1 model",
-    "Status": "To Do",
+    "Status": "In Progress",
     "Category": "Back End Development",
     "Project_Key": "BACK",
     "Client_Name": " ",
