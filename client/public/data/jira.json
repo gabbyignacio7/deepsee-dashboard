@@ -955,7 +955,7 @@
     "Story_Points": 5,
     "Mapped_Feature_ID": "F-003",
     "Mapped_Feature_Name": "DeepSee Service Fabric Internal Enhancements",
-    "Assigned_Engineer": "Unassigned",
+    "Assigned_Engineer": "Jeff Hegerhorst",
     "Sprint": "2026-S3",
     "Created_Date": "2026-01-09",
     "Target_Date": "2026-01-30",
@@ -1656,7 +1656,7 @@
     "Product_Proposed_To_Deprecate": "N",
     "Deprecation_Notes": "",
     "Epic_Key": "",
-    "Priority": "Major"
+    "Priority": "Critical"
   },
   {
     "Ticket_ID": "BACK-1860",
