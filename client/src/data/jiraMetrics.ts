@@ -45,81 +45,81 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 30, 2026 at 8:20 AM MT",
-  extractionSource: "JIRA API - 2026-S2",
+  lastUpdated: "January 30, 2026 at 8:37 AM MT",
+  extractionSource: "JIRA API - 2026-S3",
 
   sprintInfo: {
-    name: "2026-S2",
-    dates: "Jan 16 - Jan 30, 2026",
-    daysRemaining: 0,
-    totalStoryPoints: 204,
+    name: "2026-S3",
+    dates: "Jan 30 - Feb 13, 2026",
+    daysRemaining: 14,
+    totalStoryPoints: 109,
     avgVelocity: 80,
-    overCommitment: "155% over average velocity"
+    overCommitment: "36% over average velocity"
   },
 
   overall: {
-    totalActiveTickets: 98,
-    totalInProgress: 8,
-    totalToDo: 28,
-    totalCodeReview: 7,
+    totalActiveTickets: 78,
+    totalInProgress: 10,
+    totalToDo: 61,
+    totalCodeReview: 6,
     totalBlocked: 0,
-    totalDone: 55,
-    totalWithStoryPoints: 68
+    totalDone: 1,
+    totalWithStoryPoints: 30
   },
 
   storyPoints: {
-    completed: 124,
-    inProgress: 30,
-    notStarted: 50,
-    completionRate: 61
+    completed: 5,
+    inProgress: 38,
+    notStarted: 66,
+    completionRate: 5
   },
 
   engineerSummary: {
-    activeEngineers: 12,
+    activeEngineers: 11,
     engineersWithNoTickets: [],
     highestLoad: [
-      { name: "Ivan Peev", tickets: 12 },
-      { name: "Kannal Mutharasu", tickets: 10 },
-      { name: "Kalvin Willison", tickets: 8 }
+      { name: "Aleksander Winski", tickets: 3 },
+      { name: "Kannal Mutharasu", tickets: 3 },
+      { name: "Ivan Peev", tickets: 3 }
     ]
   },
 
   longRunningTickets: [
     {
-      id: "BACK-1689",
-      title: "Implement data partitioning strategy",
+      id: "BACK-1690",
+      title: "Create data lifecycle management policies",
       assignee: "Unassigned",
       status: "To Do",
       daysInStatus: 24,
       warningLevel: "warning"
     },
     {
-      id: "BACK-1692",
-      title: "Implement agent container health monitoring",
+      id: "BACK-1693",
+      title: "GPU resource allocation for LLM inference",
       assignee: "Unassigned",
       status: "To Do",
       daysInStatus: 24,
       warningLevel: "warning"
     },
     {
-      id: "BACK-1696",
-      title: "Connector Framework base implementation",
+      id: "BACK-1694",
+      title: "Create compute cost monitoring dashboard",
       assignee: "Unassigned",
       status: "To Do",
       daysInStatus: 24,
       warningLevel: "warning"
     },
     {
-      id: "BACK-1698",
-      title: "OAuth 2.0 client credential flow for APIs",
+      id: "BACK-1699",
+      title: "Webhook delivery and retry mechanism",
       assignee: "Unassigned",
       status: "To Do",
       daysInStatus: 24,
       warningLevel: "warning"
     },
     {
-      id: "BACK-1701",
-      title: "Implement circuit breaker pattern for external calls",
+      id: "BACK-1700",
+      title: "API Gateway rate limiting implementation",
       assignee: "Unassigned",
       status: "To Do",
       daysInStatus: 24,
@@ -136,21 +136,19 @@ export interface EpicProgress {
 }
 
 export const epicProgress: EpicProgress[] = [
-  { key: "BACK-1234", description: "BACK-1234 - 8 tickets", progress: 75, status: 'in_progress' },
-  { key: "BACK-1232", description: "BACK-1232 - 4 tickets", progress: 75, status: 'in_progress' },
-  { key: "BACK-1292", description: "BACK-1292 - 3 tickets", progress: 67, status: 'in_progress' },
-  { key: "UI-694", description: "UI-694 - 9 tickets", progress: 56, status: 'in_progress' },
-  { key: "BACK-1650", description: "BACK-1650 - 3 tickets", progress: 33, status: 'in_progress' },
+  { key: "BACK-1650", description: "BACK-1650 - 3 tickets", progress: 0, status: 'in_progress' },
   { key: "PR-1562", description: "PR-1562 - 2 tickets", progress: 0, status: 'in_progress' },
-  { key: "BACK-1583", description: "BACK-1583 - 4 tickets", progress: 100, status: 'complete' },
-  { key: "UI-745", description: "UI-745 - 3 tickets", progress: 100, status: 'complete' },
+  { key: "BACK-1234", description: "BACK-1234 - 2 tickets", progress: 0, status: 'in_progress' },
   { key: "BACK-1656", description: "BACK-1656 - 4 tickets", progress: 0, status: 'not_started' },
-  { key: "BACK-1680", description: "BACK-1680 - 7 tickets", progress: 0, status: 'not_started' }
+  { key: "BACK-1680", description: "BACK-1680 - 15 tickets", progress: 0, status: 'not_started' },
+  { key: "UI-694", description: "UI-694 - 3 tickets", progress: 0, status: 'not_started' },
+  { key: "BACK-1726", description: "BACK-1726 - 4 tickets", progress: 0, status: 'not_started' },
+  { key: "BACK-1758", description: "BACK-1758 - 4 tickets", progress: 0, status: 'not_started' }
 ];
 
 // Sprint Comparison Data - Historical data preserved, current sprint updated
 export const sprintComparison = {
   s2: { sprint: "2026-S2", committed: 204, completed: 124, rate: 61, status: "in_progress" },
   s1: { sprint: "2026-S1", committed: 94, completed: 91, rate: 97, status: "complete" },
-  s3: { sprint: "2026-S3", committed: 5, completed: 0, rate: 0, status: "complete" }
+  s3: { sprint: "2026-S3", committed: 109, completed: 5, rate: 5, status: "in_progress" }
 };
