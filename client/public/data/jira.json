@@ -2016,6 +2016,27 @@
     "Priority": "Major"
   },
   {
+    "Ticket_ID": "BACK-1859",
+    "Ticket_Summary": "[BE][Accenture] - find way to reduce response size",
+    "Status": "To Do",
+    "Category": "Back End Development",
+    "Project_Key": "BACK",
+    "Client_Name": " ",
+    "T_Shirt_Size": " ",
+    "Story_Points": 0,
+    "Mapped_Feature_ID": "F-038",
+    "Mapped_Feature_Name": "Vantage Bank Custom Reconciliation (POC)",
+    "Assigned_Engineer": "Aleksander Winski",
+    "Sprint": "2026-S2",
+    "Created_Date": "2026-01-30",
+    "Target_Date": "",
+    "Completed_Date": "",
+    "Product_Proposed_To_Deprecate": "N",
+    "Deprecation_Notes": "",
+    "Epic_Key": "",
+    "Priority": "Major"
+  },
+  {
     "Ticket_ID": "PR-1435",
     "Ticket_Summary": "Demoable RFP Workflow",
     "Status": "Completed",
