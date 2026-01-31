@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 31, 2026 at 1:44 AM MT",
+  lastUpdated: "January 31, 2026 at 1:57 AM MT",
   extractionSource: "JIRA API - 2026-S3",
 
   sprintInfo: {
@@ -106,7 +106,7 @@ export const jiraMetrics: JiraMetrics = {
       title: "Create compute cost monitoring dashboard",
       assignee: "Unassigned",
       status: "To Do",
-      daysInStatus: 24,
+      daysInStatus: 25,
       warningLevel: "warning"
     },
     {
