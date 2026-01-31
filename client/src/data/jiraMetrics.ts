@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "January 31, 2026 at 2:16 PM MT",
+  lastUpdated: "January 31, 2026 at 2:29 PM MT",
   extractionSource: "JIRA API - 2026-S3",
 
   sprintInfo: {
