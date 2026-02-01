@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "February 1, 2026 at 2:48 PM MT",
+  lastUpdated: "February 1, 2026 at 2:55 PM MT",
   extractionSource: "JIRA API - 2026-S3",
 
   sprintInfo: {
@@ -79,8 +79,8 @@ export const jiraMetrics: JiraMetrics = {
     engineersWithNoTickets: [],
     highestLoad: [
       { name: "Darius Ouderkirk", tickets: 4 },
-      { name: "Treven Trujillo", tickets: 3 },
-      { name: "Aleksander Winski", tickets: 3 }
+      { name: "Ivan Peev", tickets: 4 },
+      { name: "Treven Trujillo", tickets: 3 }
     ]
   },
 
