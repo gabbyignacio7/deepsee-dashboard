@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "February 1, 2026 at 1:32 AM MT",
+  lastUpdated: "February 1, 2026 at 1:48 AM MT",
   extractionSource: "JIRA API - 2026-S3",
 
   sprintInfo: {
@@ -98,7 +98,7 @@ export const jiraMetrics: JiraMetrics = {
       title: "GPU resource allocation for LLM inference",
       assignee: "Unassigned",
       status: "To Do",
-      daysInStatus: 25,
+      daysInStatus: 26,
       warningLevel: "warning"
     },
     {
@@ -106,7 +106,7 @@ export const jiraMetrics: JiraMetrics = {
       title: "Create compute cost monitoring dashboard",
       assignee: "Unassigned",
       status: "To Do",
-      daysInStatus: 25,
+      daysInStatus: 26,
       warningLevel: "warning"
     },
     {
