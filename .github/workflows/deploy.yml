@@ -4,9 +4,6 @@ on:
   push:
     branches: ['main']
   workflow_dispatch:
-  schedule:
-    # Run twice daily: 9 AM and 5 PM UTC (2 AM and 10 AM MT)
-    - cron: '0 9,17 * * *'
 
 permissions:
   contents: write
