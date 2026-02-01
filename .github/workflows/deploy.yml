@@ -5,8 +5,8 @@ on:
     branches: ['main']
   workflow_dispatch:
   schedule:
-    # Run every 5 minutes to refresh JIRA data
-    - cron: '*/5 * * * *'
+    # Run twice daily: 9 AM and 5 PM UTC (2 AM and 10 AM MT)
+    - cron: '0 9,17 * * *'
 
 permissions:
   contents: write
