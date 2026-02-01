@@ -215,6 +215,26 @@ export function getSprintMixChartData() {
   ];
 }
 
+export const NEXT_SPRINT_READINESS = {
+  totalTickets: 81,
+  assigned: 26,
+  unassigned: 55,
+  withStoryPoints: 34,
+  missingEstimates: 47,
+  readinessStatus: 'NOT READY',
+  blockers: [
+    '68% of tickets unassigned',
+    '58% missing story point estimates',
+    'Sprint starts in 2 days (Jan 30)',
+    'Lane, Loris, Karolina have 0 S3 tickets'
+  ],
+  recentAdditions: [
+    '6 SC tickets (security)',
+    '6 CI tickets (infrastructure)',
+    '62 BACK tickets'
+  ]
+};
+
 export function formatDataTimestamp(isoString: string = EXTRACTION_TIMESTAMP): string {
   const date = new Date(isoString);
   return date.toLocaleDateString('en-US', {
