@@ -45,7 +45,7 @@ export interface JiraMetrics {
 }
 
 export const jiraMetrics: JiraMetrics = {
-  lastUpdated: "February 1, 2026 at 3:56 AM MT",
+  lastUpdated: "February 1, 2026 at 4:05 AM MT",
   extractionSource: "JIRA API - 2026-S3",
 
   sprintInfo: {
@@ -114,7 +114,7 @@ export const jiraMetrics: JiraMetrics = {
       title: "Webhook delivery and retry mechanism",
       assignee: "Unassigned",
       status: "To Do",
-      daysInStatus: 25,
+      daysInStatus: 26,
       warningLevel: "warning"
     },
     {
