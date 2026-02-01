@@ -1,3 +1,4 @@
+# Deploys on push to main or manual workflow_dispatch trigger
 name: Deploy to GitHub Pages
 
 on:
