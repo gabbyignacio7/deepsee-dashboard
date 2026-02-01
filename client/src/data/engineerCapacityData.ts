@@ -1,5 +1,5 @@
-// Engineer Capacity Data - Updated January 18, 2026
-// Source: JIRA Extract
+// Engineer Capacity Data - Updated January 28, 2026
+// Source: JIRA Extract - Sprint 2026-S2 / S3
 
 export interface TicketAssignment {
   key: string;
@@ -18,213 +18,260 @@ export interface EngineerCapacity {
   s2InProgress: number;
   s2Blocked: number;
   completionPct: number;
+  s3Tickets: number;
+  s3Points: number;
+  status: 'green' | 'yellow' | 'red' | 'warning';
+  statusNote: string;
   tickets: TicketAssignment[];
 }
 
 export const engineers: EngineerCapacity[] = [
   {
-    name: "Aleksander Winski",
-    role: "Backend",
-    s2Tickets: 1,
-    s2Points: 0,
-    s2Done: 0,
-    s2InProgress: 1,
-    s2Blocked: 0,
-    completionPct: 0,
-    tickets: [
-      { key: "BACK-1723", summary: "Performance Improvements for Accenture", status: "IN PROGRESS", points: 0 }
-    ]
-  },
-  {
-    name: "Brandon Baguley",
-    role: "Head of Engineering",
-    s2Tickets: 2,
-    s2Points: 0,
-    s2Done: 1,
-    s2InProgress: 1,
-    s2Blocked: 0,
-    completionPct: 50,
-    tickets: [
-      { key: "BACK-1792", summary: "JAVA - Generate and Review Unit/Integration Tests", status: "IN PROGRESS", points: 0 },
-      { key: "CI-912", summary: "Mercury terraform modules", status: "DONE", points: 8 }
-    ]
-  },
-  {
-    name: "Chad Hegerhorst",
-    role: "DevOps",
-    s2Tickets: 1,
-    s2Points: 8,
-    s2Done: 1,
+    name: "Lane Terry",
+    role: "Lead Software Engineer",
+    s2Tickets: 7,
+    s2Points: 7,
+    s2Done: 7,
     s2InProgress: 0,
     s2Blocked: 0,
     completionPct: 100,
+    s3Tickets: 0,
+    s3Points: 0,
+    status: 'warning',
+    statusNote: 'No S3 work',
+    tickets: []
+  },
+  {
+    name: "Jeff Hegerhorst",
+    role: "Principal DevOps Engineer",
+    s2Tickets: 4,
+    s2Points: 13,
+    s2Done: 3,
+    s2InProgress: 1,
+    s2Blocked: 0,
+    completionPct: 75,
+    s3Tickets: 2,
+    s3Points: 13,
+    status: 'yellow',
+    statusNote: '13pt',
+    tickets: []
+  },
+  {
+    name: "Chad Hegerhorst",
+    role: "Lead Software Engineer in Test",
+    s2Tickets: 5,
+    s2Points: 18,
+    s2Done: 4,
+    s2InProgress: 1,
+    s2Blocked: 0,
+    completionPct: 80,
+    s3Tickets: 2,
+    s3Points: 10,
+    status: 'yellow',
+    statusNote: '10pt',
+    tickets: []
+  },
+  {
+    name: "Ivan Peev",
+    role: "Senior Software Engineer",
+    s2Tickets: 12,
+    s2Points: 15,
+    s2Done: 9,
+    s2InProgress: 3,
+    s2Blocked: 0,
+    completionPct: 75,
+    s3Tickets: 3,
+    s3Points: 9,
+    status: 'green',
+    statusNote: '9pt',
     tickets: [
-      { key: "CI-912", summary: "Mercury - Configure initial terraform modules", status: "DONE", points: 8 }
+      { key: "BACK-1826", summary: "Move Migrations to DeepRecon Platform Image", status: "CODE REVIEW", points: 3 },
+      { key: "BACK-1805", summary: "DeepPilot Client & Message Update Integration", status: "CODE REVIEW", points: 3 }
     ]
   },
   {
     name: "Darius Ouderkirk",
-    role: "Backend",
+    role: "Principal Software Engineer",
     s2Tickets: 6,
-    s2Points: 15,
-    s2Done: 1,
+    s2Points: 18,
+    s2Done: 3,
     s2InProgress: 3,
     s2Blocked: 0,
-    completionPct: 17,
-    tickets: [
-      { key: "BACK-1602", summary: "Backend task", status: "DONE", points: 5 },
-      { key: "BACK-1288", summary: "Backend task", status: "TO DO", points: 2 },
-      { key: "BACK-1722", summary: "Backend task", status: "IN PROGRESS", points: 0 },
-      { key: "BACK-1678", summary: "Backend task", status: "IN PROGRESS", points: 0 },
-      { key: "BACK-1548", summary: "Backend task", status: "IN PROGRESS", points: 5 },
-      { key: "BACK-911", summary: "Backend task", status: "TO DO", points: 3 }
-    ]
+    completionPct: 50,
+    s3Tickets: 4,
+    s3Points: 14,
+    status: 'yellow',
+    statusNote: '14pt - backlog risk',
+    tickets: []
   },
   {
-    name: "Ivan Peev",
-    role: "Backend",
-    s2Tickets: 9,
-    s2Points: 6,
-    s2Done: 2,
-    s2InProgress: 5,
+    name: "Kannal Mutharasu",
+    role: "Software Engineer",
+    s2Tickets: 10,
+    s2Points: 32,
+    s2Done: 8,
+    s2InProgress: 2,
     s2Blocked: 0,
-    completionPct: 22,
+    completionPct: 80,
+    s3Tickets: 2,
+    s3Points: 10,
+    status: 'yellow',
+    statusNote: '10pt',
     tickets: [
-      { key: "BACK-1794", summary: "Backend task", status: "CODE REVIEW", points: 0 },
-      { key: "BACK-1776", summary: "Broadridge task", status: "CODE REVIEW", points: 0 },
-      { key: "BACK-1583", summary: "Backend task", status: "DONE", points: 3 },
-      { key: "BACK-1708", summary: "Backend task", status: "DONE", points: 3 },
-      { key: "BACK-1327", summary: "Backend task", status: "IN PROGRESS", points: 0 },
-      { key: "BACK-1305", summary: "Backend task", status: "IN PROGRESS", points: 0 },
-      { key: "BACK-1306", summary: "Backend task", status: "IN PROGRESS", points: 0 },
-      { key: "BACK-1789", summary: "Broadridge task", status: "IN PROGRESS", points: 0 },
-      { key: "BACK-1793", summary: "Backend task", status: "IN PROGRESS", points: 0 }
-    ]
-  },
-  {
-    name: "Jeff Hegerhorst",
-    role: "DevOps",
-    s2Tickets: 1,
-    s2Points: 3,
-    s2Done: 0,
-    s2InProgress: 1,
-    s2Blocked: 0,
-    completionPct: 0,
-    tickets: [
-      { key: "CI-927", summary: "Upgrade argo workflows to v3.7.7", status: "IN PROGRESS", points: 3 }
+      { key: "BACK-1548", summary: "Enable Conditional Reconciliation", status: "CODE REVIEW", points: 5 }
     ]
   },
   {
     name: "Kalvin Willison",
-    role: "Backend",
-    s2Tickets: 1,
-    s2Points: 4,
-    s2Done: 0,
+    role: "Junior Software Engineer",
+    s2Tickets: 8,
+    s2Points: 26,
+    s2Done: 7,
     s2InProgress: 1,
     s2Blocked: 0,
-    completionPct: 0,
-    tickets: [
-      { key: "BACK-1720", summary: "Backend task", status: "IN PROGRESS", points: 4 }
-    ]
+    completionPct: 87.5,
+    s3Tickets: 2,
+    s3Points: 9,
+    status: 'green',
+    statusNote: '9pt',
+    tickets: []
   },
   {
-    name: "Kannal Mutharasu",
-    role: "Backend",
-    s2Tickets: 1,
-    s2Points: 5,
-    s2Done: 0,
-    s2InProgress: 0,
+    name: "Aleksander Winski",
+    role: "Senior Software Engineer",
+    s2Tickets: 6,
+    s2Points: 16,
+    s2Done: 3,
+    s2InProgress: 3,
     s2Blocked: 0,
-    completionPct: 0,
+    completionPct: 50,
+    s3Tickets: 3,
+    s3Points: 8,
+    status: 'green',
+    statusNote: '8pt',
     tickets: [
-      { key: "BACK-1790", summary: "Backend task", status: "CODE REVIEW", points: 5 }
-    ]
-  },
-  {
-    name: "Konnor Willison",
-    role: "Architecture / ARTEMIS",
-    s2Tickets: 7,
-    s2Points: 9,
-    s2Done: 0,
-    s2InProgress: 2,
-    s2Blocked: 1,
-    completionPct: 0,
-    tickets: [
-      { key: "BACK-1651", summary: "Mercury CTC task", status: "TO DO", points: 8 },
-      { key: "BACK-1655", summary: "Mercury task", status: "TO DO", points: 0 },
-      { key: "BACK-1530", summary: "BBVA task", status: "TO DO", points: 0 },
-      { key: "BACK-1529", summary: "CTC task", status: "TO DO", points: 0 },
-      { key: "BACK-1528", summary: "CTC task", status: "TO DO", points: 0 },
-      { key: "BACK-1532", summary: "Sunwest task", status: "IN PROGRESS", points: 0 },
-      { key: "BACK-1489", summary: "Update classification-api Base Image to Ubuntu", status: "BLOCKED", points: 1, daysInStatus: 70 }
-    ]
-  },
-  {
-    name: "Lane Terry",
-    role: "Security / Infrastructure",
-    s2Tickets: 2,
-    s2Points: 2,
-    s2Done: 0,
-    s2InProgress: 2,
-    s2Blocked: 0,
-    completionPct: 0,
-    tickets: [
-      { key: "BACK-1644", summary: "Security task", status: "IN PROGRESS", points: 2 },
-      { key: "BACK-1793", summary: "Backend task", status: "IN PROGRESS", points: 0 }
-    ]
-  },
-  {
-    name: "Matthew Snow",
-    role: "Frontend",
-    s2Tickets: 1,
-    s2Points: 0,
-    s2Done: 0,
-    s2InProgress: 1,
-    s2Blocked: 0,
-    completionPct: 0,
-    tickets: [
-      { key: "UI-715", summary: "UI task", status: "IN PROGRESS", points: 0 }
+      { key: "BACK-1821", summary: "ACN Updates for IsReply", status: "CODE REVIEW", points: 0 }
     ]
   },
   {
     name: "Owen Riley",
-    role: "Frontend",
-    s2Tickets: 2,
-    s2Points: 6,
-    s2Done: 1,
+    role: "Staff Frontend Engineer",
+    s2Tickets: 7,
+    s2Points: 17,
+    s2Done: 7,
+    s2InProgress: 0,
+    s2Blocked: 0,
+    completionPct: 100,
+    s3Tickets: 1,
+    s3Points: 3,
+    status: 'green',
+    statusNote: '3pt - capacity available',
+    tickets: []
+  },
+  {
+    name: "Matthew Snow",
+    role: "Senior Frontend Engineer",
+    s2Tickets: 3,
+    s2Points: 9,
+    s2Done: 2,
     s2InProgress: 1,
     s2Blocked: 0,
-    completionPct: 50,
+    completionPct: 67,
+    s3Tickets: 1,
+    s3Points: 3,
+    status: 'red',
+    statusNote: '5 long-blocked tickets',
     tickets: [
-      { key: "UI-714", summary: "UI task", status: "DONE", points: 3 },
-      { key: "UI-697", summary: "UI task", status: "IN PROGRESS", points: 3 }
+      { key: "UI-738", summary: "View Email Body in Actionable Screen", status: "CODE REVIEW", points: 3 }
     ]
   },
   {
     name: "Treven Trujillo",
-    role: "Backend",
-    s2Tickets: 2,
-    s2Points: 11,
-    s2Done: 0,
+    role: "Software Engineer",
+    s2Tickets: 3,
+    s2Points: 16,
+    s2Done: 2,
     s2InProgress: 1,
-    s2Blocked: 1,
+    s2Blocked: 0,
+    completionPct: 67,
+    s3Tickets: 3,
+    s3Points: 9,
+    status: 'green',
+    statusNote: '9pt',
+    tickets: []
+  },
+  {
+    name: "Konnor Willison",
+    role: "Chief Architect",
+    s2Tickets: 0,
+    s2Points: 0,
+    s2Done: 0,
+    s2InProgress: 0,
+    s2Blocked: 0,
     completionPct: 0,
-    tickets: [
-      { key: "BACK-1603", summary: "Deep Recon - DTCC Sync to DeepSee", status: "BLOCKED", points: 3, daysInStatus: 35 },
-      { key: "BACK-1781", summary: "FEEL Refactor", status: "IN PROGRESS", points: 8 }
-    ]
+    s3Tickets: 1,
+    s3Points: 3,
+    status: 'green',
+    statusNote: '3pt',
+    tickets: []
+  },
+  {
+    name: "Loris D'Acunto",
+    role: "Chief Data Scientist",
+    s2Tickets: 0,
+    s2Points: 0,
+    s2Done: 0,
+    s2InProgress: 0,
+    s2Blocked: 0,
+    completionPct: 0,
+    s3Tickets: 0,
+    s3Points: 0,
+    status: 'warning',
+    statusNote: 'No S3 work, estimates needed',
+    tickets: []
+  },
+  {
+    name: "Karolina Toman",
+    role: "Director Forward Deployed Engineering",
+    s2Tickets: 0,
+    s2Points: 0,
+    s2Done: 0,
+    s2InProgress: 0,
+    s2Blocked: 0,
+    completionPct: 0,
+    s3Tickets: 0,
+    s3Points: 0,
+    status: 'warning',
+    statusNote: 'No S3 work',
+    tickets: []
   }
 ];
 
 export const capacitySummary = {
-  totalEngineers: 13,
-  totalS2Tickets: 36, // assigned tickets
-  unassignedTickets: 38, // 74 - 36
-  totalS2Points: 69,
-  completedPoints: 22,
-  teamVelocity: 22, // based on current done
-  avgCompletionPct: 19
+  totalEngineers: 14,
+  totalS2Tickets: 98,
+  totalS2Points: 204,
+  completedTickets: 58,
+  completedPoints: 138,
+  completionRate: 59.2,
+  pointsCompletionRate: 67.6,
+  s3TotalTickets: 81,
+  s3Assigned: 26,
+  s3Unassigned: 55,
+  s3UnassignedPercent: 67.9,
+  teamVelocity: 138,
+  avgCompletionPct: 59.2
 };
+
+// Code Review Queue
+export const codeReviewQueue = [
+  { ticket: 'UI-738', summary: 'View Email Body in Actionable Screen', assignee: 'Matthew Snow', points: 3 },
+  { ticket: 'BACK-1826', summary: 'Move Migrations to DeepRecon Platform Image', assignee: 'Ivan Peev', points: 3 },
+  { ticket: 'BACK-1821', summary: 'ACN Updates for IsReply', assignee: 'Aleksander Winski', points: 0 },
+  { ticket: 'BACK-1805', summary: 'DeepPilot Client & Message Update Integration', assignee: 'Ivan Peev', points: 3 },
+  { ticket: 'BACK-1792', summary: 'Generate/Review Unit Test Agent Markdowns', assignee: 'Brandon Baguley', points: 1 },
+  { ticket: 'BACK-1548', summary: 'Enable Conditional Reconciliation', assignee: 'Kannal Mutharasu', points: 5 }
+];
 
 // Get engineers sorted by various metrics
 export function getEngineersByCompletion(): EngineerCapacity[] {
@@ -237,4 +284,8 @@ export function getEngineersByTicketCount(): EngineerCapacity[] {
 
 export function getEngineersWithBlocked(): EngineerCapacity[] {
   return engineers.filter(e => e.s2Blocked > 0);
+}
+
+export function getEngineersWithNoS3Work(): EngineerCapacity[] {
+  return engineers.filter(e => e.s3Tickets === 0);
 }

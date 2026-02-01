@@ -1,4 +1,4 @@
-// Sprint Health Data - Updated January 28, 2026 at 11:00 AM MT
+// Sprint Health Data - Updated January 28, 2026 at 12:00 PM MT
 // Source: JIRA Sprint Extraction - Sprint 2026-S2
 
 export interface HealthMetric {
@@ -10,18 +10,18 @@ export interface HealthMetric {
 }
 
 export const sprintHealth: HealthMetric[] = [
-  { metric: "Completion Rate", s2Value: "48%", target: ">80%", status: "yellow", detail: "48/95 tickets completed" },
-  { metric: "Burndown Status", s2Value: "Behind", target: "On Track", status: "yellow", detail: "~47 tickets likely to roll over" },
-  { metric: "Days Remaining", s2Value: 2, target: "-", status: "red", detail: "Sprint ends Jan 30" },
-  { metric: "Blocked Items", s2Value: 2, target: "<3", status: "yellow", detail: "Down from 4 - 2 remaining" },
+  { metric: "Completion Rate", s2Value: "59.2%", target: ">80%", status: "yellow", detail: "58/98 tickets completed" },
+  { metric: "Points Completion", s2Value: "67.6%", target: ">80%", status: "yellow", detail: "138/204 points completed" },
+  { metric: "Days Remaining", s2Value: 2, target: "-", status: "red", detail: "86% of sprint elapsed" },
+  { metric: "Blocked Items", s2Value: 0, target: "<3", status: "green", detail: "No active blockers" },
   { metric: "Code Review Queue", s2Value: 6, target: "<5", status: "yellow", detail: "6 tickets in review queue" },
-  { metric: "Next Sprint (S3)", s2Value: "NOT READY", target: "READY", status: "red", detail: "95% unassigned, 70% missing estimates" },
-  { metric: "ARTEMIS Progress", s2Value: "0%", target: ">40%", status: "red", detail: "0% ARTEMIS work started - CRITICAL" }
+  { metric: "S3 Readiness", s2Value: "32%", target: ">80%", status: "red", detail: "68% unassigned, 58% missing estimates" },
+  { metric: "Work Mix", s2Value: "Imbalanced", target: "Balanced", status: "yellow", detail: "ARTEMIS 10.3% vs 50-60% target" }
 ];
 
 export type OverallHealth = "GREEN" | "YELLOW" | "RED";
 
-export const overallHealth: OverallHealth = "RED";
+export const overallHealth: OverallHealth = "YELLOW";
 
 // Get metrics by status
 export function getMetricsByStatus(status: "green" | "yellow" | "red"): HealthMetric[] {
@@ -55,29 +55,34 @@ export function getCriticalIssues(): HealthMetric[] {
 // Sprint health recommendations - Updated January 28, 2026
 export const healthRecommendations = [
   {
-    issue: "S3 NOT READY - 95% unassigned",
-    recommendation: "Assignment session needed before Jan 30 sprint start - 35 tickets unassigned",
+    issue: "S3 NOT READY - 68% unassigned",
+    recommendation: "Assignment session needed before Jan 30 sprint start - 55 tickets unassigned of 81 total",
     priority: "critical"
   },
   {
-    issue: "S3 Missing Estimates - 70%",
-    recommendation: "Pointing session needed - 26 tickets missing story points",
+    issue: "S3 Missing Estimates - 58%",
+    recommendation: "Pointing session needed - 47 tickets missing story points",
     priority: "critical"
   },
   {
-    issue: "S2 Carryover Risk (~47 tickets)",
-    recommendation: "Prepare for significant carryover - only 2 days remaining in S2",
+    issue: "S2 Completion at 59.2% with 2 days left",
+    recommendation: "Focus on completing in-progress and code review items to maximize S2 completion",
     priority: "high"
   },
   {
-    issue: "ARTEMIS Progress at 0% - CRITICAL",
-    recommendation: "Immediately assign and start ARTEMIS tickets - strategic initiative at risk",
-    priority: "critical"
+    issue: "Work Mix Imbalance",
+    recommendation: "ARTEMIS at 10.3% (target 50-60%), Client at 9.8% (target 30-40%). 64% needs labeling.",
+    priority: "high"
   },
   {
     issue: "Code Review Bottleneck (6 tickets)",
     recommendation: "Clear code review queue to maximize S2 completion",
     priority: "high"
+  },
+  {
+    issue: "Lane/Loris/Karolina have 0 S3 tickets",
+    recommendation: "Assign S3 work to engineers with no planned work",
+    priority: "medium"
   }
 ];
 
@@ -86,12 +91,16 @@ export interface SprintPlanningAlert {
   currentSprint: {
     id: string;
     completionRate: number;
+    pointsCompletionRate: number;
     daysRemaining: number;
     status: string;
   };
   nextSprint: {
     id: string;
     totalTickets: number;
+    totalPoints: number;
+    assigned: number;
+    unassigned: number;
     unassignedPercent: number;
     missingEstimatesPercent: number;
     readinessStatus: string;
@@ -102,25 +111,37 @@ export interface SprintPlanningAlert {
 export const sprintPlanningAlert: SprintPlanningAlert = {
   currentSprint: {
     id: '2026-S2',
-    completionRate: 48,
+    completionRate: 59.2,
+    pointsCompletionRate: 67.6,
     daysRemaining: 2,
     status: 'YELLOW'
   },
   nextSprint: {
     id: '2026-S3',
-    totalTickets: 37,
-    unassignedPercent: 95,
-    missingEstimatesPercent: 70,
+    totalTickets: 81,
+    totalPoints: 126,
+    assigned: 26,
+    unassigned: 55,
+    unassignedPercent: 67.9,
+    missingEstimatesPercent: 58.0,
     readinessStatus: 'NOT_READY'
   },
-  actionNeeded: 'Assignment + pointing session before Jan 30 sprint start'
+  actionNeeded: 'Assignment + pointing session before Jan 30 sprint start. Lane, Loris, Karolina have 0 S3 tickets.'
+};
+
+// Work Mix Data
+export const workMix = {
+  artemis: { tickets: 11, points: 21, percent: 10.3, target: '50-60%', status: 'below' as const },
+  client: { tickets: 7, points: 20, percent: 9.8, target: '30-40%', status: 'below' as const },
+  infrastructure: { tickets: 14, points: 32, percent: 15.7, target: '10-20%', status: 'on-target' as const },
+  other: { tickets: 66, points: 131, percent: 64.2, note: 'Needs labeling' }
 };
 
 // Velocity History for comparison
 export const velocityHistory = [
   { sprint: "2025-S2", committed: 75, completed: 49, rate: 65 },
   { sprint: "2026-S1", committed: 131, completed: 129, rate: 98.5 },
-  { sprint: "2026-S2", committed: 95, completed: 48, rate: 48, status: "in_progress" }
+  { sprint: "2026-S2", committed: 204, completed: 138, rate: 67.6, status: "in_progress" }
 ];
 
 export const avgVelocity = 80.08;
