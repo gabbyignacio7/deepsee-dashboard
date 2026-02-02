@@ -1,6 +1,5 @@
 import React from 'react';
 import { Clock } from 'lucide-react';
-import { EXTRACTION_TIMESTAMP, DATA_SOURCE, formatDataTimestamp } from '@/data/sprintData';
 
 interface DataFreshnessProps {
   className?: string;
@@ -8,7 +7,8 @@ interface DataFreshnessProps {
 }
 
 export const DataFreshness: React.FC<DataFreshnessProps> = ({ className = '', compact = false }) => {
-  const formattedDate = formatDataTimestamp(EXTRACTION_TIMESTAMP);
+  const formattedDate = "February 1, 2026, 7:30 PM MT";
+  const dataSource = "JIRA Sprint Extraction + Monday.com CRM";
 
   if (compact) {
     return (
@@ -24,7 +24,7 @@ export const DataFreshness: React.FC<DataFreshnessProps> = ({ className = '', co
       <Clock className="w-4 h-4 text-gray-400" />
       <span>Last Updated: {formattedDate}</span>
       <span className="text-gray-300">|</span>
-      <span className="text-gray-400">Source: {DATA_SOURCE}</span>
+      <span className="text-gray-400">Source: {dataSource}</span>
     </div>
   );
 };

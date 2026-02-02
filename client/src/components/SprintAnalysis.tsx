@@ -25,15 +25,7 @@ export default function SprintAnalysis() {
     <div className="space-y-6">
       {/* Data Timestamp */}
       <div className="text-sm text-muted-foreground text-right">
-        Data updated: {new Date(SPRINT_DATA_UPDATED).toLocaleString('en-US', {
-          month: 'short',
-          day: 'numeric',
-          year: 'numeric',
-          hour: 'numeric',
-          minute: '2-digit',
-          hour12: true,
-          timeZone: 'America/Denver'
-        })} MT
+        Data updated: February 1, 2026, 7:30 PM MT
       </div>
 
       {/* Sprint Overview Cards */}
