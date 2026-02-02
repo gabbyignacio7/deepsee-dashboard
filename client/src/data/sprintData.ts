@@ -175,7 +175,15 @@ export const NEXT_SPRINT_READINESS = {
   unassigned: 9,
   withStoryPoints: 2,
   missingEstimates: 8,
-  readinessStatus: 'NOT READY',
+  readinessStatus: 'NOT_READY',
+  projectBreakdown: [
+    { project: 'BACK', count: 7 },
+    { project: 'FB', count: 2 },
+    { project: 'CI', count: 1 }
+  ],
+  assignedEngineers: [
+    { name: 'Darius Ouderkirk', tickets: 1 }
+  ],
   blockers: [
     '90% of tickets unassigned',
     '80% missing story point estimates',
