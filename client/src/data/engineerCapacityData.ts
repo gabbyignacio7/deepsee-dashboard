@@ -1,5 +1,5 @@
-// Engineer Capacity Data - Updated January 28, 2026
-// Source: JIRA Extract - Sprint 2026-S2 / S3
+// Engineer Capacity Data - Updated February 1, 2026 at 7:30 PM MT
+// Source: JIRA Extract - Sprint 2026-S2 (Final) / S3 (Active) / S4 (Next)
 
 export interface TicketAssignment {
   key: string;
@@ -20,6 +20,10 @@ export interface EngineerCapacity {
   completionPct: number;
   s3Tickets: number;
   s3Points: number;
+  s3Done: number;
+  fullWorkload: number;
+  s4Tickets: number;
+  s4Points: number;
   status: 'green' | 'yellow' | 'red' | 'warning';
   statusNote: string;
   tickets: TicketAssignment[];
@@ -37,8 +41,12 @@ export const engineers: EngineerCapacity[] = [
     completionPct: 100,
     s3Tickets: 0,
     s3Points: 0,
+    s3Done: 0,
+    fullWorkload: 5,
+    s4Tickets: 0,
+    s4Points: 0,
     status: 'warning',
-    statusNote: 'No S3 work',
+    statusNote: 'No S3 tickets',
     tickets: []
   },
   {
@@ -52,8 +60,12 @@ export const engineers: EngineerCapacity[] = [
     completionPct: 75,
     s3Tickets: 2,
     s3Points: 13,
-    status: 'yellow',
-    statusNote: '13pt',
+    s3Done: 0,
+    fullWorkload: 5,
+    s4Tickets: 0,
+    s4Points: 0,
+    status: 'green',
+    statusNote: 'Active',
     tickets: []
   },
   {
@@ -67,8 +79,12 @@ export const engineers: EngineerCapacity[] = [
     completionPct: 80,
     s3Tickets: 2,
     s3Points: 10,
-    status: 'yellow',
-    statusNote: '10pt',
+    s3Done: 0,
+    fullWorkload: 4,
+    s4Tickets: 0,
+    s4Points: 0,
+    status: 'green',
+    statusNote: 'Active',
     tickets: []
   },
   {
@@ -80,13 +96,17 @@ export const engineers: EngineerCapacity[] = [
     s2InProgress: 3,
     s2Blocked: 0,
     completionPct: 75,
-    s3Tickets: 3,
-    s3Points: 9,
-    status: 'green',
-    statusNote: '9pt',
+    s3Tickets: 4,
+    s3Points: 12,
+    s3Done: 0,
+    fullWorkload: 4,
+    s4Tickets: 0,
+    s4Points: 0,
+    status: 'yellow',
+    statusNote: 'Heavy (2 in CR)',
     tickets: [
-      { key: "BACK-1826", summary: "Move Migrations to DeepRecon Platform Image", status: "CODE REVIEW", points: 3 },
-      { key: "BACK-1805", summary: "DeepPilot Client & Message Update Integration", status: "CODE REVIEW", points: 3 }
+      { key: "BACK-1805", summary: "DeepPilot Client & Message Update Integration", status: "CODE REVIEW", points: 3 },
+      { key: "BACK-1826", summary: "Move Migrations to DeepRecon Platform Image", status: "CODE REVIEW", points: 3 }
     ]
   },
   {
@@ -100,8 +120,12 @@ export const engineers: EngineerCapacity[] = [
     completionPct: 50,
     s3Tickets: 4,
     s3Points: 14,
+    s3Done: 0,
+    fullWorkload: 11,
+    s4Tickets: 1,
+    s4Points: 3,
     status: 'yellow',
-    statusNote: '14pt - backlog risk',
+    statusNote: 'Heavy workload',
     tickets: []
   },
   {
@@ -115,8 +139,12 @@ export const engineers: EngineerCapacity[] = [
     completionPct: 80,
     s3Tickets: 2,
     s3Points: 10,
-    status: 'yellow',
-    statusNote: '10pt',
+    s3Done: 0,
+    fullWorkload: 4,
+    s4Tickets: 0,
+    s4Points: 0,
+    status: 'green',
+    statusNote: 'Active (1 in CR)',
     tickets: [
       { key: "BACK-1548", summary: "Enable Conditional Reconciliation", status: "CODE REVIEW", points: 5 }
     ]
@@ -132,8 +160,12 @@ export const engineers: EngineerCapacity[] = [
     completionPct: 87.5,
     s3Tickets: 2,
     s3Points: 9,
+    s3Done: 2,
+    fullWorkload: 0,
+    s4Tickets: 0,
+    s4Points: 0,
     status: 'green',
-    statusNote: '9pt',
+    statusNote: '✓ All S3 done - available',
     tickets: []
   },
   {
@@ -147,8 +179,12 @@ export const engineers: EngineerCapacity[] = [
     completionPct: 50,
     s3Tickets: 3,
     s3Points: 8,
-    status: 'green',
-    statusNote: '8pt',
+    s3Done: 0,
+    fullWorkload: 10,
+    s4Tickets: 0,
+    s4Points: 0,
+    status: 'yellow',
+    statusNote: 'Heavy backlog',
     tickets: [
       { key: "BACK-1821", summary: "ACN Updates for IsReply", status: "CODE REVIEW", points: 0 }
     ]
@@ -164,8 +200,12 @@ export const engineers: EngineerCapacity[] = [
     completionPct: 100,
     s3Tickets: 1,
     s3Points: 3,
+    s3Done: 0,
+    fullWorkload: 6,
+    s4Tickets: 0,
+    s4Points: 0,
     status: 'green',
-    statusNote: '3pt - capacity available',
+    statusNote: 'Light S3',
     tickets: []
   },
   {
@@ -179,10 +219,14 @@ export const engineers: EngineerCapacity[] = [
     completionPct: 67,
     s3Tickets: 1,
     s3Points: 3,
+    s3Done: 0,
+    fullWorkload: 16,
+    s4Tickets: 0,
+    s4Points: 0,
     status: 'red',
-    statusNote: '5 long-blocked tickets',
+    statusNote: 'Heavy backlog (16 open)',
     tickets: [
-      { key: "UI-738", summary: "View Email Body in Actionable Screen", status: "CODE REVIEW", points: 3 }
+      { key: "UI-738", summary: "Deep Recon - View Email Body in Actionable Screen", status: "CODE REVIEW", points: 3 }
     ]
   },
   {
@@ -196,8 +240,12 @@ export const engineers: EngineerCapacity[] = [
     completionPct: 67,
     s3Tickets: 3,
     s3Points: 9,
+    s3Done: 1,
+    fullWorkload: 4,
+    s4Tickets: 0,
+    s4Points: 0,
     status: 'green',
-    statusNote: '9pt',
+    statusNote: 'Active',
     tickets: []
   },
   {
@@ -211,8 +259,12 @@ export const engineers: EngineerCapacity[] = [
     completionPct: 0,
     s3Tickets: 1,
     s3Points: 3,
+    s3Done: 0,
+    fullWorkload: 3,
+    s4Tickets: 0,
+    s4Points: 0,
     status: 'green',
-    statusNote: '3pt',
+    statusNote: 'Light',
     tickets: []
   },
   {
@@ -226,8 +278,12 @@ export const engineers: EngineerCapacity[] = [
     completionPct: 0,
     s3Tickets: 0,
     s3Points: 0,
+    s3Done: 0,
+    fullWorkload: 15,
+    s4Tickets: 0,
+    s4Points: 0,
     status: 'warning',
-    statusNote: 'No S3 work, estimates needed',
+    statusNote: 'No S3 tickets, 15 backlog',
     tickets: []
   },
   {
@@ -241,8 +297,12 @@ export const engineers: EngineerCapacity[] = [
     completionPct: 0,
     s3Tickets: 0,
     s3Points: 0,
+    s3Done: 0,
+    fullWorkload: 0,
+    s4Tickets: 0,
+    s4Points: 0,
     status: 'warning',
-    statusNote: 'No S3 work',
+    statusNote: 'No tickets assigned',
     tickets: []
   }
 ];
@@ -253,24 +313,37 @@ export const capacitySummary = {
   totalS2Points: 204,
   completedTickets: 58,
   completedPoints: 138,
-  completionRate: 59.2,
-  pointsCompletionRate: 67.6,
-  s3TotalTickets: 81,
-  s3Assigned: 26,
+  completionRate: 62.4,
+  pointsCompletionRate: 70.4,
+  s3TotalTickets: 82,
+  s3TotalPoints: 129,
+  s3Assigned: 27,
   s3Unassigned: 55,
-  s3UnassignedPercent: 67.9,
+  s3UnassignedPercent: 67.1,
+  s3PointsCompleted: 10,
+  s3PointsRemaining: 119,
   teamVelocity: 138,
-  avgCompletionPct: 59.2
+  avgCompletionPct: 62.4,
+  engineersWithNoS3Work: ['Lane Terry', 'Loris D\'Acunto', 'Karolina Toman'],
+  engineersCompleted: ['Kalvin Willison'],
+  heavyWorkloads: ['Darius Ouderkirk (11)', 'Aleksander Winski (10)', 'Matthew Snow (16)', 'Loris D\'Acunto (15)']
 };
 
 // Code Review Queue
 export const codeReviewQueue = [
-  { ticket: 'UI-738', summary: 'View Email Body in Actionable Screen', assignee: 'Matthew Snow', points: 3 },
-  { ticket: 'BACK-1826', summary: 'Move Migrations to DeepRecon Platform Image', assignee: 'Ivan Peev', points: 3 },
-  { ticket: 'BACK-1821', summary: 'ACN Updates for IsReply', assignee: 'Aleksander Winski', points: 0 },
+  { ticket: 'BACK-1548', summary: 'Enable Conditional Reconciliation', assignee: 'Kannal Mutharasu', points: 5 },
+  { ticket: 'BACK-1792', summary: 'JAVA - Generate/Review Unit/Integration Test Agent', assignee: 'Brandon Baguley', points: 1 },
   { ticket: 'BACK-1805', summary: 'DeepPilot Client & Message Update Integration', assignee: 'Ivan Peev', points: 3 },
-  { ticket: 'BACK-1792', summary: 'Generate/Review Unit Test Agent Markdowns', assignee: 'Brandon Baguley', points: 1 },
-  { ticket: 'BACK-1548', summary: 'Enable Conditional Reconciliation', assignee: 'Kannal Mutharasu', points: 5 }
+  { ticket: 'BACK-1821', summary: 'ACN Updates for IsReply', assignee: 'Aleksander Winski', points: 0 },
+  { ticket: 'BACK-1826', summary: 'Move Migrations to DeepRecon Platform Image', assignee: 'Ivan Peev', points: 3 },
+  { ticket: 'UI-738', summary: 'Deep Recon - View Email Body in Actionable Screen', assignee: 'Matthew Snow', points: 3 }
+];
+
+// Recently Completed (Last 3 Days)
+export const recentlyCompleted = [
+  { ticket: 'BACK-1858', summary: 'Purge test work items from Colony RV/Marine', assignee: 'Treven Trujillo', points: 1, resolved: '2026-01-30' },
+  { ticket: 'BACK-1833', summary: 'Colony: Extraction Feedback - Live Loan 8566399', assignee: 'Kalvin Willison', points: 1, resolved: '2026-01-30' },
+  { ticket: 'BACK-1651', summary: '[MERCURY] Core extraction engine performance optimization', assignee: 'Kalvin Willison', points: 8, resolved: '2026-01-30' }
 ];
 
 // Get engineers sorted by various metrics
