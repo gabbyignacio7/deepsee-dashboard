@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>DeepSee Dashboard</title>
+    <script>
+      // GitHub Pages SPA redirect
+      // Converts path to query string and redirects to index
+      // Works for both root deployment and subdirectory deployment
+      var l = window.location;
+
+      // Detect if already redirected (has ?/ in URL) to prevent infinite loops
+      if (l.search.indexOf('?/') === 0 || l.search.indexOf('/?/') !== -1) {
+        // Already redirected, don't redirect again
+      } else {
+        // For root deployment (pages.github.io sites), pathSegmentsToKeep = 0
+        // For subdirectory deployment (/repo-name/), pathSegmentsToKeep = 1
+        var isSubdirectory = l.pathname.split('/').filter(Boolean).length > 1 &&
+                            !['executive', 'sales', 'engineering', 'product', 'board', 'architecture', 'feature'].includes(l.pathname.split('/').filter(Boolean)[0]);
+        var pathSegmentsToKeep = isSubdirectory ? 1 : 0;
+
+        var basePath = l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') || '/';
+        var routePath = l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/');
+
+        if (routePath) {
+          l.replace(
+            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+            basePath + '?/' + routePath.replace(/&/g, '~and~') +
+            (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+            l.hash
+          );
+        }
+      }
+    </script>
+  </head>
+  <body>
+    Redirecting...
+  </body>
+</html>
