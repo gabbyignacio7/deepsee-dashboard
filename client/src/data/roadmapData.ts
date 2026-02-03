@@ -1,30 +1,34 @@
-// Roadmap Data - Updated January 20, 2026
+// Roadmap Data - Updated February 3, 2026
 // Source: JIRA Epics + PRDs + Ryan's milestone definitions
 // Auto-calculates quarter placement based on velocity
+// Board Meeting Preparation Update - Added descriptions and Q4 2026
 
 export const ROADMAP_CONFIG = {
-  lastUpdated: "2026-01-20T13:00:00-07:00",
+  lastUpdated: "2026-02-03T15:00:00-07:00",
   averageVelocity: 80, // story points per sprint
   sprintDurationWeeks: 2,
-  currentSprint: "2026-S2",
-  currentSprintEnd: "2026-01-30",
+  currentSprint: "2026-S3",
+  currentSprintEnd: "2026-02-13",
 };
 
 // Quarter definitions for 2026
 export interface Quarter {
   id: string;
   name: string;
+  version?: string;
   startDate: string;
   endDate: string;
   sprints: string[];
   totalCapacity: number;
   color: string;
+  isPlanned?: boolean; // For Q4 2026 which is projected/not committed
 }
 
 export const QUARTERS: Quarter[] = [
   {
     id: "Q1-2026",
     name: "Q1 2026",
+    version: "V3.0 – Snow Canyon",
     startDate: "2026-01-01",
     endDate: "2026-03-31",
     sprints: ["S1", "S2", "S3", "S4", "S5", "S6"],
@@ -34,6 +38,7 @@ export const QUARTERS: Quarter[] = [
   {
     id: "Q2-2026",
     name: "Q2 2026",
+    version: "V3.2 – Snow Canyon",
     startDate: "2026-04-01",
     endDate: "2026-06-30",
     sprints: ["S7", "S8", "S9", "S10", "S11", "S12"],
@@ -43,11 +48,23 @@ export const QUARTERS: Quarter[] = [
   {
     id: "Q3-2026",
     name: "Q3 2026",
+    version: "V3.5 – Snow Canyon",
     startDate: "2026-07-01",
     endDate: "2026-09-30",
     sprints: ["S13", "S14", "S15", "S16", "S17", "S18"],
     totalCapacity: 480,
     color: "#10B981", // green
+  },
+  {
+    id: "Q4-2026",
+    name: "Q4 2026",
+    version: "V4.0 – TBD",
+    startDate: "2026-10-01",
+    endDate: "2026-12-31",
+    sprints: ["S19", "S20", "S21", "S22", "S23", "S24"],
+    totalCapacity: 480,
+    color: "#F97316", // orange
+    isPlanned: true, // Indicates this is projected/not committed
   },
 ];
 
@@ -114,6 +131,16 @@ export const MILESTONES: Milestone[] = [
     icon: "target",
     businessValue: "Full platform capability for enterprise scale",
   },
+  {
+    id: "M6",
+    name: "Enterprise Ready v4.0",
+    description: "Full enterprise deployment capabilities with SSO, compliance, and self-service",
+    targetQuarter: "Q4-2026",
+    dependencies: ["F13", "F14", "F15", "F16", "F17", "F18"],
+    completionPercentage: 0,
+    icon: "shield",
+    businessValue: "Enterprise-grade deployment for large bank clients",
+  },
 ];
 
 // Features/Epics with story points and JIRA links
@@ -126,7 +153,8 @@ export interface QuarterAllocation {
 export interface RoadmapFeature {
   id: string;
   name: string;
-  category: "Platform" | "Automation" | "Intelligence" | "Integration" | "Client";
+  description: string; // Human-readable description for board meeting
+  category: "Platform" | "Automation" | "Intelligence" | "Integration" | "Client" | "Capability" | "Dashboard" | "UX";
   totalStoryPoints: number;
   completedStoryPoints: number;
   remainingStoryPoints: number;
@@ -134,16 +162,46 @@ export interface RoadmapFeature {
   jiraEpicKey?: string;
   jiraEpicUrl?: string;
   prdLink?: string;
+  prdStatus?: "active" | "pending" | "none"; // For link validation visual indicators
   quarters: QuarterAllocation[];
-  status: "Not Started" | "In Progress" | "Complete";
+  status: "Not Started" | "In Progress" | "Complete" | "Planned";
   color: string;
+  isPlanned?: boolean; // For Q4 2026 items
 }
 
+// PRD Index fallback URL - Use when no specific PRD exists
+const PRD_INDEX_URL = "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2813558785/Product+Requirements+Documents+PRDs";
+
+// Valid PRD URLs extracted from Confluence - February 3, 2026
+export const PRD_URLS = {
+  mercury: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2814476289", // Mercury Extraction
+  mercuryUnified: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815885318", // Mercury Extraction: Unified Service
+  agentReasoning: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2814803970", // Enhanced Agent Outcome Reasoning and Planning (Working)
+  agentReasoningCompleted: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2816147457", // Enhanced Outcome Reasoning (Completed)
+  documentClassifierColony: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815524865", // Document Classifier - Colony/Broadridge
+  documentClassifierLoan: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815590401", // Document Classifier - Loan/SEC
+  clientInteraction: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2816049153", // Enhancing Client Agent Interaction
+  emailAutomation: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815852545", // Email Automation Workflow
+  sevenCategories: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815721476", // Seven Categories (DeepGraph, Service Fabric, etc.)
+  fabric: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815721483", // DeepSee Fabric
+  browserControl: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815983617", // Browser Control Agent
+  workItemExcel: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2816180227", // Work Item Excel Output
+  platform: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823847948", // Platform PRD
+  blueprint: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824306710", // Blue Print PRD
+  epaResolution: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2825879553", // EPA Automated Resolution
+  agenticEngine: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824372269", // Agentic Engine
+  workItemIngestion: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2828926977", // Work Item Ingestion
+  automationOrchestration: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823913475", // Automation and Orchestration
+  artemis: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824044546", // Project ARTEMIS PRD
+  prdIndex: PRD_INDEX_URL,
+} as const;
+
 export const ROADMAP_FEATURES: RoadmapFeature[] = [
-  // ARTEMIS Platform Features
+  // ========== Q1 2026 Features (V3.0 – Snow Canyon) ==========
   {
     id: "F1",
-    name: "Mercury Extraction",
+    name: "Mercury Extraction Enhancements",
+    description: "Improvements to the Mercury document extraction service for better handling of complex multi-page financial documents.",
     category: "Platform",
     totalStoryPoints: 89,
     completedStoryPoints: 0,
@@ -151,7 +209,8 @@ export const ROADMAP_FEATURES: RoadmapFeature[] = [
     priority: 1,
     jiraEpicKey: "BACK-1650",
     jiraEpicUrl: "https://deepsee.atlassian.net/browse/BACK-1650",
-    prdLink: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823782401/Mercury+Extraction+PRD",
+    prdLink: PRD_URLS.mercury,
+    prdStatus: "active",
     quarters: [
       { quarter: "Q1-2026", allocatedPoints: 89, percentageOfFeature: 100 },
     ],
@@ -160,7 +219,8 @@ export const ROADMAP_FEATURES: RoadmapFeature[] = [
   },
   {
     id: "F2",
-    name: "Document Parser",
+    name: "Document Classifier & Parser",
+    description: "Agent that identifies document types within mixed packets (loan docs, compliance forms, trade confirms) and routes them to specialized extraction models.",
     category: "Platform",
     totalStoryPoints: 76,
     completedStoryPoints: 0,
@@ -168,7 +228,8 @@ export const ROADMAP_FEATURES: RoadmapFeature[] = [
     priority: 2,
     jiraEpicKey: "BACK-1656",
     jiraEpicUrl: "https://deepsee.atlassian.net/browse/BACK-1656",
-    prdLink: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823782402/Document+Parser+PRD",
+    prdLink: PRD_URLS.documentClassifierColony,
+    prdStatus: "active",
     quarters: [
       { quarter: "Q1-2026", allocatedPoints: 76, percentageOfFeature: 100 },
     ],
@@ -177,28 +238,17 @@ export const ROADMAP_FEATURES: RoadmapFeature[] = [
   },
   {
     id: "F3",
-    name: "Document Classifier",
-    category: "Intelligence",
-    totalStoryPoints: 45,
-    completedStoryPoints: 0,
-    remainingStoryPoints: 45,
-    priority: 3,
-    jiraEpicKey: "BACK-1658",
-    jiraEpicUrl: "https://deepsee.atlassian.net/browse/BACK-1658",
-    quarters: [
-      { quarter: "Q1-2026", allocatedPoints: 45, percentageOfFeature: 100 },
-    ],
-    status: "Not Started",
-    color: "#10B981",
-  },
-  {
-    id: "F4",
     name: "Response Generator",
+    description: "Automated email response drafting agent that generates contextually appropriate replies to client inquiries based on extracted data and business rules.",
     category: "Automation",
     totalStoryPoints: 55,
     completedStoryPoints: 0,
     remainingStoryPoints: 55,
-    priority: 4,
+    priority: 3,
+    jiraEpicKey: "BACK-1666",
+    jiraEpicUrl: "https://deepsee.atlassian.net/browse/BACK-1666",
+    prdLink: PRD_URLS.emailAutomation,
+    prdStatus: "active",
     quarters: [
       { quarter: "Q1-2026", allocatedPoints: 35, percentageOfFeature: 64 },
       { quarter: "Q2-2026", allocatedPoints: 20, percentageOfFeature: 36 },
@@ -207,13 +257,33 @@ export const ROADMAP_FEATURES: RoadmapFeature[] = [
     color: "#F59E0B",
   },
   {
+    id: "F4",
+    name: "Email Process Automation",
+    description: "End-to-end automation of email-triggered workflows including intake, classification, extraction, routing, and response generation.",
+    category: "Automation",
+    totalStoryPoints: 65,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 65,
+    priority: 4,
+    prdLink: PRD_URLS.emailAutomation,
+    prdStatus: "active",
+    quarters: [
+      { quarter: "Q1-2026", allocatedPoints: 65, percentageOfFeature: 100 },
+    ],
+    status: "Not Started",
+    color: "#10B981",
+  },
+  {
     id: "F5",
-    name: "DeepIQ Query Engine",
+    name: "Information Graph Enhanced Infrastructure",
+    description: "Build the knowledge graph backend that maps relationships across financial entities, counterparties, accounts, and instruments.",
     category: "Intelligence",
     totalStoryPoints: 120,
     completedStoryPoints: 18,
     remainingStoryPoints: 102,
     priority: 5,
+    prdLink: PRD_URLS.sevenCategories,
+    prdStatus: "active",
     quarters: [
       { quarter: "Q1-2026", allocatedPoints: 60, percentageOfFeature: 50 },
       { quarter: "Q2-2026", allocatedPoints: 60, percentageOfFeature: 50 },
@@ -223,12 +293,17 @@ export const ROADMAP_FEATURES: RoadmapFeature[] = [
   },
   {
     id: "F6",
-    name: "Context Memory System",
+    name: "Enhanced Agent Outcome Reasoning and Planning",
+    description: "Improve agent decision-making with multi-step reasoning, outcome prediction, and explainable AI for audit trails.",
     category: "Intelligence",
     totalStoryPoints: 80,
     completedStoryPoints: 0,
     remainingStoryPoints: 80,
     priority: 6,
+    jiraEpicKey: "BACK-1602",
+    jiraEpicUrl: "https://deepsee.atlassian.net/browse/BACK-1602",
+    prdLink: PRD_URLS.agentReasoningCompleted,
+    prdStatus: "active",
     quarters: [
       { quarter: "Q1-2026", allocatedPoints: 40, percentageOfFeature: 50 },
       { quarter: "Q2-2026", allocatedPoints: 40, percentageOfFeature: 50 },
@@ -238,93 +313,386 @@ export const ROADMAP_FEATURES: RoadmapFeature[] = [
   },
   {
     id: "F7",
-    name: "DeepGraph Knowledge Base",
-    category: "Intelligence",
-    totalStoryPoints: 150,
+    name: "SSI Validation Agent",
+    description: "Standing Settlement Instructions validation agent that cross-references SSI data against reference databases to catch errors before settlement.",
+    category: "Automation",
+    totalStoryPoints: 45,
     completedStoryPoints: 0,
-    remainingStoryPoints: 150,
+    remainingStoryPoints: 45,
     priority: 7,
+    prdLink: PRD_URLS.blueprint,
+    prdStatus: "pending",
     quarters: [
-      { quarter: "Q2-2026", allocatedPoints: 100, percentageOfFeature: 67 },
-      { quarter: "Q3-2026", allocatedPoints: 50, percentageOfFeature: 33 },
+      { quarter: "Q1-2026", allocatedPoints: 45, percentageOfFeature: 100 },
     ],
     status: "Not Started",
     color: "#6366F1",
   },
   {
     id: "F8",
-    name: "Entity Resolution Engine",
-    category: "Intelligence",
-    totalStoryPoints: 90,
+    name: "Trade Reconciliation Enhancements",
+    description: "Improvements to the DeepRecon trade reconciliation agent for faster break detection and automated resolution suggestions.",
+    category: "Automation",
+    totalStoryPoints: 50,
     completedStoryPoints: 0,
-    remainingStoryPoints: 90,
+    remainingStoryPoints: 50,
     priority: 8,
+    prdLink: PRD_INDEX_URL,
+    prdStatus: "pending",
     quarters: [
-      { quarter: "Q2-2026", allocatedPoints: 90, percentageOfFeature: 100 },
+      { quarter: "Q1-2026", allocatedPoints: 50, percentageOfFeature: 100 },
     ],
     status: "Not Started",
     color: "#14B8A6",
   },
   {
     id: "F9",
-    name: "DTCC Scalability",
-    category: "Client",
-    totalStoryPoints: 65,
+    name: "Inference / Training Speed Improvements",
+    description: "Optimize model inference latency and training pipeline throughput to reduce processing time for high-volume clients.",
+    category: "Platform",
+    totalStoryPoints: 40,
     completedStoryPoints: 0,
-    remainingStoryPoints: 65,
+    remainingStoryPoints: 40,
     priority: 9,
-    jiraEpicKey: "BACK-1232",
-    jiraEpicUrl: "https://deepsee.atlassian.net/browse/BACK-1232",
     quarters: [
-      { quarter: "Q1-2026", allocatedPoints: 65, percentageOfFeature: 100 },
+      { quarter: "Q1-2026", allocatedPoints: 40, percentageOfFeature: 100 },
     ],
-    status: "In Progress",
+    status: "Not Started",
     color: "#F97316",
   },
   {
     id: "F10",
-    name: "UI Dashboard Improvements",
+    name: "Activity Tracing Across Agents",
+    description: "End-to-end traceability showing how data flows across multiple agents, enabling compliance teams to audit the full decision chain.",
     category: "Platform",
-    totalStoryPoints: 40,
-    completedStoryPoints: 12,
-    remainingStoryPoints: 28,
+    totalStoryPoints: 35,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 35,
     priority: 10,
-    jiraEpicKey: "UI-694",
-    jiraEpicUrl: "https://deepsee.atlassian.net/browse/UI-694",
     quarters: [
-      { quarter: "Q1-2026", allocatedPoints: 40, percentageOfFeature: 100 },
+      { quarter: "Q1-2026", allocatedPoints: 35, percentageOfFeature: 100 },
     ],
-    status: "In Progress",
+    status: "Not Started",
     color: "#84CC16",
   },
   {
     id: "F11",
-    name: "Multi-Tenant Architecture",
-    category: "Platform",
-    totalStoryPoints: 100,
+    name: "Exception Prediction",
+    description: "Predictive analytics identifying likely processing exceptions before they occur, enabling proactive resolution.",
+    category: "Intelligence",
+    totalStoryPoints: 55,
     completedStoryPoints: 0,
-    remainingStoryPoints: 100,
+    remainingStoryPoints: 55,
     priority: 11,
+    prdLink: PRD_URLS.epaResolution,
+    prdStatus: "active",
     quarters: [
-      { quarter: "Q2-2026", allocatedPoints: 60, percentageOfFeature: 60 },
-      { quarter: "Q3-2026", allocatedPoints: 40, percentageOfFeature: 40 },
+      { quarter: "Q1-2026", allocatedPoints: 55, percentageOfFeature: 100 },
     ],
     status: "Not Started",
     color: "#0EA5E9",
   },
   {
     id: "F12",
-    name: "Advanced Analytics Dashboard",
-    category: "Platform",
+    name: "Simplified Agentic UI Implementation",
+    description: "Engineering implementation of the simplified UI design from Q4 2025, deploying the new interface to production.",
+    category: "UX",
+    totalStoryPoints: 60,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 60,
+    priority: 12,
+    jiraEpicKey: "UI-694",
+    jiraEpicUrl: "https://deepsee.atlassian.net/browse/UI-694",
+    prdLink: PRD_URLS.platform,
+    prdStatus: "active",
+    quarters: [
+      { quarter: "Q1-2026", allocatedPoints: 60, percentageOfFeature: 100 },
+    ],
+    status: "In Progress",
+    color: "#A855F7",
+  },
+
+  // ========== Q2 2026 Features (V3.2 – Snow Canyon) ==========
+  {
+    id: "F20",
+    name: "MCP Integration with 3rd Party Agents",
+    description: "Integration with Microsoft Copilot Protocol enabling DeepSee agents to interoperate with third-party AI agents in the Azure ecosystem.",
+    category: "Integration",
+    totalStoryPoints: 80,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 80,
+    priority: 13,
+    prdLink: PRD_URLS.fabric,
+    prdStatus: "active",
+    quarters: [
+      { quarter: "Q2-2026", allocatedPoints: 80, percentageOfFeature: 100 },
+    ],
+    status: "Not Started",
+    color: "#3B82F6",
+  },
+  {
+    id: "F21",
+    name: "Enhanced Integration with 3rd Party Applications",
+    description: "Native integrations with Microsoft Outlook and operations console tools for seamless agent access within existing banking workflows.",
+    category: "Integration",
     totalStoryPoints: 70,
     completedStoryPoints: 0,
     remainingStoryPoints: 70,
-    priority: 12,
+    priority: 14,
+    quarters: [
+      { quarter: "Q2-2026", allocatedPoints: 70, percentageOfFeature: 100 },
+    ],
+    status: "Not Started",
+    color: "#8B5CF6",
+  },
+  {
+    id: "F22",
+    name: "User Configurable Dashboards",
+    description: "Enable end-users to customize their dashboard layouts, widgets, and data views without engineering intervention.",
+    category: "Dashboard",
+    totalStoryPoints: 50,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 50,
+    priority: 15,
+    quarters: [
+      { quarter: "Q2-2026", allocatedPoints: 50, percentageOfFeature: 100 },
+    ],
+    status: "Not Started",
+    color: "#10B981",
+  },
+  {
+    id: "F23",
+    name: "Process Mapping and Optimization",
+    description: "Analytics showing process bottlenecks and optimization recommendations based on agent activity data across workflows.",
+    category: "Intelligence",
+    totalStoryPoints: 65,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 65,
+    priority: 16,
+    quarters: [
+      { quarter: "Q2-2026", allocatedPoints: 65, percentageOfFeature: 100 },
+    ],
+    status: "Not Started",
+    color: "#F59E0B",
+  },
+  {
+    id: "F24",
+    name: "Information Graph UI Implementation",
+    description: "Engineering build of the knowledge graph visualization interface designed in Q1.",
+    category: "Dashboard",
+    totalStoryPoints: 75,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 75,
+    priority: 17,
+    quarters: [
+      { quarter: "Q2-2026", allocatedPoints: 75, percentageOfFeature: 100 },
+    ],
+    status: "Not Started",
+    color: "#EF4444",
+  },
+  {
+    id: "F25",
+    name: "Technologist and Model Review UI",
+    description: "Interface for model governance teams to review, validate, and approve AI agent configurations and outputs.",
+    category: "Dashboard",
+    totalStoryPoints: 45,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 45,
+    priority: 18,
+    quarters: [
+      { quarter: "Q2-2026", allocatedPoints: 45, percentageOfFeature: 100 },
+    ],
+    status: "Not Started",
+    color: "#EC4899",
+  },
+
+  // ========== Q3 2026 Features (V3.5 – Snow Canyon) ==========
+  {
+    id: "F30",
+    name: "DeepSee Service Fabric External Enhancements",
+    description: "Extend the platform's service fabric to support external partner integrations (Broadridge, Accenture) with secure multi-tenant communication.",
+    category: "Platform",
+    totalStoryPoints: 100,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 100,
+    priority: 19,
+    prdLink: PRD_URLS.fabric,
+    prdStatus: "active",
+    quarters: [
+      { quarter: "Q3-2026", allocatedPoints: 100, percentageOfFeature: 100 },
+    ],
+    status: "Not Started",
+    color: "#6366F1",
+  },
+  {
+    id: "F31",
+    name: "Integrated Foreign Language Support",
+    description: "Multi-language processing enabling agents to handle documents and communications in non-English languages for global banking clients.",
+    category: "Platform",
+    totalStoryPoints: 80,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 80,
+    priority: 20,
+    quarters: [
+      { quarter: "Q3-2026", allocatedPoints: 80, percentageOfFeature: 100 },
+    ],
+    status: "Not Started",
+    color: "#14B8A6",
+  },
+  {
+    id: "F32",
+    name: "Process Variation Highlights",
+    description: "Automated detection and flagging of process deviations from standard workflows, supporting compliance monitoring and quality assurance.",
+    category: "Intelligence",
+    totalStoryPoints: 55,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 55,
+    priority: 21,
+    quarters: [
+      { quarter: "Q3-2026", allocatedPoints: 55, percentageOfFeature: 100 },
+    ],
+    status: "Not Started",
+    color: "#F97316",
+  },
+  {
+    id: "F33",
+    name: "Agentic Card UI for 3rd Party Applications",
+    description: "Embeddable agent interface cards that can be deployed within third-party banking applications.",
+    category: "UX",
+    totalStoryPoints: 60,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 60,
+    priority: 22,
+    quarters: [
+      { quarter: "Q3-2026", allocatedPoints: 60, percentageOfFeature: 100 },
+    ],
+    status: "Not Started",
+    color: "#84CC16",
+  },
+  {
+    id: "F34",
+    name: "Enhanced Testing Suite UI",
+    description: "Comprehensive testing framework interface for validating agent configurations, regression testing, and model performance benchmarking.",
+    category: "Dashboard",
+    totalStoryPoints: 70,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 70,
+    priority: 23,
     quarters: [
       { quarter: "Q3-2026", allocatedPoints: 70, percentageOfFeature: 100 },
     ],
     status: "Not Started",
-    color: "#A855F7",
+    color: "#0EA5E9",
+  },
+
+  // ========== Q4 2026 Features (V4.0 – TBD) - PLANNED ==========
+  {
+    id: "F40",
+    name: "Advanced Compliance Automation",
+    description: "Automated regulatory reporting and compliance monitoring agents for HMDA, CRA, SEC filing requirements.",
+    category: "Capability",
+    totalStoryPoints: 120,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 120,
+    priority: 24,
+    prdLink: PRD_INDEX_URL,
+    prdStatus: "pending",
+    quarters: [
+      { quarter: "Q4-2026", allocatedPoints: 120, percentageOfFeature: 100 },
+    ],
+    status: "Planned",
+    color: "#3B82F6",
+    isPlanned: true,
+  },
+  {
+    id: "F41",
+    name: "Multi-Agent Orchestration v2",
+    description: "Next-generation agent coordination enabling complex multi-step workflows across 5+ agents with conditional branching.",
+    category: "Capability",
+    totalStoryPoints: 100,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 100,
+    priority: 25,
+    prdLink: PRD_URLS.automationOrchestration,
+    prdStatus: "active",
+    quarters: [
+      { quarter: "Q4-2026", allocatedPoints: 100, percentageOfFeature: 100 },
+    ],
+    status: "Planned",
+    color: "#8B5CF6",
+    isPlanned: true,
+  },
+  {
+    id: "F42",
+    name: "Client Self-Service Portal",
+    description: "Self-service portal for clients to configure agent parameters, view analytics, and manage their DeepSee deployment.",
+    category: "Dashboard",
+    totalStoryPoints: 90,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 90,
+    priority: 26,
+    prdLink: PRD_INDEX_URL,
+    prdStatus: "pending",
+    quarters: [
+      { quarter: "Q4-2026", allocatedPoints: 90, percentageOfFeature: 100 },
+    ],
+    status: "Planned",
+    color: "#10B981",
+    isPlanned: true,
+  },
+  {
+    id: "F43",
+    name: "Real-Time Processing Pipeline",
+    description: "Shift from batch to real-time document processing for time-sensitive trading and settlement operations.",
+    category: "Capability",
+    totalStoryPoints: 110,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 110,
+    priority: 27,
+    prdLink: PRD_INDEX_URL,
+    prdStatus: "pending",
+    quarters: [
+      { quarter: "Q4-2026", allocatedPoints: 110, percentageOfFeature: 100 },
+    ],
+    status: "Planned",
+    color: "#F59E0B",
+    isPlanned: true,
+  },
+  {
+    id: "F44",
+    name: "Enterprise SSO & RBAC",
+    description: "Enterprise single sign-on integration and role-based access controls for large bank deployments.",
+    category: "Platform",
+    totalStoryPoints: 75,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 75,
+    priority: 28,
+    prdLink: PRD_INDEX_URL,
+    prdStatus: "pending",
+    quarters: [
+      { quarter: "Q4-2026", allocatedPoints: 75, percentageOfFeature: 100 },
+    ],
+    status: "Planned",
+    color: "#EF4444",
+    isPlanned: true,
+  },
+  {
+    id: "F45",
+    name: "Mobile Agent Interface",
+    description: "Mobile-responsive agent interface for on-the-go monitoring and approvals by banking operations managers.",
+    category: "UX",
+    totalStoryPoints: 65,
+    completedStoryPoints: 0,
+    remainingStoryPoints: 65,
+    priority: 29,
+    prdLink: PRD_INDEX_URL,
+    prdStatus: "pending",
+    quarters: [
+      { quarter: "Q4-2026", allocatedPoints: 65, percentageOfFeature: 100 },
+    ],
+    status: "Planned",
+    color: "#EC4899",
+    isPlanned: true,
   },
 ];
 
@@ -392,9 +760,11 @@ export const getRoadmapSummary = (velocity: number = ROADMAP_CONFIG.averageVeloc
   q1Load: calculateQuarterLoad("Q1-2026"),
   q2Load: calculateQuarterLoad("Q2-2026"),
   q3Load: calculateQuarterLoad("Q3-2026"),
+  q4Load: calculateQuarterLoad("Q4-2026"),
   q1Utilization: calculateQuarterUtilization("Q1-2026", velocity),
   q2Utilization: calculateQuarterUtilization("Q2-2026", velocity),
   q3Utilization: calculateQuarterUtilization("Q3-2026", velocity),
+  q4Utilization: calculateQuarterUtilization("Q4-2026", velocity),
 });
 
 export const ROADMAP_SUMMARY = getRoadmapSummary();

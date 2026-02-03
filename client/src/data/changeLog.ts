@@ -115,6 +115,30 @@ export const changeLogDec1: ChangeLogEntry = {
   ]
 };
 
+export const changeLogFeb3: ChangeLogEntry = {
+  date: "February 3, 2026",
+  timestamp: "3:00 PM MT",
+  source: "JIRA Sprint Extraction + Monday.com CRM + Confluence PRDs",
+
+  engineerChanges: [],
+
+  ticketStatusChanges: [],
+
+  metricsComparison: {
+    previous: { engineers: 12, totalStoryPoints: 137, trackedTickets: 70 },
+    current: { engineers: 12, totalStoryPoints: 137, trackedTickets: 70 }
+  },
+
+  dataUpdates: [
+    "Dashboard update for February 3, 2026 Board Meeting",
+    "Added Q4 2026 roadmap column with 6 planned items",
+    "Added descriptions to all 23 roadmap items",
+    "Fixed PRD links to use correct Confluence URLs",
+    "Added milestones M5 (Compliance Assurance) and M6 (Full Platform)",
+    "Updated all data freshness timestamps to February 3, 2026"
+  ]
+};
+
 export const changeLogJan20: ChangeLogEntry = {
   date: "January 20, 2026",
   timestamp: "1:00 PM MT",
@@ -169,6 +193,7 @@ export const changeLogJan20: ChangeLogEntry = {
 };
 
 export const changeLog: ChangeLogEntry[] = [
+  changeLogFeb3,
   changeLogJan20,
   changeLogDec1,
   changeLogNov23

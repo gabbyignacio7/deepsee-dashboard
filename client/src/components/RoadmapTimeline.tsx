@@ -43,6 +43,9 @@ import {
   CheckCircle2,
   Clock,
   Zap,
+  Shield,
+  FileText,
+  Info,
 } from 'lucide-react';
 
 // Icon mapping for milestones
@@ -52,20 +55,37 @@ const MILESTONE_ICONS: Record<string, React.ElementType> = {
   network: Network,
   layers: Layers,
   target: Target,
+  shield: Shield,
 };
 
-// Category colors
+// Category colors - Extended for new categories
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; border: string }> = {
   Platform: { bg: 'bg-blue-100 dark:bg-blue-900/20', text: 'text-blue-700 dark:text-blue-400', border: 'border-blue-300' },
   Automation: { bg: 'bg-amber-100 dark:bg-amber-900/20', text: 'text-amber-700 dark:text-amber-400', border: 'border-amber-300' },
   Intelligence: { bg: 'bg-purple-100 dark:bg-purple-900/20', text: 'text-purple-700 dark:text-purple-400', border: 'border-purple-300' },
   Integration: { bg: 'bg-green-100 dark:bg-green-900/20', text: 'text-green-700 dark:text-green-400', border: 'border-green-300' },
   Client: { bg: 'bg-orange-100 dark:bg-orange-900/20', text: 'text-orange-700 dark:text-orange-400', border: 'border-orange-300' },
+  Capability: { bg: 'bg-cyan-100 dark:bg-cyan-900/20', text: 'text-cyan-700 dark:text-cyan-400', border: 'border-cyan-300' },
+  Dashboard: { bg: 'bg-indigo-100 dark:bg-indigo-900/20', text: 'text-indigo-700 dark:text-indigo-400', border: 'border-indigo-300' },
+  UX: { bg: 'bg-pink-100 dark:bg-pink-900/20', text: 'text-pink-700 dark:text-pink-400', border: 'border-pink-300' },
+};
+
+// PRD status colors
+const PRD_STATUS_COLORS = {
+  active: 'text-blue-600',
+  pending: 'text-orange-500',
+  none: 'text-gray-400',
 };
 
 interface RoadmapTimelineProps {
   className?: string;
 }
+
+// Helper to truncate description
+const truncateDescription = (desc: string, maxLength: number = 60): string => {
+  if (!desc || desc.length <= maxLength) return desc || '';
+  return desc.substring(0, maxLength) + '...';
+};
 
 export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = '' }) => {
   const [velocity, setVelocity] = useState(ROADMAP_CONFIG.averageVelocity);
@@ -101,6 +121,7 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
       case 'Complete': return 'bg-green-500';
       case 'In Progress': return 'bg-blue-500';
       case 'Not Started': return 'bg-gray-300';
+      case 'Planned': return 'bg-orange-400';
       default: return 'bg-gray-300';
     }
   };
@@ -111,6 +132,15 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
     return 'text-green-600 dark:text-green-400';
   };
 
+  const getPrdStatusLabel = (status?: string) => {
+    switch (status) {
+      case 'active': return null; // No label for active PRDs
+      case 'pending': return '(PRD pending)';
+      case 'none': return '(No PRD)';
+      default: return null;
+    }
+  };
+
   return (
     <div className={`space-y-6 ${className}`}>
       {/* Header with Summary Stats */}
@@ -118,7 +148,7 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Product Roadmap Timeline</h1>
           <p className="text-muted-foreground">
-            Q1-Q3 2026 • Updated February 1, 2026, 7:30 PM MT
+            Q1-Q4 2026 • Updated February 3, 2026, 3:00 PM MT
           </p>
         </div>
 
@@ -182,7 +212,7 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
             {MILESTONES.map((milestone) => {
               const Icon = MILESTONE_ICONS[milestone.icon] || Target;
               const progress = getMilestoneProgress(milestone.id);
@@ -225,32 +255,48 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
         </CardContent>
       </Card>
 
-      {/* Quarterly Timeline - 3 Columns */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      {/* Quarterly Timeline - 4 Columns */}
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         {QUARTERS.map((quarter) => {
           const features = featuresByQuarter[quarter.id] || [];
           const load = calculateQuarterLoad(quarter.id);
           const capacity = calculateQuarterCapacity(quarter.id, velocity);
           const utilization = utilizationByQuarter[quarter.id];
+          const isPlannedQuarter = quarter.isPlanned;
 
           return (
-            <Card key={quarter.id} className="overflow-hidden">
+            <Card
+              key={quarter.id}
+              className={`overflow-hidden ${isPlannedQuarter ? 'border-dashed border-2 border-orange-300' : ''}`}
+            >
               {/* Quarter Header */}
               <div
-                className="p-4 border-b"
+                className={`p-4 border-b ${isPlannedQuarter ? 'bg-orange-50 dark:bg-orange-900/10' : ''}`}
                 style={{ borderLeftWidth: 4, borderLeftColor: quarter.color }}
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" style={{ color: quarter.color }} />
-                    <h3 className="font-semibold">{quarter.name}</h3>
+                    <div>
+                      <h3 className="font-semibold">{quarter.name}</h3>
+                      {quarter.version && (
+                        <p className="text-xs text-muted-foreground">{quarter.version}</p>
+                      )}
+                    </div>
                   </div>
-                  <Badge
-                    variant="secondary"
-                    className={getUtilizationColor(utilization)}
-                  >
-                    {utilization}% utilized
-                  </Badge>
+                  <div className="flex flex-col items-end gap-1">
+                    {isPlannedQuarter && (
+                      <Badge variant="outline" className="text-xs text-orange-600 border-orange-400">
+                        Planned
+                      </Badge>
+                    )}
+                    <Badge
+                      variant="secondary"
+                      className={getUtilizationColor(utilization)}
+                    >
+                      {utilization}% utilized
+                    </Badge>
+                  </div>
                 </div>
                 <div className="flex items-center justify-between text-sm text-muted-foreground">
                   <span>{load} / {capacity} pts</span>
@@ -276,42 +322,62 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
                   const completionPct = feature.totalStoryPoints > 0
                     ? Math.round((feature.completedStoryPoints / feature.totalStoryPoints) * 100)
                     : 0;
+                  const isPlannedFeature = feature.isPlanned || feature.status === 'Planned';
 
                   return (
-                    <div
-                      key={feature.id}
-                      className={`p-3 rounded-lg border cursor-pointer hover:shadow-md transition-all ${categoryStyle.bg}`}
-                      onClick={() => handleFeatureClick(feature)}
-                    >
-                      <div className="flex items-start justify-between gap-2 mb-2">
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium truncate">{feature.name}</p>
-                          <div className="flex items-center gap-2 mt-1">
-                            <Badge variant="outline" className="text-xs">
-                              {feature.category}
-                            </Badge>
-                            {feature.jiraEpicKey && (
-                              <span className="text-xs font-mono text-muted-foreground">
-                                {feature.jiraEpicKey}
-                              </span>
-                            )}
+                    <Tooltip key={feature.id}>
+                      <TooltipTrigger asChild>
+                        <div
+                          className={`p-3 rounded-lg border cursor-pointer hover:shadow-md transition-all ${categoryStyle.bg} ${isPlannedFeature ? 'border-dashed border-orange-300' : ''}`}
+                          onClick={() => handleFeatureClick(feature)}
+                        >
+                          <div className="flex items-start justify-between gap-2 mb-1">
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-medium truncate">{feature.name}</p>
+                              {/* Description preview */}
+                              <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                                {truncateDescription(feature.description)}
+                              </p>
+                              <div className="flex items-center gap-2 mt-1.5">
+                                <Badge variant="outline" className="text-xs">
+                                  {feature.category}
+                                </Badge>
+                                {feature.jiraEpicKey && (
+                                  <span className="text-xs font-mono text-muted-foreground">
+                                    {feature.jiraEpicKey}
+                                  </span>
+                                )}
+                                {feature.prdStatus && getPrdStatusLabel(feature.prdStatus) && (
+                                  <span className={`text-xs ${PRD_STATUS_COLORS[feature.prdStatus]}`}>
+                                    {getPrdStatusLabel(feature.prdStatus)}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                            <div className={`w-2 h-2 rounded-full flex-shrink-0 mt-1 ${getStatusColor(feature.status)}`} />
                           </div>
-                        </div>
-                        <div className={`w-2 h-2 rounded-full ${getStatusColor(feature.status)}`} />
-                      </div>
 
-                      <div className="flex items-center justify-between text-xs text-muted-foreground">
-                        <span>{quarterAlloc?.allocatedPoints || 0} pts</span>
-                        <span>P{feature.priority}</span>
-                      </div>
+                          <div className="flex items-center justify-between text-xs text-muted-foreground mt-2">
+                            <span>{quarterAlloc?.allocatedPoints || 0} pts</span>
+                            <span>P{feature.priority}</span>
+                          </div>
 
-                      {completionPct > 0 && (
-                        <div className="mt-2">
-                          <Progress value={completionPct} className="h-1" />
-                          <p className="text-xs text-muted-foreground mt-0.5">{completionPct}% done</p>
+                          {completionPct > 0 && (
+                            <div className="mt-2">
+                              <Progress value={completionPct} className="h-1" />
+                              <p className="text-xs text-muted-foreground mt-0.5">{completionPct}% done</p>
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
+                      </TooltipTrigger>
+                      <TooltipContent side="right" className="max-w-sm">
+                        <p className="font-medium">{feature.name}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{feature.description}</p>
+                        {feature.prdLink && (
+                          <p className="text-xs mt-2 text-blue-500">Click to view details and PRD link</p>
+                        )}
+                      </TooltipContent>
+                    </Tooltip>
                   );
                 })}
 
@@ -332,26 +398,35 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
           <TrendingUp className="w-5 h-5 text-primary" />
           <h3 className="font-semibold">Capacity Planning Summary</h3>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {QUARTERS.map((quarter) => {
             const load = calculateQuarterLoad(quarter.id);
             const capacity = calculateQuarterCapacity(quarter.id, velocity);
             const utilization = utilizationByQuarter[quarter.id];
             const isOverCapacity = utilization > 100;
             const isAtRisk = utilization > 90;
+            const isPlanned = quarter.isPlanned;
 
             return (
               <div
                 key={quarter.id}
                 className={`p-4 rounded-lg border ${
+                  isPlanned ? 'border-dashed border-orange-300 bg-orange-50/50 dark:bg-orange-900/5' :
                   isOverCapacity ? 'border-red-300 bg-red-50 dark:bg-red-900/10' :
                   isAtRisk ? 'border-amber-300 bg-amber-50 dark:bg-amber-900/10' :
                   'bg-muted/30'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-medium">{quarter.name}</span>
-                  {isOverCapacity ? (
+                  <div>
+                    <span className="font-medium">{quarter.name}</span>
+                    {quarter.version && (
+                      <p className="text-xs text-muted-foreground">{quarter.version}</p>
+                    )}
+                  </div>
+                  {isPlanned ? (
+                    <Clock className="w-4 h-4 text-orange-500" />
+                  ) : isOverCapacity ? (
                     <AlertTriangle className="w-4 h-4 text-red-500" />
                   ) : isAtRisk ? (
                     <Clock className="w-4 h-4 text-amber-500" />
@@ -400,6 +475,14 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
               </DialogHeader>
 
               <div className="space-y-4">
+                {/* Description */}
+                <div className="p-3 rounded-lg bg-muted/50">
+                  <div className="flex items-start gap-2">
+                    <Info className="w-4 h-4 text-muted-foreground mt-0.5" />
+                    <p className="text-sm">{selectedFeature.description}</p>
+                  </div>
+                </div>
+
                 {/* Status & Progress */}
                 <div className="flex items-center justify-between">
                   <Badge
@@ -407,6 +490,7 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
                     className={
                       selectedFeature.status === 'Complete' ? 'bg-green-100 text-green-700' :
                       selectedFeature.status === 'In Progress' ? 'bg-blue-100 text-blue-700' :
+                      selectedFeature.status === 'Planned' ? 'bg-orange-100 text-orange-700' :
                       'bg-gray-100 text-gray-700'
                     }
                   >
@@ -437,7 +521,7 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
                           className="flex items-center justify-between p-2 rounded bg-muted/50"
                         >
                           <span className="text-sm" style={{ color: quarter?.color }}>
-                            {quarter?.name}
+                            {quarter?.name} {quarter?.version && `(${quarter.version})`}
                           </span>
                           <span className="text-sm font-mono">
                             {q.allocatedPoints} pts ({q.percentageOfFeature}%)
@@ -466,10 +550,15 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
                       href={selectedFeature.prdLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-sm text-blue-600 hover:underline"
+                      className={`flex items-center gap-1 text-sm hover:underline ${
+                        selectedFeature.prdStatus === 'pending' ? 'text-orange-500' : 'text-blue-600'
+                      }`}
                     >
-                      <ExternalLink className="w-3 h-3" />
+                      <FileText className="w-3 h-3" />
                       PRD Document
+                      {selectedFeature.prdStatus === 'pending' && (
+                        <span className="text-xs">(PRD pending)</span>
+                      )}
                     </a>
                   )}
                 </div>

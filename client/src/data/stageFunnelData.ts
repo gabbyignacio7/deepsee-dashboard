@@ -1,4 +1,4 @@
-// Stage Funnel Data - Updated January 18, 2026
+// Stage Funnel Data - Updated February 3, 2026
 // Source: Monday.com CRM
 
 export interface Stage {

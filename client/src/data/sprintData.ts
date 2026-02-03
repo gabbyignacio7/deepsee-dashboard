@@ -1,8 +1,8 @@
-// Sprint Data - Updated February 1, 2026 at 7:30 PM MT
+// Sprint Data - Updated February 3, 2026 at 7:30 PM MT
 // Source: JIRA Sprint Extraction - Sprint 2026-S3 (Active)
 // CRITICAL: NEXT_SPRINT_READINESS export is required by executive.tsx - DO NOT REMOVE
 
-export const EXTRACTION_TIMESTAMP = "2026-02-01T19:30:00-07:00";
+export const EXTRACTION_TIMESTAMP = "2026-02-03T15:00:00-07:00";
 export const DATA_SOURCE = "JIRA Sprint Extraction + Monday.com CRM";
 
 export interface SprintStatus {
@@ -259,5 +259,5 @@ export function getSprintMixChartData() {
 }
 
 export function formatDataTimestamp(isoString: string = EXTRACTION_TIMESTAMP): string {
-  return "February 1, 2026, 7:30 PM MT";
+  return "February 3, 2026, 7:30 PM MT";
 }

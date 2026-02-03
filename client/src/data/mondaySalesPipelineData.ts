@@ -1,5 +1,5 @@
 // Sales Pipeline Data - Monday.com CRM
-// Last Updated: February 1, 2026 @ 7:30 PM MT
+// Last Updated: February 3, 2026 @ 7:30 PM MT
 // Source: Browser Agent Monday.com Extraction + PoV & Client Tracker
 
 export type RiskLevel = 'green' | 'yellow' | 'red';
@@ -361,7 +361,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     { family: "SSIs", arr: 313000 }
   ],
 
-  // Updated from Monday.com PoV & Client Tracker - February 1, 2026
+  // Updated from Monday.com PoV & Client Tracker - February 3, 2026
   existingCustomers: [
     { client: "DTCC - SSI", arr: 416200, tcv3yr: 1162200, status: "Active", primary: "Joe Graziano" },
     { client: "Accenture", arr: 225000, tcv3yr: 725000, status: "Active", primary: "Dominic Stanyer" },

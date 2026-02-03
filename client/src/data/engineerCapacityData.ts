@@ -1,4 +1,4 @@
-// Engineer Capacity Data - Updated February 1, 2026 at 7:30 PM MT
+// Engineer Capacity Data - Updated February 3, 2026 at 3:00 PM MT
 // Source: JIRA Extract - Sprint 2026-S2 (Final) / S3 (Active) / S4 (Next)
 
 export interface TicketAssignment {

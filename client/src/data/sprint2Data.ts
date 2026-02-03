@@ -1,5 +1,5 @@
 // SPRINT DATA - Auto-extracted from JIRA
-// Generated: January 5, 2026 at 4:00 AM MT
+// Generated: February 3, 2026 at 3:00 PM MT
 // Source: DeepSee Collective Board > Active Sprints
 // Sprint: 2026-S1
 // Goal: Complete S2 carryover, stabilize Mercury Extraction for Colony/Sunwest production, and deliver BBVA term type extraction

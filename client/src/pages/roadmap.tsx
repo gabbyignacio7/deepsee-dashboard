@@ -4,15 +4,16 @@ import DataFreshness from '@/components/DataFreshness';
 /**
  * Product Roadmap Quarterly Timeline Page
  *
- * Board Meeting Preparation - First Week of February 2026
+ * Board Meeting Preparation - February 3, 2026
  *
  * Features:
- * - Q1-Q3 2026 Timeline View with visual quarter columns
+ * - Q1-Q4 2026 Timeline View with visual quarter columns
  * - Auto-calculates feature placement based on velocity and story points
  * - Milestones row showing key product capability targets
  * - Velocity slider for scenario modeling (60-120 pts/sprint)
- * - Feature cards with JIRA links, progress indicators, and category badges
+ * - Feature cards with JIRA links, progress indicators, category badges, and descriptions
  * - Capacity utilization warnings per quarter
+ * - Q4 2026 planned items with visual differentiation (dashed border)
  */
 export default function RoadmapPage() {
   return (
@@ -24,7 +25,7 @@ export default function RoadmapPage() {
             Product Roadmap
           </h1>
           <p className="text-muted-foreground">
-            Board Meeting Preparation • Q1-Q3 2026
+            Board Meeting Preparation • Q1-Q4 2026
           </p>
         </div>
         <DataFreshness />

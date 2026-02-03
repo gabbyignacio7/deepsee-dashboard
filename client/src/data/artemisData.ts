@@ -1,4 +1,4 @@
-// ARTEMIS Architecture Data - January 12, 2026
+// ARTEMIS Architecture Data - February 3, 2026
 // Contains all ARTEMIS-related constants and data structures
 
 export interface ArtemisLayer {

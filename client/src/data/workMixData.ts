@@ -1,4 +1,4 @@
-// Work Mix Data - Updated January 20, 2026
+// Work Mix Data - Updated February 3, 2026
 // Source: JIRA Extract - Sprint 2026-S2
 
 export interface WorkCategory {
@@ -53,7 +53,7 @@ export interface ClientWorkBreakdown {
   status?: string;
 }
 
-// Client work breakdown - Updated January 20, 2026
+// Client work breakdown - Updated February 3, 2026
 export const clientBreakdown: ClientWorkBreakdown[] = [
   { client: "Accenture", s2Tickets: 4, s2Points: 0, arrAtRisk: 225000, status: "UI improvements (30% complete, 1 blocked)" },
   { client: "Broadridge", s2Tickets: 3, s2Points: 0, arrAtRisk: 500000, status: "DeepRecon enhancements" },
