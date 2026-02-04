@@ -91,30 +91,30 @@ export const PREVIOUS_SPRINT: Sprint = {
   assessment: 'client-heavy'
 };
 
-// S3 - ACTIVE (current sprint - Day 2)
+// S3 - ACTIVE (current sprint - Day 5 of 14)
 export const CURRENT_SPRINT: Sprint = {
   id: '2026-S3',
   name: 'Sprint 2026-S3',
   startDate: '2026-01-30',
   endDate: '2026-02-13',
   status: 'active',
-  totalTickets: 82,
-  totalPoints: 129,
-  completedTickets: 3,
-  completedPoints: 10,
+  totalTickets: 94,
+  totalPoints: 168,
+  completedTickets: 12,
+  completedPoints: 31,
   completion: {
-    toDo: 59,
-    blocked: 0,
-    inProgress: 11,
-    codeReview: 6,
-    done: 3
+    toDo: 53,
+    blocked: 1,
+    inProgress: 16,
+    codeReview: 5,
+    done: 12
   },
-  completionRate: 3.8,
-  pointsCompletionRate: 7.8,
-  health: 'yellow',
-  daysRemaining: 12,
-  daysElapsed: 2,
-  likelyRollovers: 55,
+  completionRate: 12.8,
+  pointsCompletionRate: 18.5,
+  health: 'red',
+  daysRemaining: 9,
+  daysElapsed: 5,
+  likelyRollovers: 54,
   mix: { artemis: 37.8, client: 6.1, infrastructure: 23.2 },
   assessment: 'artemis-focused'
 };
@@ -126,12 +126,12 @@ export const NEXT_SPRINT: Sprint = {
   startDate: '2026-02-13',
   endDate: '2026-02-27',
   status: 'planned',
-  totalTickets: 10,
-  totalPoints: 8,
+  totalTickets: 11,
+  totalPoints: 10,
   completedTickets: 0,
   completedPoints: 0,
   completion: {
-    toDo: 10,
+    toDo: 11,
     blocked: 0,
     inProgress: 0,
     codeReview: 0,
@@ -170,24 +170,25 @@ export const currentSprint = CURRENT_SPRINT;
 
 // CRITICAL: This export is required by executive.tsx and NextSprintReadiness.tsx - DO NOT REMOVE
 export const NEXT_SPRINT_READINESS = {
-  totalTickets: 10,
-  assigned: 1,
+  totalTickets: 11,
+  assigned: 2,
   unassigned: 9,
-  withStoryPoints: 2,
+  withStoryPoints: 3,
   missingEstimates: 8,
   readinessStatus: 'NOT_READY',
   projectBreakdown: [
-    { project: 'BACK', count: 7 },
+    { project: 'BACK', count: 8 },
     { project: 'FB', count: 2 },
     { project: 'CI', count: 1 }
   ],
   assignedEngineers: [
+    { name: 'Owen Riley', tickets: 1 },
     { name: 'Darius Ouderkirk', tickets: 1 }
   ],
   blockers: [
-    '90% of tickets unassigned',
-    '80% missing story point estimates',
-    'Only Darius Ouderkirk has S4 work (BACK-1382, 3 pts)',
+    '82% of tickets unassigned (9 of 11)',
+    '73% missing story point estimates',
+    'Only Owen Riley & Darius Ouderkirk assigned',
     'S4 is mostly Microsoft Fabric integration work'
   ]
 };
@@ -206,8 +207,10 @@ export const ROLLOVER_HIGH_RISK: SprintItem[] = [
   { key: 'BACK-1690', summary: 'Create data lifecycle management policies', category: 'ARTEMIS', staleDays: 26, unassigned: true }
 ];
 
-// Blocked Items in current sprint (S3) - none!
-export const BLOCKED_ITEMS: SprintItem[] = [];
+// Blocked Items in current sprint (S3)
+export const BLOCKED_ITEMS: SprintItem[] = [
+  { key: 'BACK-1863', summary: '[Colony] Allegro post process validation', category: 'Colony', blockedDays: 3, unassigned: true, priority: 'High' }
+];
 
 // ARTEMIS Backlog Items
 export const ARTEMIS_BACKLOG: SprintItem[] = [

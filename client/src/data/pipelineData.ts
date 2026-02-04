@@ -13,10 +13,10 @@ export interface PipelineMetrics {
 }
 
 export const pipelineMetrics: PipelineMetrics = {
-  total: 11250000,        // $11.25M
-  weighted: 1659050,      // $1.66M
-  dealCount: 89,
-  avgDealSize: 126404,    // ~$126K
+  total: 11180000,        // $11.18M - Updated Feb 3
+  weighted: 1700000,      // $1.7M - Updated Feb 3
+  dealCount: 55,          // 55+ accounts
+  avgDealSize: 203272,    // ~$203K
   q1Closing: 1183850,     // $1.18M weighted
   existingCustomerARR: 990200  // $990K
 };
@@ -29,10 +29,10 @@ export const pipelineComparison = {
     dealCount: 84
   },
   change: {
-    total: 530000,         // +$530K
-    totalPct: 4.9,
-    weighted: 49050,       // +$50K
-    weightedPct: 3.1,
-    dealCount: 5
+    total: 460000,         // +$460K
+    totalPct: 4.3,
+    weighted: 90000,       // +$90K
+    weightedPct: 5.6,
+    dealCount: -29         // Net reduction (consolidated accounts)
   }
 };
