@@ -1,5 +1,5 @@
 // Sales Pipeline Data - Monday.com CRM
-// Last Updated: February 3, 2026 @ 7:30 PM MT
+// Last Updated: February 6, 2026 @ 2:25 PM MT
 // Source: Browser Agent Monday.com Extraction + PoV & Client Tracker
 
 export type RiskLevel = 'green' | 'yellow' | 'red';
@@ -23,11 +23,13 @@ export interface Deal {
   probability: number;
   closeDate: string | null;
   product: string;
-  segment: 'Cap Markets' | 'Fin Market Infrastructure' | 'Banking';
+  segment: 'Cap Markets' | 'Fin Market Infrastructure' | 'Banking' | 'Insurance';
+  owner?: string;
   engineeringRequired: boolean;
   riskLevel: RiskLevel;
   atRisk?: boolean;
   riskNote?: string;
+  daysOverdue?: number;
   engNeed?: string;
 }
 
@@ -63,6 +65,7 @@ export interface PipelineOverview {
   totalPipeline: number;
   weightedPipeline: number;
   activeDeals: number;
+  activeAccounts: number;
   totalAccounts: number;
   avgOpportunityAge: number;
   closingQ1_2026: number;
@@ -70,6 +73,7 @@ export interface PipelineOverview {
   existingCustomerArr: number;
   previousPipeline: number;
   previousWeighted: number;
+  previousDate: string;
   previousDeals: number;
   pipelineChange: number;
   pipelineChangePercent: number;
@@ -82,7 +86,7 @@ export interface MondaySalesPipelineData {
   overview: PipelineOverview;
   stageDistribution: StageData[];
   topDeals: Deal[];
-  atRiskDeals: { client: string; arr: number; issue: string; priority: string; status?: string }[];
+  atRiskDeals: { client: string; arr: number; originalClose?: string; daysOverdue?: number; issue: string; priority: string; status?: string }[];
   atRiskSummary: { totalAtRiskARR: number; atRiskPercent: number; dealCount: number; note?: string };
   bySegment: { segment: string; count: number; arr: number; percent: number }[];
   byAgentFamily: { family: string; arr: number }[];
@@ -92,41 +96,44 @@ export interface MondaySalesPipelineData {
   engineeringAlignment: { priority: string; client: string; arr: number; jiraTicket: string; status: string; stage: string; daysInPipeline?: number }[];
   revenueAtRiskByBlocker: { total: number; byBlocker: { blocker: string; arr: number }[] };
   q1Closing: { q1WeightedARR: number; q2WeightedARR: number; q3WeightedARR: number; q4WeightedARR: number; totalProjectedYear: number; note: string };
+  dataQualityNotes?: string[];
 }
 
 // ═══════════════════════════════════════════════════════════════
-// FEBRUARY 1, 2026 PIPELINE DATA
+// FEBRUARY 6, 2026 PIPELINE DATA
 // ═══════════════════════════════════════════════════════════════
 
 export const mondaySalesPipelineData: MondaySalesPipelineData = {
   overview: {
-    asOf: "2026-02-01T19:30:00-07:00",
-    totalPipeline: 11177000,
-    weightedPipeline: 1707200,
-    activeDeals: 55,
+    asOf: "2026-02-06T14:25:00-07:00",
+    totalPipeline: 11470000,
+    weightedPipeline: 1720000,
+    activeDeals: 90,
+    activeAccounts: 90,
     totalAccounts: 97,
     avgOpportunityAge: 157,
     closingQ1_2026: 979850,
     closingThisMonth: 0,
     existingCustomerArr: 931200,
-    // Comparison to Jan 28
-    previousPipeline: 11180000,
-    previousWeighted: 1710000,
+    // Comparison to Jan 26
+    previousPipeline: 11250000,
+    previousWeighted: 1660000,
+    previousDate: "2026-01-26",
     previousDeals: 97,
-    pipelineChange: -3000,
-    pipelineChangePercent: 0,
-    weightedChange: -2800,
-    weightedChangePercent: -0.2,
-    dealChange: -42  // 55 active vs 97 total accounts
+    pipelineChange: 220000,
+    pipelineChangePercent: 2.0,
+    weightedChange: 60000,
+    weightedChangePercent: 3.6,
+    dealChange: -7  // 90 active vs 97 total accounts
   },
 
   stageDistribution: [
-    { stage: "Qualified Lead/Discovery", probability: 5, count: 52, totalArr: 11180000, weightedArr: 169650 },
-    { stage: "Problem Validation & Value Framing", probability: 10, count: 20, totalArr: 7780000, weightedArr: 222900, convRate: 69.6 },
-    { stage: "Solution Fit/Technical Validation", probability: 25, count: 10, totalArr: 5550000, weightedArr: 392250, convRate: 71.4 },
-    { stage: "Business Case & Champion Commit", probability: 40, count: 4, totalArr: 3990000, weightedArr: 718400, convRate: 71.8 },
-    { stage: "Commercial Alignment", probability: 60, count: 1, totalArr: 2190000, weightedArr: 204000, convRate: 54.9 },
-    { stage: "Contracting & Close", probability: 80, count: 1, totalArr: 1850000, weightedArr: 0, convRate: 84.5, note: '$0 weighted - data issue' }
+    { stage: "Qualified Lead/Discovery", probability: 5, count: 54, totalArr: 11470000, weightedArr: 184550 },
+    { stage: "Problem Validation & Value Framing", probability: 10, count: 20, totalArr: 7780000, weightedArr: 222900 },
+    { stage: "Solution Fit/Technical Validation", probability: 25, count: 12, totalArr: 5550000, weightedArr: 392250 },
+    { stage: "Business Case & Champion Commit", probability: 40, count: 4, totalArr: 3990000, weightedArr: 718400 },
+    { stage: "Commercial Alignment", probability: 60, count: 1, totalArr: 340000, weightedArr: 204000 },
+    { stage: "Contracting & Close", probability: 80, count: 1, totalArr: 1850000, weightedArr: 0, note: 'DTCC overdue - may exclude from weighted calc' }
   ],
 
   topDeals: [
@@ -139,21 +146,12 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
       closeDate: "2025-12-31",
       product: "ELA",
       segment: "Fin Market Infrastructure",
+      owner: "MS",
       engineeringRequired: true,
       riskLevel: "red",
       atRisk: true,
-      riskNote: "800+ days, BACK-1603 blocked"
-    },
-    {
-      client: "Linonia",
-      arr: 1400000,
-      stage: "Qualified Lead/Discovery",
-      probability: 5,
-      closeDate: null,
-      product: "Operations",
-      segment: "Cap Markets",
-      engineeringRequired: false,
-      riskLevel: "green"
+      riskNote: "Legal review - ELA Order under senior attorney review",
+      daysOverdue: 37
     },
     {
       client: "Broadridge",
@@ -164,42 +162,19 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
       closeDate: "2026-03-31",
       product: "ELA",
       segment: "Fin Market Infrastructure",
+      riskNote: "ARR up from $500K",
       engineeringRequired: true,
-      riskLevel: "red",
-      atRisk: true,
-      riskNote: "342 days, security remediation"
+      riskLevel: "yellow"
     },
     {
-      client: "Abu Dhabi Inv Authority",
-      arr: 749000,
-      stage: "Problem Validation & Value Framing",
-      probability: 10,
-      closeDate: null,
+      client: "Janney",
+      arr: 525000,
+      stage: "Solution Fit/Technical Validation",
+      probability: 25,
+      closeDate: "2026-03-31",
       product: "Operations",
       segment: "Cap Markets",
-      engineeringRequired: false,
-      riskLevel: "green"
-    },
-    {
-      client: "Coastal Community Bank",
-      arr: 582400,
-      stage: "Qualified Lead/Discovery",
-      probability: 5,
-      closeDate: null,
-      product: "Operations",
-      segment: "Fin Market Infrastructure",
-      engineeringRequired: false,
-      riskLevel: "green"
-    },
-    {
-      client: "DTCC",
-      dealName: "SSI",
-      arr: 416200,
-      stage: "Contracting & Close",
-      probability: 80,
-      closeDate: null,
-      product: "SSIs",
-      segment: "Cap Markets",
+      owner: "MS",
       engineeringRequired: false,
       riskLevel: "green"
     },
@@ -208,9 +183,23 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
       arr: 367000,
       stage: "Problem Validation & Value Framing",
       probability: 10,
-      closeDate: null,
+      closeDate: "2026-05-15",
       product: "Operations",
       segment: "Cap Markets",
+      owner: "MS",
+      engineeringRequired: false,
+      riskLevel: "green"
+    },
+    {
+      client: "BBVA",
+      dealName: "CIB Ops",
+      arr: 367000,
+      stage: "Business Case & Champion Commit",
+      probability: 40,
+      closeDate: "2026-03-31",
+      product: "Operations",
+      segment: "Cap Markets",
+      owner: "MS",
       engineeringRequired: false,
       riskLevel: "green"
     },
@@ -223,10 +212,12 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
       closeDate: "2026-01-31",
       product: "Operations",
       segment: "Fin Market Infrastructure",
+      owner: "MS",
       engineeringRequired: false,
-      riskLevel: "yellow",
+      riskLevel: "red",
       atRisk: true,
-      riskNote: "181+ days stale"
+      riskNote: "Close date overdue - needs status update",
+      daysOverdue: 6
     },
     {
       client: "BMO Capital Markets",
@@ -236,6 +227,20 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
       closeDate: null,
       product: "Operations",
       segment: "Cap Markets",
+      owner: "MS",
+      engineeringRequired: false,
+      riskLevel: "green"
+    },
+    {
+      client: "Bank of America",
+      dealName: "Global Markets",
+      arr: 333000,
+      stage: "Business Case & Champion Commit",
+      probability: 40,
+      closeDate: "2026-03-31",
+      product: "Reconciliation",
+      segment: "Cap Markets",
+      owner: "MS",
       engineeringRequired: false,
       riskLevel: "green"
     },
@@ -248,6 +253,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
       closeDate: "2026-03-31",
       product: "Reconciliation",
       segment: "Cap Markets",
+      owner: "MS",
       engineeringRequired: true,
       riskLevel: "yellow",
       engNeed: "SSI Output"
@@ -258,56 +264,10 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
       arr: 275000,
       stage: "Problem Validation & Value Framing",
       probability: 10,
-      closeDate: null,
-      product: "Operations",
-      segment: "Cap Markets",
-      engineeringRequired: false,
-      riskLevel: "green"
-    },
-    {
-      client: "Capstone Investment",
-      arr: 265000,
-      stage: "Qualified Lead/Discovery",
-      probability: 5,
-      closeDate: null,
-      product: "Operations",
-      segment: "Cap Markets",
-      engineeringRequired: false,
-      riskLevel: "green"
-    },
-    {
-      client: "JPM",
-      dealName: "Fixed Income",
-      arr: 265000,
-      stage: "Solution Fit/Technical Validation",
-      probability: 25,
       closeDate: "2026-07-01",
       product: "Operations",
       segment: "Cap Markets",
-      engineeringRequired: false,
-      riskLevel: "green"
-    },
-    {
-      client: "Northern Trust",
-      dealName: "Alt Fund",
-      arr: 264000,
-      stage: "Qualified Lead/Discovery",
-      probability: 5,
-      closeDate: null,
-      product: "Operations",
-      segment: "Cap Markets",
-      engineeringRequired: false,
-      riskLevel: "green"
-    },
-    {
-      client: "MUFG",
-      dealName: "Loan Ops",
-      arr: 264000,
-      stage: "Qualified Lead/Discovery",
-      probability: 5,
-      closeDate: null,
-      product: "Operations",
-      segment: "Cap Markets",
+      owner: "MS",
       engineeringRequired: false,
       riskLevel: "green"
     }
@@ -317,47 +277,40 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     {
       client: "DTCC - ELA",
       arr: 1850000,
-      issue: "800+ days in pipeline (since Nov 2023), $0 weighted, BACK-1603 blocked",
+      originalClose: "2025-12-31",
+      daysOverdue: 37,
+      issue: "Legal review - ELA Order under senior attorney review",
       priority: "P0"
     },
     {
-      client: "Broadridge - Internal ELA",
-      arr: 1000000,
-      issue: "342 days, Biz Case stage, security remediation blocker",
-      priority: "P0"
-    },
-    {
-      client: "Morgan Stanley",
-      arr: 225000,
-      issue: "On hold/Keep in touch status",
-      priority: "P2"
-    },
-    {
-      client: "Société Generale",
-      arr: 225000,
-      issue: "On hold/Keep in touch status",
-      priority: "P2"
+      client: "BetaNxt - Design & Deploy",
+      arr: 340000,
+      originalClose: "2026-01-31",
+      daysOverdue: 6,
+      issue: "Close date overdue - needs status update",
+      priority: "P1"
     }
   ],
 
   atRiskSummary: {
-    totalAtRiskARR: 3300000,
-    atRiskPercent: 29.5,
-    dealCount: 4,
-    note: 'Additional 8+ accounts have no ARR/stage assigned (new Jan 2026 leads)'
+    totalAtRiskARR: 2190000,
+    atRiskPercent: 19.1,
+    dealCount: 2,
+    note: 'DTCC 37 days overdue, BetaNxt 6 days overdue'
   },
 
   bySegment: [
-    { segment: "Capital Markets", count: 34, arr: 6819000, percent: 61.0 },
-    { segment: "Fin Market Infrastructure", count: 5, arr: 3440000, percent: 30.8 },
-    { segment: "Banking", count: 16, arr: 918000, percent: 8.2 }
+    { segment: "Capital Markets", count: 32, arr: 6968000, percent: 60.7 },
+    { segment: "Fin Market Infrastructure", count: 5, arr: 3440000, percent: 30.0 },
+    { segment: "Banking", count: 15, arr: 1067000, percent: 9.3 },
+    { segment: "Insurance", count: 3, arr: 0, percent: 0 }
   ],
 
   byAgentFamily: [
     { family: "Comms", arr: 3518000 },
     { family: "ELA", arr: 2850000 },
-    { family: "Reconciliation", arr: 2052000 },
-    { family: "Operations", arr: 1774000 },
+    { family: "Reconciliation", arr: 2201000 },
+    { family: "Operations", arr: 1923000 },
     { family: "SSIs", arr: 313000 }
   ],
 
@@ -445,7 +398,16 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     q4WeightedARR: 5000,
     totalProjectedYear: 1503200,
     note: 'Q1 has largest weighted closing at $979,850'
-  }
+  },
+
+  dataQualityNotes: [
+    'DTCC close date overdue 37 days',
+    'BetaNxt close date overdue 6 days',
+    'Colony Bank not in Sales Pipeline - tracked in separate board',
+    'Accenture is channel partner, not direct deal',
+    'Broadridge ARR shows $1M (was $500K) - verify scope change',
+    'BACK-1695 data anomaly - Status "To Do" but Resolution "Done"'
+  ]
 };
 
 // ═══════════════════════════════════════════════════════════════
@@ -453,20 +415,6 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
 // ═══════════════════════════════════════════════════════════════
 
 export const q1_2026_deals: Deal[] = [
-  {
-    client: "BetaNxt",
-    dealName: "Design & Deploy",
-    arr: 340000,
-    stage: "Commercial Alignment",
-    probability: 60,
-    closeDate: "2026-01-31",
-    product: "Operations",
-    segment: "Fin Market Infrastructure",
-    engineeringRequired: false,
-    riskLevel: "yellow",
-    atRisk: true,
-    riskNote: "181+ days in pipeline"
-  },
   {
     client: "Broadridge",
     dealName: "Internal ELA",
@@ -477,22 +425,49 @@ export const q1_2026_deals: Deal[] = [
     product: "ELA",
     segment: "Fin Market Infrastructure",
     engineeringRequired: true,
-    riskLevel: "red",
-    atRisk: true,
-    riskNote: "Security remediation blocker"
+    riskLevel: "yellow",
+    riskNote: "ARR up from $500K"
   },
   {
-    client: "Wells Fargo",
-    dealName: "Wholesale Ops",
-    arr: 313000,
+    client: "Janney",
+    arr: 525000,
     stage: "Solution Fit/Technical Validation",
     probability: 25,
     closeDate: "2026-03-31",
-    product: "Reconciliation",
+    product: "Operations",
     segment: "Cap Markets",
-    engineeringRequired: true,
-    riskLevel: "yellow",
-    engNeed: "SSI Output"
+    owner: "MS",
+    engineeringRequired: false,
+    riskLevel: "green"
+  },
+  {
+    client: "BBVA",
+    dealName: "CIB Ops",
+    arr: 367000,
+    stage: "Business Case & Champion Commit",
+    probability: 40,
+    closeDate: "2026-03-31",
+    product: "Operations",
+    segment: "Cap Markets",
+    owner: "MS",
+    engineeringRequired: false,
+    riskLevel: "green"
+  },
+  {
+    client: "BetaNxt",
+    dealName: "Design & Deploy",
+    arr: 340000,
+    stage: "Commercial Alignment",
+    probability: 60,
+    closeDate: "2026-01-31",
+    product: "Operations",
+    segment: "Fin Market Infrastructure",
+    owner: "MS",
+    engineeringRequired: false,
+    riskLevel: "red",
+    atRisk: true,
+    riskNote: "Close date overdue - needs status update",
+    daysOverdue: 6
   },
   {
     client: "Bank of America",
@@ -503,6 +478,65 @@ export const q1_2026_deals: Deal[] = [
     closeDate: "2026-03-31",
     product: "Reconciliation",
     segment: "Cap Markets",
+    owner: "MS",
+    engineeringRequired: false,
+    riskLevel: "green"
+  },
+  {
+    client: "Wells Fargo",
+    dealName: "Wholesale Ops",
+    arr: 313000,
+    stage: "Solution Fit/Technical Validation",
+    probability: 25,
+    closeDate: "2026-03-31",
+    product: "Reconciliation",
+    segment: "Cap Markets",
+    owner: "MS",
+    engineeringRequired: true,
+    riskLevel: "yellow",
+    engNeed: "SSI Output"
+  },
+  {
+    client: "Capstone Investment Advisors",
+    arr: 265000,
+    stage: "Qualified Lead/Discovery",
+    probability: 5,
+    closeDate: "2026-03-31",
+    product: "Operations",
+    segment: "Cap Markets",
+    engineeringRequired: false,
+    riskLevel: "green"
+  },
+  {
+    client: "Texas Capital Bank",
+    arr: 120000,
+    stage: "Qualified Lead/Discovery",
+    probability: 5,
+    closeDate: "2026-03-31",
+    product: "Operations",
+    segment: "Banking",
+    engineeringRequired: false,
+    riskLevel: "green"
+  },
+  {
+    client: "Chicago Trading Company",
+    arr: 96000,
+    stage: "Qualified Lead/Discovery",
+    probability: 5,
+    closeDate: "2026-03-10",
+    product: "Operations",
+    segment: "Cap Markets",
+    engineeringRequired: false,
+    riskLevel: "green"
+  },
+  {
+    client: "Customers Bank",
+    arr: 50000,
+    stage: "Qualified Lead/Discovery",
+    probability: 5,
+    closeDate: "2026-03-31",
+    product: "Operations",
+    segment: "Banking",
     engineeringRequired: false,
     riskLevel: "green"
   }
@@ -515,8 +549,8 @@ export const q1_2026_deals: Deal[] = [
 export const arrByAgentFamily = [
   { family: 'Comms', arr: 3518000 },
   { family: 'ELA', arr: 2850000 },
-  { family: 'Reconciliation', arr: 2052000 },
-  { family: 'Operations', arr: 1774000 },
+  { family: 'Reconciliation', arr: 2201000 },
+  { family: 'Operations', arr: 1923000 },
   { family: 'SSIs', arr: 313000 }
 ];
 
@@ -525,9 +559,10 @@ export const arrByAgentFamily = [
 // ═══════════════════════════════════════════════════════════════
 
 export const segmentBreakdown = [
-  { segment: 'Capital Markets', deals: 34, rawARR: 6819000, percent: 61.0 },
-  { segment: 'Fin Market Infrastructure', deals: 5, rawARR: 3440000, percent: 30.8 },
-  { segment: 'Banking', deals: 16, rawARR: 918000, percent: 8.2 }
+  { segment: 'Capital Markets', deals: 32, rawARR: 6968000, percent: 60.7 },
+  { segment: 'Fin Market Infrastructure', deals: 5, rawARR: 3440000, percent: 30.0 },
+  { segment: 'Banking', deals: 15, rawARR: 1067000, percent: 9.3 },
+  { segment: 'Insurance', deals: 3, rawARR: 0, percent: 0 }
 ];
 
 // ═══════════════════════════════════════════════════════════════
@@ -535,29 +570,21 @@ export const segmentBreakdown = [
 // ═══════════════════════════════════════════════════════════════
 
 export const dashboardAlerts = [
-  // CRITICAL - Engineering
-  { type: 'critical', category: 'engineering', title: 'S3 67% Unassigned', description: '55 of 82 tickets unassigned on Day 2. 57% also missing story point estimates.' },
-
-  // CRITICAL - Sales
-  { type: 'critical', category: 'sales', title: 'DTCC ELA ($1.85M)', description: '800+ days in pipeline, BACK-1603 BLOCKED, $0 weighted ARR shown.' },
-  { type: 'critical', category: 'sales', title: 'C&C Stage Data Issue', description: 'Contracting & Close shows $0 weighted despite $1.85M raw - data/filter issue.' },
+  // CRITICAL
+  { type: 'critical', category: 'sales', title: 'DTCC ELA ($1.85M) 37 Days Overdue', description: 'DTCC deal 37 days past close - legal review pending. ELA Order under senior attorney review.' },
+  { type: 'critical', category: 'engineering', title: 'Sprint 2026-S3 at RED', description: '50% unassigned, velocity declining.' },
 
   // HIGH
-  { type: 'high', category: 'sales', title: 'Broadridge ($1.0M)', description: '342 days in Biz Case, security remediation blocker.' },
-  { type: 'high', category: 'engineering', title: '17 Blocked in Backlog', description: 'All stale >14 days. Matthew Snow (4) and Owen Riley (5) have most.' },
-  { type: 'high', category: 'sales', title: '8+ Accounts No Data', description: 'SS&C GlobeOp, KPMG, ING, etc. have no ARR or stage - need qualification.' },
+  { type: 'high', category: 'engineering', title: '5 Critical SC Pentest Findings', description: '5 Critical SC pentest findings unassigned (SC-326 to SC-330).' },
+  { type: 'high', category: 'engineering', title: 'Blocked Tickets No Assignee', description: 'Both blocked tickets (UI-743, BACK-1863) have no assignee.' },
+  { type: 'high', category: 'sales', title: 'BetaNxt 6 Days Overdue', description: 'BetaNxt 6 days past close - needs status update.' },
 
   // MEDIUM
-  { type: 'medium', category: 'engineering', title: 'S2 Overcommitment Pattern', description: '21 tickets never started in S2. Same risk in S3 with 67% unassigned.' },
-  { type: 'medium', category: 'engineering', title: 'No S3 Work Assigned', description: 'Lane Terry, Loris D\'Acunto, Karolina Toman have zero S3 tickets.' },
-  { type: 'medium', category: 'sales', title: 'Deals On Hold', description: 'Morgan Stanley + Société Generale ($450K combined) marked Keep in Touch.' },
-  { type: 'medium', category: 'sales', title: 'Colony/BBVA Not Found', description: 'Colony Bank and BBVA not in active Sales Pipeline board.' },
+  { type: 'medium', category: 'sales', title: '9 Accounts No Stage', description: '9 accounts with no stage assigned.' },
+  { type: 'medium', category: 'sales', title: '17 Deals On Hold', description: '17 deals On Hold - pipeline hygiene needed.' },
 
   // POSITIVE
-  { type: 'positive', category: 'engineering', title: 'No S3 Blockers', description: 'Zero blocked tickets in current sprint.' },
-  { type: 'positive', category: 'engineering', title: 'ARTEMIS Work Mix Up', description: '37.8% vs 10.3% in S2 - moving toward 50-60% target.' },
-  { type: 'positive', category: 'engineering', title: 'Kalvin Available', description: 'Completed all S3 work - available for additional assignments.' },
-  { type: 'positive', category: 'sales', title: 'Q1 Weighted $980K', description: 'Q1 closing pipeline improved from near-$0 to $979,850.' }
+  { type: 'positive', category: 'sales', title: 'Broadridge ARR Increased', description: 'Broadridge ARR increased to $1M (was $500K).' }
 ];
 
 // ═══════════════════════════════════════════════════════════════

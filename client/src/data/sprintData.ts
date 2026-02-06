@@ -1,8 +1,8 @@
-// Sprint Data - Updated February 3, 2026 at 7:30 PM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S3 (Active)
+// Sprint Data - Updated February 6, 2026 at 2:22 PM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S3 (Active - Day 7 of 14)
 // CRITICAL: NEXT_SPRINT_READINESS export is required by executive.tsx - DO NOT REMOVE
 
-export const EXTRACTION_TIMESTAMP = "2026-02-03T15:00:00-07:00";
+export const EXTRACTION_TIMESTAMP = "2026-02-06T14:22:00-07:00";
 export const DATA_SOURCE = "JIRA Sprint Extraction + Monday.com CRM";
 
 export interface SprintStatus {
@@ -91,32 +91,32 @@ export const PREVIOUS_SPRINT: Sprint = {
   assessment: 'client-heavy'
 };
 
-// S3 - ACTIVE (current sprint - Day 5 of 14)
+// S3 - ACTIVE (current sprint - Day 7 of 14)
 export const CURRENT_SPRINT: Sprint = {
   id: '2026-S3',
   name: 'Sprint 2026-S3',
   startDate: '2026-01-30',
   endDate: '2026-02-13',
   status: 'active',
-  totalTickets: 94,
-  totalPoints: 168,
-  completedTickets: 12,
-  completedPoints: 31,
+  totalTickets: 109,
+  totalPoints: 210,
+  completedTickets: 30,
+  completedPoints: 80,
   completion: {
-    toDo: 53,
-    blocked: 1,
-    inProgress: 16,
+    toDo: 52,
+    blocked: 2,
+    inProgress: 14,
     codeReview: 5,
-    done: 12
+    done: 30
   },
-  completionRate: 12.8,
-  pointsCompletionRate: 18.5,
+  completionRate: 27.5,
+  pointsCompletionRate: 38.1,
   health: 'red',
-  daysRemaining: 9,
-  daysElapsed: 5,
-  likelyRollovers: 54,
-  mix: { artemis: 37.8, client: 6.1, infrastructure: 23.2 },
-  assessment: 'artemis-focused'
+  daysRemaining: 7,
+  daysElapsed: 7,
+  likelyRollovers: 55,
+  mix: { artemis: 27, client: 43, infrastructure: 18 },
+  assessment: 'client-heavy'
 };
 
 // S4 - PLANNED (next sprint)
@@ -209,7 +209,8 @@ export const ROLLOVER_HIGH_RISK: SprintItem[] = [
 
 // Blocked Items in current sprint (S3)
 export const BLOCKED_ITEMS: SprintItem[] = [
-  { key: 'BACK-1863', summary: '[Colony] Allegro post process validation', category: 'Colony', blockedDays: 3, unassigned: true, priority: 'High' }
+  { key: 'UI-743', summary: 'Deep Recon - Make aggregated report exportable (Broadridge)', category: 'Broadridge', blockedDays: 5, unassigned: true, priority: 'High' },
+  { key: 'BACK-1863', summary: '[Colony] Allegro post process validation', category: 'Colony', blockedDays: 5, unassigned: true, priority: 'High' }
 ];
 
 // ARTEMIS Backlog Items
@@ -226,7 +227,7 @@ export const ARTEMIS_BACKLOG: SprintItem[] = [
   { key: 'BACK-1620', summary: 'Implement Document Boundary Detection for Multi-Document Files', priority: 'Critical', recommended: true }
 ];
 
-export const SPRINT_DATA_UPDATED = "2026-02-01T19:30:00-07:00";
+export const SPRINT_DATA_UPDATED = "2026-02-06T14:22:00-07:00";
 
 export function getSprintByStatus(status: 'active' | 'planned' | 'future'): Sprint | undefined {
   return SPRINTS.find(s => s.status === status);
@@ -262,5 +263,5 @@ export function getSprintMixChartData() {
 }
 
 export function formatDataTimestamp(isoString: string = EXTRACTION_TIMESTAMP): string {
-  return "February 3, 2026, 7:30 PM MT";
+  return "February 6, 2026, 2:22 PM MT";
 }

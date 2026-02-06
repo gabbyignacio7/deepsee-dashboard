@@ -4,7 +4,7 @@
 // Board Meeting Preparation Update - Added descriptions and Q4 2026
 
 export const ROADMAP_CONFIG = {
-  lastUpdated: "2026-02-03T15:00:00-07:00",
+  lastUpdated: "2026-02-06T14:22:00-07:00",
   averageVelocity: 80, // story points per sprint
   sprintDurationWeeks: 2,
   currentSprint: "2026-S3",
@@ -236,8 +236,8 @@ export const ROADMAP_FEATURES: RoadmapFeature[] = [
     description: "Improvements to the Mercury document extraction service for better handling of complex multi-page financial documents.",
     category: "Platform",
     totalStoryPoints: 89,
-    completedStoryPoints: 0,
-    remainingStoryPoints: 89,
+    completedStoryPoints: 51,
+    remainingStoryPoints: 38,
     priority: 1,
     jiraEpicKey: "BACK-1650",
     jiraEpicUrl: "https://deepsee.atlassian.net/browse/BACK-1650",
@@ -294,15 +294,15 @@ export const ROADMAP_FEATURES: RoadmapFeature[] = [
     description: "End-to-end automation of email-triggered workflows including intake, classification, extraction, routing, and response generation.",
     category: "Automation",
     totalStoryPoints: 65,
-    completedStoryPoints: 0,
-    remainingStoryPoints: 65,
+    completedStoryPoints: 38,
+    remainingStoryPoints: 27,
     priority: 4,
     prdLink: PRD_URLS.emailAutomation,
     prdStatus: "active",
     quarters: [
       { quarter: "Q1-2026", allocatedPoints: 65, percentageOfFeature: 100 },
     ],
-    status: "Not Started",
+    status: "In Progress",
     color: "#10B981",
   },
   {
@@ -311,8 +311,8 @@ export const ROADMAP_FEATURES: RoadmapFeature[] = [
     description: "Build the knowledge graph backend that maps relationships across financial entities, counterparties, accounts, and instruments.",
     category: "Intelligence",
     totalStoryPoints: 120,
-    completedStoryPoints: 18,
-    remainingStoryPoints: 102,
+    completedStoryPoints: 20,
+    remainingStoryPoints: 100,
     priority: 5,
     prdLink: PRD_URLS.sevenCategories,
     prdStatus: "active",

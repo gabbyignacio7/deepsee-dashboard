@@ -1,5 +1,5 @@
-// Blocked Items Data - Updated February 3, 2026 at 3:00 PM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S3
+// Blocked Items Data - Updated February 6, 2026 at 2:22 PM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S3 (Day 7 of 14)
 
 export interface BlockedItem {
   key: string;
@@ -12,30 +12,68 @@ export interface BlockedItem {
   reason?: string;
 }
 
-// Current Sprint Blocked Items - 0 in S3 (good!)
+// Current Sprint Blocked Items - 2 in S3 (both unassigned!)
 export const sprintBlockedItems: BlockedItem[] = [
-
+  {
+    key: "UI-743",
+    summary: "Deep Recon - Make aggregated report exportable (Broadridge)",
+    assignee: "Unassigned",
+    daysBlocked: 5,
+    category: "client",
+    priority: "P1",
+    jiraUrl: "https://deepsee.atlassian.net/browse/UI-743",
+    reason: "Blocked AND unassigned — no owner to resolve"
+  },
+  {
+    key: "BACK-1863",
+    summary: "[Colony] Allegro post process validation",
+    assignee: "Unassigned",
+    daysBlocked: 5,
+    category: "client",
+    priority: "P1",
+    jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1863",
+    reason: "Blocked AND unassigned — no owner to resolve"
+  }
 ];
 
 // All blocked items including backlog
 export const blockedItems: BlockedItem[] = [
-
+  {
+    key: "UI-743",
+    summary: "Deep Recon - Make aggregated report exportable (Broadridge)",
+    assignee: "Unassigned",
+    daysBlocked: 5,
+    category: "client",
+    priority: "P1",
+    jiraUrl: "https://deepsee.atlassian.net/browse/UI-743",
+    reason: "Blocked AND unassigned — no owner to resolve"
+  },
+  {
+    key: "BACK-1863",
+    summary: "[Colony] Allegro post process validation",
+    assignee: "Unassigned",
+    daysBlocked: 5,
+    category: "client",
+    priority: "P1",
+    jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1863",
+    reason: "Blocked AND unassigned — no owner to resolve"
+  }
 ];
 
 export const blockedSummary = {
-  total: 0,
-  sprintBlocked: 0,
+  total: 2,
+  sprintBlocked: 2,
   backlogBlocked: 17,
   p0Count: 0,
-  p1Count: 0,
+  p1Count: 2,
   p2Count: 0,
-  avgDaysBlocked: 0,
-  oldestBlocked: "None in sprint",
-  unassignedCount: 0,
+  avgDaysBlocked: 5,
+  oldestBlocked: "UI-743 (5 days)",
+  unassignedCount: 2,
   longBlockedByAssignee: {
     'Matthew Snow': 4,
     'Owen Riley': 5,
-    'Unassigned': 1,
+    'Unassigned': 3,
     'Other': 7
   }
 };

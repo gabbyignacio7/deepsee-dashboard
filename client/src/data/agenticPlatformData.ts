@@ -67,7 +67,7 @@ export const pr1562Data: MilestoneData = {
       key: "CI-918",
       summary: "Core Network and Microsoft Foundry Provisioning",
       type: "Epic",
-      status: "To Do",
+      status: "Done",
       points: null,
       pillar: "Platform",
       blocks: ["CI-919", "CI-920", "CI-921", "CI-922", "CI-923"],
