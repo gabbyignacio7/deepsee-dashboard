@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { cn } from '@/lib/utils';
 import {
   ROADMAP_CONFIG,
   QUARTERS,
@@ -8,10 +9,12 @@ import {
   calculateQuarterCapacity,
   calculateQuarterUtilization,
   getMilestoneProgress,
+  getMilestoneDetails,
   getFeaturesByQuarter,
   getRoadmapSummary,
   type RoadmapFeature,
   type Milestone,
+  type MilestoneDetails,
   type Quarter,
 } from '@/data/roadmapData';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -41,6 +44,7 @@ import {
   TrendingUp,
   AlertTriangle,
   CheckCircle2,
+  ChevronDown,
   Clock,
   Zap,
   Shield,
@@ -91,6 +95,12 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
   const [velocity, setVelocity] = useState(ROADMAP_CONFIG.averageVelocity);
   const [selectedFeature, setSelectedFeature] = useState<RoadmapFeature | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [expandedMilestoneId, setExpandedMilestoneId] = useState<string | null>(null);
+
+  const expandedMilestoneDetails = useMemo(() => {
+    if (!expandedMilestoneId) return null;
+    return getMilestoneDetails(expandedMilestoneId);
+  }, [expandedMilestoneId]);
 
   // Calculate summary with current velocity
   const summary = useMemo(() => getRoadmapSummary(velocity), [velocity]);
@@ -217,11 +227,28 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
               const Icon = MILESTONE_ICONS[milestone.icon] || Target;
               const progress = getMilestoneProgress(milestone.id);
               const targetQuarter = QUARTERS.find(q => q.id === milestone.targetQuarter);
+              const isExpanded = expandedMilestoneId === milestone.id;
 
               return (
-                <Tooltip key={milestone.id}>
+                <Tooltip key={milestone.id} open={isExpanded ? false : undefined}>
                   <TooltipTrigger asChild>
-                    <div className="p-3 rounded-lg border hover:shadow-md transition-shadow cursor-pointer">
+                    <div
+                      className={cn(
+                        "p-3 rounded-lg border hover:shadow-md transition-all cursor-pointer",
+                        isExpanded && "ring-2 ring-primary shadow-md"
+                      )}
+                      role="button"
+                      tabIndex={0}
+                      aria-expanded={isExpanded}
+                      aria-controls={`milestone-detail-${milestone.id}`}
+                      onClick={() => setExpandedMilestoneId(isExpanded ? null : milestone.id)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setExpandedMilestoneId(isExpanded ? null : milestone.id);
+                        }
+                      }}
+                    >
                       <div className="flex items-start gap-2 mb-2">
                         <div
                           className="p-2 rounded-lg"
@@ -238,7 +265,15 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
                         </div>
                       </div>
                       <Progress value={progress} className="h-1.5" />
-                      <p className="text-xs text-muted-foreground mt-1">{progress}% complete</p>
+                      <div className="flex items-center justify-between mt-1">
+                        <p className="text-xs text-muted-foreground">{progress}% complete</p>
+                        <ChevronDown
+                          className={cn(
+                            "w-3 h-3 text-muted-foreground transition-transform duration-200",
+                            isExpanded && "rotate-180"
+                          )}
+                        />
+                      </div>
                     </div>
                   </TooltipTrigger>
                   <TooltipContent side="bottom" className="max-w-xs">
@@ -252,6 +287,124 @@ export const RoadmapTimeline: React.FC<RoadmapTimelineProps> = ({ className = ''
               );
             })}
           </div>
+
+          {/* Expandable Milestone Detail Panel */}
+          {expandedMilestoneId && expandedMilestoneDetails && (
+            <div
+              id={`milestone-detail-${expandedMilestoneId}`}
+              role="region"
+              aria-label={`Details for ${expandedMilestoneDetails.milestoneName}`}
+              className="mt-4 p-4 rounded-lg border bg-muted/30 animate-in fade-in-0 slide-in-from-top-2 duration-200"
+            >
+              {/* Header */}
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <h4 className="font-semibold text-sm">{expandedMilestoneDetails.milestoneName}</h4>
+                  <p className="text-xs text-muted-foreground mt-0.5">{expandedMilestoneDetails.description}</p>
+                </div>
+                <button
+                  onClick={() => setExpandedMilestoneId(null)}
+                  className="text-muted-foreground hover:text-foreground p-1 rounded"
+                  aria-label="Close detail panel"
+                >
+                  <ChevronDown className="w-4 h-4 rotate-180" />
+                </button>
+              </div>
+
+              <hr className="mb-3 border-border" />
+
+              {/* Linked Features */}
+              <div className="mb-3">
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">
+                  Linked Features ({expandedMilestoneDetails.summary.totalFeatures})
+                </p>
+                <div className="space-y-2">
+                  {expandedMilestoneDetails.features.map((feature) => (
+                    <div
+                      key={feature.id}
+                      className="flex items-center justify-between p-2 rounded bg-background border text-sm hover:bg-muted/50 cursor-pointer transition-colors"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const fullFeature = ROADMAP_FEATURES.find(f => f.id === feature.id);
+                        if (fullFeature) handleFeatureClick(fullFeature);
+                      }}
+                    >
+                      <div className="flex items-center gap-2 flex-1 min-w-0">
+                        <div className={cn(
+                          "w-2 h-2 rounded-full flex-shrink-0",
+                          feature.status === 'Complete' ? 'bg-green-500' :
+                          feature.status === 'In Progress' ? 'bg-blue-500' :
+                          feature.status === 'Planned' ? 'bg-orange-400' :
+                          'bg-gray-300'
+                        )} />
+                        <span className="truncate font-medium">{feature.name}</span>
+                        <Badge variant="outline" className="text-xs flex-shrink-0 hidden sm:inline-flex">
+                          {feature.category}
+                        </Badge>
+                      </div>
+                      <div className="flex items-center gap-3 flex-shrink-0 ml-3">
+                        <span className="text-xs text-muted-foreground font-mono whitespace-nowrap">
+                          {feature.completedStoryPoints}/{feature.totalStoryPoints} pts
+                        </span>
+                        {feature.jiraEpicKey ? (
+                          <a
+                            href={feature.jiraEpicUrl!}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 text-xs text-blue-600 hover:underline"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <ExternalLink className="w-3 h-3" />
+                            {feature.jiraEpicKey}
+                          </a>
+                        ) : (
+                          <span className="text-xs text-muted-foreground">&mdash;</span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Missing dependencies warning */}
+                  {expandedMilestoneDetails.missingDependencyIds.length > 0 && (
+                    <div className="flex items-center gap-2 p-2 rounded bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-xs text-amber-700 dark:text-amber-400">
+                      <AlertTriangle className="w-3 h-3 flex-shrink-0" />
+                      <span>
+                        {expandedMilestoneDetails.missingDependencyIds.length} linked feature(s) not yet defined: {expandedMilestoneDetails.missingDependencyIds.join(', ')}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <hr className="mb-3 border-border" />
+
+              {/* Story Points Summary */}
+              <div>
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">
+                  Story Points Breakdown
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div className="text-center p-2 rounded bg-muted/50">
+                    <p className="text-xs text-muted-foreground">Total</p>
+                    <p className="font-semibold">{expandedMilestoneDetails.summary.totalStoryPoints}</p>
+                  </div>
+                  <div className="text-center p-2 rounded bg-green-50 dark:bg-green-950/30">
+                    <p className="text-xs text-muted-foreground">Completed</p>
+                    <p className="font-semibold text-green-600">{expandedMilestoneDetails.summary.completedStoryPoints}</p>
+                  </div>
+                  <div className="text-center p-2 rounded bg-amber-50 dark:bg-amber-950/30">
+                    <p className="text-xs text-muted-foreground">Remaining</p>
+                    <p className="font-semibold text-amber-600">{expandedMilestoneDetails.summary.remainingStoryPoints}</p>
+                  </div>
+                  <div className="text-center p-2 rounded bg-blue-50 dark:bg-blue-950/30">
+                    <p className="text-xs text-muted-foreground">Completion</p>
+                    <p className="font-semibold text-blue-600">{expandedMilestoneDetails.summary.overallCompletionPercentage}%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
         </CardContent>
       </Card>
 

@@ -75,9 +75,41 @@ export interface Milestone {
   description: string;
   targetQuarter: string;
   dependencies: string[]; // feature IDs required
+  /** @deprecated Use getMilestoneProgress(milestoneId) instead. This static value is not maintained. */
   completionPercentage: number;
   icon: string;
   businessValue: string;
+}
+
+// Detail view types for milestone completeness breakdown
+export interface MilestoneFeatureDetail {
+  id: string;
+  name: string;
+  status: string;
+  category: string;
+  totalStoryPoints: number;
+  completedStoryPoints: number;
+  remainingStoryPoints: number;
+  jiraEpicKey: string | null;
+  jiraEpicUrl: string | null;
+  completionPercentage: number;
+}
+
+export interface MilestoneDetails {
+  milestoneId: string;
+  milestoneName: string;
+  description: string;
+  targetQuarter: string;
+  businessValue: string;
+  features: MilestoneFeatureDetail[];
+  summary: {
+    totalFeatures: number;
+    totalStoryPoints: number;
+    completedStoryPoints: number;
+    remainingStoryPoints: number;
+    overallCompletionPercentage: number;
+  };
+  missingDependencyIds: string[];
 }
 
 export const MILESTONES: Milestone[] = [
@@ -727,6 +759,59 @@ export const getMilestoneProgress = (milestoneId: string): number => {
   const completedPoints = dependencyFeatures.reduce((sum, f) => sum + f.completedStoryPoints, 0);
 
   return totalPoints > 0 ? Math.round((completedPoints / totalPoints) * 100) : 0;
+};
+
+export const getMilestoneDetails = (milestoneId: string): MilestoneDetails | null => {
+  const milestone = MILESTONES.find(m => m.id === milestoneId);
+  if (!milestone) return null;
+
+  const foundFeatures: MilestoneFeatureDetail[] = [];
+  const missingIds: string[] = [];
+
+  for (const depId of milestone.dependencies) {
+    const feature = ROADMAP_FEATURES.find(f => f.id === depId);
+    if (!feature) {
+      missingIds.push(depId);
+      continue;
+    }
+    foundFeatures.push({
+      id: feature.id,
+      name: feature.name,
+      status: feature.status,
+      category: feature.category,
+      totalStoryPoints: feature.totalStoryPoints,
+      completedStoryPoints: feature.completedStoryPoints,
+      remainingStoryPoints: feature.remainingStoryPoints,
+      jiraEpicKey: feature.jiraEpicKey ?? null,
+      jiraEpicUrl: feature.jiraEpicUrl ?? null,
+      completionPercentage: feature.totalStoryPoints > 0
+        ? Math.round((feature.completedStoryPoints / feature.totalStoryPoints) * 100)
+        : 0,
+    });
+  }
+
+  const totalStoryPoints = foundFeatures.reduce((s, f) => s + f.totalStoryPoints, 0);
+  const completedStoryPoints = foundFeatures.reduce((s, f) => s + f.completedStoryPoints, 0);
+  const remainingStoryPoints = foundFeatures.reduce((s, f) => s + f.remainingStoryPoints, 0);
+
+  return {
+    milestoneId: milestone.id,
+    milestoneName: milestone.name,
+    description: milestone.description,
+    targetQuarter: milestone.targetQuarter,
+    businessValue: milestone.businessValue,
+    features: foundFeatures,
+    summary: {
+      totalFeatures: foundFeatures.length,
+      totalStoryPoints,
+      completedStoryPoints,
+      remainingStoryPoints,
+      overallCompletionPercentage: totalStoryPoints > 0
+        ? Math.round((completedStoryPoints / totalStoryPoints) * 100)
+        : 0,
+    },
+    missingDependencyIds: missingIds,
+  };
 };
 
 export const getFeaturesByQuarter = (quarterId: string): RoadmapFeature[] => {
