@@ -239,7 +239,7 @@ export default function SprintAnalysis() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-xl">
             <Target className="w-5 h-5" />
-            ARTEMIS Backlog Available for S2
+            ARTEMIS Backlog Available for S4
           </CardTitle>
         </CardHeader>
         <CardContent>

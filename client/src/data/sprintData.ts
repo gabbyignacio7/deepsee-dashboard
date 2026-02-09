@@ -214,7 +214,6 @@ export const BLOCKED_ITEMS: SprintItem[] = [
 
 // ARTEMIS Backlog Items
 export const ARTEMIS_BACKLOG: SprintItem[] = [
-  { key: 'BACK-846', summary: 'For Product OTC - 304288 While saving the annotation in XML system is throwing a error message', priority: 'Blocker', recommended: true },
   { key: 'BACK-1048', summary: 'JPM - 600+ work items are not processing', priority: 'Blocker', recommended: true },
   { key: 'BACK-1281', summary: 'JPM - Unable to access DeepSee: "No healthy upstream."', priority: 'Blocker', recommended: true },
   { key: 'BACK-1399', summary: '30-50 minute delay between email received and created in DeepSee', priority: 'Blocker', recommended: true },
