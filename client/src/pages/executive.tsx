@@ -195,20 +195,51 @@ export default function ExecutiveDashboard() {
           </ul>
         </div>
 
-        {/* Critical Alerts (P0 only) */}
+        {/* Critical Alerts (P0/P1) */}
         <div className="bg-red-50 border-l-4 border-red-500 rounded-lg p-4">
           <h3 className="font-semibold text-red-800 mb-2 flex items-center gap-2">
             <AlertTriangle className="w-4 h-4" />
-            Critical Alerts (P0)
+            Critical Alerts
           </h3>
           <div className="space-y-2">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="px-2 py-1 bg-red-100 text-red-800 rounded text-xs font-bold">P0</span>
-              <a href="https://deepsee.atlassian.net/browse/BACK-1603" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm">BACK-1603</a>
-              <span className="text-sm text-gray-700">Deep Recon - DTCC Sync blocked 35 days</span>
+              <span className="text-sm text-gray-700">Sprint 2026-S3 at 28.4% completion with 4 days remaining — significant shortfall projected</span>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="px-2 py-1 bg-red-100 text-red-800 rounded text-xs font-bold">P0</span>
+              <span className="text-sm text-gray-700">53 unassigned tickets (49% of sprint) — worsened from 38</span>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="px-2 py-1 bg-red-100 text-red-800 rounded text-xs font-bold">P0</span>
+              <span className="text-sm text-gray-700">6 new Critical pentest findings (SC-326–331) — all unassigned</span>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="px-2 py-1 bg-red-100 text-red-800 rounded text-xs font-bold">P0</span>
+              <span className="text-sm text-gray-700">DTCC $1.85M closes Feb 13 (4 days) — verify BACK-1603 blocker status</span>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="px-2 py-1 bg-red-100 text-red-800 rounded text-xs font-bold">P0</span>
+              <span className="text-sm text-gray-700">CTC bulk email upload needed for client meeting THIS WEEK</span>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="px-2 py-1 bg-orange-100 text-orange-800 rounded text-xs font-bold">P1</span>
+              <span className="text-sm text-gray-700">ARTEMIS at 28% vs 50-60% target — still RED</span>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="px-2 py-1 bg-orange-100 text-orange-800 rounded text-xs font-bold">P1</span>
+              <span className="text-sm text-gray-700">Broadridge $1M gated by 390 Critical/High security vulnerabilities</span>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="px-2 py-1 bg-orange-100 text-orange-800 rounded text-xs font-bold">P1</span>
+              <span className="text-sm text-gray-700">BACK-1863 Colony Allegro validation blocked 10 days</span>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="px-2 py-1 bg-orange-100 text-orange-800 rounded text-xs font-bold">P1</span>
+              <span className="text-sm text-gray-700">$4.84M at-risk ARR across 5 high-risk deals (DTCC, Broadridge, BetaNxt, Wells Fargo, BBVA)</span>
             </div>
             <div className="text-sm text-red-600 mt-2">
-              {blockedSummary.total} total blocked items → <a href="/engineering" className="underline hover:no-underline">See Engineering tab</a>
+              {blockedSummary.total} in-sprint blocked items | <a href="/engineering" className="underline hover:no-underline">See Engineering tab</a>
             </div>
           </div>
         </div>

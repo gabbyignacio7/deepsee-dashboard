@@ -1,5 +1,5 @@
 // PRD Data - Comprehensive PRD to JIRA Ticket Mapping
-// Generated: February 3, 2026 at 3:00 PM MT
+// Generated: February 9, 2026 at 10:14 AM MT
 // Source: Confluence + JIRA + SharePoint
 // Update: Added SharePoint PRD discovery integration
 
@@ -1460,27 +1460,27 @@ export const prdProgressWidget = {
 
 // Dashboard Metadata
 export const dashboardMeta = {
-  lastUpdated: "February 3, 2026 3:00 PM MT",
+  lastUpdated: "February 9, 2026 10:14 AM MT",
 
   dataSources: {
     jira: {
-      lastSync: "February 3, 2026, 3:00 PM MT",
-      sprint: "2026-S1",
-      totalTickets: 58
+      lastSync: "February 9, 2026, 10:14 AM MT",
+      sprint: "2026-S3",
+      totalTickets: 109
     },
     confluence: {
-      lastSync: "February 3, 2026, 3:00 PM MT",
+      lastSync: "February 9, 2026, 10:14 AM MT",
       totalPRDs: 10
     },
     sharepoint: {
-      lastSync: "February 3, 2026, 3:00 PM MT",
+      lastSync: "February 9, 2026, 10:14 AM MT",
       workingPRDs: 14,
       completedPRDs: 5
     },
     monday: {
-      lastSync: "February 3, 2026, 3:00 PM MT",
-      totalPipeline: 11830000,
-      activeDeals: 78
+      lastSync: "February 9, 2026, 10:14 AM MT",
+      totalPipeline: 13949000,
+      activeDeals: 98
     }
   },
 
@@ -1574,5 +1574,5 @@ export function getPRDsNeedingMigration(): PRD[] {
 }
 
 // Data Timestamp
-export const prdDataLastUpdated = "February 3, 2026 3:00 PM MT";
+export const prdDataLastUpdated = "February 9, 2026 10:14 AM MT";
 export const prdDataSource = "JIRA + Confluence + SharePoint";

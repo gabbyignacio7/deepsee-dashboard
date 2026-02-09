@@ -1,6 +1,6 @@
-// ARTEMIS Foundation Data - Updated February 3, 2026 at 3:00 PM MT
-// Source: JIRA Extract - Sprint 2026-S2
-// CRITICAL ALERT: 0% ARTEMIS work started in current sprint
+// ARTEMIS Foundation Data - Updated February 9, 2026 at 10:14 AM MT
+// Source: JIRA Extract - Sprint 2026-S3 (Day 11 of 15)
+// CRITICAL ALERT: 0 of 12 foundation epics started. Only 3 ARTEMIS tickets actively worked.
 
 export interface ArtemisEpic {
   key: string;
@@ -18,7 +18,7 @@ export const artemisFoundation: ArtemisEpic[] = [
     key: "BACK-1680",
     summary: "Platform Infrastructure - ARTEMIS Foundation",
     status: "TO DO",
-    sprint: "Unassigned",
+    sprint: "2026-S3",
     percentComplete: 0,
     assignee: "Unassigned",
     pillar: "Platform",
@@ -26,7 +26,7 @@ export const artemisFoundation: ArtemisEpic[] = [
   },
   {
     key: "BACK-1681",
-    summary: "Kafka-based message bus for agents",
+    summary: "Implement Kafka-based message bus for agent communication",
     status: "TO DO",
     sprint: "Unassigned",
     percentComplete: 0,
@@ -36,7 +36,7 @@ export const artemisFoundation: ArtemisEpic[] = [
   },
   {
     key: "BACK-1682",
-    summary: "Agent message schema and contracts",
+    summary: "Create agent message schema and contracts",
     status: "TO DO",
     sprint: "Unassigned",
     percentComplete: 0,
@@ -46,7 +46,7 @@ export const artemisFoundation: ArtemisEpic[] = [
   },
   {
     key: "BACK-1683",
-    summary: "Dead letter queue handling",
+    summary: "Implement dead letter queue handling",
     status: "TO DO",
     sprint: "Unassigned",
     percentComplete: 0,
@@ -56,7 +56,7 @@ export const artemisFoundation: ArtemisEpic[] = [
   },
   {
     key: "BACK-1684",
-    summary: "Message routing and orchestration layer",
+    summary: "Build message routing and orchestration layer",
     status: "TO DO",
     sprint: "Unassigned",
     percentComplete: 0,
@@ -66,7 +66,7 @@ export const artemisFoundation: ArtemisEpic[] = [
   },
   {
     key: "BACK-1685",
-    summary: "Message tracing and correlation IDs",
+    summary: "Add message tracing and correlation IDs",
     status: "TO DO",
     sprint: "Unassigned",
     percentComplete: 0,
@@ -86,7 +86,7 @@ export const artemisFoundation: ArtemisEpic[] = [
   },
   {
     key: "BACK-1687",
-    summary: "Vector Store optimization",
+    summary: "Vector Store optimization for embeddings",
     status: "TO DO",
     sprint: "Unassigned",
     percentComplete: 0,
@@ -106,7 +106,7 @@ export const artemisFoundation: ArtemisEpic[] = [
   },
   {
     key: "BACK-1704",
-    summary: "ARTEMIS Agent Orchestration (Fabric Integration)",
+    summary: "DeepSee Fabric Integration - Microsoft Ecosystem",
     status: "TO DO",
     sprint: "Unassigned",
     percentComplete: 0,
@@ -116,17 +116,17 @@ export const artemisFoundation: ArtemisEpic[] = [
   },
   {
     key: "PR-1561",
-    summary: "DeepSee Platform Initiative",
+    summary: "DeepSee Agentic Platform",
     status: "TO DO",
     sprint: "Backlog",
     percentComplete: 0,
-    assignee: "Unassigned",
+    assignee: "Brandon Baguley",
     pillar: "Platform",
     jiraUrl: "https://deepsee.atlassian.net/browse/PR-1561"
   },
   {
     key: "PR-1563",
-    summary: "Agent Orchestration",
+    summary: "Agent Orchestration Platform",
     status: "TO DO",
     sprint: "Planning",
     percentComplete: 0,
@@ -134,6 +134,17 @@ export const artemisFoundation: ArtemisEpic[] = [
     pillar: "Automation & Orchestration",
     jiraUrl: "https://deepsee.atlassian.net/browse/PR-1563"
   }
+];
+
+// ARTEMIS tickets actively in progress
+export const inProgressArtemis = [
+  { key: "BACK-1802", summary: "Create Process Model Schema", assignee: "Darius Ouderkirk", points: 8 },
+  { key: "BACK-1911", summary: "Complete artemis-platform Project Setup", assignee: "Lane Terry", points: 5 }
+];
+
+// ARTEMIS tickets done in S3
+export const doneArtemis = [
+  { key: "BACK-1816", summary: "Create Content Understanding client", assignee: "Kalvin Willison", points: 3 }
 ];
 
 export interface PillarCoverage {
@@ -164,6 +175,15 @@ export const artemisReadiness: ArtemisReadiness = {
     "Blueprints": { total: 0, started: 0 },
     "Integrations": { total: 0, started: 0 }
   }
+};
+
+export const artemisSummary = {
+  totalFoundationEpics: 12,
+  startedEpics: 0,
+  totalArtemisTickets: 36,
+  inProgressCount: 2,
+  doneCount: 1,
+  status: "RED — 0 of 12 foundation epics started. Only 3 ARTEMIS tickets actively worked."
 };
 
 // Get epics by pillar

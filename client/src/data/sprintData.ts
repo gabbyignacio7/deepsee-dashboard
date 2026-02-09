@@ -1,8 +1,8 @@
-// Sprint Data - Updated February 6, 2026 at 2:22 PM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S3 (Active - Day 7 of 14)
+// Sprint Data - Updated February 9, 2026 at 10:14 AM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S3 (Active - Day 11 of 15)
 // CRITICAL: NEXT_SPRINT_READINESS export is required by executive.tsx - DO NOT REMOVE
 
-export const EXTRACTION_TIMESTAMP = "2026-02-06T14:22:00-07:00";
+export const EXTRACTION_TIMESTAMP = "2026-02-09T10:14:00-07:00";
 export const DATA_SOURCE = "JIRA Sprint Extraction + Monday.com CRM";
 
 export interface SprintStatus {
@@ -91,7 +91,7 @@ export const PREVIOUS_SPRINT: Sprint = {
   assessment: 'client-heavy'
 };
 
-// S3 - ACTIVE (current sprint - Day 7 of 14)
+// S3 - ACTIVE (current sprint - Day 11 of 15)
 export const CURRENT_SPRINT: Sprint = {
   id: '2026-S3',
   name: 'Sprint 2026-S3',
@@ -99,23 +99,23 @@ export const CURRENT_SPRINT: Sprint = {
   endDate: '2026-02-13',
   status: 'active',
   totalTickets: 109,
-  totalPoints: 210,
-  completedTickets: 30,
-  completedPoints: 80,
+  totalPoints: 209,
+  completedTickets: 31,
+  completedPoints: 82,
   completion: {
-    toDo: 52,
-    blocked: 2,
-    inProgress: 14,
-    codeReview: 5,
-    done: 30
+    toDo: 49,
+    blocked: 1,
+    inProgress: 15,
+    codeReview: 6,
+    done: 31
   },
-  completionRate: 27.5,
-  pointsCompletionRate: 38.1,
+  completionRate: 28.4,
+  pointsCompletionRate: 39.2,
   health: 'red',
-  daysRemaining: 7,
-  daysElapsed: 7,
-  likelyRollovers: 55,
-  mix: { artemis: 27, client: 43, infrastructure: 18 },
+  daysRemaining: 4,
+  daysElapsed: 11,
+  likelyRollovers: 67,
+  mix: { artemis: 28, client: 53, infrastructure: 19 },
   assessment: 'client-heavy'
 };
 
@@ -126,12 +126,12 @@ export const NEXT_SPRINT: Sprint = {
   startDate: '2026-02-13',
   endDate: '2026-02-27',
   status: 'planned',
-  totalTickets: 11,
+  totalTickets: 19,
   totalPoints: 10,
   completedTickets: 0,
   completedPoints: 0,
   completion: {
-    toDo: 11,
+    toDo: 19,
     blocked: 0,
     inProgress: 0,
     codeReview: 0,
@@ -170,47 +170,46 @@ export const currentSprint = CURRENT_SPRINT;
 
 // CRITICAL: This export is required by executive.tsx and NextSprintReadiness.tsx - DO NOT REMOVE
 export const NEXT_SPRINT_READINESS = {
-  totalTickets: 11,
+  totalTickets: 19,
   assigned: 2,
-  unassigned: 9,
+  unassigned: 17,
   withStoryPoints: 3,
-  missingEstimates: 8,
+  missingEstimates: 16,
   readinessStatus: 'NOT_READY',
   projectBreakdown: [
-    { project: 'BACK', count: 8 },
-    { project: 'FB', count: 2 },
-    { project: 'CI', count: 1 }
+    { project: 'BACK', count: 14 },
+    { project: 'UI', count: 3 },
+    { project: 'CI', count: 2 }
   ],
   assignedEngineers: [
     { name: 'Owen Riley', tickets: 1 },
     { name: 'Darius Ouderkirk', tickets: 1 }
   ],
   blockers: [
-    '82% of tickets unassigned (9 of 11)',
-    '73% missing story point estimates',
+    '89% of tickets unassigned (17 of 19)',
+    '84% missing story point estimates',
     'Only Owen Riley & Darius Ouderkirk assigned',
-    'S4 is mostly Microsoft Fabric integration work'
+    'S4 planning not yet started'
   ]
 };
 
 // Rollover candidates - High risk items that may not complete in S3
 export const ROLLOVER_HIGH_RISK: SprintItem[] = [
-  { key: 'BACK-1655', summary: '[MERCURY] API documentation and developer guide', category: 'ARTEMIS', staleDays: 2, unassigned: true },
-  { key: 'BACK-1658', summary: '[PARSER] HTML structured file parsing for SEC filings', category: 'ARTEMIS', staleDays: 2, unassigned: true },
-  { key: 'BACK-1661', summary: '[PARSER] Integration between Document Parser and Mercury Extraction', category: 'ARTEMIS', staleDays: 2, unassigned: true },
-  { key: 'BACK-1654', summary: '[MERCURY] BBVA - Term type extraction for reconciliation', category: 'ARTEMIS', staleDays: 4, unassigned: true },
-  { key: 'BACK-1659', summary: '[PARSER] Automatic document type classification', category: 'ARTEMIS', staleDays: 2, unassigned: true },
-  { key: 'BACK-1663', summary: '[BLUEPRINT] Define data model and storage infrastructure', category: 'ARTEMIS', staleDays: 2, unassigned: true },
-  { key: 'BACK-1530', summary: 'Setup BBVA Mercury Extraction Schema for Trade Fail Reconciliation', category: 'ARTEMIS', staleDays: 2, unassigned: true },
-  { key: 'BACK-1532', summary: 'Fine-tune Mercury Extraction for Sunwest Bank Treasury Onboarding Project', category: 'ARTEMIS', staleDays: 2, unassigned: true },
-  { key: 'BACK-1689', summary: 'Implement data partitioning strategy', category: 'ARTEMIS', staleDays: 2, unassigned: true },
-  { key: 'BACK-1690', summary: 'Create data lifecycle management policies', category: 'ARTEMIS', staleDays: 26, unassigned: true }
+  { key: 'BACK-1655', summary: '[MERCURY] API documentation and developer guide', category: 'ARTEMIS', staleDays: 5, unassigned: true },
+  { key: 'BACK-1658', summary: '[PARSER] HTML structured file parsing for SEC filings', category: 'ARTEMIS', staleDays: 5, unassigned: true },
+  { key: 'BACK-1661', summary: '[PARSER] Integration between Document Parser and Mercury Extraction', category: 'ARTEMIS', staleDays: 5, unassigned: true },
+  { key: 'BACK-1654', summary: '[MERCURY] BBVA - Term type extraction for reconciliation', category: 'ARTEMIS', staleDays: 7, unassigned: true },
+  { key: 'BACK-1659', summary: '[PARSER] Automatic document type classification', category: 'ARTEMIS', staleDays: 5, unassigned: true },
+  { key: 'BACK-1663', summary: '[BLUEPRINT] Define data model and storage infrastructure', category: 'ARTEMIS', staleDays: 5, unassigned: true },
+  { key: 'BACK-1530', summary: 'Setup BBVA Mercury Extraction Schema for Trade Fail Reconciliation', category: 'ARTEMIS', staleDays: 5, unassigned: true },
+  { key: 'BACK-1532', summary: 'Fine-tune Mercury Extraction for Sunwest Bank Treasury Onboarding Project', category: 'ARTEMIS', staleDays: 5, unassigned: true },
+  { key: 'BACK-1689', summary: 'Implement data partitioning strategy', category: 'ARTEMIS', staleDays: 5, unassigned: true },
+  { key: 'BACK-1690', summary: 'Create data lifecycle management policies', category: 'ARTEMIS', staleDays: 29, unassigned: true }
 ];
 
 // Blocked Items in current sprint (S3)
 export const BLOCKED_ITEMS: SprintItem[] = [
-  { key: 'UI-743', summary: 'Deep Recon - Make aggregated report exportable (Broadridge)', category: 'Broadridge', blockedDays: 5, unassigned: true, priority: 'High' },
-  { key: 'BACK-1863', summary: '[Colony] Allegro post process validation', category: 'Colony', blockedDays: 5, unassigned: true, priority: 'High' }
+  { key: 'BACK-1863', summary: '[Colony] Allegro post process validation', category: 'Colony', blockedDays: 10, unassigned: true, priority: 'Major' }
 ];
 
 // ARTEMIS Backlog Items
@@ -227,7 +226,7 @@ export const ARTEMIS_BACKLOG: SprintItem[] = [
   { key: 'BACK-1620', summary: 'Implement Document Boundary Detection for Multi-Document Files', priority: 'Critical', recommended: true }
 ];
 
-export const SPRINT_DATA_UPDATED = "2026-02-06T14:22:00-07:00";
+export const SPRINT_DATA_UPDATED = "2026-02-09T10:14:00-07:00";
 
 export function getSprintByStatus(status: 'active' | 'planned' | 'future'): Sprint | undefined {
   return SPRINTS.find(s => s.status === status);
@@ -263,5 +262,5 @@ export function getSprintMixChartData() {
 }
 
 export function formatDataTimestamp(isoString: string = EXTRACTION_TIMESTAMP): string {
-  return "February 6, 2026, 2:22 PM MT";
+  return "February 9, 2026, 10:14 AM MT";
 }

@@ -4,7 +4,7 @@ import DataFreshness from '@/components/DataFreshness';
 /**
  * Product Roadmap Quarterly Timeline Page
  *
- * Board Meeting Preparation - February 3, 2026
+ * Board Meeting Preparation - February 9, 2026
  *
  * Features:
  * - Q1-Q4 2026 Timeline View with visual quarter columns

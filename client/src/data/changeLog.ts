@@ -192,7 +192,50 @@ export const changeLogJan20: ChangeLogEntry = {
   ]
 };
 
+export const changeLogFeb9: ChangeLogEntry = {
+  date: "February 9, 2026",
+  timestamp: "10:14 AM MT",
+  source: "JIRA Sprint 2026-S3 Extraction + Monday.com CRM",
+
+  engineerChanges: [
+    {
+      engineer: "Loris Friedel",
+      change: "Removed from active roster (no sprint tickets)"
+    },
+    {
+      engineer: "Karolina Toman",
+      change: "Removed from active roster (no sprint tickets)"
+    }
+  ],
+
+  ticketStatusChanges: [
+    {
+      ticketId: "BACK-1863",
+      newStatus: "Blocked",
+      note: "Colony Allegro - blocked 10 days, waiting for Colony Bank data samples"
+    }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 12, totalStoryPoints: 137, trackedTickets: 70 },
+    current: { engineers: 13, totalStoryPoints: 209, trackedTickets: 109 }
+  },
+
+  dataUpdates: [
+    "Sprint 2026-S3: 28.4% complete (31/109 tickets), 39.2% points (82/209), 4 days remaining",
+    "ARTEMIS at 28% (up from 23%), still below 50-60% target — RED",
+    "53 unassigned tickets — critical sprint health issue",
+    "Blocked improved: 12 → 1 (BACK-1863 only)",
+    "6 new Critical pentest findings (SC-326 through SC-331)",
+    "Sales pipeline: $13.95M total (+24%), $1.84M weighted, 98 active deals",
+    "DTCC $1.85M ELA closing Feb 13 — P0",
+    "At-risk ARR: $4.84M across multiple deals",
+    "Updated all data freshness timestamps to February 9, 2026"
+  ]
+};
+
 export const changeLog: ChangeLogEntry[] = [
+  changeLogFeb9,
   changeLogFeb3,
   changeLogJan20,
   changeLogDec1,

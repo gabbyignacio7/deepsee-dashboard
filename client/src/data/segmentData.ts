@@ -1,4 +1,4 @@
-// Segment & Agent Family Data - Updated February 3, 2026
+// Segment & Agent Family Data - Updated February 9, 2026
 // Source: Monday.com CRM
 
 export interface Segment {
@@ -9,24 +9,10 @@ export interface Segment {
 }
 
 export const segments: Segment[] = [
-  {
-    name: "Cap Markets",
-    dealCount: 37,
-    totalARR: 6894000,
-    color: "#3B82F6"  // blue
-  },
-  {
-    name: "Fin Market Infrastructure",
-    dealCount: 4,
-    totalARR: 3440000,
-    color: "#10B981"  // green
-  },
-  {
-    name: "Banking",
-    dealCount: 16,
-    totalARR: 918000,
-    color: "#F59E0B"  // amber
-  }
+  { name: "Cap Markets", dealCount: 55, totalARR: 8200000, color: "#3B82F6" },
+  { name: "Fin Market Infrastructure", dealCount: 6, totalARR: 4190000, color: "#10B981" },
+  { name: "Banking", dealCount: 22, totalARR: 1100000, color: "#F59E0B" },
+  { name: "Insurance", dealCount: 1, totalARR: 0, color: "#9CA3AF" }
 ];
 
 export interface AgentFamily {
@@ -36,9 +22,9 @@ export interface AgentFamily {
 }
 
 export const agentFamilies: AgentFamily[] = [
-  { name: "Comms", totalARR: 3518000, color: "#3B82F6" },
   { name: "ELA", totalARR: 2850000, color: "#8B5CF6" },
-  { name: "Reconciliation", totalARR: 2377000, color: "#10B981" },
-  { name: "Operations", totalARR: 1524000, color: "#F59E0B" },
+  { name: "Reconciliation", totalARR: 1348000, color: "#10B981" },
+  { name: "Comms", totalARR: 1027000, color: "#3B82F6" },
+  { name: "Operations", totalARR: 986000, color: "#F59E0B" },
   { name: "Settlement", totalARR: 313000, color: "#EF4444" }
 ];

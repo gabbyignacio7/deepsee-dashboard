@@ -1,10 +1,10 @@
-// Roadmap Data - Updated February 3, 2026
+// Roadmap Data - Updated February 9, 2026
 // Source: JIRA Epics + PRDs + Ryan's milestone definitions
 // Auto-calculates quarter placement based on velocity
 // Board Meeting Preparation Update - Added descriptions and Q4 2026
 
 export const ROADMAP_CONFIG = {
-  lastUpdated: "2026-02-06T14:22:00-07:00",
+  lastUpdated: "2026-02-09T10:14:00-07:00",
   averageVelocity: 80, // story points per sprint
   sprintDurationWeeks: 2,
   currentSprint: "2026-S3",
@@ -204,7 +204,7 @@ export interface RoadmapFeature {
 // PRD Index fallback URL - Use when no specific PRD exists
 const PRD_INDEX_URL = "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2813558785/Product+Requirements+Documents+PRDs";
 
-// Valid PRD URLs extracted from Confluence - February 3, 2026
+// Valid PRD URLs extracted from Confluence - February 9, 2026
 export const PRD_URLS = {
   mercury: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2814476289", // Mercury Extraction
   mercuryUnified: "https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815885318", // Mercury Extraction: Unified Service
