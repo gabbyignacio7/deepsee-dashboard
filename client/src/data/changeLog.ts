@@ -234,7 +234,66 @@ export const changeLogFeb9: ChangeLogEntry = {
   ]
 };
 
+export const changeLogFeb13: ChangeLogEntry = {
+  date: "February 13, 2026",
+  timestamp: "4:00 PM MT",
+  source: "JIRA Sprint 2026-S4 Extraction + Monday.com CRM",
+
+  engineerChanges: [
+    {
+      engineer: "Darius Ouderkirk",
+      change: "No sprint tickets assigned (0 tickets, 0 pts)"
+    },
+    {
+      engineer: "Loris D'Acunto",
+      change: "No sprint tickets assigned — NSI anonymization work outside sprint"
+    },
+    {
+      engineer: "Karolina Toman",
+      change: "No sprint tickets assigned (0 tickets, 0 pts)"
+    }
+  ],
+
+  ticketStatusChanges: [
+    {
+      ticketId: "UI-743",
+      newStatus: "Blocked",
+      note: "Broadridge Export — blocked, unassigned"
+    },
+    {
+      ticketId: "UI-740",
+      newStatus: "Blocked",
+      note: "Blocked — assigned to Matthew Snow"
+    },
+    {
+      ticketId: "BACK-1810",
+      note: "Stale 14 days — Mercury HITL"
+    }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 13, totalStoryPoints: 209, trackedTickets: 109 },
+    current: { engineers: 14, totalStoryPoints: 120, trackedTickets: 61 }
+  },
+
+  dataUpdates: [
+    "Sprint 2026-S4 Day 1: 61 tickets, 120 pts, 0% complete",
+    "40 of 61 tickets unassigned (65.6%) — RED health",
+    "ARTEMIS at 40% (10 tickets, 48 pts) — still below 50-60% target",
+    "S3 closed at 140% velocity (141 pts done vs 101 committed)",
+    "Next sprint S5 readiness: 3% — 97% unassigned, 93% unestimated — RED",
+    "Sales pipeline: $12.87M raw, $2.01M weighted, 47 active deals",
+    "Won ARR: $990.2K from 6 live clients",
+    "6 at-risk deals: Colony Bank, DTCC, BofA, BetaNxt, Wells Fargo, BBVA",
+    "Colony Bank Allegro: P0 engineering need — doc classifier + Mercury HITL",
+    "Mercury HITL: 6 tickets risk rollover (BACK-1810 stale 14 days)",
+    "3 code reviews pending: BACK-1918, UI-755, BACK-1816",
+    "Updated all data freshness timestamps to February 13, 2026"
+  ]
+};
+
 export const changeLog: ChangeLogEntry[] = [
+  changeLogFeb13,
   changeLogFeb9,
   changeLogFeb3,
   changeLogJan20,

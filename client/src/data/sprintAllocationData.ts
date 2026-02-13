@@ -1,5 +1,5 @@
-// Sprint Allocation Data - 2026-S3
-// Last Updated: February 9, 2026 @ 10:14 AM MT
+// Sprint Allocation Data - 2026-S4
+// Last Updated: February 13, 2026 @ 4:00 PM MT
 // Source: Browser Agent JIRA Extraction
 
 export type CapacityStatus = 'green' | 'yellow' | 'red' | 'unassigned';

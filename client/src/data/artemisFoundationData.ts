@@ -1,5 +1,5 @@
-// ARTEMIS Foundation Data - Updated February 9, 2026 at 10:14 AM MT
-// Source: JIRA Extract - Sprint 2026-S3 (Day 11 of 15)
+// ARTEMIS Foundation Data - Updated February 13, 2026 at 4:00 PM MT
+// Source: JIRA Extract - Sprint 2026-S4 (Day 11 of 15)
 // CRITICAL ALERT: 0 of 12 foundation epics started. Only 3 ARTEMIS tickets actively worked.
 
 export interface ArtemisEpic {

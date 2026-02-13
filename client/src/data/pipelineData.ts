@@ -1,7 +1,7 @@
-// Pipeline Data - Updated February 9, 2026
+// Pipeline Data - Updated February 13, 2026
 // Source: Monday.com CRM
 
-export const PIPELINE_EXTRACTION_DATE = "2026-02-09T10:14:00-07:00";
+export const PIPELINE_EXTRACTION_DATE = "2026-02-13T16:00:00-07:00";
 
 export interface PipelineMetrics {
   total: number;
@@ -13,8 +13,8 @@ export interface PipelineMetrics {
 }
 
 export const pipelineMetrics: PipelineMetrics = {
-  total: 13949000,        // $13.95M - Updated Feb 9
-  weighted: 1837050,      // $1.84M - Updated Feb 9
+  total: 13949000,        // $13.95M - Updated Feb 13
+  weighted: 1837050,      // $1.84M - Updated Feb 13
   dealCount: 98,          // 98 active deals
   avgDealSize: 206000,    // ~$206K
   q1Closing: 2541300,     // $2.54M weighted

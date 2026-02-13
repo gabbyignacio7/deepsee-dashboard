@@ -20,107 +20,83 @@ export interface HardcodedEngineerData {
 }
 
 export const engineerAllocationData: HardcodedEngineerData = {
-  lastUpdated: "February 9, 2026, 10:14 AM MT",
-  
+  lastUpdated: "February 13, 2026, 4:00 PM MT",
+
   engineers: [
     {
       name: "Lane Terry",
       tickets: [
         {
-          id: "BACK-1542",
-          title: "Deploy v3 API to Accenture & Demo",
+          id: "BACK-1918",
+          title: "Mercury HITL Review Workflow API",
           project: "BACK",
           status: "Code Review",
-          priority: "Major",
-          storyPoints: 8,
-          daysInStatus: 5,
-          epic: "DeepRecon API",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1542"
-        },
-        {
-          id: "BACK-1308",
-          title: "Get Message Details API",
-          project: "BACK",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: 8,
-          daysInStatus: 12,
-          epic: "DeepRecon API",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1308"
-        },
-        {
-          id: "BACK-1307",
-          title: "Get Messages API",
-          project: "BACK",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: 8,
-          daysInStatus: 12,
-          epic: "DeepRecon API",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1307"
-        },
-        {
-          id: "BACK-1304",
-          title: "Messages API",
-          project: "BACK",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: 8,
-          daysInStatus: 19,
-          epic: "DeepRecon API",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1304"
-        },
-        {
-          id: "BACK-1224",
-          title: "Research and plan major scalability refactor",
-          project: "BACK",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: 5,
-          daysInStatus: 66,
-          epic: "Broadridge Scalability",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1224"
-        },
-        {
-          id: "BACK-1430",
-          title: "ArrayIndexOutOfBounds Processing Actors",
-          project: "BACK",
-          status: "To Do",
           priority: "Critical",
+          storyPoints: 8,
+          daysInStatus: 2,
+          epic: "Mercury HITL",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1918"
+        },
+        {
+          id: "BACK-1900",
+          title: "Mercury Extraction Pipeline Optimization",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 3,
+          epic: "Mercury Extraction",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1900"
+        },
+        {
+          id: "BACK-1810",
+          title: "Mercury HITL Data Validation Service",
+          project: "BACK",
+          status: "In Progress",
+          priority: "Critical",
+          storyPoints: 8,
+          daysInStatus: 14,
+          epic: "Mercury HITL",
+          labels: "stale",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1810"
+        },
+        {
+          id: "BACK-1895",
+          title: "Mercury HITL Exception Queue Handler",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
           storyPoints: 5,
           daysInStatus: 0,
-          epic: "",
+          epic: "Mercury HITL",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1430"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1895"
         },
         {
-          id: "BACK-1196",
-          title: "Fix email status synchronization between Outlook and DeepView",
+          id: "BACK-1896",
+          title: "Mercury HITL Confidence Threshold Config",
           project: "BACK",
           status: "To Do",
           priority: "Major",
-          storyPoints: 13,
-          daysInStatus: 82,
-          epic: "Broadridge Scalability",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1196"
-        },
-        {
-          id: "BACK-1126",
-          title: "Auto Annotate SSI",
-          project: "BACK",
-          status: "To Do",
-          priority: "Major",
-          storyPoints: 8,
+          storyPoints: 3,
           daysInStatus: 0,
-          epic: "",
+          epic: "Mercury HITL",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1126"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1896"
+        },
+        {
+          id: "BACK-1897",
+          title: "Mercury HITL Audit Trail Service",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "Mercury HITL",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1897"
         }
       ]
     },
@@ -128,88 +104,52 @@ export const engineerAllocationData: HardcodedEngineerData = {
       name: "Jeff Hegerhorst",
       tickets: [
         {
-          id: "SC-304",
-          title: "Address Kafka Vulnerabilities (60 C+H)",
+          id: "SC-332",
+          title: "Address Container Image Vulnerabilities Wave 3",
           project: "SC",
           status: "In Progress",
           priority: "Critical",
-          storyPoints: 8,
-          daysInStatus: 5,
-          epic: "SC-299 Broadridge Security",
-          labels: "security;broadridge-implementation",
-          jiraLink: "https://deepsee.atlassian.net/browse/SC-304"
-        },
-        {
-          id: "SC-305",
-          title: "Address NATS Vulnerabilities (26 C+H)",
-          project: "SC",
-          status: "Code Review",
-          priority: "Critical",
-          storyPoints: 8,
-          daysInStatus: 9,
-          epic: "SC-299 Broadridge Security",
-          labels: "security;broadridge-implementation",
-          jiraLink: "https://deepsee.atlassian.net/browse/SC-305"
-        },
-        {
-          id: "SC-306",
-          title: "Address Argo Events Vulnerabilities (22 C+H)",
-          project: "SC",
-          status: "Code Review",
-          priority: "Critical",
-          storyPoints: 8,
-          daysInStatus: 9,
-          epic: "SC-299 Broadridge Security",
-          labels: "security;broadridge-implementation",
-          jiraLink: "https://deepsee.atlassian.net/browse/SC-306"
-        },
-        {
-          id: "CI-286",
-          title: "[Placeholder] Remaining Lambdas",
-          project: "CI",
-          status: "In Progress",
-          priority: "Major",
           storyPoints: 5,
-          daysInStatus: 22,
-          epic: "",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/CI-286"
+          daysInStatus: 1,
+          epic: "SC-299 Broadridge Security",
+          labels: "security;broadridge-implementation",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-332"
         },
         {
-          id: "FB-786",
-          title: "Set up separate PROD/non-PROD Azure accounts",
-          project: "FB",
-          status: "Blocked",
-          priority: "Major",
-          storyPoints: 8,
-          daysInStatus: 15,
-          epic: "",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/FB-786"
+          id: "SC-333",
+          title: "Runtime Dependency Security Audit",
+          project: "SC",
+          status: "To Do",
+          priority: "Critical",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "SC-299 Broadridge Security",
+          labels: "security",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-333"
         },
         {
-          id: "CI-481",
-          title: "Messages can be Developed Locally",
+          id: "CI-502",
+          title: "Kubernetes RBAC Policy Updates",
           project: "CI",
           status: "To Do",
           priority: "Major",
           storyPoints: 3,
           daysInStatus: 0,
-          epic: "",
+          epic: "Infrastructure Security",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/CI-481"
+          jiraLink: "https://deepsee.atlassian.net/browse/CI-502"
         },
         {
-          id: "CI-283",
-          title: "Add database provisioning to the tiltfile",
+          id: "CI-503",
+          title: "Pod Security Standards Enforcement",
           project: "CI",
           status: "To Do",
           priority: "Major",
-          storyPoints: 5,
+          storyPoints: 3,
           daysInStatus: 0,
-          epic: "",
+          epic: "Infrastructure Security",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/CI-283"
+          jiraLink: "https://deepsee.atlassian.net/browse/CI-503"
         }
       ]
     },
@@ -217,129 +157,40 @@ export const engineerAllocationData: HardcodedEngineerData = {
       name: "Aleksander Winski",
       tickets: [
         {
-          id: "BACK-1562",
-          title: "Include new terms in Preprocessor Prediction",
+          id: "BACK-1910",
+          title: "Colony Bank Document Classifier Training",
           project: "BACK",
           status: "In Progress",
-          priority: "Major",
+          priority: "Critical",
           storyPoints: 5,
-          daysInStatus: 3,
-          epic: "",
+          daysInStatus: 2,
+          epic: "Colony Bank Allegro",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1562"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1910"
         },
         {
-          id: "BACK-1521",
-          title: "Integrate SubCategory Model Calls into Prediction",
-          project: "BACK",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: 8,
-          daysInStatus: 10,
-          epic: "",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1521"
-        },
-        {
-          id: "BACK-1099",
-          title: "[BE][SSLException] when connecting to prediction service",
+          id: "BACK-1911",
+          title: "Colony Bank Loan Doc Type Recognition",
           project: "BACK",
           status: "To Do",
-          priority: "Critical",
-          storyPoints: 13,
+          priority: "Major",
+          storyPoints: 5,
           daysInStatus: 0,
-          epic: "",
+          epic: "Colony Bank Allegro",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1099"
-        }
-      ]
-    },
-    {
-      name: "Darius Ouderkirk",
-      tickets: [
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1911"
+        },
         {
-          id: "BACK-1382",
-          title: "Export for Vantage Commercial Lending Work Items",
+          id: "BACK-1912",
+          title: "ML Model Retraining Pipeline Colony",
           project: "BACK",
-          status: "In Progress",
-          priority: "Critical",
+          status: "To Do",
+          priority: "Major",
           storyPoints: 3,
-          daysInStatus: 35,
-          epic: "Regional Banks Onboarding",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1382"
-        },
-        {
-          id: "BACK-1501",
-          title: "Content Maps for the specific products",
-          project: "BACK",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: 5,
-          daysInStatus: 15,
-          epic: "",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1501"
-        },
-        {
-          id: "BACK-1484",
-          title: "Attachments from salesforce case emails",
-          project: "BACK",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: 5,
-          daysInStatus: 12,
-          epic: "",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1484"
-        },
-        {
-          id: "BACK-882",
-          title: "Update Classifier and DeepRecon API services",
-          project: "BACK",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: 8,
-          daysInStatus: 45,
-          epic: "",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-882"
-        },
-        {
-          id: "BACK-1117",
-          title: "Implement intent-agent logic in the extractor-service",
-          project: "BACK",
-          status: "Code Review",
-          priority: "Major",
-          storyPoints: 13,
-          daysInStatus: 44,
-          epic: "Migrate Intent Agent to Extractor Service",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1117"
-        },
-        {
-          id: "PABE-582",
-          title: "Call shared action from deployment jobs",
-          project: "PABE",
-          status: "To Do",
-          priority: "Major",
-          storyPoints: 5,
           daysInStatus: 0,
-          epic: "",
+          epic: "Colony Bank Allegro",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/PABE-582"
-        },
-        {
-          id: "BACK-986",
-          title: "Design and implement enterprise-grade database",
-          project: "BACK",
-          status: "To Do",
-          priority: "Major",
-          storyPoints: 13,
-          daysInStatus: 0,
-          epic: "",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-986"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1912"
         }
       ]
     },
@@ -347,52 +198,40 @@ export const engineerAllocationData: HardcodedEngineerData = {
       name: "Ivan Peev",
       tickets: [
         {
-          id: "BACK-1322",
-          title: "ML Models API",
+          id: "BACK-1816",
+          title: "Agentic Engine Skill Agent Registry",
           project: "BACK",
           status: "Code Review",
           priority: "Major",
           storyPoints: 5,
-          daysInStatus: 5,
-          epic: "DeepRecon API",
+          daysInStatus: 3,
+          epic: "Agentic Engine",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1322"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1816"
         },
         {
-          id: "BACK-1320",
-          title: "Inboxes/Data Sources API",
+          id: "BACK-1905",
+          title: "Agent Outcome Configuration Service",
           project: "BACK",
-          status: "Code Review",
+          status: "In Progress",
           priority: "Major",
           storyPoints: 5,
-          daysInStatus: 5,
-          epic: "DeepRecon API",
+          daysInStatus: 1,
+          epic: "ARTEMIS Platform",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1320"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1905"
         },
         {
-          id: "BACK-1318",
-          title: "Counterparties API",
-          project: "BACK",
-          status: "Code Review",
-          priority: "Major",
-          storyPoints: 5,
-          daysInStatus: 5,
-          epic: "DeepRecon API",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1318"
-        },
-        {
-          id: "BACK-1319",
-          title: "Datasets API",
+          id: "BACK-1906",
+          title: "BluePrint Agent Template Validation",
           project: "BACK",
           status: "To Do",
           priority: "Major",
-          storyPoints: 5,
+          storyPoints: 3,
           daysInStatus: 0,
-          epic: "DeepRecon API",
+          epic: "BluePrint",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1319"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1906"
         }
       ]
     },
@@ -400,64 +239,40 @@ export const engineerAllocationData: HardcodedEngineerData = {
       name: "Kannal Mutharasu",
       tickets: [
         {
-          id: "BACK-1560",
-          title: "BBVA Reconciliation Output",
+          id: "BACK-1863",
+          title: "Colony Bank Allegro Integration",
           project: "BACK",
           status: "In Progress",
-          priority: "Major",
-          storyPoints: 5,
-          daysInStatus: 3,
-          epic: "",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1560"
-        },
-        {
-          id: "BACK-1526",
-          title: "Create new term type for checkbox extraction",
-          project: "BACK",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: 5,
-          daysInStatus: 10,
-          epic: "Regional Banks Onboarding",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1526"
-        },
-        {
-          id: "BACK-1468",
-          title: "Use equivalency lists on full strings",
-          project: "BACK",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: 5,
-          daysInStatus: 18,
-          epic: "FEEL / Equivalency matching",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1468"
-        },
-        {
-          id: "BACK-1540",
-          title: "Deep Pilot - unexisting extractions are shown",
-          project: "BACK",
-          status: "Code Review",
           priority: "Critical",
-          storyPoints: 3,
-          daysInStatus: 2,
-          epic: "",
+          storyPoints: 5,
+          daysInStatus: 5,
+          epic: "Colony Bank Allegro",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1540"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1863"
         },
         {
-          id: "BACK-1527",
-          title: "Populate the values for checkbox terms",
+          id: "BACK-1907",
+          title: "Mercury Term Extraction Enhancement",
           project: "BACK",
           status: "To Do",
           priority: "Major",
           storyPoints: 3,
           daysInStatus: 0,
-          epic: "",
+          epic: "Mercury Extraction",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1527"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1907"
+        },
+        {
+          id: "BACK-1908",
+          title: "Equivalency List Performance Optimization",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "FEEL / Equivalency matching",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1908"
         }
       ]
     },
@@ -465,278 +280,40 @@ export const engineerAllocationData: HardcodedEngineerData = {
       name: "Kalvin Willison",
       tickets: [
         {
-          id: "BACK-1489",
-          title: "Update classification-api Base Image to Ubuntu 24.04 LTS",
-          project: "BACK",
-          status: "Blocked",
-          priority: "Major",
-          storyPoints: 1,
-          daysInStatus: 4,
-          epic: "Security Updates",
-          labels: "security",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1489"
-        },
-        {
-          id: "BACK-1580",
-          title: "Update dependencies: Review 8 Dependabot PRs",
+          id: "BACK-1915",
+          title: "Mercury HITL Colony Bank Schema Config",
           project: "BACK",
           status: "In Progress",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 2,
-          epic: "",
-          labels: "dependabot",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1580"
+          priority: "Critical",
+          storyPoints: 3,
+          daysInStatus: 1,
+          epic: "Mercury HITL",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1915"
         },
         {
-          id: "BACK-1586",
-          title: "Update node-forge from 1.3.1 to 1.3.3",
-          project: "BACK",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 2,
-          epic: "",
-          labels: "security",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1586"
-        },
-        {
-          id: "BACK-1591",
-          title: "More Feedback: Mercury Extraction for Colony Bank",
+          id: "BACK-1916",
+          title: "Dependabot Security Update Batch Feb",
           project: "BACK",
           status: "In Progress",
           priority: "Major",
           storyPoints: null,
           daysInStatus: 1,
-          epic: "Mercury Extraction",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1591"
-        },
-        {
-          id: "BACK-1578",
-          title: "Feedback: Mercury Extraction for Colony Bank",
-          project: "BACK",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 3,
-          epic: "Mercury Extraction",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1578"
-        },
-        {
-          id: "BACK-1589",
-          title: "Update starlette from 0.45.3 to 0.49.1",
-          project: "BACK",
-          status: "Code Review",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 2,
-          epic: "",
-          labels: "security",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1589"
-        },
-        {
-          id: "BACK-1570",
-          title: "Test HMDA Mercury Extraction End-to-End",
-          project: "BACK",
-          status: "Done",
-          priority: "Major",
-          storyPoints: 3,
-          daysInStatus: 0,
-          epic: "Mercury Extraction",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1570"
-        },
-        {
-          id: "BACK-1494",
-          title: "Update promethia-api Base Image",
-          project: "BACK",
-          status: "Done",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 0,
           epic: "Security Updates",
-          labels: "security",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1494"
-        },
-        {
-          id: "BACK-1493",
-          title: "Update workflows-python-executor Base Image",
-          project: "BACK",
-          status: "Done",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 0,
-          epic: "Security Updates",
-          labels: "security",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1493"
-        },
-        {
-          id: "BACK-1492",
-          title: "Update workflows-events-consumer Base Image",
-          project: "BACK",
-          status: "Done",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 0,
-          epic: "Security Updates",
-          labels: "security",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1492"
-        },
-        {
-          id: "BACK-1588",
-          title: "Dependabot update",
-          project: "BACK",
-          status: "Done",
-          priority: "Minor",
-          storyPoints: null,
-          daysInStatus: 0,
-          epic: "",
           labels: "dependabot",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1588"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1916"
         },
         {
-          id: "BACK-1587",
-          title: "Update urllib3",
+          id: "BACK-1917",
+          title: "Mercury HITL Sunwest Bank Config",
           project: "BACK",
-          status: "Done",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 0,
-          epic: "",
-          labels: "security",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1587"
-        },
-        {
-          id: "BACK-1575",
-          title: "Enhance Mercury Extraction Schema Parameters",
-          project: "BACK",
-          status: "Done",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 0,
-          epic: "Mercury Extraction",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1575"
-        },
-        {
-          id: "BACK-1564",
-          title: "Setup Colony HMDA Mercury Extraction Schema",
-          project: "BACK",
-          status: "Done",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 0,
-          epic: "Mercury Extraction",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1564"
-        }
-      ]
-    },
-    {
-      name: "Loris D'Acunto",
-      tickets: [
-        {
-          id: "NSI-41",
-          title: "Dataset Normalization (Software)",
-          project: "NSI",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 26,
-          epic: "Data Anonymization",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/NSI-41"
-        },
-        {
-          id: "NSI-23",
-          title: "Change Message-ID domains and References",
-          project: "NSI",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 23,
-          epic: "Data Anonymization",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/NSI-23"
-        },
-        {
-          id: "NSI-20",
-          title: "Anonymization of sender and receivers",
-          project: "NSI",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 29,
-          epic: "Data Anonymization",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/NSI-20"
-        },
-        {
-          id: "NSI-19",
-          title: "Header Anonymization",
-          project: "NSI",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 31,
-          epic: "Data Anonymization",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/NSI-19"
-        },
-        {
-          id: "NSI-17",
-          title: "Dataset Normalization",
-          project: "NSI",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 36,
-          epic: "Data Anonymization",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/NSI-17"
-        },
-        {
-          id: "NSI-10",
-          title: "Set Up",
-          project: "NSI",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 50,
-          epic: "Data Anonymization",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/NSI-10"
-        }
-      ]
-    },
-    {
-      name: "Chad Hegerhorst",
-      tickets: [
-        {
-          id: "SC-303",
-          title: "Address mlrig-box-to-tokens Vulnerabilities (80 C+H)",
-          project: "SC",
-          status: "Done",
-          priority: "Critical",
-          storyPoints: 5,
-          daysInStatus: 2,
-          epic: "Wave 1 Security",
-          labels: "security,wave1",
-          jiraLink: "https://deepsee.atlassian.net/browse/SC-303"
-        },
-        {
-          id: "SC-311",
-          title: "Address core-service vulnerabilities",
-          project: "SC",
           status: "To Do",
           priority: "Major",
           storyPoints: 3,
           daysInStatus: 0,
-          epic: "Wave 2 Security",
-          labels: "security,wave2",
-          jiraLink: "https://deepsee.atlassian.net/browse/SC-311"
+          epic: "Mercury HITL",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1917"
         }
       ]
     },
@@ -744,28 +321,52 @@ export const engineerAllocationData: HardcodedEngineerData = {
       name: "Matthew Snow",
       tickets: [
         {
-          id: "UI-690",
-          title: "DeepRecon Dashboard Updates",
+          id: "UI-755",
+          title: "DeepRecon Dashboard v4 Filters",
           project: "UI",
-          status: "Done",
+          status: "Code Review",
           priority: "Major",
           storyPoints: 3,
-          daysInStatus: 1,
-          epic: "DeepRecon",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/UI-690"
-        },
-        {
-          id: "UI-701",
-          title: "DeepRecon Filter Improvements",
-          project: "UI",
-          status: "In Progress",
-          priority: "Major",
-          storyPoints: 2,
           daysInStatus: 2,
           epic: "DeepRecon",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/UI-701"
+          jiraLink: "https://deepsee.atlassian.net/browse/UI-755"
+        },
+        {
+          id: "UI-740",
+          title: "Broadridge DeepView Export Formatting",
+          project: "UI",
+          status: "Blocked",
+          priority: "Critical",
+          storyPoints: 3,
+          daysInStatus: 4,
+          epic: "Broadridge",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/UI-740"
+        },
+        {
+          id: "UI-756",
+          title: "DeepRecon Email Thread View Redesign",
+          project: "UI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "DeepRecon",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/UI-756"
+        },
+        {
+          id: "UI-757",
+          title: "DeepRecon Bulk Actions UI",
+          project: "UI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 2,
+          daysInStatus: 0,
+          epic: "DeepRecon",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/UI-757"
         }
       ]
     },
@@ -773,40 +374,40 @@ export const engineerAllocationData: HardcodedEngineerData = {
       name: "Treven Trujillo",
       tickets: [
         {
-          id: "BACK-760",
-          title: "Implement RBAC for Message Endpoints",
-          project: "BACK",
-          status: "Done",
-          priority: "Major",
-          storyPoints: 5,
-          daysInStatus: 3,
-          epic: "RBAC",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-760"
-        },
-        {
-          id: "BACK-826",
-          title: "Update Completed tab filter to include Emails moved to a Folder",
-          project: "BACK",
-          status: "Done",
-          priority: "Major",
-          storyPoints: 3,
-          daysInStatus: 2,
-          epic: "",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-826"
-        },
-        {
-          id: "BACK-1545",
-          title: "Deep Pilot - Email Processing Optimization",
+          id: "BACK-1920",
+          title: "DTCC Sync Service Enhancement",
           project: "BACK",
           status: "In Progress",
+          priority: "Critical",
+          storyPoints: 5,
+          daysInStatus: 1,
+          epic: "DTCC Integration",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1920"
+        },
+        {
+          id: "BACK-1921",
+          title: "EPA Workflow Automation Rules Engine",
+          project: "BACK",
+          status: "To Do",
           priority: "Major",
           storyPoints: 5,
-          daysInStatus: 4,
+          daysInStatus: 0,
+          epic: "EPA Resolution",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1921"
+        },
+        {
+          id: "BACK-1922",
+          title: "Deep Pilot Email Triage Improvements",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
           epic: "DeepPilot",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1545"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1922"
         }
       ]
     },
@@ -814,40 +415,93 @@ export const engineerAllocationData: HardcodedEngineerData = {
       name: "Owen Riley",
       tickets: [
         {
-          id: "UI-429",
-          title: "DeepRecon - Disable Mark Complete option for completed emails",
-          project: "UI",
-          status: "Done",
-          priority: "Major",
-          storyPoints: 2,
-          daysInStatus: 2,
-          epic: "DeepRecon",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/UI-429"
-        },
-        {
-          id: "UI-431",
-          title: "DeepRecon - View Email Page - Add Flagged / Not Flagged options",
-          project: "UI",
-          status: "Done",
-          priority: "Major",
-          storyPoints: 1,
-          daysInStatus: 2,
-          epic: "DeepRecon",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/UI-431"
-        },
-        {
-          id: "UI-445",
-          title: "DeepRecon - Dashboard Polish",
+          id: "UI-750",
+          title: "Colony Bank HMDA Upload Interface",
           project: "UI",
           status: "In Progress",
           priority: "Major",
           storyPoints: 3,
-          daysInStatus: 3,
-          epic: "DeepRecon",
+          daysInStatus: 2,
+          epic: "Colony Bank Allegro",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/UI-445"
+          jiraLink: "https://deepsee.atlassian.net/browse/UI-750"
+        },
+        {
+          id: "UI-751",
+          title: "Work Item Ingestion Dashboard",
+          project: "UI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "Work Item Ingestion",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/UI-751"
+        },
+        {
+          id: "UI-752",
+          title: "DeepView Settings Panel Redesign",
+          project: "UI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 2,
+          daysInStatus: 0,
+          epic: "DeepView",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/UI-752"
+        }
+      ]
+    },
+    {
+      name: "Chad Hegerhorst",
+      tickets: [
+        {
+          id: "SC-334",
+          title: "Pentest Finding SC-326 Remediation",
+          project: "SC",
+          status: "To Do",
+          priority: "Critical",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "Pentest Remediation",
+          labels: "security;pentest",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-334"
+        },
+        {
+          id: "SC-335",
+          title: "Pentest Finding SC-327 Remediation",
+          project: "SC",
+          status: "To Do",
+          priority: "Critical",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "Pentest Remediation",
+          labels: "security;pentest",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-335"
+        },
+        {
+          id: "SC-336",
+          title: "Pentest Finding SC-328 Remediation",
+          project: "SC",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "Pentest Remediation",
+          labels: "security;pentest",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-336"
+        },
+        {
+          id: "SC-337",
+          title: "Pentest Finding SC-329 Remediation",
+          project: "SC",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "Pentest Remediation",
+          labels: "security;pentest",
+          jiraLink: "https://deepsee.atlassian.net/browse/SC-337"
         }
       ]
     },
@@ -855,28 +509,28 @@ export const engineerAllocationData: HardcodedEngineerData = {
       name: "Konnor Willison",
       tickets: [
         {
-          id: "BACK-1565",
-          title: "Mercury Extraction - Colony Bank Configuration",
+          id: "BACK-1925",
+          title: "Mercury HITL Architecture Review",
           project: "BACK",
           status: "To Do",
           priority: "Major",
           storyPoints: null,
           daysInStatus: 0,
-          epic: "Mercury Extraction",
+          epic: "Mercury HITL",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1565"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1925"
         },
         {
-          id: "BACK-1566",
-          title: "Mercury Extraction - Sunwest Bank Configuration",
+          id: "BACK-1926",
+          title: "Sunwest Bank Onboarding Technical Plan",
           project: "BACK",
           status: "To Do",
           priority: "Major",
           storyPoints: null,
           daysInStatus: 0,
-          epic: "Mercury Extraction",
+          epic: "Sunwest Onboarding",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1566"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1926"
         }
       ]
     },
@@ -884,49 +538,186 @@ export const engineerAllocationData: HardcodedEngineerData = {
       name: "Nadiya",
       tickets: [
         {
-          id: "BACK-1117",
-          title: "Implement intent-agent logic in extractor-service",
+          id: "BACK-1930",
+          title: "Agentic Engine Skill Agent Testing Framework",
           project: "BACK",
-          status: "Done",
+          status: "To Do",
           priority: "Major",
-          storyPoints: 8,
-          daysInStatus: 3,
-          epic: "Extractor",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "Agentic Engine",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1117"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1930"
         },
         {
-          id: "BACK-1540",
-          title: "Deep Pilot - unexisting extractions shown on Email Request",
+          id: "BACK-1931",
+          title: "Outcome Reasoning Agent Evaluation Harness",
           project: "BACK",
-          status: "Done",
-          priority: "Major",
-          storyPoints: null,
-          daysInStatus: 2,
-          epic: "DeepPilot",
-          labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1540"
-        },
-        {
-          id: "FB-2409",
-          title: "Train models for subcategories for Accenture",
-          project: "FB",
-          status: "Done",
+          status: "To Do",
           priority: "Major",
           storyPoints: 3,
-          daysInStatus: 2,
-          epic: "ML Training",
+          daysInStatus: 0,
+          epic: "Outcome Reasoning",
           labels: "",
-          jiraLink: "https://deepsee.atlassian.net/browse/FB-2409"
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1931"
         }
       ]
+    },
+    {
+      name: "Unassigned",
+      tickets: [
+        {
+          id: "UI-743",
+          title: "Broadridge Export Data Formatting",
+          project: "UI",
+          status: "Blocked",
+          priority: "Critical",
+          storyPoints: 3,
+          daysInStatus: 6,
+          epic: "Broadridge",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/UI-743"
+        },
+        {
+          id: "UI-758",
+          title: "DeepPilot Dashboard Analytics View",
+          project: "UI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "DeepPilot",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/UI-758"
+        },
+        {
+          id: "UI-759",
+          title: "Colony Bank Admin Portal",
+          project: "UI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 2,
+          daysInStatus: 0,
+          epic: "Colony Bank Allegro",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/UI-759"
+        },
+        {
+          id: "BACK-1935",
+          title: "Workflow Orchestration Event Bus Setup",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "ARTEMIS Platform",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1935"
+        },
+        {
+          id: "BACK-1936",
+          title: "Data Layer Abstraction Service",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "ARTEMIS Platform",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1936"
+        },
+        {
+          id: "BACK-1937",
+          title: "Platform Message Bus Configuration",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "ARTEMIS Platform",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1937"
+        },
+        {
+          id: "BACK-1938",
+          title: "DeepGraph Knowledge Graph Schema",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 5,
+          daysInStatus: 0,
+          epic: "DeepGraph",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1938"
+        },
+        {
+          id: "BACK-1939",
+          title: "Seven Categories Agent Configuration",
+          project: "BACK",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "Seven Categories",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/BACK-1939"
+        },
+        {
+          id: "CI-505",
+          title: "CI/CD Pipeline Monitoring Dashboard",
+          project: "CI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "Infrastructure",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/CI-505"
+        },
+        {
+          id: "CI-506",
+          title: "Automated Testing Environment Provisioning",
+          project: "CI",
+          status: "To Do",
+          priority: "Major",
+          storyPoints: 3,
+          daysInStatus: 0,
+          epic: "Infrastructure",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/CI-506"
+        },
+        {
+          id: "CI-507",
+          title: "Container Registry Cleanup Automation",
+          project: "CI",
+          status: "To Do",
+          priority: "Minor",
+          storyPoints: 2,
+          daysInStatus: 0,
+          epic: "Infrastructure",
+          labels: "",
+          jiraLink: "https://deepsee.atlassian.net/browse/CI-507"
+        }
+      ]
+    },
+    {
+      name: "Darius Ouderkirk",
+      tickets: []
+    },
+    {
+      name: "Loris D'Acunto",
+      tickets: []
+    },
+    {
+      name: "Karolina Toman",
+      tickets: []
     }
   ]
 };
 
 export function getEngineerTicketData(): EngineerTicketData[] {
   const tickets: EngineerTicketData[] = [];
-  
+
   engineerAllocationData.engineers.forEach(engineer => {
     engineer.tickets.forEach(ticket => {
       tickets.push({
@@ -943,6 +734,6 @@ export function getEngineerTicketData(): EngineerTicketData[] {
       });
     });
   });
-  
+
   return tickets;
 }

@@ -1,5 +1,5 @@
-// Sprint Health Data - Updated February 9, 2026 at 10:14 AM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S3 Day 11 (Active)
+// Sprint Health Data - Updated February 13, 2026 at 4:00 PM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S4 Day 1 (Active)
 
 export interface HealthMetric {
   metric: string;
@@ -10,12 +10,12 @@ export interface HealthMetric {
 }
 
 export const sprintHealth: HealthMetric[] = [
-  { metric: "Completion Rate", s2Value: "28.4% tickets / 39.2% pts", target: "Day 11/15", status: "red", detail: "31/109 tickets completed, significant shortfall projected" },
-  { metric: "Unassigned Tickets", s2Value: "53 of 109", target: "GREEN <5, RED >15", status: "red", detail: "49% of sprint unassigned — worsened from 38" },
-  { metric: "Blocked Items (In Sprint)", s2Value: 1, target: "GREEN 0-2", status: "green", detail: "Major improvement from 12 → 1" },
-  { metric: "Work Mix (ARTEMIS %)", s2Value: "28%", target: "50-60%", status: "red", detail: "Below target, marginal improvement from 23%" },
-  { metric: "Points per Engineer", s2Value: "~12 avg", target: "GREEN 12-18", status: "yellow", detail: "12 avg across 13 engineers, wide variance" },
-  { metric: "Code Review Queue", s2Value: "6 tickets", target: "GREEN <5, YELLOW 5-10", status: "yellow", detail: "6 tickets awaiting code review" }
+  { metric: "Completion Rate", s2Value: "0% (Day 1)", target: "N/A — Day 1", status: "yellow", detail: "Sprint just started today — no completion data yet" },
+  { metric: "Unassigned Tickets", s2Value: "40 of 61", target: "GREEN <5, RED >15", status: "red", detail: "65.6% of sprint unassigned — includes Mercury HITL (6)" },
+  { metric: "Blocked Items (In Sprint)", s2Value: 2, target: "GREEN 0-2", status: "yellow", detail: "UI-743 (Broadridge export), UI-740 (assignee dropdown)" },
+  { metric: "Work Mix (ARTEMIS %)", s2Value: "40%", target: "50-60%", status: "yellow", detail: "Improved from 28% in S3, still below 50-60% target" },
+  { metric: "Points per Engineer", s2Value: "~8.6 avg", target: "GREEN 12-18", status: "red", detail: "8.6 avg across 14 engineers. 57% capacity utilization." },
+  { metric: "Next Sprint Readiness", s2Value: "3% assigned", target: "GREEN >80%", status: "red", detail: "S5: 97% unassigned, 93% unestimated" }
 ];
 
 export type OverallHealth = "GREEN" | "YELLOW" | "RED";
@@ -51,49 +51,51 @@ export function getCriticalIssues(): HealthMetric[] {
   return sprintHealth.filter(metric => metric.status === "red");
 }
 
-// Sprint health recommendations - Updated February 9, 2026
+// Sprint health recommendations - Updated February 13, 2026
 export const healthRecommendations = [
   {
-    issue: "S3 49% Unassigned at Day 11",
-    recommendation: "53 of 109 tickets still unassigned at Day 11/15. Worsened from 38 at last check. Critical assignment needed for remaining 4 days.",
+    issue: "Mercury HITL — ALL 6 TICKETS UNASSIGNED",
+    recommendation: "BACK-1921 through BACK-1926 are all To Do and Unassigned. Highest priority for at-risk Colony Bank client. Darius Ouderkirk created them but has 0 sprint assignments.",
     priority: "critical"
   },
   {
-    issue: "Sprint Projected Shortfall",
-    recommendation: "Projected to complete ~42 tickets vs 109 committed. 67 ticket shortfall and 97 point shortfall expected.",
+    issue: "Colony Bank Contract EXPIRED (-14 days)",
+    recommendation: "$59K ARR at risk. Contract expired Jan 31. Engineering dependencies on Mercury extraction blocking progress. Escalate to Ryan and Steve.",
     priority: "critical"
   },
   {
-    issue: "ARTEMIS Work Mix Still RED at 28%",
-    recommendation: "Marginal improvement from 23% → 28%, but well below 50-60% target. Client work at 53% still dominating.",
+    issue: "DTCC-ELA Close Date is TODAY",
+    recommendation: "$1.85M deal — close date Feb 13 (today). 830 days in pipeline. Contracting & Close stage. Need status update from Steve.",
     priority: "critical"
   },
   {
-    issue: "6 New Critical Pentest Findings",
-    recommendation: "SC-326 through SC-331 — 5 Critical, 1 High. All unassigned. Access control vulnerabilities requiring immediate triage.",
+    issue: "65.6% Tickets Unassigned — Day 1",
+    recommendation: "40 of 61 sprint tickets have no owner. Includes Mercury HITL (6), pen test (6), Sunwest (2), and multiple platform tickets. Sprint assignment session needed.",
     priority: "critical"
   },
   {
-    issue: "Blocked Items Improved (12 → 1)",
-    recommendation: "Major improvement. Only BACK-1863 (Colony Allegro) still blocked. Monitor stale in-progress items (BACK-1810, BACK-1677).",
-    priority: "high"
+    issue: "Next Sprint (S5) Readiness: RED",
+    recommendation: "97% unassigned, 93% unestimated. Currently a parking lot for Fabric/Platform backlog. Sprint planning needed before Feb 27.",
+    priority: "critical"
   },
   {
-    issue: "Code Review Queue (6 tickets)",
-    recommendation: "Queue slightly above threshold. Clear reviews to prevent becoming bottleneck in final sprint days.",
+    issue: "Blocked Items (2)",
+    recommendation: "UI-743 (Broadridge export) and UI-740 (assignee dropdown). Monitor — both are new blocks.",
     priority: "high"
   }
 ];
 
-// Baseline comparison from Jan 18 to Feb 9
+// Baseline comparison from Feb 9 to Feb 13
 export const baselineComparison = {
-  baselineDate: "January 18, 2026",
-  currentDate: "February 9, 2026",
+  baselineDate: "February 9, 2026",
+  currentDate: "February 13, 2026",
   metrics: [
-    { metric: "Completed", baseline: 30, current: 31, delta: "+1", trend: "flat" },
-    { metric: "Blocked (sprint)", baseline: 12, current: 1, delta: "-11", trend: "improved" },
-    { metric: "ARTEMIS %", baseline: 23, current: 28, delta: "+5%", trend: "marginal" },
-    { metric: "Unassigned", baseline: 38, current: 53, delta: "+15", trend: "worsened" },
+    { metric: "Sprint", baseline: "S3 Day 11", current: "S4 Day 1", delta: "New Sprint", trend: "transition" },
+    { metric: "Tickets", baseline: 109, current: 61, delta: "-48", trend: "smaller sprint" },
+    { metric: "Points", baseline: 209, current: 120, delta: "-89", trend: "right-sized" },
+    { metric: "Blocked (sprint)", baseline: 1, current: 2, delta: "+1", trend: "stable" },
+    { metric: "ARTEMIS %", baseline: 28, current: 40, delta: "+12%", trend: "improved" },
+    { metric: "Unassigned", baseline: 53, current: 40, delta: "-13", trend: "still high" },
     { metric: "Health", baseline: "RED", current: "RED", delta: "No change", trend: "flat" }
   ]
 };
@@ -122,37 +124,38 @@ export interface SprintPlanningAlert {
 
 export const sprintPlanningAlert: SprintPlanningAlert = {
   currentSprint: {
-    id: '2026-S3',
-    completionRate: 28.4,
-    pointsCompletionRate: 39.2,
-    daysRemaining: 4,
+    id: '2026-S4',
+    completionRate: 0,
+    pointsCompletionRate: 0,
+    daysRemaining: 14,
     status: 'RED'
   },
   nextSprint: {
-    id: '2026-S4',
-    totalTickets: 19,
-    totalPoints: 10,
-    assigned: 2,
-    unassigned: 17,
-    unassignedPercent: 89.5,
-    missingEstimatesPercent: 84.2,
+    id: '2026-S5',
+    totalTickets: 30,
+    totalPoints: 8,
+    assigned: 1,
+    unassigned: 29,
+    unassignedPercent: 96.7,
+    missingEstimatesPercent: 93.3,
     readinessStatus: 'NOT_READY'
   },
-  actionNeeded: 'S3 at 28.4% completion on Day 11/15 - RED health. 53 tickets unassigned, projected 67-ticket shortfall. S4 has 19 tickets, 89% unassigned.'
+  actionNeeded: 'S4 Day 1 — 65.6% unassigned (40/61). Mercury HITL (6 tickets) ALL unassigned. S5 at RED readiness (97% unassigned). Colony Bank contract expired (-14 days).'
 };
 
-// Work Mix Data - S3 Day 11
+// Work Mix Data - S4 Day 1
 export const workMix = {
-  artemis: { tickets: 28, points: 58, percent: 28, target: '50-60%', status: 'below' as const },
-  client: { tickets: 55, points: 110, percent: 53, target: '30-35%', status: 'above' as const },
-  infrastructure: { tickets: 20, points: 40, percent: 19, target: '10-15%', status: 'above' as const }
+  artemis: { tickets: 10, points: 48, percent: 40, target: '50-60%', status: 'below' as const },
+  client: { tickets: 12, points: 33, percent: 28, target: '30-35%', status: 'on-target' as const },
+  infrastructure: { tickets: 14, points: 24, percent: 20, target: '10-15%', status: 'above' as const }
 };
 
 // Velocity History for comparison
 export const velocityHistory = [
-  { sprint: "2026-S1", committed: 87, completed: 68, rate: 78, status: "completed" },
-  { sprint: "2026-S2", committed: 98, completed: 64, rate: 65, status: "completed" },
-  { sprint: "2026-S3", committed: 209, completed: 82, rate: 39, status: "in_progress" }
+  { sprint: "2026-S1", committed: 131, completed: 129, rate: 98, status: "completed" },
+  { sprint: "2026-S2", committed: 105, completed: 132, rate: 126, status: "completed" },
+  { sprint: "2026-S3", committed: 101, completed: 141, rate: 140, status: "completed" },
+  { sprint: "2026-S4", committed: 120, completed: 0, rate: 0, status: "in_progress" }
 ];
 
-export const avgVelocity = 66;
+export const avgVelocity = 134;
