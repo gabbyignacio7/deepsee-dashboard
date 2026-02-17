@@ -23,7 +23,6 @@ import {
   type MasterFeature
 } from "@/data/masterFeaturesData";
 import MercuryExtractionSection from "@/components/MercuryExtractionSection";
-import { platformMilestones, type PlatformMilestone } from "@/data/agenticPlatformData";
 
 const LAYER_ICONS: Record<ArchitectureLayer, JSX.Element> = {
   1: <Link className="w-4 h-4" />,
@@ -493,76 +492,6 @@ export default function PlatformArchitecture() {
       )}
 
       <MercuryExtractionSection />
-
-      {/* Platform Milestones Section */}
-      <Card data-testid="card-platform-milestones">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Layers className="w-5 h-5 text-indigo-600" />
-            Platform Milestones
-            <Badge variant="outline">{platformMilestones.length} milestones</Badge>
-          </CardTitle>
-          <p className="text-sm text-muted-foreground">
-            10 strategic milestones tracking DeepSee platform development — story points populate as engineering tags tickets
-          </p>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-            {platformMilestones.map((milestone: PlatformMilestone) => {
-              const progress = milestone.totalStoryPoints > 0
-                ? Math.round((milestone.completedStoryPoints / milestone.totalStoryPoints) * 100)
-                : 0;
-              return (
-                <div
-                  key={milestone.id}
-                  className="p-4 rounded-lg border-2 border-gray-200 hover:border-indigo-300 hover:shadow transition-all"
-                  data-testid={`milestone-${milestone.id}`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <Badge
-                      variant="outline"
-                      className={`text-xs ${
-                        milestone.status === 'In Progress' ? 'border-blue-400 text-blue-600 bg-blue-50' :
-                        milestone.status === 'Planning' ? 'border-yellow-400 text-yellow-700 bg-yellow-50' :
-                        milestone.status === 'Done' ? 'border-green-400 text-green-600 bg-green-50' :
-                        'border-gray-400 text-gray-600 bg-gray-50'
-                      }`}
-                    >
-                      {milestone.status}
-                    </Badge>
-                  </div>
-                  <h4 className="font-semibold text-sm text-gray-800 mb-1 line-clamp-2" title={milestone.name}>
-                    {milestone.name}
-                  </h4>
-                  <p className="text-xs text-muted-foreground mb-3 line-clamp-2" title={milestone.description}>
-                    {milestone.description}
-                  </p>
-                  <div className="space-y-1">
-                    <div className="flex justify-between text-xs text-gray-500">
-                      <span>Progress</span>
-                      <span className="font-medium">{progress}%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-1.5">
-                      <div
-                        className={`h-1.5 rounded-full transition-all ${
-                          progress >= 70 ? 'bg-green-500' :
-                          progress >= 30 ? 'bg-yellow-500' :
-                          progress > 0 ? 'bg-blue-500' :
-                          'bg-gray-300'
-                        }`}
-                        style={{ width: `${Math.max(progress, 2)}%` }}
-                      />
-                    </div>
-                    <div className="text-xs text-gray-400">
-                      {milestone.completedStoryPoints}/{milestone.totalStoryPoints} pts
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </CardContent>
-      </Card>
 
       {/* PRD Links Section */}
       <Card data-testid="card-prd-links">

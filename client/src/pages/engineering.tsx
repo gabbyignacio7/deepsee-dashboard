@@ -14,7 +14,8 @@ import BlockedItemsAlert from '@/components/BlockedItemsAlert';
 import NextSprintReadiness from '@/components/NextSprintReadiness';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { AlertTriangle, Users, LayoutDashboard, CalendarDays } from 'lucide-react';
+import { AlertTriangle, Users, LayoutDashboard, CalendarDays, Layers } from 'lucide-react';
+import { platformMilestones, type PlatformMilestone } from '@/data/agenticPlatformData';
 
 export default function EngineeringDashboard() {
   const { features, jiraTickets, loading, error, allFeatures, selectedClients, setSelectedClients } = useDashboard();
@@ -102,6 +103,79 @@ export default function EngineeringDashboard() {
 
           {/* Detailed Sprint Analysis */}
           <SprintAnalysis />
+
+          {/* Platform Milestones */}
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                  <Layers className="w-5 h-5 text-indigo-600" />
+                  Platform Milestones
+                  <span className="text-sm font-normal text-gray-500">({platformMilestones.length} milestones)</span>
+                </h2>
+                <p className="text-sm text-gray-500 mt-1">
+                  10 strategic milestones tracking DeepSee platform development
+                </p>
+              </div>
+            </div>
+
+            {/* Amber notice */}
+            <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-start gap-2">
+              <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
+              <p className="text-xs text-amber-800">
+                <strong>Awaiting label adoption:</strong> Story point progress will populate as engineering begins tagging JIRA tickets with the new milestone labels. Progress bars currently show 0% — this is expected.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {platformMilestones.map((milestone: PlatformMilestone) => {
+                const progress = milestone.totalStoryPoints > 0
+                  ? Math.round((milestone.completedStoryPoints / milestone.totalStoryPoints) * 100)
+                  : 0;
+                const statusColor =
+                  milestone.status === 'In Progress' ? 'bg-blue-100 text-blue-800 border-blue-200' :
+                  milestone.status === 'Planning' ? 'bg-yellow-100 text-yellow-800 border-yellow-200' :
+                  milestone.status === 'Done' ? 'bg-green-100 text-green-800 border-green-200' :
+                  'bg-gray-100 text-gray-600 border-gray-200';
+                return (
+                  <div
+                    key={milestone.id}
+                    className="p-4 rounded-lg border-2 border-gray-200 hover:border-indigo-300 hover:shadow transition-all"
+                    data-testid={`milestone-${milestone.id}`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <span className={`text-xs px-2 py-0.5 rounded border ${statusColor}`}>
+                        {milestone.status}
+                      </span>
+                    </div>
+                    <h4 className="font-semibold text-sm text-gray-800 mb-1 line-clamp-2" title={milestone.name}>
+                      {milestone.name}
+                    </h4>
+                    <p className="text-xs text-gray-400 mt-1 mb-3 line-clamp-2" title={milestone.description}>
+                      {milestone.description}
+                    </p>
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-xs text-gray-500">
+                        <span>{progress}%</span>
+                        <span>{milestone.completedStoryPoints}/{milestone.totalStoryPoints} pts</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-1.5">
+                        <div
+                          className={`h-1.5 rounded-full transition-all ${
+                            progress >= 70 ? 'bg-green-500' :
+                            progress >= 30 ? 'bg-yellow-500' :
+                            progress > 0 ? 'bg-blue-500' :
+                            'bg-gray-300'
+                          }`}
+                          style={{ width: `${Math.max(progress, 2)}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </TabsContent>
 
         <TabsContent value="capacity" className="space-y-6">
