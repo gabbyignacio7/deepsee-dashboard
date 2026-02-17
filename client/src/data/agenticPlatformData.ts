@@ -1,5 +1,5 @@
 // PR-1561 DeepSee Agentic Platform - Complete Initiative Data
-// Last Updated: February 13, 2026 @ 4:00 PM MT
+// Last Updated: February 17, 2026 @ 12:00 PM MT
 // Source: Browser Agent Analysis
 
 export interface EpicData {
@@ -652,7 +652,136 @@ export const deepIQTickets: DeepIQTicket[] = [
 ];
 
 // ═══════════════════════════════════════════════════════════════
-// PR-1561: COMPLETE INITIATIVE
+// PLATFORM MILESTONES (10 new milestones - replaces old 5 PR-15xx)
+// Updated: February 17, 2026
+// ═══════════════════════════════════════════════════════════════
+export interface PlatformMilestone {
+  id: string;
+  name: string;
+  label: string;
+  description: string;
+  status: 'In Progress' | 'Planning' | 'Done' | 'To Do';
+  completedStoryPoints: number;
+  totalStoryPoints: number;
+  remainingStoryPoints: number;
+  features: string[];
+}
+
+export const platformMilestones: PlatformMilestone[] = [
+  {
+    id: "ms-knowledge-extraction",
+    name: "Knowledge Extraction",
+    label: "milestone:knowledge_extraction",
+    description: "Document understanding, entity extraction, content classification, Mercury extraction capabilities",
+    status: "In Progress",
+    completedStoryPoints: 0,
+    totalStoryPoints: 0,
+    remainingStoryPoints: 0,
+    features: []
+  },
+  {
+    id: "ms-reasoning-planning",
+    name: "Reasoning and Planning",
+    label: "milestone:reasoning_and_planning",
+    description: "Agent reasoning chains, decision logic, planning capabilities, enhanced agent reasoning",
+    status: "Planning",
+    completedStoryPoints: 0,
+    totalStoryPoints: 0,
+    remainingStoryPoints: 0,
+    features: []
+  },
+  {
+    id: "ms-agentic-engine",
+    name: "Agentic Engine",
+    label: "milestone:agentic_engine",
+    description: "Core agent runtime, tool integration framework, agent memory, execution engine",
+    status: "Planning",
+    completedStoryPoints: 0,
+    totalStoryPoints: 0,
+    remainingStoryPoints: 0,
+    features: []
+  },
+  {
+    id: "ms-integrations",
+    name: "Integrations",
+    label: "milestone:integrations",
+    description: "External system connectivity, API gateways, Fabric integration, partner platform connectors",
+    status: "In Progress",
+    completedStoryPoints: 0,
+    totalStoryPoints: 0,
+    remainingStoryPoints: 0,
+    features: []
+  },
+  {
+    id: "ms-process-intelligence",
+    name: "Process Intelligence (DeepIQ/DeepGraph)",
+    label: "milestone:process_intelligence",
+    description: "Knowledge graphs, process mining, operational analytics, DeepIQ dashboard, DeepGraph visualization",
+    status: "Planning",
+    completedStoryPoints: 0,
+    totalStoryPoints: 0,
+    remainingStoryPoints: 0,
+    features: []
+  },
+  {
+    id: "ms-deepsee-blueprints",
+    name: "DeepSee Blueprints",
+    label: "milestone:deepsee_blueprints",
+    description: "Pre-trained agent blueprints — Email Automation, Trade Reconciliation, Security Settlements, SSI, One View, Matching Engine, DeepPilot, Loan Operations, Process Reconciliation",
+    status: "In Progress",
+    completedStoryPoints: 0,
+    totalStoryPoints: 0,
+    remainingStoryPoints: 0,
+    features: []
+  },
+  {
+    id: "ms-firm-specific-blueprints",
+    name: "Firm-Specific Blueprints",
+    label: "milestone:firm_specific_blueprints",
+    description: "Client-customized agent configurations — Broadridge, DTCC, JP Morgan, Colony Bank, Accenture specific implementations",
+    status: "In Progress",
+    completedStoryPoints: 0,
+    totalStoryPoints: 0,
+    remainingStoryPoints: 0,
+    features: []
+  },
+  {
+    id: "ms-analyst-workspace",
+    name: "Analyst Workspace",
+    label: "milestone:analyst_workspace",
+    description: "Analyst-facing UI, investigation tools, exception handling workflows, human-in-the-loop interfaces",
+    status: "Planning",
+    completedStoryPoints: 0,
+    totalStoryPoints: 0,
+    remainingStoryPoints: 0,
+    features: []
+  },
+  {
+    id: "ms-manager-workspace",
+    name: "Manager Workspace",
+    label: "milestone:manager_workspace",
+    description: "Supervisory dashboards, team performance metrics, escalation management, approval workflows",
+    status: "Planning",
+    completedStoryPoints: 0,
+    totalStoryPoints: 0,
+    remainingStoryPoints: 0,
+    features: []
+  },
+  {
+    id: "ms-technology-workspace",
+    name: "Technology Workspace",
+    label: "milestone:technology_workspace",
+    description: "Platform administration, infrastructure monitoring, deployment management, system configuration",
+    status: "Planning",
+    completedStoryPoints: 0,
+    totalStoryPoints: 0,
+    remainingStoryPoints: 0,
+    features: []
+  }
+];
+
+// ═══════════════════════════════════════════════════════════════
+// PR-1561: COMPLETE INITIATIVE (Legacy 5-milestone structure)
 // ═══════════════════════════════════════════════════════════════
 export const pr1561Initiative: InitiativeData = {
   key: "PR-1561",

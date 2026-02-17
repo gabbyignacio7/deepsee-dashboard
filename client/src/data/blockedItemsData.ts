@@ -1,4 +1,4 @@
-// Blocked Items Data - Updated February 13, 2026 at 4:00 PM MT
+// Blocked Items Data - Updated February 17, 2026 at 12:00 PM MT
 // Source: JIRA Sprint Extraction - Sprint 2026-S4 (Day 1 of 14)
 
 export interface BlockedItem {

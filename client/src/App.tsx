@@ -13,9 +13,7 @@ import ProductRoadmap from "@/pages/product";
 import RoadmapPage from "@/pages/roadmap";
 import BoardView from "@/pages/board";
 import PlatformArchitecture from "@/pages/platform-architecture";
-import ArtemisArchitecture from "@/pages/artemis-architecture";
 import AgentFamilies from "@/pages/agent-families";
-import ArtemisInitiative from "@/pages/artemis-initiative";
 import FeatureDetail from "@/pages/feature-detail";
 import NotFound from "@/pages/not-found";
 
@@ -36,9 +34,9 @@ function AppRouter() {
           <Route path="/roadmap" component={RoadmapPage} />
           <Route path="/board" component={BoardView} />
           <Route path="/architecture" component={PlatformArchitecture} />
-          <Route path="/artemis" component={ArtemisArchitecture} />
+          <Route path="/artemis" component={PlatformArchitecture} />
+          <Route path="/initiative" component={PlatformArchitecture} />
           <Route path="/agents" component={AgentFamilies} />
-          <Route path="/initiative" component={ArtemisInitiative} />
           <Route path="/feature/:id" component={FeatureDetail} />
           <Route component={NotFound} />
         </Switch>

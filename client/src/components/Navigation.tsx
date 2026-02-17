@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'wouter';
-import { BarChart2, DollarSign, Settings, Map, Presentation, Layers, LogOut, Target, Bot, Calendar, type LucideIcon } from 'lucide-react';
+import { BarChart2, DollarSign, Settings, Map, Presentation, Layers, LogOut, Bot, Calendar, type LucideIcon } from 'lucide-react';
 import logoImage from '@assets/image_1762727809845.png';
 
 interface NavView {
@@ -20,7 +20,6 @@ export default function Navigation() {
     { id: 'roadmap', label: 'Timeline', icon: Calendar, path: '/roadmap' },
     { id: 'board', label: 'Board View', icon: Presentation, path: '/board' },
     { id: 'architecture', label: 'Architecture', icon: Layers, path: '/architecture' },
-    { id: 'artemis', label: 'ARTEMIS', icon: Target, path: '/artemis' },
     { id: 'agents', label: 'Agent Families', icon: Bot, path: '/agents' },
   ];
 

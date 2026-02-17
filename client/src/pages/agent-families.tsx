@@ -288,7 +288,7 @@ export default function AgentFamilies() {
         <div className="flex items-center gap-4">
           <DataFreshness />
           <div className="flex gap-2">
-            <Link href="/artemis">
+            <Link href="/architecture">
               <Button variant="outline" className="flex items-center gap-2">
                 <Layers className="w-4 h-4" />
                 Architecture

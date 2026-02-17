@@ -1,5 +1,5 @@
 // Sales Pipeline Data - Monday.com CRM
-// Last Updated: February 13, 2026 @ 3:52 PM MT
+// Last Updated: February 17, 2026 @ 12:00 PM MT
 // Source: Browser Agent Monday.com Extraction + PoV & Client Tracker
 
 export type RiskLevel = 'green' | 'yellow' | 'red';
@@ -710,7 +710,7 @@ export const dashboardAlerts = [
 // DATA LAST UPDATED
 // ═══════════════════════════════════════════════════════════════
 
-export const dataLastUpdated = "February 13, 2026, 4:00 PM MT";
+export const dataLastUpdated = "February 17, 2026, 12:00 PM MT";
 
 // ═══════════════════════════════════════════════════════════════
 // HELPER FUNCTIONS
