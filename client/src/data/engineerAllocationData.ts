@@ -640,13 +640,13 @@ export const engineerAllocationData: HardcodedEngineerData = {
         },
         {
           id: "BACK-1938",
-          title: "DeepGraph Knowledge Graph Schema",
+          title: "DeepIQ Knowledge Graph Schema",
           project: "BACK",
           status: "To Do",
           priority: "Major",
           storyPoints: 5,
           daysInStatus: 0,
-          epic: "DeepGraph",
+          epic: "DeepIQ",
           labels: "",
           jiraLink: "https://deepsee.atlassian.net/browse/BACK-1938"
         },

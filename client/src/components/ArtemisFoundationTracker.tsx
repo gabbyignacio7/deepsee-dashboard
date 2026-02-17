@@ -30,7 +30,7 @@ export const ArtemisFoundationTracker: React.FC<ArtemisFoundationTrackerProps> =
       'Platform': '#3B82F6',
       'Automation & Orchestration': '#8B5CF6',
       'Process Certainty': '#10B981',
-      'DeepGraph': '#F59E0B',
+      'DeepIQ': '#F59E0B',
       'Agentic Engine': '#EF4444',
       'Integrations': '#6366F1'
     };

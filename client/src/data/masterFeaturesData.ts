@@ -13,7 +13,7 @@ export const ARCHITECTURE_LAYERS: Record<ArchitectureLayer, { name: string; desc
   2: { name: "Automation and Orchestration", description: "Visibility, auditability, and multi-agent coordination", icon: "Cog", color: "#2c5282" },
   3: { name: "Blueprint", description: "Industry-specific use cases with 80%+ out-of-the-box readiness", icon: "FileText", color: "#2b6cb0" },
   4: { name: "Agentic Engine", description: "AI-governed agents powering client enablement with governed execution (includes all 9 PRIMER agents)", icon: "Bot", color: "#3182ce" },
-  5: { name: "DeepGraph", description: "Knowledge graph infrastructure for firm-specific intelligence", icon: "Network", color: "#4299e1" },
+  5: { name: "DeepIQ", description: "Knowledge graph infrastructure for firm-specific intelligence", icon: "Network", color: "#4299e1" },
   6: { name: "Process Certainty", description: "Test-driven trust layer delivering replayable, firm-specific production models", icon: "CheckCircle", color: "#63b3ed" },
   7: { name: "Complex Services", description: "Dynamic UI built for real outcomes with complete workflows and 3rd party integrations", icon: "Monitor", color: "#90cdf4" }
 };
@@ -80,7 +80,7 @@ export function getArchitectureLayer(feature: MasterFeature): ArchitectureLayer 
     return 4;
   }
   
-  // Layer 5: DeepGraph
+  // Layer 5: DeepIQ
   if (name.includes('graph') || 
       name.includes('deepgraph') || 
       name.includes('kag') ||
@@ -152,7 +152,7 @@ export function mapFeatureToPRD(featureName: string, architectureLayer?: Archite
     'deeppilot': 'DeepPilot PRD',
     'one view': 'One View PRD',
     'graph': 'Information Graph PRD',
-    'deepgraph': 'DeepGraph PRD',
+    'deepgraph': 'DeepIQ PRD',
     'compliance': 'Compliance & Audit PRD',
     'audit': 'Compliance & Audit PRD',
     'hitl': 'HITL PRD',
@@ -183,7 +183,7 @@ export function mapFeatureToPRD(featureName: string, architectureLayer?: Archite
       2: 'Orchestration PRD',
       3: 'AI Blueprint Template PRD',
       4: 'Agentic Engine PRD',
-      5: 'DeepGraph PRD',
+      5: 'DeepIQ PRD',
       6: 'Compliance & Audit PRD',
       7: 'UI/UX PRD'
     };
@@ -1315,7 +1315,7 @@ export const masterFeaturesData: MasterFeature[] = [
   },
   {
     id: "F-074",
-    name: "DeepGraph which captures all knowledge associated with these work items to feed insights and better response",
+    name: "DeepIQ which captures all knowledge associated with these work items to feed insights and better response",
     bucket: "Innovation",
     agentType: "Platform (All Agents)",
     category: "Platform Improvements",
@@ -1331,7 +1331,7 @@ export const masterFeaturesData: MasterFeature[] = [
   },
   {
     id: "F-075",
-    name: "DeepGraph Suggestions",
+    name: "DeepIQ Suggestions",
     bucket: "Innovation",
     agentType: "Platform (All Agents)",
     category: "Platform Improvements",

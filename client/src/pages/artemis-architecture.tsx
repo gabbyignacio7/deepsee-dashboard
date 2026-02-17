@@ -142,7 +142,7 @@ function ArchitectureDiagram({
       <div className="flex justify-center gap-3 mb-3">
         <DiagramBox layerName="Blueprint" className="rounded-lg p-3 text-center flex-1 max-w-[160px]" />
         <DiagramBox layerName="Automation & Orchestration" className="rounded-lg p-3 text-center flex-1 max-w-[200px]" />
-        <DiagramBox layerName="DeepGraph" className="rounded-lg p-3 text-center flex-1 max-w-[160px]" />
+        <DiagramBox layerName="DeepIQ" className="rounded-lg p-3 text-center flex-1 max-w-[160px]" />
       </div>
 
       {/* Core Layer - 2 boxes */}

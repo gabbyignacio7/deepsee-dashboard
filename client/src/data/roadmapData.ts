@@ -135,7 +135,7 @@ export const MILESTONES: Milestone[] = [
   },
   {
     id: "M3",
-    name: "DeepGraph Basic Context",
+    name: "DeepIQ Basic Context",
     description: "First basic context graph for relationship mapping",
     targetQuarter: "Q2-2026",
     dependencies: ["F7", "F8"],

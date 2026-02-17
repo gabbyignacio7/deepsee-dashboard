@@ -525,6 +525,133 @@ export const pr1566Data: MilestoneData = {
 };
 
 // ═══════════════════════════════════════════════════════════════
+// BACK-1942: DEEPIQ & DEEPGRAPH - CONTEXT INTELLIGENCE PLATFORM
+// ═══════════════════════════════════════════════════════════════
+export interface DeepIQTicket {
+  key: string;
+  summary: string;
+  type: 'Epic' | 'Story';
+  status: 'To Do' | 'In Progress' | 'Done';
+  priority: 'High' | 'Medium';
+  parentEpic: string;
+  businessCategory: string;
+  prdLink: string;
+}
+
+export const deepIQTickets: DeepIQTicket[] = [
+  {
+    key: "BACK-1942",
+    summary: "DeepIQ & DeepGraph: Context Intelligence Platform",
+    type: "Epic",
+    status: "To Do",
+    priority: "High",
+    parentEpic: "BACK-1942",
+    businessCategory: "DeepIQ (ARTEMIS)",
+    prdLink: "https://deepseehq-my.sharepoint.com/:w:/g/personal/ryan_mcqueen_deepsee_ai/IQBUWf7CMc1WQIqKN71_aKKsAfxR0-O8-hUJuPG5pN_egrA?e=wpRP2F"
+  },
+  {
+    key: "BACK-1943",
+    summary: "DeepGraph: Real-Time Agent Data Ingestion Pipeline",
+    type: "Story",
+    status: "To Do",
+    priority: "High",
+    parentEpic: "BACK-1942",
+    businessCategory: "DeepIQ (ARTEMIS)",
+    prdLink: "https://deepseehq-my.sharepoint.com/:w:/g/personal/ryan_mcqueen_deepsee_ai/IQBUWf7CMc1WQIqKN71_aKKsAfxR0-O8-hUJuPG5pN_egrA?e=wpRP2F"
+  },
+  {
+    key: "BACK-1944",
+    summary: "DeepGraph: Triples-Based Context Graph Data Model",
+    type: "Story",
+    status: "To Do",
+    priority: "High",
+    parentEpic: "BACK-1942",
+    businessCategory: "DeepIQ (ARTEMIS)",
+    prdLink: "https://deepseehq-my.sharepoint.com/:w:/g/personal/ryan_mcqueen_deepsee_ai/IQBUWf7CMc1WQIqKN71_aKKsAfxR0-O8-hUJuPG5pN_egrA?e=wpRP2F"
+  },
+  {
+    key: "BACK-1945",
+    summary: "DeepGraph: Graph Query Engine with Pattern Matching",
+    type: "Story",
+    status: "To Do",
+    priority: "High",
+    parentEpic: "BACK-1942",
+    businessCategory: "DeepIQ (ARTEMIS)",
+    prdLink: "https://deepseehq-my.sharepoint.com/:w:/g/personal/ryan_mcqueen_deepsee_ai/IQBUWf7CMc1WQIqKN71_aKKsAfxR0-O8-hUJuPG5pN_egrA?e=wpRP2F"
+  },
+  {
+    key: "BACK-1946",
+    summary: "DeepIQ: Proactive Insight Engine (Alerts, Anomalies, Patterns)",
+    type: "Story",
+    status: "To Do",
+    priority: "High",
+    parentEpic: "BACK-1942",
+    businessCategory: "DeepIQ (ARTEMIS)",
+    prdLink: "https://deepseehq-my.sharepoint.com/:w:/g/personal/ryan_mcqueen_deepsee_ai/IQBUWf7CMc1WQIqKN71_aKKsAfxR0-O8-hUJuPG5pN_egrA?e=wpRP2F"
+  },
+  {
+    key: "BACK-1947",
+    summary: "DeepIQ: Contextual Insight Display in Existing Interfaces",
+    type: "Story",
+    status: "To Do",
+    priority: "High",
+    parentEpic: "BACK-1942",
+    businessCategory: "DeepIQ (ARTEMIS)",
+    prdLink: "https://deepseehq-my.sharepoint.com/:w:/g/personal/ryan_mcqueen_deepsee_ai/IQBUWf7CMc1WQIqKN71_aKKsAfxR0-O8-hUJuPG5pN_egrA?e=wpRP2F"
+  },
+  {
+    key: "BACK-1948",
+    summary: "DeepIQ: Self-Service Analytics Dashboard",
+    type: "Story",
+    status: "To Do",
+    priority: "Medium",
+    parentEpic: "BACK-1942",
+    businessCategory: "DeepIQ (ARTEMIS)",
+    prdLink: "https://deepseehq-my.sharepoint.com/:w:/g/personal/ryan_mcqueen_deepsee_ai/IQBUWf7CMc1WQIqKN71_aKKsAfxR0-O8-hUJuPG5pN_egrA?e=wpRP2F"
+  },
+  {
+    key: "BACK-1949",
+    summary: "DeepIQ: Counterfactual \"What-If\" Analysis",
+    type: "Story",
+    status: "To Do",
+    priority: "Medium",
+    parentEpic: "BACK-1942",
+    businessCategory: "DeepIQ (ARTEMIS)",
+    prdLink: "https://deepseehq-my.sharepoint.com/:w:/g/personal/ryan_mcqueen_deepsee_ai/IQBUWf7CMc1WQIqKN71_aKKsAfxR0-O8-hUJuPG5pN_egrA?e=wpRP2F"
+  },
+  {
+    key: "BACK-1950",
+    summary: "DeepIQ: Complete Decision Trace Logging & Audit Trail",
+    type: "Story",
+    status: "To Do",
+    priority: "High",
+    parentEpic: "BACK-1942",
+    businessCategory: "DeepIQ (ARTEMIS)",
+    prdLink: "https://deepseehq-my.sharepoint.com/:w:/g/personal/ryan_mcqueen_deepsee_ai/IQBUWf7CMc1WQIqKN71_aKKsAfxR0-O8-hUJuPG5pN_egrA?e=wpRP2F"
+  },
+  {
+    key: "BACK-1951",
+    summary: "DeepIQ: Compliance Reporting & Regulatory Export",
+    type: "Story",
+    status: "To Do",
+    priority: "Medium",
+    parentEpic: "BACK-1942",
+    businessCategory: "DeepIQ (ARTEMIS)",
+    prdLink: "https://deepseehq-my.sharepoint.com/:w:/g/personal/ryan_mcqueen_deepsee_ai/IQBUWf7CMc1WQIqKN71_aKKsAfxR0-O8-hUJuPG5pN_egrA?e=wpRP2F"
+  },
+  {
+    key: "BACK-1952",
+    summary: "DeepIQ: Security, Scalability & Infrastructure Requirements",
+    type: "Story",
+    status: "To Do",
+    priority: "High",
+    parentEpic: "BACK-1942",
+    businessCategory: "DeepIQ (ARTEMIS)",
+    prdLink: "https://deepseehq-my.sharepoint.com/:w:/g/personal/ryan_mcqueen_deepsee_ai/IQBUWf7CMc1WQIqKN71_aKKsAfxR0-O8-hUJuPG5pN_egrA?e=wpRP2F"
+  }
+];
+
+// ═══════════════════════════════════════════════════════════════
 // PR-1561: COMPLETE INITIATIVE
 // ═══════════════════════════════════════════════════════════════
 export const pr1561Initiative: InitiativeData = {

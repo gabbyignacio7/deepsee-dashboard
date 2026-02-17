@@ -69,10 +69,10 @@ export const ARTEMIS_LAYERS: ArtemisLayer[] = [
   },
   {
     id: 'deepgraph',
-    name: 'DeepGraph',
+    name: 'DeepIQ',
     color: '#00BCD4',
     description: 'Context graph, knowledge graph, insight generation',
-    count: 2
+    count: 13
   },
   {
     id: 'platform',
@@ -119,11 +119,22 @@ export const ARTEMIS_TICKET_DATA: Record<string, { count: number; tickets: Artem
       { key: 'BACK-1652', summary: 'HMDA', status: 'IN PROGRESS', layer: 'complex-services' }
     ]
   },
-  'DeepGraph': {
-    count: 2,
+  'DeepIQ': {
+    count: 13,
     tickets: [
       { key: 'BACK-1753', summary: 'GraphRAG Knowledge Graph Integration', status: 'TO DO', layer: 'deepgraph' },
-      { key: 'BACK-1769', summary: 'GraphRAG Integration for Knowledge Graphs', status: 'TO DO', layer: 'deepgraph' }
+      { key: 'BACK-1769', summary: 'GraphRAG Integration for Knowledge Graphs', status: 'TO DO', layer: 'deepgraph' },
+      { key: 'BACK-1942', summary: 'DeepIQ & DeepGraph: Context Intelligence Platform', status: 'TO DO', layer: 'deepgraph' },
+      { key: 'BACK-1943', summary: 'DeepGraph: Real-Time Agent Data Ingestion Pipeline', status: 'TO DO', layer: 'deepgraph' },
+      { key: 'BACK-1944', summary: 'DeepGraph: Triples-Based Context Graph Data Model', status: 'TO DO', layer: 'deepgraph' },
+      { key: 'BACK-1945', summary: 'DeepGraph: Graph Query Engine with Pattern Matching', status: 'TO DO', layer: 'deepgraph' },
+      { key: 'BACK-1946', summary: 'DeepIQ: Proactive Insight Engine (Alerts, Anomalies, Patterns)', status: 'TO DO', layer: 'deepgraph' },
+      { key: 'BACK-1947', summary: 'DeepIQ: Contextual Insight Display in Existing Interfaces', status: 'TO DO', layer: 'deepgraph' },
+      { key: 'BACK-1948', summary: 'DeepIQ: Self-Service Analytics Dashboard', status: 'TO DO', layer: 'deepgraph' },
+      { key: 'BACK-1949', summary: 'DeepIQ: Counterfactual "What-If" Analysis', status: 'TO DO', layer: 'deepgraph' },
+      { key: 'BACK-1950', summary: 'DeepIQ: Complete Decision Trace Logging & Audit Trail', status: 'TO DO', layer: 'deepgraph' },
+      { key: 'BACK-1951', summary: 'DeepIQ: Compliance Reporting & Regulatory Export', status: 'TO DO', layer: 'deepgraph' },
+      { key: 'BACK-1952', summary: 'DeepIQ: Security, Scalability & Infrastructure Requirements', status: 'TO DO', layer: 'deepgraph' }
     ]
   },
   'Integrations': {

@@ -57,7 +57,7 @@ export const PRD_URLS = {
   'process-certainty': 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823913475/Automation+and+Orchestration+PRD',
   'seven-categories': 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815721476/Adjustments+to+Seven+Categories+Agent+Outcome+Configuration+Service+Fabric+Automation+Agentic+Engine+DeepGraph+and+Compliance-First+Assurance',
 
-  // DeepGraph - No dedicated PRD, link to Seven Categories which references it
+  // DeepIQ - No dedicated PRD, link to Seven Categories which references it
   deepgraph: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815721476/Adjustments+to+Seven+Categories+Agent+Outcome+Configuration+Service+Fabric+Automation+Agentic+Engine+DeepGraph+and+Compliance-First+Assurance',
   'knowledge-graph': 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815721476/Adjustments+to+Seven+Categories+Agent+Outcome+Configuration+Service+Fabric+Automation+Agentic+Engine+DeepGraph+and+Compliance-First+Assurance',
 

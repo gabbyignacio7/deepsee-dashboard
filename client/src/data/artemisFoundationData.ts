@@ -81,7 +81,7 @@ export const artemisFoundation: ArtemisEpic[] = [
     sprint: "Unassigned",
     percentComplete: 0,
     assignee: "Unassigned",
-    pillar: "DeepGraph",
+    pillar: "DeepIQ",
     jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1686"
   },
   {
@@ -91,7 +91,7 @@ export const artemisFoundation: ArtemisEpic[] = [
     sprint: "Unassigned",
     percentComplete: 0,
     assignee: "Unassigned",
-    pillar: "DeepGraph",
+    pillar: "DeepIQ",
     jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1687"
   },
   {
@@ -169,7 +169,7 @@ export const artemisReadiness: ArtemisReadiness = {
     "Platform": { total: 4, started: 0 },
     "Automation & Orchestration": { total: 3, started: 0 },
     "Process Certainty": { total: 1, started: 0 },
-    "DeepGraph": { total: 2, started: 0 },
+    "DeepIQ": { total: 13, started: 0 },
     "Agentic Engine": { total: 1, started: 0 },
     "Complex Services": { total: 0, started: 0 },
     "Blueprints": { total: 0, started: 0 },
