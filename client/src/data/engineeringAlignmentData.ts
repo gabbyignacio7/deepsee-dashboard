@@ -1,4 +1,4 @@
-// Engineering Alignment Data - Updated February 17, 2026
+// Engineering Alignment Data - Updated February 18, 2026
 // Source: Monday.com CRM + JIRA
 
 export interface EngineeringDeal {

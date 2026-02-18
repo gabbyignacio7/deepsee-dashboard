@@ -15,47 +15,47 @@ export const changeLogNov23: ChangeLogEntry = {
   date: "November 23, 2025",
   timestamp: "7:30 PM EST",
   source: "JIRA - Comprehensive extraction",
-  
+
   engineerChanges: [
-    { 
-      engineer: "Kalvin Willison", 
-      change: "Added - 3 Code Review tickets discovered" 
+    {
+      engineer: "Kalvin Willison",
+      change: "Added - 3 Code Review tickets discovered"
     },
-    { 
-      engineer: "Nadiya", 
-      change: "Reassigned ML work tickets from team member on leave" 
+    {
+      engineer: "Nadiya",
+      change: "Reassigned ML work tickets from team member on leave"
     }
   ],
-  
+
   ticketStatusChanges: [
-    { 
-      ticketId: "BACK-1117", 
-      previousStatus: "In Progress", 
-      newStatus: "Code Review", 
-      note: "Darius - 36 days in Code Review" 
+    {
+      ticketId: "BACK-1117",
+      previousStatus: "In Progress",
+      newStatus: "Code Review",
+      note: "Darius - 36 days in Code Review"
     },
-    { 
-      ticketId: "SC-302", 
-      newStatus: "Done", 
-      note: "Security sub-task completed" 
+    {
+      ticketId: "SC-302",
+      newStatus: "Done",
+      note: "Security sub-task completed"
     },
-    { 
-      ticketId: "SC-308", 
-      newStatus: "Done", 
-      note: "Security sub-task completed" 
+    {
+      ticketId: "SC-308",
+      newStatus: "Done",
+      note: "Security sub-task completed"
     },
-    { 
-      ticketId: "SC-309", 
-      newStatus: "Done", 
-      note: "Security sub-task completed" 
+    {
+      ticketId: "SC-309",
+      newStatus: "Done",
+      note: "Security sub-task completed"
     }
   ],
-  
+
   metricsComparison: {
     previous: { engineers: 6, totalStoryPoints: 5, trackedTickets: 24 },
     current: { engineers: 10, totalStoryPoints: 264, trackedTickets: 43 }
   },
-  
+
   dataUpdates: [
     "Complete JIRA extraction across all statuses (In Progress, To Do, Code Review, Blocked, Waiting)",
     "Added 4 engineers previously missing from extraction",
@@ -67,44 +67,44 @@ export const changeLogDec1: ChangeLogEntry = {
   date: "December 1, 2025",
   timestamp: "9:00 AM EST / 7:00 AM MT",
   source: "JIRA + Monday.com + Project Knowledge",
-  
+
   engineerChanges: [
-    { 
-      engineer: "Konnor Willison", 
-      change: "No longer has active JIRA tickets (was 2 tickets, 13 pts) - Chief Architect role" 
+    {
+      engineer: "Konnor Willison",
+      change: "No longer has active JIRA tickets (was 2 tickets, 13 pts) - Chief Architect role"
     }
   ],
-  
+
   ticketStatusChanges: [
-    { 
-      ticketId: "SC-304", 
-      previousStatus: "To Do", 
-      newStatus: "In Progress", 
-      note: "Jeff Hegerhorst now working on Kafka vulnerabilities" 
+    {
+      ticketId: "SC-304",
+      previousStatus: "To Do",
+      newStatus: "In Progress",
+      note: "Jeff Hegerhorst now working on Kafka vulnerabilities"
     },
-    { 
-      ticketId: "BACK-1224", 
-      note: "Still In Progress - now 66 days (was 58 days Nov 23)" 
+    {
+      ticketId: "BACK-1224",
+      note: "Still In Progress - now 66 days (was 58 days Nov 23)"
     },
-    { 
-      ticketId: "BACK-1196", 
-      note: "Still in To Do - now 82 days (was 74 days Nov 23)" 
+    {
+      ticketId: "BACK-1196",
+      note: "Still in To Do - now 82 days (was 74 days Nov 23)"
     },
-    { 
-      ticketId: "BACK-1117", 
-      note: "Still in Code Review - now 44 days (was 36 days Nov 23)" 
+    {
+      ticketId: "BACK-1117",
+      note: "Still in Code Review - now 44 days (was 36 days Nov 23)"
     },
-    { 
-      ticketId: "BACK-1382", 
-      note: "Still In Progress - now 35 days (was 27 days Nov 23)" 
+    {
+      ticketId: "BACK-1382",
+      note: "Still In Progress - now 35 days (was 27 days Nov 23)"
     }
   ],
-  
+
   metricsComparison: {
     previous: { engineers: 10, totalStoryPoints: 264, trackedTickets: 43 },
     current: { engineers: 9, totalStoryPoints: 184, trackedTickets: 135 }
   },
-  
+
   dataUpdates: [
     "Added T-shirt size to weeks lookup table (S=2, M=4, L=8, XL=12)",
     "Updated Client_Count for 'All' features to 7",
@@ -292,7 +292,69 @@ export const changeLogFeb13: ChangeLogEntry = {
   ]
 };
 
+export const changeLogFeb18: ChangeLogEntry = {
+  date: "February 18, 2026",
+  timestamp: "5:00 PM MT",
+  source: "JIRA Sprint 2026-S4 Day 5 + Monday.com CRM",
+
+  engineerChanges: [
+    {
+      engineer: "Treven Trujillo",
+      change: "BACK-1603 DTCC ($1.85M ARR) marked DONE — major win"
+    },
+    {
+      engineer: "Loris D'Acunto",
+      change: "Still 0 sprint tickets — MISSING FROM SPRINT"
+    },
+    {
+      engineer: "Karolina Toman",
+      change: "Still 0 sprint tickets — MISSING FROM SPRINT"
+    },
+    {
+      engineer: "Aleksander Winski",
+      change: "+8 backlog debt — CAPACITY CONCERN"
+    }
+  ],
+
+  ticketStatusChanges: [
+    {
+      ticketId: "BACK-1603",
+      previousStatus: "In Progress",
+      newStatus: "Done",
+      note: "DTCC Sync ($1.85M ARR) — completed Feb 18"
+    },
+    {
+      ticketId: "BACK-1489",
+      newStatus: "Canceled",
+      note: "Ubuntu upgrade CANCELED Jan 27 — removed from tracking"
+    },
+    {
+      ticketId: "BACK-1299",
+      note: "Stale 12 days In Progress — Ivan Peev"
+    }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 14, totalStoryPoints: 120, trackedTickets: 61 },
+    current: { engineers: 14, totalStoryPoints: 176, trackedTickets: 70 }
+  },
+
+  dataUpdates: [
+    "Updated sprint data: 2026-S4 (Feb 13-27) — 70 tickets, 176 pts, 13.1% complete",
+    "BACK-1603 DTCC ($1.85M ARR) marked DONE — major win",
+    "BACK-1489 Ubuntu upgrade CANCELED — removed from tracking",
+    "32 unassigned tickets (45.7%) — Mercury HITL sprint goal work unowned",
+    "ARTEMIS work mix at 29% vs 60% target — severely under",
+    "Colony Bank contract expired Jan 31 (-19 days) — no renewal deal tracked",
+    "Pipeline: $12.1M total (+7.6%), $1.854M weighted (+11.7%)",
+    "Q1 weighted pipeline down 21% ($1.18M to $929K) — deals slipping",
+    "Next sprint 2026-S5 has 30 tickets pre-assigned",
+    "Engineer capacity: Aleksander +8 backlog debt, Loris/Karolina 0 sprint tickets"
+  ]
+};
+
 export const changeLog: ChangeLogEntry[] = [
+  changeLogFeb18,
   changeLogFeb13,
   changeLogFeb9,
   changeLogFeb3,

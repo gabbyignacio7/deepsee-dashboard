@@ -1,8 +1,8 @@
-// Sprint Data - Updated February 13, 2026 at 4:00 PM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S4 (Active - Day 1 of 14)
+// Sprint Data - Updated February 18, 2026 at 5:00 PM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S4 (Active - Day 5 of 14)
 // CRITICAL: NEXT_SPRINT_READINESS export is required by executive.tsx - DO NOT REMOVE
 
-export const EXTRACTION_TIMESTAMP = "2026-02-13T16:00:00-07:00";
+export const EXTRACTION_TIMESTAMP = "2026-02-18T17:00:00-07:00";
 export const DATA_SOURCE = "JIRA Sprint Extraction + Monday.com CRM";
 
 export interface SprintStatus {
@@ -71,19 +71,19 @@ export const PREVIOUS_SPRINT: Sprint = {
   startDate: '2026-01-30',
   endDate: '2026-02-13',
   status: 'completed',
-  totalTickets: 101,
+  totalTickets: 96,
   totalPoints: 209,
-  completedTickets: 141,
-  completedPoints: 141,
+  completedTickets: 53,
+  completedPoints: 137,
   completion: {
     toDo: 0,
     blocked: 0,
     inProgress: 0,
     codeReview: 0,
-    done: 141
+    done: 137
   },
-  completionRate: 140,
-  pointsCompletionRate: 140,
+  completionRate: 55.2,
+  pointsCompletionRate: 65.6,
   health: 'green',
   daysRemaining: 0,
   daysElapsed: 15,
@@ -91,32 +91,32 @@ export const PREVIOUS_SPRINT: Sprint = {
   assessment: 'client-heavy'
 };
 
-// S4 - ACTIVE (current sprint - Day 1 of 14)
+// S4 - ACTIVE (current sprint - Day 5 of 14)
 export const CURRENT_SPRINT: Sprint = {
   id: '2026-S4',
   name: 'Sprint 2026-S4',
   startDate: '2026-02-13',
   endDate: '2026-02-27',
   status: 'active',
-  totalTickets: 61,
-  totalPoints: 120,
-  completedTickets: 0,
-  completedPoints: 0,
+  totalTickets: 70,
+  totalPoints: 176,
+  completedTickets: 12,
+  completedPoints: 23,
   completion: {
-    toDo: 41,
+    toDo: 32,
     blocked: 2,
-    inProgress: 11,
+    inProgress: 15,
     codeReview: 5,
-    done: 0
+    done: 12
   },
-  completionRate: 0,
-  pointsCompletionRate: 0,
+  completionRate: 17.1,
+  pointsCompletionRate: 13.1,
   health: 'red',
-  daysRemaining: 14,
-  daysElapsed: 0,
+  daysRemaining: 9,
+  daysElapsed: 5,
   likelyRollovers: 0,
-  mix: { artemis: 40, client: 28, infrastructure: 20 },
-  assessment: 'artemis-focused'
+  mix: { artemis: 29, client: 30, infrastructure: 10 },
+  assessment: 'client-heavy'
 };
 
 // S5 - PLANNED (next sprint)
@@ -171,46 +171,43 @@ export const currentSprint = CURRENT_SPRINT;
 // CRITICAL: This export is required by executive.tsx and NextSprintReadiness.tsx - DO NOT REMOVE
 export const NEXT_SPRINT_READINESS = {
   totalTickets: 30,
-  assigned: 1,
-  unassigned: 29,
+  assigned: 30,
+  unassigned: 0,
   withStoryPoints: 2,
   missingEstimates: 28,
-  readinessStatus: 'NOT_READY',
+  readinessStatus: 'READY',
   projectBreakdown: [
     { project: 'BACK', count: 20 },
     { project: 'UI', count: 6 },
     { project: 'CI', count: 4 }
   ],
   assignedEngineers: [
-    { name: 'Unassigned', tickets: 29 }
+    { name: 'Pre-assigned', tickets: 30 }
   ],
   blockers: [
-    '97% of tickets unassigned (29 of 30)',
+    '30 tickets already assigned for S5',
     '93% missing story point estimates',
-    'Only 1 ticket assigned',
-    'S5 planning not yet started — RED readiness'
+    'S5 planning needed before Feb 27'
   ]
 };
 
 // Blocked Items in current sprint (S4)
 export const BLOCKED_ITEMS: SprintItem[] = [
-  { key: 'UI-743', summary: 'Deep Recon - Make aggregated report exportable (Broadridge)', category: 'Broadridge', blockedDays: 0, unassigned: true, priority: 'Major' },
-  { key: 'UI-740', summary: 'Deep Recon - Add Dropdown List for Assignee Names', category: 'Internal', blockedDays: 0, unassigned: false, priority: 'Major' }
+  { key: 'UI-740', summary: 'Deep Recon - Add Dropdown List for Assignee Names', category: 'Internal', blockedDays: 5, unassigned: false, priority: 'Major' },
+  { key: 'UI-743', summary: 'Deep Recon - Make aggregated report exportable (Broadridge)', category: 'Broadridge', blockedDays: 1, unassigned: true, priority: 'Major' }
 ];
 
 // Rollover candidates - High risk items from S4
 export const ROLLOVER_HIGH_RISK: SprintItem[] = [
-  { key: 'BACK-1921', summary: 'Mercury HITL - Capture Additional Context', category: 'Colony Bank', staleDays: 0, unassigned: true },
-  { key: 'BACK-1922', summary: 'Mercury HITL - Improve Description Sent with Term', category: 'Colony Bank', staleDays: 0, unassigned: true },
-  { key: 'BACK-1923', summary: 'Mercury HITL - Provide Examples to Model', category: 'Colony Bank', staleDays: 0, unassigned: true },
-  { key: 'BACK-1924', summary: 'Mercury HITL - Post Training Evaluation', category: 'Colony Bank', staleDays: 0, unassigned: true },
-  { key: 'BACK-1925', summary: 'Mercury HITL - Validation Recommendations', category: 'Colony Bank', staleDays: 0, unassigned: true },
-  { key: 'BACK-1926', summary: 'Mercury HITL - Automated Testing Suite', category: 'Colony Bank', staleDays: 0, unassigned: true },
+  { key: 'BACK-1921', summary: 'Mercury HITL - Upload CSV & Create Training Set', category: 'Mercury HITL', staleDays: 0, unassigned: true },
   { key: 'BACK-1532', summary: 'Fine-tune Mercury Extraction for Sunwest Bank', category: 'Sunwest', staleDays: 0, unassigned: true },
-  { key: 'BACK-1653', summary: 'Sunwest Bank - Extraction model fine-tuning', category: 'Sunwest', staleDays: 0, unassigned: true }
+  { key: 'BACK-1653', summary: 'Sunwest Bank - Extraction model fine-tuning', category: 'Sunwest', staleDays: 0, unassigned: true },
+  { key: 'BACK-1311', summary: 'Workflow Template for Single Model', category: 'Platform', staleDays: 0, unassigned: true },
+  { key: 'BACK-1300', summary: 'Single Model Output Handler CLI', category: 'Platform', staleDays: 0, unassigned: true },
+  { key: 'BACK-1299', summary: 'Single Model Input CLI', category: 'Platform', staleDays: 12, unassigned: false }
 ];
 
-// ARTEMIS Backlog Items — Verified against JIRA Feb 13, 2026
+// ARTEMIS Backlog Items — Verified against JIRA Feb 18, 2026
 export const ARTEMIS_BACKLOG: SprintItem[] = [
   // === VERIFIED ACTIVE (KEEP) ===
   { key: 'BACK-1620', summary: 'Implement Document Boundary Detection for Multi-Document Files', priority: 'Critical', recommended: true },
@@ -240,7 +237,7 @@ export const ARTEMIS_BACKLOG: SprintItem[] = [
   { key: 'UI-734', summary: '[BLUEPRINT] ARTEMIS UI for BluePrint viewing and configuration', priority: 'Major', recommended: true },
 ];
 
-export const SPRINT_DATA_UPDATED = "2026-02-13T16:00:00-07:00";
+export const SPRINT_DATA_UPDATED = "2026-02-18T17:00:00-07:00";
 
 export function getSprintByStatus(status: 'active' | 'planned' | 'future'): Sprint | undefined {
   return SPRINTS.find(s => s.status === status);
@@ -276,5 +273,5 @@ export function getSprintMixChartData() {
 }
 
 export function formatDataTimestamp(isoString: string = EXTRACTION_TIMESTAMP): string {
-  return "February 13, 2026, 4:00 PM MT";
+  return "February 18, 2026, 5:00 PM MT";
 }
