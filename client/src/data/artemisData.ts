@@ -192,11 +192,23 @@ export const ARTEMIS_INITIATIVE: ArtemisEpic = {
 };
 
 export const ARTEMIS_MILESTONES: ArtemisEpic[] = [
+  // Original 5 milestones
   { key: 'PR-1562', summary: 'Infrastructure and Deployment', status: 'PLANNING', layer: 'Platform' },
   { key: 'PR-1563', summary: 'Agent Orchestration Platform', status: 'PLANNING', layer: 'Automation & Orchestration', children: 8 },
   { key: 'PR-1564', summary: 'Identity and Access Management', status: 'PLANNING', layer: 'Platform' },
   { key: 'PR-1565', summary: 'Data Ingestion and Content Understanding', status: 'PLANNING', layer: 'Agentic Engine' },
-  { key: 'PR-1566', summary: 'Observability and Governance', status: 'PLANNING', layer: 'Technology Workspace' }
+  { key: 'PR-1566', summary: 'Observability and Governance', status: 'PLANNING', layer: 'Technology Workspace' },
+  // 10 new milestones (moved from BACK to PR project by Delaney)
+  { key: 'PR-1567', summary: 'Firm-Specific Blueprints', status: 'PLANNING', layer: 'Blueprint' },
+  { key: 'PR-1568', summary: 'Analyst Workspace', status: 'PLANNING', layer: 'Analyst Workspace' },
+  { key: 'PR-1569', summary: 'Process Intelligence (DeepIQ/DeepGraph)', status: 'PLANNING', layer: 'DeepIQ' },
+  { key: 'PR-1570', summary: 'DeepSee Blueprints', status: 'PLANNING', layer: 'Blueprint' },
+  { key: 'PR-1571', summary: 'Integrations', status: 'PLANNING', layer: 'Integrations' },
+  { key: 'PR-1572', summary: 'Agentic Engine', status: 'PLANNING', layer: 'Agentic Engine' },
+  { key: 'PR-1573', summary: 'Knowledge Extraction', status: 'PLANNING', layer: 'Agentic Engine' },
+  { key: 'PR-1574', summary: 'Reasoning and Planning', status: 'PLANNING', layer: 'Automation & Orchestration' },
+  { key: 'PR-1575', summary: 'Manager Workspace', status: 'PLANNING', layer: 'Manager Workspace' },
+  { key: 'PR-1576', summary: 'Technology Workspace', status: 'PLANNING', layer: 'Technology Workspace' }
 ];
 
 export const ARTEMIS_FOUNDATION_EPICS: ArtemisEpic[] = [

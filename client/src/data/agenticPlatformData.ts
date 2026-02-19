@@ -657,6 +657,7 @@ export const deepIQTickets: DeepIQTicket[] = [
 // ═══════════════════════════════════════════════════════════════
 export interface PlatformMilestone {
   id: string;
+  jiraKey: string;
   name: string;
   label: string;
   description: string;
@@ -670,6 +671,7 @@ export interface PlatformMilestone {
 export const platformMilestones: PlatformMilestone[] = [
   {
     id: "ms-knowledge-extraction",
+    jiraKey: "PR-1573",
     name: "Knowledge Extraction",
     label: "milestone:knowledge_extraction",
     description: "Document understanding, entity extraction, content classification, Mercury extraction capabilities",
@@ -681,6 +683,7 @@ export const platformMilestones: PlatformMilestone[] = [
   },
   {
     id: "ms-reasoning-planning",
+    jiraKey: "PR-1574",
     name: "Reasoning and Planning",
     label: "milestone:reasoning_and_planning",
     description: "Agent reasoning chains, decision logic, planning capabilities, enhanced agent reasoning",
@@ -692,6 +695,7 @@ export const platformMilestones: PlatformMilestone[] = [
   },
   {
     id: "ms-agentic-engine",
+    jiraKey: "PR-1572",
     name: "Agentic Engine",
     label: "milestone:agentic_engine",
     description: "Core agent runtime, tool integration framework, agent memory, execution engine",
@@ -703,6 +707,7 @@ export const platformMilestones: PlatformMilestone[] = [
   },
   {
     id: "ms-integrations",
+    jiraKey: "PR-1571",
     name: "Integrations",
     label: "milestone:integrations",
     description: "External system connectivity, API gateways, Fabric integration, partner platform connectors",
@@ -714,6 +719,7 @@ export const platformMilestones: PlatformMilestone[] = [
   },
   {
     id: "ms-process-intelligence",
+    jiraKey: "PR-1569",
     name: "Process Intelligence (DeepIQ/DeepGraph)",
     label: "milestone:process_intelligence",
     description: "Knowledge graphs, process mining, operational analytics, DeepIQ dashboard, DeepGraph visualization",
@@ -725,6 +731,7 @@ export const platformMilestones: PlatformMilestone[] = [
   },
   {
     id: "ms-deepsee-blueprints",
+    jiraKey: "PR-1570",
     name: "DeepSee Blueprints",
     label: "milestone:deepsee_blueprints",
     description: "Pre-trained agent blueprints — Email Automation, Trade Reconciliation, Security Settlements, SSI, One View, Matching Engine, DeepPilot, Loan Operations, Process Reconciliation",
@@ -736,6 +743,7 @@ export const platformMilestones: PlatformMilestone[] = [
   },
   {
     id: "ms-firm-specific-blueprints",
+    jiraKey: "PR-1567",
     name: "Firm-Specific Blueprints",
     label: "milestone:firm_specific_blueprints",
     description: "Client-customized agent configurations — Broadridge, DTCC, JP Morgan, Colony Bank, Accenture specific implementations",
@@ -747,6 +755,7 @@ export const platformMilestones: PlatformMilestone[] = [
   },
   {
     id: "ms-analyst-workspace",
+    jiraKey: "PR-1568",
     name: "Analyst Workspace",
     label: "milestone:analyst_workspace",
     description: "Analyst-facing UI, investigation tools, exception handling workflows, human-in-the-loop interfaces",
@@ -758,6 +767,7 @@ export const platformMilestones: PlatformMilestone[] = [
   },
   {
     id: "ms-manager-workspace",
+    jiraKey: "PR-1575",
     name: "Manager Workspace",
     label: "milestone:manager_workspace",
     description: "Supervisory dashboards, team performance metrics, escalation management, approval workflows",
@@ -769,6 +779,7 @@ export const platformMilestones: PlatformMilestone[] = [
   },
   {
     id: "ms-technology-workspace",
+    jiraKey: "PR-1576",
     name: "Technology Workspace",
     label: "milestone:technology_workspace",
     description: "Platform administration, infrastructure monitoring, deployment management, system configuration",
