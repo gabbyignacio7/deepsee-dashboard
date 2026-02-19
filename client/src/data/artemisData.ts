@@ -30,14 +30,28 @@ export interface AgentFamily {
   blueprints: string[];
 }
 
-// 8 ARTEMIS Architecture Layers
+// 9 ARTEMIS Architecture Layers (3 Persona Workspaces replace Complex Services + Process Certainty)
 export const ARTEMIS_LAYERS: ArtemisLayer[] = [
   {
-    id: 'complex-services',
-    name: 'Complex Services',
+    id: 'analyst-workspace',
+    name: 'Analyst Workspace',
     color: '#4CAF50',
-    description: 'Customer-facing agents (Loan Ops, Trade Recon, SSI, Email Automation)',
-    count: 6
+    description: 'Analyst-facing UI, investigation tools, exception handling workflows, HITL interfaces',
+    count: 5
+  },
+  {
+    id: 'manager-workspace',
+    name: 'Manager Workspace',
+    color: '#E91E63',
+    description: 'Supervisory dashboards, team performance metrics, escalation management, approval workflows',
+    count: 2
+  },
+  {
+    id: 'technology-workspace',
+    name: 'Technology Workspace',
+    color: '#F44336',
+    description: 'Platform administration, infrastructure monitoring, deployment management, system configuration',
+    count: 2
   },
   {
     id: 'blueprint',
@@ -58,13 +72,6 @@ export const ARTEMIS_LAYERS: ArtemisLayer[] = [
     name: 'Agentic Engine',
     color: '#FF9800',
     description: 'Internal skill agents, tools, models (SLM, Planning, Reasoning)',
-    count: 3
-  },
-  {
-    id: 'process-certainty',
-    name: 'Process Certainty',
-    color: '#F44336',
-    description: 'HITL, Traceability, Guardrails, Reinforcement Learning',
     count: 3
   },
   {
@@ -108,15 +115,28 @@ export const ARTEMIS_TICKET_DATA: Record<string, { count: number; tickets: Artem
       { key: 'PR-1563', summary: 'Agent Orchestration Platform', status: 'PLANNING', layer: 'automation-orchestration' }
     ]
   },
-  'Complex Services': {
-    count: 6,
+  'Analyst Workspace': {
+    count: 5,
     tickets: [
-      { key: 'BACK-1717', summary: 'Email Automation', status: 'IN PROGRESS', layer: 'complex-services' },
-      { key: 'BACK-1666', summary: 'Email Processing', status: 'IN PROGRESS', layer: 'complex-services' },
-      { key: 'BACK-1631', summary: 'Colony Bank - Loan Funding', status: 'IN PROGRESS', layer: 'complex-services' },
-      { key: 'BACK-1716', summary: 'Invoice Reconciliation', status: 'TO DO', layer: 'complex-services' },
-      { key: 'BACK-1415', summary: 'SSI', status: 'IN PROGRESS', layer: 'complex-services' },
-      { key: 'BACK-1652', summary: 'HMDA', status: 'IN PROGRESS', layer: 'complex-services' }
+      { key: 'BACK-1717', summary: 'Email Automation', status: 'IN PROGRESS', layer: 'analyst-workspace' },
+      { key: 'BACK-1666', summary: 'Email Processing', status: 'IN PROGRESS', layer: 'analyst-workspace' },
+      { key: 'BACK-1631', summary: 'Colony Bank - Loan Funding', status: 'IN PROGRESS', layer: 'analyst-workspace' },
+      { key: 'BACK-1415', summary: 'SSI', status: 'IN PROGRESS', layer: 'analyst-workspace' },
+      { key: 'BACK-1652', summary: 'HMDA', status: 'IN PROGRESS', layer: 'analyst-workspace' }
+    ]
+  },
+  'Manager Workspace': {
+    count: 2,
+    tickets: [
+      { key: 'BACK-1716', summary: 'Invoice Reconciliation', status: 'TO DO', layer: 'manager-workspace' },
+      { key: 'BACK-1733', summary: 'Content Safety and Guardrails', status: 'TO DO', layer: 'manager-workspace' }
+    ]
+  },
+  'Technology Workspace': {
+    count: 2,
+    tickets: [
+      { key: 'BACK-1744', summary: 'Reinforcement Fine-Tuning Integration', status: 'TO DO', layer: 'technology-workspace' },
+      { key: 'BACK-1775', summary: 'Reinforcement Fine-Tuning for Agents', status: 'TO DO', layer: 'technology-workspace' }
     ]
   },
   'DeepIQ': {
@@ -154,14 +174,6 @@ export const ARTEMIS_TICKET_DATA: Record<string, { count: number; tickets: Artem
       { key: 'BACK-1703', summary: 'Platform Health Dashboard', status: 'TO DO', layer: 'platform' }
     ]
   },
-  'Process Certainty': {
-    count: 3,
-    tickets: [
-      { key: 'BACK-1733', summary: 'Content Safety and Guardrails', status: 'TO DO', layer: 'process-certainty' },
-      { key: 'BACK-1744', summary: 'Reinforcement Fine-Tuning Integration', status: 'TO DO', layer: 'process-certainty' },
-      { key: 'BACK-1775', summary: 'Reinforcement Fine-Tuning for Agents', status: 'TO DO', layer: 'process-certainty' }
-    ]
-  },
   'Blueprint': {
     count: 0,
     tickets: []
@@ -184,7 +196,7 @@ export const ARTEMIS_MILESTONES: ArtemisEpic[] = [
   { key: 'PR-1563', summary: 'Agent Orchestration Platform', status: 'PLANNING', layer: 'Automation & Orchestration', children: 8 },
   { key: 'PR-1564', summary: 'Identity and Access Management', status: 'PLANNING', layer: 'Platform' },
   { key: 'PR-1565', summary: 'Data Ingestion and Content Understanding', status: 'PLANNING', layer: 'Agentic Engine' },
-  { key: 'PR-1566', summary: 'Observability and Governance', status: 'PLANNING', layer: 'Process Certainty' }
+  { key: 'PR-1566', summary: 'Observability and Governance', status: 'PLANNING', layer: 'Technology Workspace' }
 ];
 
 export const ARTEMIS_FOUNDATION_EPICS: ArtemisEpic[] = [

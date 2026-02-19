@@ -71,7 +71,7 @@ export const artemisFoundation: ArtemisEpic[] = [
     sprint: "Unassigned",
     percentComplete: 0,
     assignee: "Unassigned",
-    pillar: "Process Certainty",
+    pillar: "Technology Workspace",
     jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1685"
   },
   {
@@ -168,10 +168,11 @@ export const artemisReadiness: ArtemisReadiness = {
   pillarCoverage: {
     "Platform": { total: 4, started: 0 },
     "Automation & Orchestration": { total: 3, started: 0 },
-    "Process Certainty": { total: 1, started: 0 },
     "DeepIQ": { total: 13, started: 0 },
     "Agentic Engine": { total: 1, started: 0 },
-    "Complex Services": { total: 0, started: 0 },
+    "Analyst Workspace": { total: 0, started: 0 },
+    "Manager Workspace": { total: 0, started: 0 },
+    "Technology Workspace": { total: 1, started: 0 },
     "Blueprints": { total: 0, started: 0 },
     "Integrations": { total: 0, started: 0 }
   }

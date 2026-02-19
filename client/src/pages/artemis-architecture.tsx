@@ -25,11 +25,12 @@ import {
 } from "@/data/artemisData";
 
 const LAYER_ICONS: Record<string, JSX.Element> = {
-  'complex-services': <Bot className="w-4 h-4" />,
+  'analyst-workspace': <Users className="w-4 h-4" />,
+  'manager-workspace': <Shield className="w-4 h-4" />,
+  'technology-workspace': <Cog className="w-4 h-4" />,
   'blueprint': <Layers className="w-4 h-4" />,
   'automation-orchestration': <Network className="w-4 h-4" />,
-  'agentic-engine': <Cog className="w-4 h-4" />,
-  'process-certainty': <Shield className="w-4 h-4" />,
+  'agentic-engine': <Bot className="w-4 h-4" />,
   'deepgraph': <Database className="w-4 h-4" />,
   'platform': <Server className="w-4 h-4" />,
   'integrations': <Plug className="w-4 h-4" />
@@ -126,9 +127,11 @@ function ArchitectureDiagram({
         <p className="text-xs text-white/60">Click any layer to view tickets</p>
       </div>
 
-      {/* Complex Services - Top Layer */}
-      <div className="flex justify-center mb-3">
-        <DiagramBox layerName="Complex Services" fullWidth className="rounded-lg p-4 text-center max-w-[500px]" />
+      {/* Persona Workspaces - Top Layer (3 workspaces) */}
+      <div className="flex justify-center gap-3 mb-3">
+        <DiagramBox layerName="Analyst Workspace" className="rounded-lg p-3 text-center flex-1 max-w-[170px]" />
+        <DiagramBox layerName="Manager Workspace" className="rounded-lg p-3 text-center flex-1 max-w-[170px]" />
+        <DiagramBox layerName="Technology Workspace" className="rounded-lg p-3 text-center flex-1 max-w-[170px]" />
       </div>
 
       {/* Capability Row */}
@@ -145,10 +148,9 @@ function ArchitectureDiagram({
         <DiagramBox layerName="DeepIQ" className="rounded-lg p-3 text-center flex-1 max-w-[160px]" />
       </div>
 
-      {/* Core Layer - 2 boxes */}
-      <div className="flex justify-center gap-3 mb-3">
-        <DiagramBox layerName="Agentic Engine" className="rounded-lg p-3 text-center flex-1 max-w-[200px]" />
-        <DiagramBox layerName="Process Certainty" className="rounded-lg p-3 text-center flex-1 max-w-[200px]" />
+      {/* Core Layer */}
+      <div className="flex justify-center mb-3">
+        <DiagramBox layerName="Agentic Engine" fullWidth className="rounded-lg p-3 text-center max-w-[500px]" />
       </div>
 
       {/* Platform Layer */}
@@ -335,7 +337,7 @@ export default function ArtemisArchitecture() {
               ARTEMIS Architecture
             </h1>
             <p className="text-muted-foreground">
-              {totalTickets} tickets categorized across 8 architecture layers | Business Category Mapping
+              {totalTickets} tickets categorized across 9 architecture layers | Business Category Mapping
             </p>
           </div>
           <div className="flex items-center gap-4">
@@ -375,7 +377,7 @@ export default function ArtemisArchitecture() {
             </CardHeader>
             <CardContent>
               <div className="text-4xl font-bold text-green-600">
-                {ARTEMIS_LAYERS.filter(l => l.count > 0).length}/8
+                {ARTEMIS_LAYERS.filter(l => l.count > 0).length}/9
               </div>
               <p className="text-xs text-muted-foreground mt-1">Layers with assigned tickets</p>
             </CardContent>
@@ -386,8 +388,8 @@ export default function ArtemisArchitecture() {
               <CardTitle className="text-sm font-medium text-muted-foreground">Most Active Layer</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-xl font-bold text-blue-600">Complex Services</div>
-              <p className="text-xs text-muted-foreground mt-1">6 tickets (23% of total)</p>
+              <div className="text-xl font-bold text-blue-600">Analyst Workspace</div>
+              <p className="text-xs text-muted-foreground mt-1">5 tickets — largest persona workspace</p>
             </CardContent>
           </Card>
         </div>

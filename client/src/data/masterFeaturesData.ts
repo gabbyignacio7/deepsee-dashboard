@@ -6,7 +6,7 @@
 export type Bucket = 'Make' | "Don't Lose" | 'Innovation';
 export type Quarter = 'NOW' | 'NEXT' | 'LATER';
 export type PrdStatus = 'Complete' | 'In Progress' | 'Not Started';
-export type ArchitectureLayer = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+export type ArchitectureLayer = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 export const ARCHITECTURE_LAYERS: Record<ArchitectureLayer, { name: string; description: string; icon: string; color: string }> = {
   1: { name: "Platform", description: "Communication, storage, and processing infrastructure for ARTEMIS", icon: "Link", color: "#1a365d" },
@@ -14,8 +14,10 @@ export const ARCHITECTURE_LAYERS: Record<ArchitectureLayer, { name: string; desc
   3: { name: "Blueprint", description: "Industry-specific use cases with 80%+ out-of-the-box readiness", icon: "FileText", color: "#2b6cb0" },
   4: { name: "Agentic Engine", description: "AI-governed agents powering client enablement with governed execution (includes all 9 PRIMER agents)", icon: "Bot", color: "#3182ce" },
   5: { name: "DeepIQ", description: "Knowledge graph infrastructure for firm-specific intelligence", icon: "Network", color: "#4299e1" },
-  6: { name: "Process Certainty", description: "Test-driven trust layer delivering replayable, firm-specific production models", icon: "CheckCircle", color: "#63b3ed" },
-  7: { name: "Complex Services", description: "Dynamic UI built for real outcomes with complete workflows and 3rd party integrations", icon: "Monitor", color: "#90cdf4" }
+  6: { name: "Analyst Workspace", description: "Analyst-facing UI, investigation tools, exception handling workflows, HITL interfaces", icon: "Users", color: "#48bb78" },
+  7: { name: "Manager Workspace", description: "Supervisory dashboards, team performance metrics, escalation management, approval workflows", icon: "Shield", color: "#ed64a6" },
+  8: { name: "Technology Workspace", description: "Platform administration, infrastructure monitoring, deployment management, system configuration", icon: "Monitor", color: "#fc8181" },
+  9: { name: "Integrations", description: "MCP servers, data sources, 3rd party agents", icon: "Plug", color: "#90cdf4" }
 };
 
 export function getArchitectureLayer(feature: MasterFeature): ArchitectureLayer {
@@ -89,36 +91,43 @@ export function getArchitectureLayer(feature: MasterFeature): ArchitectureLayer 
     return 5;
   }
   
-  // Layer 6: Process Certainty
-  if (name.includes('compliance') || 
-      name.includes('audit') || 
-      name.includes('hitl') ||
+  // Layer 6: Analyst Workspace (investigation, exception handling, HITL, analyst-facing UI)
+  if (name.includes('hitl') ||
       name.includes('human-in-the-loop') ||
-      name.includes('testing suite') ||
       name.includes('exception prediction') ||
+      name.includes('exception') ||
+      name.includes('investigation') ||
       name.includes('retention prediction') ||
-      name.includes('model review') ||
-      name.includes('certainty') ||
-      name.includes('validation') ||
-      (name.includes('security') && name.includes('vulnerability'))) {
+      name.includes('double-click') ||
+      (name.includes('ui') && !name.includes('dashboard') && !name.includes('admin')) ||
+      (name.includes('ux') && !name.includes('dashboard'))) {
     return 6;
   }
-  
-  // Layer 7: Complex Services
-  if (name.includes('ui') || 
-      name.includes('ux') || 
+
+  // Layer 7: Manager Workspace (dashboards, compliance, audit, supervisory)
+  if (name.includes('compliance') ||
+      name.includes('audit') ||
       name.includes('dashboard') ||
+      name.includes('model review') ||
+      name.includes('certainty') ||
+      name.includes('testing suite') ||
       name.includes('copilot') ||
       name.includes('opsconsole') ||
+      agentType.includes('analytics')) {
+    return 7;
+  }
+
+  // Layer 8: Technology Workspace (platform admin, infrastructure, deployment, system config)
+  if (name.includes('validation') ||
+      (name.includes('security') && name.includes('vulnerability')) ||
       name.includes('3rd party') ||
       name.includes('third party') ||
       (name.includes('outlook') && name.includes('integration')) ||
       name.includes('agentic card') ||
-      name.includes('double-click') ||
-      agentType.includes('analytics')) {
-    return 7;
+      name.includes('admin')) {
+    return 8;
   }
-  
+
   // Default: Return 4 (Agentic Engine) as catch-all
   return 4;
 }
@@ -184,8 +193,10 @@ export function mapFeatureToPRD(featureName: string, architectureLayer?: Archite
       3: 'AI Blueprint Template PRD',
       4: 'Agentic Engine PRD',
       5: 'DeepIQ PRD',
-      6: 'Compliance & Audit PRD',
-      7: 'UI/UX PRD'
+      6: 'Analyst Workspace PRD',
+      7: 'Manager Workspace PRD',
+      8: 'Technology Workspace PRD',
+      9: 'Integration PRD'
     };
     return LAYER_DEFAULT_PRDS[architectureLayer];
   }

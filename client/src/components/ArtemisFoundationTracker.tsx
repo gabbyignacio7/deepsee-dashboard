@@ -29,7 +29,9 @@ export const ArtemisFoundationTracker: React.FC<ArtemisFoundationTrackerProps> =
     const colors: Record<string, string> = {
       'Platform': '#3B82F6',
       'Automation & Orchestration': '#8B5CF6',
-      'Process Certainty': '#10B981',
+      'Analyst Workspace': '#4CAF50',
+      'Manager Workspace': '#E91E63',
+      'Technology Workspace': '#F44336',
       'DeepIQ': '#F59E0B',
       'Agentic Engine': '#EF4444',
       'Integrations': '#6366F1'

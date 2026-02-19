@@ -31,7 +31,7 @@ export const PRD_URLS = {
   // BluePrint (Agent Configuration)
   blueprint: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824306710/Blue+Print+PRD',
 
-  // Complex Services / Agent Families
+  // Analyst Workspace / Agent Families
   'email-automation': 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815852545/Email+Automation+Workflow+for+Enhanced+Triage+and+Management+in+Shared+Inboxes',
   email: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815852545/Email+Automation+Workflow+for+Enhanced+Triage+and+Management+in+Shared+Inboxes',
   'epa-resolution': 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2825879553/DeepSee+AI+s+EPA+Automated+Resolution+Enhancing+Email+Workflow+Automation+for+Capital+Markets',
@@ -53,15 +53,15 @@ export const PRD_URLS = {
   parser: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815524865/Document+Classifier+and+Parser+PRD+Automating+Document+Processing+for+Colony+Bank+and+Broadridge',
   'document-classifier-loan': 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815590401/Document+Classifier+and+Parser+Intelligent+Processing+for+Loan+and+SEC+Filings',
 
-  // Process Certainty / Compliance
-  'process-certainty': 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823913475/Automation+and+Orchestration+PRD',
+  // Technology Workspace / Compliance
+  'technology-workspace': 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2823913475/Automation+and+Orchestration+PRD',
   'seven-categories': 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815721476/Adjustments+to+Seven+Categories+Agent+Outcome+Configuration+Service+Fabric+Automation+Agentic+Engine+DeepGraph+and+Compliance-First+Assurance',
 
   // DeepIQ - No dedicated PRD, link to Seven Categories which references it
   deepgraph: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815721476/Adjustments+to+Seven+Categories+Agent+Outcome+Configuration+Service+Fabric+Automation+Agentic+Engine+DeepGraph+and+Compliance-First+Assurance',
   'knowledge-graph': 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2815721476/Adjustments+to+Seven+Categories+Agent+Outcome+Configuration+Service+Fabric+Automation+Agentic+Engine+DeepGraph+and+Compliance-First+Assurance',
 
-  // Complex Services - Link to Blueprint PRD (no standalone PRDs for these)
+  // Persona Workspaces - Link to Blueprint PRD (no standalone PRDs for these)
   ssi: 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824306710/Blue+Print+PRD',
   'invoice-reconciliation': 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824306710/Blue+Print+PRD',
   'trade-matching': 'https://deepsee.atlassian.net/wiki/spaces/PROD/pages/2824306710/Blue+Print+PRD',
