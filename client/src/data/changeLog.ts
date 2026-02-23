@@ -390,6 +390,7 @@ export const changeLogFeb18: ChangeLogEntry = {
 };
 
 export const changeLog: ChangeLogEntry[] = [
+  changeLogFeb22,
   changeLogFeb18,
   changeLogFeb13,
   changeLogFeb9,
