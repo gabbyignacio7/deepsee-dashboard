@@ -87,7 +87,7 @@ export const healthRecommendations = [
   }
 ];
 
-// Baseline comparison from Feb 13 to Feb 18
+// Baseline comparison from Feb 18 to Feb 22
 export const baselineComparison = {
   baselineDate: "February 18, 2026",
   currentDate: "February 22, 2026",

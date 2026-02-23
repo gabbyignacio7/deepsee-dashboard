@@ -50,7 +50,7 @@ export const clientBreakdown: ClientWorkBreakdown[] = [
   { client: "CTC/BBVA/Mercury", s2Tickets: 11, s2Points: 29, arrAtRisk: 878000, status: "BACK-1938 IP, BACK-1921 IP, Mercury HITL tickets unassigned" },
   { client: "Colony Bank", s2Tickets: 3, s2Points: 16, arrAtRisk: 59000, status: "Contract EXPIRED Jan 31 (-23 days). BACK-1965 Done, BACK-1918 CR (stale 9d), BACK-1970 CR." },
   { client: "Broadridge/Accenture", s2Tickets: 2, s2Points: 2, arrAtRisk: 1000000, status: "UI-743 now To Do (was Blocked)" },
-  { client: "DTCC", s2Tickets: 2, s2Points: 5, arrAtRisk: 1850000, status: "BACK-1603 DONE Feb 18 — $1.85M close imminent" },
+  { client: "DTCC", s2Tickets: 2, s2Points: 5, arrAtRisk: 1850000, status: "BACK-1603 DONE Feb 22 — $1.85M close imminent" },
   { client: "Sunwest", s2Tickets: 2, s2Points: 5, arrAtRisk: 0, status: "BACK-1532/1653 Mercury extraction fine-tuning. Both unassigned." },
   { client: "Accenture", s2Tickets: 1, s2Points: 0, arrAtRisk: 225000, status: "BACK-1928 blank fields bug, To Do, unassigned" }
 ];

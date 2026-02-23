@@ -100,7 +100,7 @@ export interface MondaySalesPipelineData {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// FEBRUARY 18, 2026 PIPELINE DATA
+// FEBRUARY 22, 2026 PIPELINE DATA
 // ═══════════════════════════════════════════════════════════════
 
 export const mondaySalesPipelineData: MondaySalesPipelineData = {
@@ -115,10 +115,10 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     closingQ1_2026: 929500,
     closingThisMonth: 2190000,
     existingCustomerArr: 990200,
-    // Comparison to Feb 18
+    // Comparison to Feb 22
     previousPipeline: 12100000,
     previousWeighted: 1854250,
-    previousDate: "2026-02-18",
+    previousDate: "2026-02-22",
     previousDeals: 91,
     pipelineChange: 1476000,
     pipelineChangePercent: 12.2,
@@ -420,7 +420,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     { family: "SSIs", arr: 313000 }
   ],
 
-  // Updated from Monday.com PoV & Client Tracker - February 18, 2026
+  // Updated from Monday.com PoV & Client Tracker - February 22, 2026
   existingCustomers: [
     { client: "DTCC - SSI", arr: 416200, tcv3yr: 1162200, status: "Active", primary: "Joe Graziano" },
     { client: "Accenture", arr: 225000, tcv3yr: 725000, status: "Active", primary: "Dominic Stanyer" },
@@ -441,14 +441,14 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     {
       client: "Colony Bank",
       dealArr: 59000,
-      need: "Contract EXPIRED -19 days. No renewal deal tracked. Immediate outreach.",
+      need: "Contract EXPIRED -23 days. No renewal deal tracked. Immediate outreach.",
       priority: "P0",
       jiraEpic: "BACK-1965"
     },
     {
       client: "DTCC - ELA",
       dealArr: 1850000,
-      need: "BACK-1603 DONE Feb 18 — engineering complete, push to close",
+      need: "BACK-1603 DONE Feb 22 — engineering complete, push to close",
       priority: "P0",
       jiraEpic: "BACK-1603"
     },
@@ -483,8 +483,8 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
   ],
 
   engineeringAlignment: [
-    { priority: "P0", client: "DTCC - ELA", arr: 1850000, jiraTicket: "BACK-1603", status: "DONE Feb 18 — engineering complete, push to close", stage: "Contracting & Close 80%", daysInPipeline: 470 },
-    { priority: "P0", client: "Colony Bank", arr: 59000, jiraTicket: "BACK-1965/1918/1862", status: "Contract EXPIRED -19 days. No renewal deal tracked.", stage: "Won - At Risk", daysInPipeline: 0 },
+    { priority: "P0", client: "DTCC - ELA", arr: 1850000, jiraTicket: "BACK-1603", status: "DONE Feb 22 — engineering complete, push to close", stage: "Contracting & Close 80%", daysInPipeline: 470 },
+    { priority: "P0", client: "Colony Bank", arr: 59000, jiraTicket: "BACK-1965/1918/1862", status: "Contract EXPIRED -23 days. No renewal deal tracked.", stage: "Won - At Risk", daysInPipeline: 0 },
     { priority: "P0", client: "Broadridge", arr: 1000000, jiraTicket: "UI-743", status: "UI-743 blocked unassigned, UI-755 Done", stage: "Biz Case 30%", daysInPipeline: 358 },
     { priority: "P0", client: "CTC/BBVA", arr: 878000, jiraTicket: "BACK-1938", status: "IP, Mercury HITL sprint goal unowned", stage: "Solution Fit/Biz Case", daysInPipeline: 0 },
     { priority: "P1", client: "BetaNxt", arr: 340000, jiraTicket: "Active", status: "Close Feb 20, 514 days in pipeline", stage: "Commercial Alignment 60%", daysInPipeline: 514 },
