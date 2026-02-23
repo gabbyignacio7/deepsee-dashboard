@@ -11,6 +11,42 @@ export interface ChangeLogEntry {
   dataUpdates: string[];
 }
 
+export const changeLogFeb22: ChangeLogEntry = {
+  date: "February 22, 2026",
+  timestamp: "7:30 PM MT",
+  source: "JIRA API + Monday.com GraphQL API - Automated extraction",
+
+  engineerChanges: [
+    { engineer: "Owen Riley", change: "HIGHEST LOAD: 11 sprint tickets, 19 pts, 9 Done -- major velocity" },
+    { engineer: "Konnor Willison", change: "Now assigned BACK-1862 Colony Bank (8pts IP)" },
+    { engineer: "Aleksander Winski", change: "CAPACITY CONCERN: backlog debt +8, 2 WFA tickets" },
+    { engineer: "Darius Ouderkirk", change: "CAPACITY CONCERN: only 1 sprint ticket, backlog debt +7" }
+  ],
+
+  ticketStatusChanges: [
+    { ticketId: "UI-743", previousStatus: "Blocked", newStatus: "To Do", note: "No longer blocked -- Broadridge dependency resolved" },
+    { ticketId: "BACK-1603", previousStatus: "In Progress", newStatus: "Done", note: "DTCC Sync DONE -- $1.85M deal unblocked" },
+    { ticketId: "BACK-1965", previousStatus: "In Progress", newStatus: "Done", note: "Colony auto processing logic complete" },
+    { ticketId: "BACK-1860", newStatus: "Canceled", note: "Mercury GPT5.2 model update canceled" }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 14, totalStoryPoints: 176, trackedTickets: 70 },
+    current: { engineers: 14, totalStoryPoints: 197, trackedTickets: 82 }
+  },
+
+  dataUpdates: [
+    "Full JIRA API extraction via automated Python scripts (tools/jira_extract.py)",
+    "Full Monday.com GraphQL API extraction (tools/monday_extract.py) -- 103 accounts, $13.576M pipeline",
+    "Orphan ticket reconciliation -- 2 orphans detected (GPT-5, UI-761), 1 status change (UI-743)",
+    "Sprint S4 expanded: 70 -> 82 tickets, 176 -> 197 story points",
+    "17 tickets completed (30 story points) vs 12 completed on Feb 18",
+    "UI-743 no longer blocked, 1 sprint blocked item remaining (UI-740)",
+    "Pipeline grew $1.476M (12.2%) from $12.1M to $13.576M",
+    "Weighted pipeline UP 85% ($1.854M to $3.431M) -- DTCC now fully weighted at 80%"
+  ]
+};
+
 export const changeLogNov23: ChangeLogEntry = {
   date: "November 23, 2025",
   timestamp: "7:30 PM EST",

@@ -9,16 +9,42 @@ export interface OrphanTicket {
 }
 
 export const orphanTicketsData: OrphanTicket[] = [
-  // Populated by reconciliation script output
-  // Run: python3 tools/reconcile.py
+  // Populated by reconciliation script - February 22, 2026
+  {
+    key: "GPT-5",
+    summary: "Referenced in dashboard but does not exist in JIRA",
+    lastKnownStatus: "Unknown",
+    lastKnownAssignee: "Unknown",
+    orphanType: "deleted",
+    flaggedDate: "2026-02-22",
+    recommendation: "Remove from dashboard"
+  },
+  {
+    key: "UI-761",
+    summary: "Referenced in dashboard but not found in JIRA",
+    lastKnownStatus: "Unknown",
+    lastKnownAssignee: "Unknown",
+    orphanType: "deleted",
+    flaggedDate: "2026-02-22",
+    recommendation: "Remove from dashboard"
+  },
+  {
+    key: "UI-743",
+    summary: "Deep Recon - Make aggregated report exportable (Broadridge)",
+    lastKnownStatus: "Blocked",
+    lastKnownAssignee: "Unassigned",
+    orphanType: "status_changed",
+    flaggedDate: "2026-02-22",
+    recommendation: "Update status: Blocked -> To Do"
+  }
 ];
 
 export const orphanSummary = {
   lastReconciliation: "February 22, 2026",
-  totalOrphans: 0,
-  deleted: 0,
+  totalOrphans: 3,
+  deleted: 2,
   completed: 0,
-  statusChanged: 0,
+  statusChanged: 1,
   reassigned: 0,
 };
 

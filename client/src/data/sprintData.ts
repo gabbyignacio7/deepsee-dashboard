@@ -1,8 +1,8 @@
-// Sprint Data - Updated February 18, 2026 at 5:00 PM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S4 (Active - Day 5 of 14)
+// Sprint Data - Updated February 22, 2026 at 7:30 PM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S4 (Active - Day 9 of 14)
 // CRITICAL: NEXT_SPRINT_READINESS export is required by executive.tsx - DO NOT REMOVE
 
-export const EXTRACTION_TIMESTAMP = "2026-02-18T17:00:00-07:00";
+export const EXTRACTION_TIMESTAMP = "2026-02-22T19:30:00-07:00";
 export const DATA_SOURCE = "JIRA Sprint Extraction + Monday.com CRM";
 
 export interface SprintStatus {
@@ -91,31 +91,31 @@ export const PREVIOUS_SPRINT: Sprint = {
   assessment: 'client-heavy'
 };
 
-// S4 - ACTIVE (current sprint - Day 5 of 14)
+// S4 - ACTIVE (current sprint - Day 9 of 14)
 export const CURRENT_SPRINT: Sprint = {
   id: '2026-S4',
   name: 'Sprint 2026-S4',
   startDate: '2026-02-13',
   endDate: '2026-02-27',
   status: 'active',
-  totalTickets: 70,
-  totalPoints: 176,
-  completedTickets: 12,
-  completedPoints: 23,
+  totalTickets: 82,
+  totalPoints: 197,
+  completedTickets: 17,
+  completedPoints: 30,
   completion: {
-    toDo: 32,
-    blocked: 2,
-    inProgress: 15,
-    codeReview: 5,
-    done: 12
+    toDo: 28,
+    blocked: 1,
+    inProgress: 20,
+    codeReview: 8,
+    done: 17
   },
-  completionRate: 17.1,
-  pointsCompletionRate: 13.1,
+  completionRate: 20.7,
+  pointsCompletionRate: 15.2,
   health: 'red',
-  daysRemaining: 9,
-  daysElapsed: 5,
+  daysRemaining: 5,
+  daysElapsed: 9,
   likelyRollovers: 0,
-  mix: { artemis: 29, client: 30, infrastructure: 10 },
+  mix: { artemis: 13, client: 17, infrastructure: 6 },
   assessment: 'client-heavy'
 };
 
@@ -193,8 +193,7 @@ export const NEXT_SPRINT_READINESS = {
 
 // Blocked Items in current sprint (S4)
 export const BLOCKED_ITEMS: SprintItem[] = [
-  { key: 'UI-740', summary: 'Deep Recon - Add Dropdown List for Assignee Names', category: 'Internal', blockedDays: 5, unassigned: false, priority: 'Major' },
-  { key: 'UI-743', summary: 'Deep Recon - Make aggregated report exportable (Broadridge)', category: 'Broadridge', blockedDays: 1, unassigned: true, priority: 'Major' }
+  { key: 'UI-740', summary: 'Deep Recon - Add Dropdown List for Assignee Names', category: 'Internal', blockedDays: 9, unassigned: false, priority: 'Major' }
 ];
 
 // Rollover candidates - High risk items from S4
@@ -204,10 +203,10 @@ export const ROLLOVER_HIGH_RISK: SprintItem[] = [
   { key: 'BACK-1653', summary: 'Sunwest Bank - Extraction model fine-tuning', category: 'Sunwest', staleDays: 0, unassigned: true },
   { key: 'BACK-1311', summary: 'Workflow Template for Single Model', category: 'Platform', staleDays: 0, unassigned: true },
   { key: 'BACK-1300', summary: 'Single Model Output Handler CLI', category: 'Platform', staleDays: 0, unassigned: true },
-  { key: 'BACK-1299', summary: 'Single Model Input CLI', category: 'Platform', staleDays: 12, unassigned: false }
+  { key: 'BACK-1299', summary: 'Single Model Input CLI', category: 'Platform', staleDays: 16, unassigned: false }
 ];
 
-// ARTEMIS Backlog Items — Verified against JIRA Feb 18, 2026
+// ARTEMIS Backlog Items -- Verified against JIRA Feb 22, 2026
 export const ARTEMIS_BACKLOG: SprintItem[] = [
   // === VERIFIED ACTIVE (KEEP) ===
   { key: 'BACK-1620', summary: 'Implement Document Boundary Detection for Multi-Document Files', priority: 'Critical', recommended: true },
@@ -237,7 +236,7 @@ export const ARTEMIS_BACKLOG: SprintItem[] = [
   { key: 'UI-734', summary: '[BLUEPRINT] ARTEMIS UI for BluePrint viewing and configuration', priority: 'Major', recommended: true },
 ];
 
-export const SPRINT_DATA_UPDATED = "2026-02-18T17:00:00-07:00";
+export const SPRINT_DATA_UPDATED = "2026-02-22T19:30:00-07:00";
 
 export function getSprintByStatus(status: 'active' | 'planned' | 'future'): Sprint | undefined {
   return SPRINTS.find(s => s.status === status);
@@ -273,5 +272,5 @@ export function getSprintMixChartData() {
 }
 
 export function formatDataTimestamp(isoString: string = EXTRACTION_TIMESTAMP): string {
-  return "February 18, 2026, 5:00 PM MT";
+  return "February 22, 2026, 7:30 PM MT";
 }

@@ -1,5 +1,5 @@
-// Blocked Items Data - Updated February 18, 2026 at 5:00 PM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S4 (Day 5 of 14)
+// Blocked Items Data - Updated February 22, 2026 at 7:30 PM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S4 (Day 9 of 14)
 
 export interface BlockedItem {
   key: string;
@@ -12,27 +12,17 @@ export interface BlockedItem {
   reason?: string;
 }
 
-// Current Sprint Blocked Items - 2 in S4
+// Current Sprint Blocked Items - 1 in S4 (UI-743 moved to To Do)
 export const sprintBlockedItems: BlockedItem[] = [
   {
     key: "UI-740",
     summary: "Deep Recon - Add Dropdown List for Assignee Names",
     assignee: "Matthew Snow",
-    daysBlocked: 5,
+    daysBlocked: 9,
     category: "internal",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/UI-740",
-    reason: "Blocked 5 days — internal dependency"
-  },
-  {
-    key: "UI-743",
-    summary: "Deep Recon - Make aggregated report exportable (Broadridge)",
-    assignee: "Unassigned",
-    daysBlocked: 1,
-    category: "client",
-    priority: "P1",
-    jiraUrl: "https://deepsee.atlassian.net/browse/UI-743",
-    reason: "Blocked AND unassigned — Broadridge client dependency"
+    reason: "Blocked 9 days -- internal dependency"
   }
 ];
 
@@ -42,11 +32,11 @@ export const blockedItems: BlockedItem[] = [
     key: "UI-740",
     summary: "Deep Recon - Add Dropdown List for Assignee Names",
     assignee: "Matthew Snow",
-    daysBlocked: 5,
+    daysBlocked: 9,
     category: "internal",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/UI-740",
-    reason: "Blocked 5 days — internal dependency"
+    reason: "Blocked 9 days -- internal dependency"
   },
   {
     key: "UI-743",
@@ -62,22 +52,27 @@ export const blockedItems: BlockedItem[] = [
 
 // Stale In Progress items (no updates in 10+ days)
 export const staleInProgressItems = [
-  { key: "BACK-1299", summary: "Single Model Input CLI", assignee: "Ivan Peev", points: 0, lastUpdated: "2026-02-06", daysSinceUpdate: 12, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1299" }
+  { key: "BACK-1299", summary: "Single Model Input CLI", assignee: "Ivan Peev", points: 0, lastUpdated: "2026-02-06", daysSinceUpdate: 16, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1299" },
+  { key: "BACK-1795", summary: "Add AccountName2 to DTCC Output", assignee: "Aleksander Winski", points: 2, lastUpdated: "2026-02-13", daysSinceUpdate: 9, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1795" },
+  { key: "BACK-1911", summary: "Complete artemis-platform Project Setup", assignee: "Lane Terry", points: 5, lastUpdated: "2026-02-13", daysSinceUpdate: 9, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1911" },
+  { key: "BACK-1297", summary: "Single Model Workflow", assignee: "Ivan Peev", points: 8, lastUpdated: "2026-02-13", daysSinceUpdate: 9, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1297" },
+  { key: "BACK-1810", summary: "Pentest - SSL Cipher for WPEngine", assignee: "Brandon Baguley", points: 2, lastUpdated: "2026-02-13", daysSinceUpdate: 9, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1810" },
+  { key: "CI-935", summary: "CNPG Backup cleanup", assignee: "Jeff Hegerhorst", points: 3, lastUpdated: "2026-02-13", daysSinceUpdate: 9, jiraUrl: "https://deepsee.atlassian.net/browse/CI-935" },
+  { key: "BACK-1862", summary: "Colony Bank RV loans evaluation", assignee: "Konnor Willison", points: 8, lastUpdated: "2026-02-13", daysSinceUpdate: 9, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1862" }
 ];
 
 // Stale Code Review items (>3 days)
 export const staleCodeReviewItems = [
-  { key: "BACK-1918", summary: "[Colony] GAP Coverage Provider", assignee: "Kannal Mutharasu", points: 5, daysInReview: 5, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1918" },
-  { key: "BACK-1805", summary: "DeepPilot Client & Message Update", assignee: "Ivan Peev", points: 3, daysInReview: 5, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1805" },
-  { key: "BACK-1792", summary: "JAVA Unit Test Markdowns", assignee: "Brandon Baguley", points: 1, daysInReview: 5, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1792" }
+  { key: "BACK-1918", summary: "[Colony] GAP Coverage Provider", assignee: "Kannal Mutharasu", points: 5, daysInReview: 9, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1918" },
+  { key: "BACK-1792", summary: "JAVA Unit Test Markdowns", assignee: "Brandon Baguley", points: 1, daysInReview: 9, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1792" }
 ];
 
 export const blockedSummary = {
-  total: 2,
-  sprintBlocked: 2,
-  backlogBlocked: 15,
+  total: 20,
+  sprintBlocked: 1,
+  backlogBlocked: 19,
   p0Count: 0,
-  p1Count: 1,
+  p1Count: 0,
   p2Count: 1,
   avgDaysBlocked: 3,
   oldestBlocked: "UI-740 (5 days)",

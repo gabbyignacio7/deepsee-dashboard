@@ -1,6 +1,6 @@
 // Sales Pipeline Data - Monday.com CRM
-// Last Updated: February 18, 2026 @ 5:00 PM MT
-// Source: Browser Agent Monday.com Extraction + PoV & Client Tracker
+// Last Updated: February 22, 2026 @ 7:30 PM MT
+// Source: Monday.com GraphQL API Extraction + PoV & Client Tracker
 
 export type RiskLevel = 'green' | 'yellow' | 'red';
 export type Priority = 'P0' | 'P1' | 'P2' | 'P3';
@@ -105,35 +105,35 @@ export interface MondaySalesPipelineData {
 
 export const mondaySalesPipelineData: MondaySalesPipelineData = {
   overview: {
-    asOf: "2026-02-18T17:00:00-07:00",
-    totalPipeline: 12100000,
-    weightedPipeline: 1854250,
-    activeDeals: 91,
-    activeAccounts: 91,
+    asOf: "2026-02-22T19:30:00-07:00",
+    totalPipeline: 13576000,
+    weightedPipeline: 3430800,
+    activeDeals: 103,
+    activeAccounts: 103,
     totalAccounts: 103,
     avgOpportunityAge: 163,
     closingQ1_2026: 929500,
     closingThisMonth: 2190000,
     existingCustomerArr: 990200,
-    // Comparison to Feb 13
-    previousPipeline: 11250000,
-    previousWeighted: 1660000,
-    previousDate: "2026-02-13",
-    previousDeals: 89,
-    pipelineChange: 850000,
-    pipelineChangePercent: 7.6,
-    weightedChange: 194250,
-    weightedChangePercent: 11.7,
-    dealChange: 2
+    // Comparison to Feb 18
+    previousPipeline: 12100000,
+    previousWeighted: 1854250,
+    previousDate: "2026-02-18",
+    previousDeals: 91,
+    pipelineChange: 1476000,
+    pipelineChangePercent: 12.2,
+    weightedChange: 1576550,
+    weightedChangePercent: 85.0,
+    dealChange: 12
   },
 
   stageDistribution: [
-    { stage: "Qualified Lead/Discovery", probability: 5, count: 12, totalArr: 12100000, weightedArr: 148000, convRate: 75.5 },
-    { stage: "Problem Validation & Value Framing", probability: 10, count: 10, totalArr: 9140000, weightedArr: 348900, convRate: 61.8 },
-    { stage: "Solution Fit/Technical Validation", probability: 25, count: 8, totalArr: 5650000, weightedArr: 385750, convRate: 72.7 },
-    { stage: "Business Case & Champion Commit", probability: 35, count: 5, totalArr: 4110000, weightedArr: 767600, convRate: 53.3 },
-    { stage: "Commercial Alignment", probability: 60, count: 2, totalArr: 2190000, weightedArr: 204000, convRate: 84.5 },
-    { stage: "Contracting & Close", probability: 80, count: 1, totalArr: 1850000, weightedArr: 0, note: "DTCC-ELA only — BACK-1603 DONE, close imminent" }
+    { stage: "Qualified Lead/Discovery", probability: 5, count: 49, totalArr: 3635000, weightedArr: 181750, convRate: 75.5 },
+    { stage: "Problem Validation & Value Framing", probability: 10, count: 22, totalArr: 3764000, weightedArr: 376400, convRate: 61.8 },
+    { stage: "Solution Fit/Technical Validation", probability: 25, count: 11, totalArr: 2068000, weightedArr: 517000, convRate: 72.7 },
+    { stage: "Business Case & Champion Commit", probability: 35, count: 4, totalArr: 1919000, weightedArr: 671650, convRate: 53.3 },
+    { stage: "Commercial Alignment", probability: 60, count: 1, totalArr: 340000, weightedArr: 204000, convRate: 84.5 },
+    { stage: "Contracting & Close", probability: 80, count: 1, totalArr: 1850000, weightedArr: 1480000, note: "DTCC-ELA only -- BACK-1603 DONE, close imminent" }
   ],
 
   topDeals: [
@@ -357,7 +357,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
       client: "Colony Bank",
       arr: 59000,
       daysOverdue: 19,
-      issue: "Contract EXPIRED Jan 31 (-19 days). No renewal deal tracked.",
+      issue: "Contract EXPIRED Jan 31 (-23 days). No renewal deal tracked.",
       priority: "P0",
       status: "URGENT: Immediate outreach needed"
     },
@@ -406,10 +406,10 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
   },
 
   bySegment: [
-    { segment: "Capital Markets", count: 60, arr: 8500000, percent: 70 },
-    { segment: "Fin Market Infrastructure", count: 10, arr: 2500000, percent: 21 },
-    { segment: "Banking", count: 20, arr: 600000, percent: 5 },
-    { segment: "Insurance", count: 4, arr: 0, percent: 0 }
+    { segment: "Capital Markets", count: 61, arr: 9442000, percent: 70 },
+    { segment: "Fin Market Infrastructure", count: 11, arr: 3440000, percent: 25 },
+    { segment: "Banking", count: 23, arr: 694000, percent: 5 },
+    { segment: "Insurance", count: 5, arr: 0, percent: 0 }
   ],
 
   byAgentFamily: [
@@ -434,7 +434,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     totalARR: 990200,
     customersWithARR: 6,
     customersWithoutARR: 0,
-    dataQualityIssue: "Colony Bank contract expired (-19 days). 55+ accounts missing ARR. 25+ missing close date."
+    dataQualityIssue: "Colony Bank contract expired (-23 days). 55+ accounts missing ARR. 25+ missing close date."
   },
 
   engineeringNeeds: [
@@ -513,12 +513,12 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
   },
 
   dataQualityNotes: [
-    'DTCC-ELA $1.85M — BACK-1603 DONE, push to close',
-    'Colony Bank contract EXPIRED Jan 31 (-19 days) — no renewal deal tracked',
-    'Q1 weighted pipeline DOWN 21% ($1.18M to $929K)',
-    'Sprint S4 Day 5 — 32 unassigned (45.7%), 13.1% complete',
-    'Mercury HITL sprint goal tickets unowned — CTC/BBVA at risk',
-    'ARTEMIS at 29% vs 60% target — severely under-allocated',
+    'DTCC-ELA $1.85M -- BACK-1603 DONE, push to close (9 days past close date)',
+    'Colony Bank contract EXPIRED Jan 31 (-23 days) -- no renewal deal tracked',
+    'BetaNxt $340K close date EXPIRED Feb 20 -- 2 days past',
+    'Sprint S4 Day 9 -- 27 unassigned (32.9%), 20.7% complete',
+    'ARTEMIS at 13.4% vs 60% target -- severely under-allocated',
+    'Pipeline grew $1.476M (12.2%) from $12.1M to $13.576M',
     '55+ accounts missing ARR, 25+ missing close date, 40+ missing agent family',
     '5+ stale accounts (365+ days) should be archived'
   ]
@@ -670,10 +670,10 @@ export const arrByAgentFamily = [
 // ═══════════════════════════════════════════════════════════════
 
 export const segmentBreakdown = [
-  { segment: 'Capital Markets', deals: 60, rawARR: 8500000, percent: 70 },
-  { segment: 'Fin Market Infrastructure', deals: 10, rawARR: 2500000, percent: 21 },
-  { segment: 'Banking', deals: 20, rawARR: 600000, percent: 5 },
-  { segment: 'Insurance', deals: 4, rawARR: 0, percent: 0 }
+  { segment: 'Capital Markets', deals: 61, rawARR: 9442000, percent: 70 },
+  { segment: 'Fin Market Infrastructure', deals: 11, rawARR: 3440000, percent: 25 },
+  { segment: 'Banking', deals: 23, rawARR: 694000, percent: 5 },
+  { segment: 'Insurance', deals: 5, rawARR: 0, percent: 0 }
 ];
 
 // ═══════════════════════════════════════════════════════════════
@@ -682,25 +682,27 @@ export const segmentBreakdown = [
 
 export const dashboardAlerts = [
   // CRITICAL
-  { type: 'critical', category: 'sales', title: 'DTCC $1.85M: Engineering Complete', description: 'BACK-1603 DONE Feb 18. Push to close immediately. 470+ days in pipeline.' },
-  { type: 'critical', category: 'sales', title: 'Colony Bank Contract EXPIRED (-19 days)', description: 'Renewal contract expired Jan 31. No renewal deal tracked. Immediate outreach needed.' },
-  { type: 'critical', category: 'engineering', title: '32 Unassigned Sprint Tickets (45.7%)', description: 'Mercury HITL / Sunwest sprint goals at risk. Sprint assignment needed.' },
-  { type: 'critical', category: 'sales', title: 'Q1 Weighted Pipeline DOWN 21%', description: '$1.18M to $929K. Deals slipping. Review with Steve.' },
+  { type: 'critical', category: 'sales', title: 'DTCC $1.85M: Engineering Complete', description: 'BACK-1603 DONE. Push to close immediately. 9 days past close date.' },
+  { type: 'critical', category: 'sales', title: 'Colony Bank Contract EXPIRED (-23 days)', description: 'Renewal contract expired Jan 31. No renewal deal tracked. Immediate outreach needed.' },
+  { type: 'critical', category: 'engineering', title: '27 Unassigned Sprint Tickets (32.9%)', description: 'Mercury HITL / Sunwest sprint goals at risk. Improved from 45.7% but still high.' },
+  { type: 'critical', category: 'sales', title: 'BetaNxt $340K Close Date EXPIRED', description: 'Close date was Feb 20. 390 days in pipeline at Commercial Alignment. Follow up urgently.' },
 
   // HIGH
-  { type: 'high', category: 'engineering', title: 'ARTEMIS at 29% vs 60% Target', description: 'Severely under-allocated. Sprint scope adjustment needed.' },
-  { type: 'high', category: 'engineering', title: 'Sprint Behind Pace', description: '13.1% complete vs 35.7% expected at Day 5. Need 2.4x acceleration.' },
+  { type: 'high', category: 'engineering', title: 'ARTEMIS at 13.4% vs 60% Target', description: 'Worsened from 29%. Severely under-allocated. Sprint scope adjustment urgently needed.' },
+  { type: 'high', category: 'engineering', title: 'Sprint Behind Pace', description: '15.2% complete vs 64.3% expected at Day 9. Need 3.1x acceleration with 5 days left.' },
+  { type: 'high', category: 'engineering', title: '9 Stale Items', description: '7 stale In Progress (>5 days), 2 stale Code Review (9 days). BACK-1299 stale 16 days.' },
 
   // POSITIVE
-  { type: 'positive', category: 'engineering', title: 'BACK-1603 DTCC ($1.85M) DONE', description: 'Major win — engineering dependency cleared for largest deal in pipeline.' },
-  { type: 'positive', category: 'engineering', title: 'S5 Has 30 Tickets Pre-Assigned', description: 'Next sprint readiness improved. Planning still needed before Feb 27.' }
+  { type: 'positive', category: 'engineering', title: 'BACK-1603 DTCC ($1.85M) DONE', description: 'Major win -- engineering dependency cleared for largest deal in pipeline.' },
+  { type: 'positive', category: 'engineering', title: 'Owen Riley: 9 Tickets Done', description: 'Major velocity -- 11 sprint tickets, 9 already complete. Leading sprint execution.' },
+  { type: 'positive', category: 'sales', title: 'Pipeline Grew 12.2%', description: '$12.1M to $13.576M. Weighted pipeline up 85% to $3.43M.' }
 ];
 
 // ═══════════════════════════════════════════════════════════════
 // DATA LAST UPDATED
 // ═══════════════════════════════════════════════════════════════
 
-export const dataLastUpdated = "February 18, 2026, 5:00 PM MT";
+export const dataLastUpdated = "February 22, 2026, 7:30 PM MT";
 
 // ═══════════════════════════════════════════════════════════════
 // HELPER FUNCTIONS
