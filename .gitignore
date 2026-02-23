@@ -13,3 +13,7 @@ downloads
 
 # Local exploration scripts
 scripts/explore-sprints.sh
+
+# API extraction tools
+tools/.env
+tools/output/

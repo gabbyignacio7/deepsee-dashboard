@@ -16,6 +16,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { AlertTriangle, Users, LayoutDashboard, CalendarDays, Layers } from 'lucide-react';
 import { platformMilestones, type PlatformMilestone } from '@/data/agenticPlatformData';
+import TicketReconciliation from '@/components/TicketReconciliation';
 
 export default function EngineeringDashboard() {
   const { features, jiraTickets, loading, error, allFeatures, selectedClients, setSelectedClients } = useDashboard();
@@ -176,6 +177,9 @@ export default function EngineeringDashboard() {
               })}
             </div>
           </div>
+
+          {/* Ticket Reconciliation (Orphan Detection) */}
+          <TicketReconciliation />
         </TabsContent>
 
         <TabsContent value="capacity" className="space-y-6">
