@@ -1,5 +1,5 @@
 // Sales Pipeline Data - Monday.com CRM
-// Last Updated: February 22, 2026 @ 7:30 PM MT
+// Last Updated: February 25, 2026 @ 8:28 AM MT
 // Source: Monday.com GraphQL API Extraction + PoV & Client Tracker
 
 export type RiskLevel = 'green' | 'yellow' | 'red';
@@ -100,17 +100,17 @@ export interface MondaySalesPipelineData {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// FEBRUARY 22, 2026 PIPELINE DATA
+// FEBRUARY 25, 2026 PIPELINE DATA
 // ═══════════════════════════════════════════════════════════════
 
 export const mondaySalesPipelineData: MondaySalesPipelineData = {
   overview: {
-    asOf: "2026-02-22T19:30:00-07:00",
-    totalPipeline: 13576000,
-    weightedPipeline: 3430800,
-    activeDeals: 103,
-    activeAccounts: 103,
-    totalAccounts: 103,
+    asOf: "2026-02-25T08:28:00-07:00",
+    totalPipeline: 13672000,
+    weightedPipeline: 3454800,
+    activeDeals: 107,
+    activeAccounts: 107,
+    totalAccounts: 107,
     avgOpportunityAge: 163,
     closingQ1_2026: 929500,
     closingThisMonth: 2190000,
@@ -357,7 +357,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
       client: "Colony Bank",
       arr: 59000,
       daysOverdue: 19,
-      issue: "Contract EXPIRED Jan 31 (-23 days). No renewal deal tracked.",
+      issue: "Contract EXPIRED Jan 31 (-25 days). No renewal deal tracked.",
       priority: "P0",
       status: "URGENT: Immediate outreach needed"
     },
@@ -420,7 +420,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     { family: "SSIs", arr: 313000 }
   ],
 
-  // Updated from Monday.com PoV & Client Tracker - February 22, 2026
+  // Updated from Monday.com PoV & Client Tracker - February 25, 2026
   existingCustomers: [
     { client: "DTCC - SSI", arr: 416200, tcv3yr: 1162200, status: "Active", primary: "Joe Graziano" },
     { client: "Accenture", arr: 225000, tcv3yr: 725000, status: "Active", primary: "Dominic Stanyer" },
@@ -434,14 +434,14 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     totalARR: 990200,
     customersWithARR: 6,
     customersWithoutARR: 0,
-    dataQualityIssue: "Colony Bank contract expired (-23 days). 55+ accounts missing ARR. 25+ missing close date."
+    dataQualityIssue: "Colony Bank contract expired (-25 days). 55+ accounts missing ARR. 25+ missing close date."
   },
 
   engineeringNeeds: [
     {
       client: "Colony Bank",
       dealArr: 59000,
-      need: "Contract EXPIRED -23 days. No renewal deal tracked. Immediate outreach.",
+      need: "Contract EXPIRED -25 days. No renewal deal tracked. Immediate outreach.",
       priority: "P0",
       jiraEpic: "BACK-1965"
     },
@@ -484,7 +484,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
 
   engineeringAlignment: [
     { priority: "P0", client: "DTCC - ELA", arr: 1850000, jiraTicket: "BACK-1603", status: "DONE Feb 22 — engineering complete, push to close", stage: "Contracting & Close 80%", daysInPipeline: 470 },
-    { priority: "P0", client: "Colony Bank", arr: 59000, jiraTicket: "BACK-1965/1918/1862", status: "Contract EXPIRED -23 days. No renewal deal tracked.", stage: "Won - At Risk", daysInPipeline: 0 },
+    { priority: "P0", client: "Colony Bank", arr: 59000, jiraTicket: "BACK-1965/1918/1862", status: "Contract EXPIRED -25 days. No renewal deal tracked.", stage: "Won - At Risk", daysInPipeline: 0 },
     { priority: "P0", client: "Broadridge", arr: 1000000, jiraTicket: "UI-743", status: "UI-743 blocked unassigned, UI-755 Done", stage: "Biz Case 30%", daysInPipeline: 358 },
     { priority: "P0", client: "CTC/BBVA", arr: 878000, jiraTicket: "BACK-1938", status: "IP, Mercury HITL sprint goal unowned", stage: "Solution Fit/Biz Case", daysInPipeline: 0 },
     { priority: "P1", client: "BetaNxt", arr: 340000, jiraTicket: "Active", status: "Close Feb 20, 514 days in pipeline", stage: "Commercial Alignment 60%", daysInPipeline: 514 },
@@ -514,10 +514,10 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
 
   dataQualityNotes: [
     'DTCC-ELA $1.85M -- BACK-1603 DONE, push to close (9 days past close date)',
-    'Colony Bank contract EXPIRED Jan 31 (-23 days) -- no renewal deal tracked',
+    'Colony Bank contract EXPIRED Jan 31 (-25 days) -- no renewal deal tracked',
     'BetaNxt $340K close date EXPIRED Feb 20 -- 2 days past',
-    'Sprint S4 Day 9 -- 27 unassigned (32.9%), 20.7% complete',
-    'ARTEMIS at 13.4% vs 60% target -- severely under-allocated',
+    'Sprint S4 Day 9 -- 23 unassigned (23.2%), 38.4% complete',
+    'ARTEMIS at 10.1% vs 60% target -- severely under-allocated',
     'Pipeline grew $1.476M (12.2%) from $12.1M to $13.576M',
     '55+ accounts missing ARR, 25+ missing close date, 40+ missing agent family',
     '5+ stale accounts (365+ days) should be archived'
@@ -683,7 +683,7 @@ export const segmentBreakdown = [
 export const dashboardAlerts = [
   // CRITICAL
   { type: 'critical', category: 'sales', title: 'DTCC $1.85M: Engineering Complete', description: 'BACK-1603 DONE. Push to close immediately. 9 days past close date.' },
-  { type: 'critical', category: 'sales', title: 'Colony Bank Contract EXPIRED (-23 days)', description: 'Renewal contract expired Jan 31. No renewal deal tracked. Immediate outreach needed.' },
+  { type: 'critical', category: 'sales', title: 'Colony Bank Contract EXPIRED (-25 days)', description: 'Renewal contract expired Jan 31. No renewal deal tracked. Immediate outreach needed.' },
   { type: 'critical', category: 'engineering', title: '27 Unassigned Sprint Tickets (32.9%)', description: 'Mercury HITL / Sunwest sprint goals at risk. Improved from 45.7% but still high.' },
   { type: 'critical', category: 'sales', title: 'BetaNxt $340K Close Date EXPIRED', description: 'Close date was Feb 20. 390 days in pipeline at Commercial Alignment. Follow up urgently.' },
 
@@ -702,7 +702,7 @@ export const dashboardAlerts = [
 // DATA LAST UPDATED
 // ═══════════════════════════════════════════════════════════════
 
-export const dataLastUpdated = "February 22, 2026, 7:30 PM MT";
+export const dataLastUpdated = "February 25, 2026, 8:28 AM MT";
 
 // ═══════════════════════════════════════════════════════════════
 // HELPER FUNCTIONS

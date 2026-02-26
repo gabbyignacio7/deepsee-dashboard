@@ -7,7 +7,7 @@ interface DataFreshnessProps {
 }
 
 export const DataFreshness: React.FC<DataFreshnessProps> = ({ className = '', compact = false }) => {
-  const formattedDate = "February 22, 2026, 7:30 PM MT";
+  const formattedDate = "February 25, 2026, 8:28 AM MT";
   const dataSource = "JIRA Sprint Extraction + Monday.com CRM";
 
   if (compact) {

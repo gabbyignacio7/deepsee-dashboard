@@ -389,7 +389,46 @@ export const changeLogFeb18: ChangeLogEntry = {
   ]
 };
 
+export const changeLogFeb25: ChangeLogEntry = {
+  date: "February 25, 2026",
+  timestamp: "8:28 AM MT",
+  source: "JIRA API + Monday.com GraphQL API - Automated extraction",
+
+  engineerChanges: [
+    { engineer: "Owen Riley", change: "HIGHEST LOAD: 14 sprint tickets, 25 pts, 12 Done -- major velocity" },
+    { engineer: "Ivan Peev", change: "11 tickets, 25 pts — 4 IP, 4 CR, 3 Done" },
+    { engineer: "Kannal Mutharasu", change: "6 tickets, 20 pts — 1 IP, 5 Done" },
+    { engineer: "Matthew Snow", change: "UI-740 blocked resolved, 2 IP, 3 Done" }
+  ],
+
+  ticketStatusChanges: [
+    { ticketId: "BACK-1918", previousStatus: "Code Review", newStatus: "Done", note: "Colony GAP Coverage -- stale CR cleared" },
+    { ticketId: "BACK-1792", previousStatus: "Code Review", newStatus: "Done", note: "JAVA Unit Test Markdowns -- stale CR cleared" },
+    { ticketId: "BACK-1805", previousStatus: "Code Review", newStatus: "Done", note: "Stale CR cleared" },
+    { ticketId: "UI-740", previousStatus: "Blocked", newStatus: "In Progress", note: "No longer blocked -- internal dependency resolved" }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 14, totalStoryPoints: 197, trackedTickets: 82 },
+    current: { engineers: 14, totalStoryPoints: 226, trackedTickets: 99 }
+  },
+
+  dataUpdates: [
+    "Full JIRA API extraction via automated Python scripts (tools/jira_extract.py)",
+    "Full Monday.com GraphQL API extraction (tools/monday_extract.py) -- 107 accounts, $13.672M pipeline",
+    "Orphan ticket reconciliation -- 2 orphans (GPT-5, UI-761), 6 status changes",
+    "Sprint S4 expanded: 82 -> 99 tickets, 197 -> 226 story points (Day 12 of 14)",
+    "38 tickets completed (81 story points) vs 17 completed on Feb 22",
+    "Stale CR cleared: BACK-1918, BACK-1792, BACK-1805 all Done",
+    "0 sprint blocked items (was 1), 4 stale IP remaining",
+    "Pipeline: $13.672M total, $3.455M weighted, 107 active deals",
+    "Colony Bank contract expired -25 days -- no renewal deal tracked",
+    "ARTEMIS work mix at 10.1% vs 60% target -- worsened from 13.4%"
+  ]
+};
+
 export const changeLog: ChangeLogEntry[] = [
+  changeLogFeb25,
   changeLogFeb22,
   changeLogFeb18,
   changeLogFeb13,

@@ -1,8 +1,8 @@
-// Sprint Data - Updated February 22, 2026 at 7:30 PM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S4 (Active - Day 9 of 14)
+// Sprint Data - Updated February 25, 2026 at 8:28 AM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S4 (Active - Day 12 of 14)
 // CRITICAL: NEXT_SPRINT_READINESS export is required by executive.tsx - DO NOT REMOVE
 
-export const EXTRACTION_TIMESTAMP = "2026-02-22T19:30:00-07:00";
+export const EXTRACTION_TIMESTAMP = "2026-02-25T08:28:00-07:00";
 export const DATA_SOURCE = "JIRA Sprint Extraction + Monday.com CRM";
 
 export interface SprintStatus {
@@ -91,31 +91,31 @@ export const PREVIOUS_SPRINT: Sprint = {
   assessment: 'client-heavy'
 };
 
-// S4 - ACTIVE (current sprint - Day 9 of 14)
+// S4 - ACTIVE (current sprint - Day 12 of 14)
 export const CURRENT_SPRINT: Sprint = {
   id: '2026-S4',
   name: 'Sprint 2026-S4',
   startDate: '2026-02-13',
   endDate: '2026-02-27',
   status: 'active',
-  totalTickets: 82,
-  totalPoints: 197,
-  completedTickets: 17,
-  completedPoints: 30,
+  totalTickets: 99,
+  totalPoints: 226,
+  completedTickets: 38,
+  completedPoints: 81,
   completion: {
-    toDo: 28,
-    blocked: 1,
-    inProgress: 20,
-    codeReview: 8,
-    done: 17
+    toDo: 22,
+    blocked: 0,
+    inProgress: 19,
+    codeReview: 6,
+    done: 38
   },
-  completionRate: 20.7,
-  pointsCompletionRate: 15.2,
+  completionRate: 38.4,
+  pointsCompletionRate: 35.8,
   health: 'red',
-  daysRemaining: 5,
-  daysElapsed: 9,
+  daysRemaining: 2,
+  daysElapsed: 12,
   likelyRollovers: 0,
-  mix: { artemis: 13, client: 17, infrastructure: 6 },
+  mix: { artemis: 10, client: 19, infrastructure: 5 },
   assessment: 'client-heavy'
 };
 
@@ -193,7 +193,7 @@ export const NEXT_SPRINT_READINESS = {
 
 // Blocked Items in current sprint (S4)
 export const BLOCKED_ITEMS: SprintItem[] = [
-  { key: 'UI-740', summary: 'Deep Recon - Add Dropdown List for Assignee Names', category: 'Internal', blockedDays: 9, unassigned: false, priority: 'Major' }
+  // 0 sprint blocked items as of Feb 25 extraction (UI-740 still in backlog blocked)
 ];
 
 // Rollover candidates - High risk items from S4
@@ -236,7 +236,7 @@ export const ARTEMIS_BACKLOG: SprintItem[] = [
   { key: 'UI-734', summary: '[BLUEPRINT] ARTEMIS UI for BluePrint viewing and configuration', priority: 'Major', recommended: true },
 ];
 
-export const SPRINT_DATA_UPDATED = "2026-02-22T19:30:00-07:00";
+export const SPRINT_DATA_UPDATED = "2026-02-25T08:28:00-07:00";
 
 export function getSprintByStatus(status: 'active' | 'planned' | 'future'): Sprint | undefined {
   return SPRINTS.find(s => s.status === status);
@@ -272,5 +272,5 @@ export function getSprintMixChartData() {
 }
 
 export function formatDataTimestamp(isoString: string = EXTRACTION_TIMESTAMP): string {
-  return "February 22, 2026, 7:30 PM MT";
+  return "February 25, 2026, 8:28 AM MT";
 }
