@@ -1,5 +1,5 @@
-// Work Mix Data - Updated February 25, 2026
-// Source: JIRA Extract - Sprint 2026-S4 (Day 12 of 14)
+// Work Mix Data - Updated February 27, 2026
+// Source: JIRA Extract - Sprint 2026-S4 (Day 14 of 14)
 
 export interface WorkCategory {
   category: string;
@@ -21,8 +21,8 @@ export const workMix: WorkCategory[] = [
   },
   {
     category: "Client Work",
-    s2Tickets: 19,
-    s2Percentage: 19,
+    s2Tickets: 21,
+    s2Percentage: 20,
     target: "30-35%",
     status: "below",
     color: "#F59E0B" // amber
@@ -45,10 +45,10 @@ export interface ClientWorkBreakdown {
   status?: string;
 }
 
-// Client work breakdown - Updated February 25, 2026
+// Client work breakdown - Updated February 27, 2026
 export const clientBreakdown: ClientWorkBreakdown[] = [
   { client: "CTC/BBVA/Mercury", s2Tickets: 11, s2Points: 29, arrAtRisk: 878000, status: "BACK-1938 IP, BACK-1921 IP, Mercury HITL tickets unassigned" },
-  { client: "Colony Bank", s2Tickets: 3, s2Points: 16, arrAtRisk: 59000, status: "Contract EXPIRED Jan 31 (-25 days). BACK-1965 Done, BACK-1918 CR (stale 9d), BACK-1970 CR." },
+  { client: "Colony Bank", s2Tickets: 3, s2Points: 16, arrAtRisk: 59000, status: "Contract EXPIRED Jan 31 (-27 days). BACK-1965 Done, BACK-1918 CR (stale 9d), BACK-1970 CR." },
   { client: "Broadridge/Accenture", s2Tickets: 2, s2Points: 2, arrAtRisk: 1000000, status: "UI-743 now To Do (was Blocked)" },
   { client: "DTCC", s2Tickets: 2, s2Points: 5, arrAtRisk: 1850000, status: "BACK-1603 DONE Feb 22 — $1.85M close imminent" },
   { client: "Sunwest", s2Tickets: 2, s2Points: 5, arrAtRisk: 0, status: "BACK-1532/1653 Mercury extraction fine-tuning. Both unassigned." },
@@ -56,17 +56,17 @@ export const clientBreakdown: ClientWorkBreakdown[] = [
 ];
 
 export const workMixSummary = {
-  totalTickets: 99,
-  totalPoints: 226,
+  totalTickets: 103,
+  totalPoints: 252,
   artemisPercentage: 10,
   artemisTarget: 60,
-  clientPercentage: 19,
+  clientPercentage: 20,
   clientTarget: 30,
   infrastructurePercentage: 5,
   infrastructureTarget: 10,
   gap: {
     artemis: -50, // 10 - 60 (SEVERELY UNDER)
-    client: -11 // 19 - 30 (UNDER)
+    client: -10 // 20 - 30 (UNDER)
   }
 };
 

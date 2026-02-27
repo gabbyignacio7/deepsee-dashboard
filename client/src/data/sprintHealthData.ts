@@ -1,5 +1,5 @@
-// Sprint Health Data - Updated February 25, 2026 at 8:28 AM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S4 Day 12 (Active)
+// Sprint Health Data - Updated February 27, 2026 at 9:38 AM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S4 Day 14 (Active)
 
 export interface HealthMetric {
   metric: string;
@@ -10,13 +10,13 @@ export interface HealthMetric {
 }
 
 export const sprintHealth: HealthMetric[] = [
-  { metric: "Sprint Progress", s2Value: "35.8% (Day 12)", target: "85.7% expected", status: "red", detail: "35.8% complete vs 85.7% expected at Day 12. Sprint ending in 2 days." },
+  { metric: "Sprint Progress", s2Value: "49.6% (Day 14)", target: "100% expected", status: "red", detail: "49.6% complete vs 100% expected. Sprint ends today (Day 14 of 14)." },
   { metric: "Blocked Items", s2Value: 0, target: "GREEN 0-2", status: "green", detail: "0 sprint blocked items. UI-740 still in backlog blocked." },
-  { metric: "Code Review Queue", s2Value: "6 items (0 stale)", target: "GREEN <5", status: "yellow", detail: "6 items in CR, 0 stale. BACK-1918/1792/1805 now Done." },
-  { metric: "Unassigned Tickets", s2Value: "23 of 99", target: "GREEN <5, RED >15", status: "red", detail: "23.2% of sprint unassigned -- improved from 32.9%" },
-  { metric: "Work Mix (ARTEMIS %)", s2Value: "10.1%", target: "60%", status: "red", detail: "ARTEMIS at 10.1% vs 60% target -- severely under-allocated" },
-  { metric: "Engineer Capacity", s2Value: "~12.9 avg", target: "GREEN 12-18", status: "green", detail: "2 engineers missing (Loris, Karolina). 12.9 avg pts/engineer. Owen 25pts, Ivan 25pts highest." },
-  { metric: "Stale Items", s2Value: "4 items", target: "GREEN 0", status: "red", detail: "4 stale In Progress (>5 days), 0 stale CR" },
+  { metric: "Code Review Queue", s2Value: "8 items (0 stale)", target: "GREEN <5", status: "yellow", detail: "8 items in CR, 0 stale. Active code reviews in final sprint day." },
+  { metric: "Unassigned Tickets", s2Value: "18 of 103", target: "GREEN <5, RED >15", status: "red", detail: "17.5% of sprint unassigned -- improved from 23.2%" },
+  { metric: "Work Mix (ARTEMIS %)", s2Value: "9.7%", target: "60%", status: "red", detail: "ARTEMIS at 9.7% vs 60% target -- severely under-allocated" },
+  { metric: "Engineer Capacity", s2Value: "~15.3 avg", target: "GREEN 12-18", status: "green", detail: "2 engineers missing (Loris, Karolina). 15.3 avg pts/engineer. Owen 28pts, Ivan 25pts highest." },
+  { metric: "Stale Items", s2Value: "0 items", target: "GREEN 0", status: "green", detail: "0 stale In Progress, 0 stale CR. All stale items cleared on sprint final day." },
   { metric: "Next Sprint Readiness", s2Value: "30 assigned", target: "GREEN >80%", status: "green", detail: "S5: 30 tickets already assigned for Feb 27" }
 ];
 
@@ -53,31 +53,31 @@ export function getCriticalIssues(): HealthMetric[] {
   return sprintHealth.filter(metric => metric.status === "red");
 }
 
-// Sprint health recommendations - Updated February 25, 2026
+// Sprint health recommendations - Updated February 27, 2026
 export const healthRecommendations = [
   {
-    issue: "23 UNASSIGNED TICKETS (23.2%)",
-    recommendation: "Improved from 32.9%. Mercury HITL sprint goal tickets still unowned. Sprint ends Feb 27.",
+    issue: "18 UNASSIGNED TICKETS (17.5%)",
+    recommendation: "Improved from 23.2% to 17.5%. Sprint ends today. Mercury HITL sprint goal tickets still unowned.",
     priority: "critical"
   },
   {
-    issue: "SPRINT BEHIND PACE -- 35.8% vs 85.7%",
-    recommendation: "Sprint ends in 2 days. 81/226 pts complete (35.8%). Major scope risk -- 145 pts remaining.",
+    issue: "SPRINT ENDS TODAY -- 49.6% vs 100%",
+    recommendation: "Sprint day 14/14. 115/252 pts complete (49.6%). 137 pts remaining will carry over to S5.",
     priority: "critical"
   },
   {
-    issue: "ARTEMIS WORK MIX -- 10.1% vs 60% target",
-    recommendation: "Worsened from 13.4% to 10.1%. Severely under-allocated. Sprint scope adjustment urgently needed.",
+    issue: "ARTEMIS WORK MIX -- 9.7% vs 60% target",
+    recommendation: "At 9.7% vs 60% target. Severely under-allocated all sprint. Must be addressed in S5 planning.",
     priority: "critical"
   },
   {
-    issue: "Colony Bank Contract EXPIRED (-25 days)",
-    recommendation: "$59K ARR at risk. Contract expired Jan 31 (-25 days). No renewal deal tracked. Immediate outreach needed.",
+    issue: "Colony Bank Contract EXPIRED (-27 days)",
+    recommendation: "$59K ARR at risk. Contract expired Jan 31 (-27 days). No renewal deal tracked. Immediate outreach needed.",
     priority: "critical"
   },
   {
-    issue: "4 STALE ITEMS (4 IP + 0 CR)",
-    recommendation: "BACK-1911 11d, CI-935 11d, BACK-1862 11d, CI-936 8d. Stale CR cleared -- BACK-1918/1792/1805 now Done.",
+    issue: "0 STALE ITEMS",
+    recommendation: "All stale items cleared. BACK-1911, CI-935, CI-936 moved to Done. Sprint cleanup complete.",
     priority: "critical"
   },
   {
@@ -89,16 +89,16 @@ export const healthRecommendations = [
 
 // Baseline comparison from Feb 22 to Feb 25
 export const baselineComparison = {
-  baselineDate: "February 22, 2026",
-  currentDate: "February 25, 2026",
+  baselineDate: "February 25, 2026",
+  currentDate: "February 27, 2026",
   metrics: [
-    { metric: "Sprint", baseline: "S4 Day 9", current: "S4 Day 12", delta: "+3 days", trend: "progressing" },
-    { metric: "Tickets", baseline: 82, current: 99, delta: "+17", trend: "scope increased" },
-    { metric: "Points", baseline: 197, current: 226, delta: "+29", trend: "scope increased" },
-    { metric: "Completion", baseline: "15.2%", current: "35.8%", delta: "+20.6%", trend: "improving" },
-    { metric: "Blocked (sprint)", baseline: 1, current: 0, delta: "-1", trend: "improved" },
-    { metric: "ARTEMIS %", baseline: 13.4, current: 10.1, delta: "-3.3%", trend: "worsened" },
-    { metric: "Unassigned", baseline: 27, current: 23, delta: "-4", trend: "improved" },
+    { metric: "Sprint", baseline: "S4 Day 12", current: "S4 Day 14", delta: "+2 days", trend: "progressing" },
+    { metric: "Tickets", baseline: 99, current: 103, delta: "+4", trend: "scope increased" },
+    { metric: "Points", baseline: 226, current: 252, delta: "+26", trend: "scope increased" },
+    { metric: "Completion", baseline: "35.8%", current: "49.6%", delta: "+13.8%", trend: "improving" },
+    { metric: "Blocked (sprint)", baseline: 0, current: 0, delta: "0", trend: "stable" },
+    { metric: "ARTEMIS %", baseline: 10.1, current: 9.7, delta: "-0.4%", trend: "worsened" },
+    { metric: "Unassigned", baseline: 23, current: 18, delta: "-5", trend: "improved" },
     { metric: "Health", baseline: "RED", current: "RED", delta: "No change", trend: "stagnant" }
   ]
 };
@@ -128,9 +128,9 @@ export interface SprintPlanningAlert {
 export const sprintPlanningAlert: SprintPlanningAlert = {
   currentSprint: {
     id: '2026-S4',
-    completionRate: 38.4,
-    pointsCompletionRate: 35.8,
-    daysRemaining: 2,
+    completionRate: 58.3,
+    pointsCompletionRate: 49.6,
+    daysRemaining: 0,
     status: 'RED'
   },
   nextSprint: {
@@ -143,13 +143,13 @@ export const sprintPlanningAlert: SprintPlanningAlert = {
     missingEstimatesPercent: 93.3,
     readinessStatus: 'READY'
   },
-  actionNeeded: 'S4 Day 12 -- 35.8% complete vs 85.7% expected. 23 unassigned (23.2%). 4 stale items. ARTEMIS at 10.1% vs 60% target. Colony expired (-25d). BetaNxt close date expired.'
+  actionNeeded: 'S4 Day 14 (LAST DAY) -- 49.6% complete vs 100% expected. 18 unassigned (17.5%). 0 stale items. ARTEMIS at 9.7% vs 60% target. Colony expired (-27d). BetaNxt close date expired.'
 };
 
-// Work Mix Data - S4 Day 12
+// Work Mix Data - S4 Day 14
 export const workMix = {
   artemis: { tickets: 10, points: 23, percent: 10, target: '60%', status: 'below' as const },
-  client: { tickets: 19, points: 44, percent: 19, target: '30%', status: 'below' as const },
+  client: { tickets: 21, points: 48, percent: 20, target: '30%', status: 'below' as const },
   infrastructure: { tickets: 5, points: 12, percent: 5, target: '10%', status: 'below' as const }
 };
 
@@ -158,7 +158,7 @@ export const velocityHistory = [
   { sprint: "2026-S1", committed: 131, completed: 129, rate: 98, status: "completed" },
   { sprint: "2026-S2", committed: 105, completed: 132, rate: 126, status: "completed" },
   { sprint: "2026-S3", committed: 101, completed: 141, rate: 140, status: "completed" },
-  { sprint: "2026-S4", committed: 226, completed: 81, rate: 35.8, status: "in_progress" }
+  { sprint: "2026-S4", committed: 252, completed: 115, rate: 49.6, status: "in_progress" }
 ];
 
 export const avgVelocity = 134;

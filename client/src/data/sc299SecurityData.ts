@@ -26,7 +26,7 @@ export interface SC299SecurityData {
 }
 
 export const sc299SecurityData: SC299SecurityData = {
-  lastUpdated: "February 25, 2026, 8:28 AM MT",
+  lastUpdated: "February 27, 2026, 9:38 AM MT",
   epicId: "SC-299",
   epicTitle: "Broadridge Security Remediation",
   totalSubtasks: 13,

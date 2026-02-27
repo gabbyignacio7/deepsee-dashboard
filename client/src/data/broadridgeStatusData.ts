@@ -1,4 +1,4 @@
-// Broadridge Status Data - Updated February 25, 2026 at 8:28 AM MT
+// Broadridge Status Data - Updated February 27, 2026 at 9:38 AM MT
 // Source: JIRA Sprint Extraction
 
 export const broadridgeStatusData = {

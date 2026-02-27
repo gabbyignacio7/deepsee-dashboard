@@ -873,7 +873,7 @@ interface OperationalExcellenceViewProps {
 function OperationalExcellenceView({ metrics, features, tickets }: OperationalExcellenceViewProps) {
   // Get Sprint 2 progress data
   const sprintProgress = getSprintProgress();
-  const lastUpdated = "February 25, 2026, 8:28 AM MT";
+  const lastUpdated = "February 27, 2026, 9:38 AM MT";
   
   // Get Don't Lose Money bucket features
   const dontLoseFeatures = masterFeaturesData

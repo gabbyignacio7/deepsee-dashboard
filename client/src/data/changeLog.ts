@@ -427,7 +427,49 @@ export const changeLogFeb25: ChangeLogEntry = {
   ]
 };
 
+export const changeLogFeb27: ChangeLogEntry = {
+  date: "February 27, 2026",
+  timestamp: "9:38 AM MT",
+  source: "JIRA API + Monday.com GraphQL API - Automated extraction",
+
+  engineerChanges: [
+    { engineer: "Owen Riley", change: "HIGHEST LOAD: 16 sprint tickets, 28 pts, 14 Done -- major velocity" },
+    { engineer: "Ivan Peev", change: "11 tickets, 25 pts -- 2 IP, 4 CR, 5 Done" },
+    { engineer: "Kannal Mutharasu", change: "8 tickets, 24 pts -- 1 IP, 1 CR, 6 Done" },
+    { engineer: "Treven Trujillo", change: "9 tickets, 18 pts -- 6 Done, 5 security pentest fixes closed" },
+    { engineer: "Lane Terry", change: "5 tickets all Done (15 pts) -- BACK-1911 artemis-platform Done" }
+  ],
+
+  ticketStatusChanges: [
+    { ticketId: "BACK-1911", previousStatus: "In Progress", newStatus: "Done", note: "artemis-platform Project Setup complete" },
+    { ticketId: "CI-935", previousStatus: "In Progress", newStatus: "Done", note: "CNPG Backup cleanup complete" },
+    { ticketId: "CI-936", previousStatus: "In Progress", newStatus: "Done", note: "CNPG Cluster Definition complete" },
+    { ticketId: "BACK-1975", previousStatus: "In Progress", newStatus: "Done", note: "Colony Description Extraction complete" },
+    { ticketId: "SC-326", previousStatus: "In Progress", newStatus: "Done", note: "Pentest access control fix -- DeepRecon Actionable Data" },
+    { ticketId: "SC-327", previousStatus: "In Progress", newStatus: "Done", note: "Pentest access control fix -- DeepRecon Data Source" }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 14, totalStoryPoints: 226, trackedTickets: 99 },
+    current: { engineers: 14, totalStoryPoints: 252, trackedTickets: 103 }
+  },
+
+  dataUpdates: [
+    "Full JIRA API extraction via automated Python scripts (tools/jira_extract.py)",
+    "Full Monday.com GraphQL API extraction (tools/monday_extract.py) -- 113 accounts, $13.672M pipeline",
+    "Orphan ticket reconciliation -- 2 orphans (GPT-5, UI-761), 5 status changes",
+    "Sprint S4 LAST DAY (Day 14/14): 103 tickets, 252 pts, 56 Done (115 pts)",
+    "Ticket completion: 58.3% (56/96 active), Points completion: 49.6% (115/232)",
+    "ALL stale items cleared: 0 stale IP, 0 stale CR",
+    "0 sprint blocked items, 11 long-blocked backlog items",
+    "Pipeline: $13.672M total, $3.467M weighted, 113 active deals",
+    "Colony Bank contract expired -27 days -- no renewal deal tracked",
+    "ARTEMIS work mix at 9.7% vs 60% target -- remains severely under-allocated"
+  ]
+};
+
 export const changeLog: ChangeLogEntry[] = [
+  changeLogFeb27,
   changeLogFeb25,
   changeLogFeb22,
   changeLogFeb18,
