@@ -25,7 +25,7 @@ export default function SprintAnalysis() {
     <div className="space-y-6">
       {/* Data Timestamp */}
       <div className="text-sm text-muted-foreground text-right">
-        Data updated: February 27, 2026, 9:38 AM MT
+        Data updated: March 2, 2026, 9:24 AM MT
       </div>
 
       {/* Sprint Overview Cards */}

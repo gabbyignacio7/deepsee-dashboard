@@ -1,4 +1,4 @@
-// Top Deals Data - Updated February 27, 2026
+// Top Deals Data - Updated March 2, 2026
 // Source: Monday.com CRM
 
 export interface Deal {

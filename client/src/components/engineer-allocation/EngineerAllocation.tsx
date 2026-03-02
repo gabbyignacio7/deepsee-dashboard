@@ -20,7 +20,7 @@ import { getEngineerTicketData, engineerAllocationData } from '@/data/engineerAl
 
 export default function EngineerAllocation() {
   const ticketData = getEngineerTicketData();
-  const lastUpdated = "February 27, 2026, 9:38 AM MT";
+  const lastUpdated = "March 2, 2026, 9:24 AM MT";
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProject, setSelectedProject] = useState('All');
   const [selectedStatus, setSelectedStatus] = useState<StatusFilter>('All');

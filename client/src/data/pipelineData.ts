@@ -1,7 +1,7 @@
-// Pipeline Data - Updated February 27, 2026
+// Pipeline Data - Updated March 2, 2026
 // Source: Monday.com CRM
 
-export const PIPELINE_EXTRACTION_DATE = "2026-02-27T09:38:00-07:00";
+export const PIPELINE_EXTRACTION_DATE = "2026-03-02T09:24:00-07:00";
 
 export interface PipelineMetrics {
   total: number;

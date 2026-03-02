@@ -468,7 +468,49 @@ export const changeLogFeb27: ChangeLogEntry = {
   ]
 };
 
+export const changeLogMar2: ChangeLogEntry = {
+  date: "March 2, 2026",
+  timestamp: "9:24 AM MT",
+  source: "JIRA API + Monday.com GraphQL API - Automated extraction",
+
+  engineerChanges: [
+    { engineer: "Ivan Peev", change: "HIGHEST LOAD: 8 sprint tickets, 21 pts -- 2 IP, 3 CR (stale), 3 Done" },
+    { engineer: "Owen Riley", change: "4 tickets, 8 pts -- 2 IP, 1 Done, 1 ToDo" },
+    { engineer: "Loris D'Acunto", change: "Still 0 sprint tickets -- backlog debt +15" },
+    { engineer: "Matthew Snow", change: "2 tickets, 3 pts -- backlog debt +5, CAPACITY CONCERN" },
+    { engineer: "Aleksander Winski", change: "3 tickets, 8 pts -- 2 WFA, backlog debt +4" }
+  ],
+
+  ticketStatusChanges: [
+    { ticketId: "BACK-1299", previousStatus: "In Progress", newStatus: "Code Review", note: "Single Model Input CLI -- stale CR, Ivan Peev" },
+    { ticketId: "BACK-1300", previousStatus: "In Progress", newStatus: "Code Review", note: "Single Model Output Handler -- stale CR, Ivan Peev" },
+    { ticketId: "BACK-1311", previousStatus: "In Progress", newStatus: "Code Review", note: "Workflow Template -- stale CR, Ivan Peev" },
+    { ticketId: "2026-S4", newStatus: "Closed", note: "Sprint S4 closed Feb 27. Final: 103 tickets, 252 pts, 45.6% pts completion." },
+    { ticketId: "2026-S5", newStatus: "Active", note: "Sprint S5 started Feb 27. Goal: Broadridge, Document Parser, Content Understanding, UI Dashboards, Infra." }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 14, totalStoryPoints: 252, trackedTickets: 103 },
+    current: { engineers: 14, totalStoryPoints: 135, trackedTickets: 66 }
+  },
+
+  dataUpdates: [
+    "Full JIRA API extraction via automated Python scripts (tools/jira_extract.py)",
+    "Full Monday.com GraphQL API extraction (tools/monday_extract.py) -- 113 accounts, $13.672M pipeline",
+    "Orphan ticket reconciliation -- 2 orphans (GPT-5, UI-761), 6 status changes",
+    "NEW SPRINT S5 Day 3/14: 66 tickets, 135 pts, 6 Done (17 pts), 12.9% pts completion",
+    "S4 CLOSED: 103 tickets, 252 pts, 56 Done (115 pts), 45.6% final pts completion",
+    "30 of 66 tickets unassigned (45.5%) -- sprint planning session needed",
+    "3 stale CR: BACK-1299, BACK-1300, BACK-1311 (all Ivan Peev, carryover from S4)",
+    "ARTEMIS work mix at 9.1% vs 60% target -- carryover issue from S4",
+    "Pipeline unchanged: $13.672M total, $3.467M weighted, 113 active deals",
+    "Colony Bank contract expired -30 days -- no renewal deal tracked",
+    "S5 Goal: Broadridge Account Creation, Document Parser, Content Understanding, UI Dashboards"
+  ]
+};
+
 export const changeLog: ChangeLogEntry[] = [
+  changeLogMar2,
   changeLogFeb27,
   changeLogFeb25,
   changeLogFeb22,

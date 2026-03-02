@@ -1,5 +1,5 @@
-export const EXTRACTION_TIMESTAMP = "2026-02-27T09:38:00-07:00";
-export const LAST_UPDATED = "February 27, 2026 at 9:38 AM MT";
+export const EXTRACTION_TIMESTAMP = "2026-03-02T09:24:00-07:00";
+export const LAST_UPDATED = "March 2, 2026 at 9:24 AM MT";
 export function formatDataTimestamp(): string {
-  return "February 27, 2026, 9:38 AM MT";
+  return "March 2, 2026, 9:24 AM MT";
 }
