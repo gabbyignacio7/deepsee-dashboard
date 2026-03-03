@@ -9,14 +9,14 @@ export interface OrphanTicket {
 }
 
 export const orphanTicketsData: OrphanTicket[] = [
-  // Populated by reconciliation script - March 2, 2026
+  // Populated by reconciliation script - March 3, 2026
   {
     key: "GPT-5",
     summary: "Referenced in dashboard but does not exist in JIRA",
     lastKnownStatus: "Unknown",
     lastKnownAssignee: "Unknown",
     orphanType: "deleted",
-    flaggedDate: "2026-03-02",
+    flaggedDate: "2026-03-03",
     recommendation: "Remove from dashboard"
   },
   {
@@ -25,7 +25,7 @@ export const orphanTicketsData: OrphanTicket[] = [
     lastKnownStatus: "Unknown",
     lastKnownAssignee: "Unknown",
     orphanType: "deleted",
-    flaggedDate: "2026-03-02",
+    flaggedDate: "2026-03-03",
     recommendation: "Remove from dashboard"
   },
   {
@@ -34,13 +34,13 @@ export const orphanTicketsData: OrphanTicket[] = [
     lastKnownStatus: "Blocked",
     lastKnownAssignee: "Unassigned",
     orphanType: "status_changed",
-    flaggedDate: "2026-03-02",
+    flaggedDate: "2026-03-03",
     recommendation: "Update status: Blocked -> To Do"
   }
 ];
 
 export const orphanSummary = {
-  lastReconciliation: "March 2, 2026",
+  lastReconciliation: "March 3, 2026",
   totalOrphans: 3,
   deleted: 2,
   completed: 0,

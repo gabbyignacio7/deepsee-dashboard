@@ -30,7 +30,7 @@ export interface PipelineMetrics {
   };
 }
 
-// Monday.com CRM Data - Updated March 2, 2026
+// Monday.com CRM Data - Updated March 3, 2026
 export const salesOpportunities: SalesOpportunity[] = [
   // CLOSED WON DEALS
   {
@@ -586,7 +586,7 @@ export const probabilityScale = {
   "Closed Won": { label: "Closed Won", probability: 100, description: "Deal completed (100%)" }
 };
 
-export const dataLastUpdated = "March 2, 2026, 9:24 AM MT";
+export const dataLastUpdated = "March 3, 2026, 10:12 AM MT";
 export const dataSource = "Monday.com CRM Export";
 export const updatedBy = "Gabriel Ignacio";
 
@@ -637,7 +637,7 @@ export interface SalesPipelineData {
 }
 
 export const salesPipelineData: SalesPipelineData = {
-  lastUpdated: "March 2, 2026, 9:24 AM MT",
+  lastUpdated: "March 3, 2026, 10:12 AM MT",
   currentARR: pipelineMetrics.closed_won_arr,
   pipelineARR: pipelineMetrics.total_pipeline_arr - pipelineMetrics.closed_won_arr,
   weightedPipeline: pipelineMetrics.weighted_pipeline_arr,
@@ -725,6 +725,6 @@ export const salesPipelineData: SalesPipelineData = {
     dealsMissingCloseDate: 0,
     dealsMissingOwner: 0,
     dealsMissingProduct: 0,
-    notes: "Complete data from Monday.com CRM. All 107 active opportunities have full data. Last sync: March 2, 2026."
+    notes: "Complete data from Monday.com CRM. All 107 active opportunities have full data. Last sync: March 3, 2026."
   }
 };

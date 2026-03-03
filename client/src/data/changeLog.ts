@@ -509,7 +509,46 @@ export const changeLogMar2: ChangeLogEntry = {
   ]
 };
 
+export const changeLogMar3: ChangeLogEntry = {
+  date: "March 3, 2026",
+  timestamp: "10:12 AM MT",
+  source: "JIRA API + Monday.com GraphQL API - Automated extraction",
+
+  engineerChanges: [
+    { engineer: "Ivan Peev", change: "8 tickets, 21 pts -- 2 IP, 3 CR (stale), 3 Done. 6 stale items total." },
+    { engineer: "Aleksander Winski", change: "5 tickets, 24 pts -- 2 IP, 1 CR, 2 WFA. Highest points load." },
+    { engineer: "Kannal Mutharasu", change: "6 tickets, 9 pts -- 2 IP, 2 CR, 2 Done. Up from 3 tickets." },
+    { engineer: "Owen Riley", change: "5 tickets, 10 pts -- 2 IP, 1 CR, 2 Done." },
+    { engineer: "Loris D'Acunto", change: "Still 0 sprint tickets -- backlog debt +15" }
+  ],
+
+  ticketStatusChanges: [
+    { ticketId: "BACK-1301", newStatus: "In Progress", note: "Single Model Workflow Orchestrator -- stale IP, Ivan Peev" },
+    { ticketId: "BACK-1302", newStatus: "In Progress", note: "Single Model Result Aggregator -- stale IP, Ivan Peev" },
+    { ticketId: "BACK-1303", newStatus: "In Progress", note: "Single Model Error Handler -- stale IP, Ivan Peev" }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 14, totalStoryPoints: 135, trackedTickets: 66 },
+    current: { engineers: 14, totalStoryPoints: 154, trackedTickets: 67 }
+  },
+
+  dataUpdates: [
+    "Full JIRA API extraction via automated Python scripts (tools/jira_extract.py)",
+    "Full Monday.com GraphQL API extraction (tools/monday_extract.py) -- 113 accounts, $13.672M pipeline",
+    "Orphan ticket reconciliation -- 2 orphans (GPT-5, UI-761), 6 status changes",
+    "Sprint S5 Day 4/14: 67 tickets (+1), 154 pts (+19), 9 Done (23 pts)",
+    "Completion: 13.6% tickets, 15.2% points (up from 9.2%/12.9%)",
+    "6 stale items: 3 CR (BACK-1299/1300/1311) + 3 IP (BACK-1301/1302/1303) -- all Ivan Peev",
+    "28 unassigned tickets (41.8%) -- improved from 45.5%",
+    "ARTEMIS at 10.4% vs 60% -- slightly improved from 9.1%",
+    "Pipeline unchanged: $13.672M total, $3.467M weighted, 113 deals",
+    "Colony Bank contract expired -31 days. DTCC close date no longer flagged as expired."
+  ]
+};
+
 export const changeLog: ChangeLogEntry[] = [
+  changeLogMar3,
   changeLogMar2,
   changeLogFeb27,
   changeLogFeb25,
