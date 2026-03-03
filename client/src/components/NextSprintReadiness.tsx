@@ -13,14 +13,15 @@ export const NextSprintReadiness: React.FC<NextSprintReadinessProps> = ({ classN
   const readiness = NEXT_SPRINT_READINESS;
   const sprint = NEXT_SPRINT;
 
-  const assignedPercent = Math.round((readiness.assigned / readiness.totalTickets) * 100);
-  const estimatedPercent = Math.round((readiness.withStoryPoints / readiness.totalTickets) * 100);
+  const assignedPercent = readiness.totalTickets > 0 ? Math.round((readiness.assigned / readiness.totalTickets) * 100) : 0;
+  const estimatedPercent = readiness.totalTickets > 0 ? Math.round((readiness.withStoryPoints / readiness.totalTickets) * 100) : 0;
 
   const getReadinessColor = (status: string) => {
     switch (status) {
       case 'READY': return 'bg-green-500';
       case 'NEEDS_WORK': return 'bg-yellow-500';
       case 'NOT_READY': return 'bg-red-500';
+      case 'NOT STARTED': return 'bg-gray-500';
       default: return 'bg-gray-500';
     }
   };
@@ -30,6 +31,7 @@ export const NextSprintReadiness: React.FC<NextSprintReadinessProps> = ({ classN
       case 'READY': return 'text-green-700';
       case 'NEEDS_WORK': return 'text-yellow-700';
       case 'NOT_READY': return 'text-red-700';
+      case 'NOT STARTED': return 'text-gray-700';
       default: return 'text-gray-700';
     }
   };
@@ -39,6 +41,7 @@ export const NextSprintReadiness: React.FC<NextSprintReadinessProps> = ({ classN
       case 'READY': return 'bg-green-50 border-green-200';
       case 'NEEDS_WORK': return 'bg-yellow-50 border-yellow-200';
       case 'NOT_READY': return 'bg-red-50 border-red-200';
+      case 'NOT STARTED': return 'bg-gray-50 border-gray-200';
       default: return 'bg-gray-50 border-gray-200';
     }
   };
@@ -53,7 +56,8 @@ export const NextSprintReadiness: React.FC<NextSprintReadinessProps> = ({ classN
           </div>
           <Badge className={`${getReadinessColor(readiness.readinessStatus)} text-white`}>
             {readiness.readinessStatus === 'NOT_READY' ? '🔴 NOT READY' :
-             readiness.readinessStatus === 'NEEDS_WORK' ? '⚠️ NEEDS WORK' : '✅ READY'}
+             readiness.readinessStatus === 'NEEDS_WORK' ? '⚠️ NEEDS WORK' :
+             readiness.readinessStatus === 'NOT STARTED' ? '⏳ NOT STARTED' : '✅ READY'}
           </Badge>
         </div>
         <p className="text-sm text-gray-600">
