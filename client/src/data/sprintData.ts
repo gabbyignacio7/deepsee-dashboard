@@ -237,8 +237,9 @@ export function getSprintByStatus(status: 'active' | 'planned' | 'future'): Spri
 }
 
 export function formatSprintDate(dateStr: string): string {
-  if (!dateStr) return '';
+  if (!dateStr) return '-';
   const date = new Date(dateStr);
+  if (isNaN(date.getTime())) return dateStr;
   return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
 
