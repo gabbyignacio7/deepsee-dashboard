@@ -547,7 +547,49 @@ export const changeLogMar3: ChangeLogEntry = {
   ]
 };
 
+export const changeLogMar4: ChangeLogEntry = {
+  date: "March 4, 2026",
+  timestamp: "12:09 PM MT",
+  source: "JIRA API + Monday.com GraphQL API - Automated extraction",
+
+  engineerChanges: [
+    { engineer: "Ivan Peev", change: "8 tickets, 21 pts -- 4 IP, 4 Done. CLEARED 4 stale items (BACK-1297/1299/1300/1311 -> Done)." },
+    { engineer: "Lane Terry", change: "4 tickets, 14 pts (was 1t/1pt) -- 2 IP, 1 CR, 1 Done. Major workload increase." },
+    { engineer: "Aleksander Winski", change: "5 tickets, 19 pts (was 24pts) -- 1 IP, 1 CR, 2 WFA, 1 Done." },
+    { engineer: "Owen Riley", change: "5 tickets, 10 pts -- 1 IP, 1 CR, 3 Done (+1 done)." },
+    { engineer: "Brandon Baguley", change: "3 tickets, 5 pts -- 2 Done, 1 CR. Active contributor." }
+  ],
+
+  ticketStatusChanges: [
+    { ticketId: "BACK-1297", previousStatus: "In Progress", newStatus: "Done", note: "Single Model Workflow -- 18d stale, now resolved" },
+    { ticketId: "BACK-1299", previousStatus: "Code Review", newStatus: "Done", note: "Single Model Input CLI -- 25d stale, now resolved" },
+    { ticketId: "BACK-1300", previousStatus: "Code Review", newStatus: "Done", note: "Single Model Output Handler -- was stale CR, now resolved" },
+    { ticketId: "BACK-1311", previousStatus: "Code Review", newStatus: "Done", note: "Workflow Template for Single Model -- was stale CR, now resolved" },
+    { ticketId: "BACK-1993", newStatus: "Code Review", note: "Documents Stuck in Mercury -- new stale CR (5d), unassigned" }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 14, totalStoryPoints: 154, trackedTickets: 67 },
+    current: { engineers: 14, totalStoryPoints: 186, trackedTickets: 70 }
+  },
+
+  dataUpdates: [
+    "Full JIRA API extraction via automated Python scripts (tools/jira_extract.py)",
+    "Full Monday.com GraphQL API extraction (tools/monday_extract.py) -- 113 accounts, $13.655M pipeline",
+    "Orphan ticket reconciliation -- 2 orphans (GPT-5, UI-761), 2 status changes",
+    "Sprint S5 Day 5/14: 70 tickets (+3), 186 pts (+32), 19 Done (42 pts) -- BIG progress day",
+    "Completion: 27.1% tickets, 22.6% points (up from 13.6%/15.2%)",
+    "Ivan Peev cleared 4 stale items to Done (BACK-1297/1299/1300/1311) -- major improvement",
+    "Stale items reduced from 6 to 4: 3 IP (BACK-1301/1302/1303) + 1 CR (BACK-1993)",
+    "23 unassigned tickets (32.9%) -- improved from 41.8%",
+    "ARTEMIS at 11.4% vs 60% -- marginal improvement from 10.4%",
+    "Pipeline: $13.655M total (-$17K), $3.467M weighted (unchanged), 113 deals",
+    "Colony Bank contract expired -32 days. BetaNxt close date still expired."
+  ]
+};
+
 export const changeLog: ChangeLogEntry[] = [
+  changeLogMar4,
   changeLogMar3,
   changeLogMar2,
   changeLogFeb27,

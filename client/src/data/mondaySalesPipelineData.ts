@@ -1,5 +1,5 @@
 // Sales Pipeline Data - Monday.com CRM
-// Last Updated: March 3, 2026 @ 10:12 AM MT
+// Last Updated: March 4, 2026 @ 12:09 PM MT
 // Source: Monday.com GraphQL API Extraction + PoV & Client Tracker
 
 export type RiskLevel = 'green' | 'yellow' | 'red';
@@ -100,13 +100,13 @@ export interface MondaySalesPipelineData {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// MARCH 3, 2026 PIPELINE DATA
+// MARCH 4, 2026 PIPELINE DATA
 // ═══════════════════════════════════════════════════════════════
 
 export const mondaySalesPipelineData: MondaySalesPipelineData = {
   overview: {
-    asOf: "2026-03-03T10:12:00-07:00",
-    totalPipeline: 13672000,
+    asOf: "2026-03-04T12:09:00-07:00",
+    totalPipeline: 13655000,
     weightedPipeline: 3467300,
     activeDeals: 113,
     activeAccounts: 113,
@@ -330,7 +330,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
       arr: 250000,
       stage: "Solution Fit/Technical Validation",
       probability: 25,
-      closeDate: "2026-03-03",
+      closeDate: "2026-03-04",
       product: "Comms",
       segment: "Cap Markets",
       engineeringRequired: false,
@@ -357,7 +357,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
       client: "Colony Bank",
       arr: 59000,
       daysOverdue: 19,
-      issue: "Contract EXPIRED Jan 31 (-31 days). No renewal deal tracked.",
+      issue: "Contract EXPIRED Jan 31 (-32 days). No renewal deal tracked.",
       priority: "P0",
       status: "URGENT: Immediate outreach needed"
     },
@@ -420,7 +420,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     { family: "SSIs", arr: 313000 }
   ],
 
-  // Updated from Monday.com PoV & Client Tracker - March 3, 2026
+  // Updated from Monday.com PoV & Client Tracker - March 4, 2026
   existingCustomers: [
     { client: "DTCC - SSI", arr: 416200, tcv3yr: 1162200, status: "Active", primary: "Joe Graziano" },
     { client: "Accenture", arr: 225000, tcv3yr: 725000, status: "Active", primary: "Dominic Stanyer" },
@@ -434,14 +434,14 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     totalARR: 990200,
     customersWithARR: 6,
     customersWithoutARR: 0,
-    dataQualityIssue: "Colony Bank contract expired (-31 days). 55+ accounts missing ARR. 25+ missing close date."
+    dataQualityIssue: "Colony Bank contract expired (-32 days). 55+ accounts missing ARR. 25+ missing close date."
   },
 
   engineeringNeeds: [
     {
       client: "Colony Bank",
       dealArr: 59000,
-      need: "Contract EXPIRED -31 days. No renewal deal tracked. Immediate outreach.",
+      need: "Contract EXPIRED -32 days. No renewal deal tracked. Immediate outreach.",
       priority: "P0",
       jiraEpic: "BACK-1965"
     },
@@ -484,7 +484,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
 
   engineeringAlignment: [
     { priority: "P0", client: "DTCC - ELA", arr: 1850000, jiraTicket: "BACK-1603", status: "DONE Feb 22 — engineering complete, push to close", stage: "Contracting & Close 80%", daysInPipeline: 470 },
-    { priority: "P0", client: "Colony Bank", arr: 59000, jiraTicket: "BACK-1965/1918/1862", status: "Contract EXPIRED -31 days. No renewal deal tracked.", stage: "Won - At Risk", daysInPipeline: 0 },
+    { priority: "P0", client: "Colony Bank", arr: 59000, jiraTicket: "BACK-1965/1918/1862", status: "Contract EXPIRED -32 days. No renewal deal tracked.", stage: "Won - At Risk", daysInPipeline: 0 },
     { priority: "P0", client: "Broadridge", arr: 1000000, jiraTicket: "UI-743", status: "UI-743 blocked unassigned, UI-755 Done", stage: "Biz Case 30%", daysInPipeline: 358 },
     { priority: "P0", client: "CTC/BBVA", arr: 878000, jiraTicket: "BACK-1938", status: "IP, Mercury HITL sprint goal unowned", stage: "Solution Fit/Biz Case", daysInPipeline: 0 },
     { priority: "P1", client: "BetaNxt", arr: 340000, jiraTicket: "Active", status: "Close Feb 20, 514 days in pipeline", stage: "Commercial Alignment 60%", daysInPipeline: 514 },
@@ -514,10 +514,10 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
 
   dataQualityNotes: [
     'DTCC-ELA $1.85M -- BACK-1603 DONE, push to close (9 days past close date)',
-    'Colony Bank contract EXPIRED Jan 31 (-31 days) -- no renewal deal tracked',
+    'Colony Bank contract EXPIRED Jan 31 (-32 days) -- no renewal deal tracked',
     'BetaNxt $340K close date EXPIRED Feb 20 -- 2 days past',
-    'Sprint S4 Day 9 -- 28 unassigned (41.8%), 13.6% complete',
-    'ARTEMIS at 10.4% vs 60% target -- severely under-allocated',
+    'Sprint S4 Day 9 -- 23 unassigned (32.9%), 27.1% complete',
+    'ARTEMIS at 11.4% vs 60% target -- severely under-allocated',
     'Pipeline grew $1.476M (12.2%) from $12.1M to $13.576M',
     '55+ accounts missing ARR, 25+ missing close date, 40+ missing agent family',
     '5+ stale accounts (365+ days) should be archived'
@@ -563,7 +563,7 @@ export const q1_2026_deals: Deal[] = [
     arr: 250000,
     stage: "Solution Fit/Technical Validation",
     probability: 25,
-    closeDate: "2026-03-03",
+    closeDate: "2026-03-04",
     product: "Operations",
     segment: "Cap Markets",
     engineeringRequired: false,
@@ -683,7 +683,7 @@ export const segmentBreakdown = [
 export const dashboardAlerts = [
   // CRITICAL
   { type: 'critical', category: 'sales', title: 'DTCC $1.85M: Engineering Complete', description: 'BACK-1603 DONE. Push to close immediately. 9 days past close date.' },
-  { type: 'critical', category: 'sales', title: 'Colony Bank Contract EXPIRED (-31 days)', description: 'Renewal contract expired Jan 31. No renewal deal tracked. Immediate outreach needed.' },
+  { type: 'critical', category: 'sales', title: 'Colony Bank Contract EXPIRED (-32 days)', description: 'Renewal contract expired Jan 31. No renewal deal tracked. Immediate outreach needed.' },
   { type: 'critical', category: 'engineering', title: '27 Unassigned Sprint Tickets (32.9%)', description: 'Mercury HITL / Sunwest sprint goals at risk. Improved from 45.7% but still high.' },
   { type: 'critical', category: 'sales', title: 'BetaNxt $340K Close Date EXPIRED', description: 'Close date was Feb 20. 390 days in pipeline at Commercial Alignment. Follow up urgently.' },
 
@@ -702,7 +702,7 @@ export const dashboardAlerts = [
 // DATA LAST UPDATED
 // ═══════════════════════════════════════════════════════════════
 
-export const dataLastUpdated = "March 3, 2026, 10:12 AM MT";
+export const dataLastUpdated = "March 4, 2026, 12:09 PM MT";
 
 // ═══════════════════════════════════════════════════════════════
 // HELPER FUNCTIONS
