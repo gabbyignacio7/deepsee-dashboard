@@ -588,7 +588,51 @@ export const changeLogMar4: ChangeLogEntry = {
   ]
 };
 
+export const changeLogMar5: ChangeLogEntry = {
+  date: "March 5, 2026",
+  timestamp: "10:49 AM MT",
+  source: "JIRA API + Monday.com GraphQL API - Automated extraction",
+
+  engineerChanges: [
+    { engineer: "Ivan Peev", change: "8 tickets, 21 pts -- 4 IP, 4 Done. BACK-1298 now stale (6d IP)." },
+    { engineer: "Lane Terry", change: "4 tickets, 14 pts -- 2 Done (+1), 1 CR, 1 IP. BACK-2013 Done, BACK-2006 Done." },
+    { engineer: "Kannal Mutharasu", change: "6 tickets, 13 pts -- 3 Done (+1), 1 IP, 1 CR, 1 ToDo. BACK-1991 Done." },
+    { engineer: "Owen Riley", change: "5 tickets, 10 pts -- 4 Done (+1), 1 IP. UI-783 Done. UI-780 stale (6d IP)." },
+    { engineer: "Matthew Snow", change: "3 tickets, 5 pts -- 2 Done (+1), 1 IP. UI-782 Done." }
+  ],
+
+  ticketStatusChanges: [
+    { ticketId: "BACK-2013", previousStatus: "In Progress", newStatus: "Done", note: "Account Creation Label Binding -- Lane Terry" },
+    { ticketId: "BACK-2006", previousStatus: "In Progress", newStatus: "Done", note: "Inbox Statistics Filterable by Outstanding -- Lane Terry" },
+    { ticketId: "BACK-1991", previousStatus: "In Progress", newStatus: "Done", note: "Turn on Dealfeed for SEC-303948 -- Kannal Mutharasu" },
+    { ticketId: "BACK-1995", previousStatus: "In Progress", newStatus: "Done", note: "[Colony] Allegro null refinement -- Kannal Mutharasu" },
+    { ticketId: "UI-783", previousStatus: "In Progress", newStatus: "Done", note: "User cannot cancel password protected PDF -- Owen Riley" },
+    { ticketId: "UI-781", previousStatus: "In Progress", newStatus: "Done", note: "Hide Column doesn't work -- Owen Riley" },
+    { ticketId: "UI-782", previousStatus: "To Do", newStatus: "Done", note: "Pending by Mailbox - make clickable -- Matthew Snow" }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 14, totalStoryPoints: 186, trackedTickets: 70 },
+    current: { engineers: 14, totalStoryPoints: 190, trackedTickets: 72 }
+  },
+
+  dataUpdates: [
+    "Full JIRA API extraction via automated Python scripts (tools/jira_extract.py)",
+    "Full Monday.com GraphQL API extraction (tools/monday_extract.py) -- 113 accounts, $13.655M pipeline",
+    "Orphan ticket reconciliation -- no new orphans detected",
+    "Sprint S5 Day 6/14: 72 tickets (+2), 190 pts (+4), 26 Done (66 pts) -- strong velocity day",
+    "Completion: 36.1% tickets, 34.7% points (up from 27.1%/22.6%)",
+    "7 tickets moved to Done overnight: BACK-2013, BACK-2006, BACK-1991, BACK-1995, UI-783, UI-781, UI-782",
+    "Stale items increased from 4 to 6: new BACK-1298 (6d IP), UI-780 (6d IP)",
+    "22 unassigned tickets (30.6%) -- improved from 32.9%",
+    "ARTEMIS at 11.1% vs 60% -- essentially flat",
+    "Pipeline: $13.655M total, $3.467M weighted (unchanged), 113 deals",
+    "Colony Bank contract expired -33 days. BetaNxt close date still expired."
+  ]
+};
+
 export const changeLog: ChangeLogEntry[] = [
+  changeLogMar5,
   changeLogMar4,
   changeLogMar3,
   changeLogMar2,
