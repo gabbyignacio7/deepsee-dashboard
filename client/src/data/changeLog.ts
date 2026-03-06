@@ -631,7 +631,53 @@ export const changeLogMar5: ChangeLogEntry = {
   ]
 };
 
+export const changeLogMar6: ChangeLogEntry = {
+  date: "March 6, 2026",
+  timestamp: "1:36 PM MT",
+  source: "JIRA API + Monday.com GraphQL API - Automated extraction",
+
+  engineerChanges: [
+    { engineer: "Ivan Peev", change: "8 tickets, 21 pts -- 4 CR (moved from stale IP!), 4 Done. Cleared IP backlog." },
+    { engineer: "Jeff Hegerhorst", change: "5 tickets, 15 pts -- 4 Done, 1 IP. NEW to sprint -- 8 CI tickets batch added." },
+    { engineer: "Chad Hegerhorst", change: "2 tickets, 5 pts -- 1 Done, 1 IP (CI-946 stale 7d). NEW to sprint." },
+    { engineer: "Lane Terry", change: "5 tickets, 17 pts (+1t, +3pts) -- 1 IP, 2 CR, 2 Done. BACK-1980 added." },
+    { engineer: "Brandon Baguley", change: "5 tickets, 8 pts (+2t, +3pts) -- 2 IP, 1 CR, 2 Done. CI-953 added." }
+  ],
+
+  ticketStatusChanges: [
+    { ticketId: "BACK-1301", previousStatus: "In Progress", newStatus: "Code Review", note: "ML Label/Challenge Input CLI -- Ivan Peev, was stale 9d IP" },
+    { ticketId: "BACK-1302", previousStatus: "In Progress", newStatus: "Code Review", note: "ML Label/Challenge Output Handler CLI -- Ivan Peev, was stale 9d IP" },
+    { ticketId: "BACK-1303", previousStatus: "In Progress", newStatus: "Code Review", note: "ML Label/Challenge Workflow Template -- Ivan Peev, was stale 9d IP" },
+    { ticketId: "BACK-1298", previousStatus: "In Progress", newStatus: "Code Review", note: "ML Label/Challenge Workflow -- Ivan Peev, was stale 6d IP" },
+    { ticketId: "UI-788", newStatus: "Done", note: "Make AD filters persist through session -- Owen Riley" },
+    { ticketId: "BACK-2014", newStatus: "Done", note: "Create initial custom analyzers for CTC -- Brandon Baguley" },
+    { ticketId: "BACK-2009", newStatus: "Done", note: "Sunwest Router and Customer Analyzers -- Brandon Baguley" }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 14, totalStoryPoints: 190, trackedTickets: 72 },
+    current: { engineers: 14, totalStoryPoints: 202, trackedTickets: 80 }
+  },
+
+  dataUpdates: [
+    "Full JIRA API extraction via automated Python scripts (tools/jira_extract.py)",
+    "Full Monday.com GraphQL API extraction (tools/monday_extract.py) -- 114 accounts, $13.655M pipeline",
+    "Orphan ticket reconciliation -- 2 orphans (GPT-5, UI-761), 1 status change",
+    "Sprint S5 Day 7/14: 80 tickets (+8), 202 pts (+12), 32 Done (78 pts)",
+    "Completion: 40.0% tickets, 38.6% points (up from 36.1%/34.7%)",
+    "8 new CI tickets batch-added (Jeff 5, Chad 2, Brandon 1) -- infrastructure work",
+    "Ivan Peev moved 4 stale IP items to Code Review (BACK-1301/1302/1303/1298) -- BIG WIN",
+    "Stale items reduced from 6 to 3: UI-780 7d IP, CI-946 7d IP, BACK-1993 7d CR",
+    "22 unassigned tickets (27.5%) -- improved from 30.6% (larger denominator)",
+    "ARTEMIS at 10.0% vs 60% -- diluted by new CI tickets",
+    "Overall health improved: RED -> YELLOW (2 red, 5 yellow, 1 green)",
+    "Pipeline: $13.655M total, $3.507M weighted (+$40K), 114 deals (+1)",
+    "Colony Bank contract expired -34 days. BetaNxt close date still expired."
+  ]
+};
+
 export const changeLog: ChangeLogEntry[] = [
+  changeLogMar6,
   changeLogMar5,
   changeLogMar4,
   changeLogMar3,

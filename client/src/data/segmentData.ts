@@ -1,4 +1,4 @@
-// Segment & Agent Family Data - Updated March 5, 2026
+// Segment & Agent Family Data - Updated March 6, 2026
 // Source: Monday.com CRM
 
 export interface Segment {

@@ -1,4 +1,4 @@
-// Blocked Items Data - Updated March 5, 2026 at 10:49 AM MT
+// Blocked Items Data - Updated March 6, 2026 at 1:36 PM MT
 // Source: JIRA Sprint Extraction - Sprint 2026-S4 (Day 5 of 14)
 
 export interface BlockedItem {
@@ -18,11 +18,11 @@ export const sprintBlockedItems: BlockedItem[] = [
     key: "UI-740",
     summary: "Deep Recon - Add Dropdown List for Assignee Names",
     assignee: "Matthew Snow",
-    daysBlocked: 20,
+    daysBlocked: 21,
     category: "internal",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/UI-740",
-    reason: "Blocked 20 days -- internal dependency"
+    reason: "Blocked 21 days -- internal dependency"
   }
 ];
 
@@ -32,11 +32,11 @@ export const blockedItems: BlockedItem[] = [
     key: "UI-740",
     summary: "Deep Recon - Add Dropdown List for Assignee Names",
     assignee: "Matthew Snow",
-    daysBlocked: 20,
+    daysBlocked: 21,
     category: "internal",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/UI-740",
-    reason: "Blocked 20 days -- internal dependency"
+    reason: "Blocked 21 days -- internal dependency"
   },
   {
     key: "UI-743",
@@ -52,13 +52,13 @@ export const blockedItems: BlockedItem[] = [
 
 // Stale In Progress items (no updates in 10+ days)
 export const staleInProgressItems = [
-  { key: "BACK-1299", summary: "Single Model Input CLI", assignee: "Ivan Peev", points: 0, lastUpdated: "2026-02-06", daysSinceUpdate: 27, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1299" },
-  { key: "BACK-1795", summary: "Add AccountName2 to DTCC Output", assignee: "Aleksander Winski", points: 2, lastUpdated: "2026-02-13", daysSinceUpdate: 20, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1795" },
-  { key: "BACK-1911", summary: "Complete artemis-platform Project Setup", assignee: "Lane Terry", points: 5, lastUpdated: "2026-02-13", daysSinceUpdate: 20, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1911" },
-  { key: "BACK-1297", summary: "Single Model Workflow", assignee: "Ivan Peev", points: 8, lastUpdated: "2026-02-13", daysSinceUpdate: 20, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1297" },
-  { key: "BACK-1810", summary: "Pentest - SSL Cipher for WPEngine", assignee: "Brandon Baguley", points: 2, lastUpdated: "2026-02-13", daysSinceUpdate: 20, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1810" },
-  { key: "CI-935", summary: "CNPG Backup cleanup", assignee: "Jeff Hegerhorst", points: 3, lastUpdated: "2026-02-13", daysSinceUpdate: 20, jiraUrl: "https://deepsee.atlassian.net/browse/CI-935" },
-  { key: "BACK-1862", summary: "Colony Bank RV loans evaluation", assignee: "Konnor Willison", points: 8, lastUpdated: "2026-02-13", daysSinceUpdate: 20, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1862" }
+  { key: "BACK-1299", summary: "Single Model Input CLI", assignee: "Ivan Peev", points: 0, lastUpdated: "2026-02-06", daysSinceUpdate: 28, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1299" },
+  { key: "BACK-1795", summary: "Add AccountName2 to DTCC Output", assignee: "Aleksander Winski", points: 2, lastUpdated: "2026-02-13", daysSinceUpdate: 21, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1795" },
+  { key: "BACK-1911", summary: "Complete artemis-platform Project Setup", assignee: "Lane Terry", points: 5, lastUpdated: "2026-02-13", daysSinceUpdate: 21, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1911" },
+  { key: "BACK-1297", summary: "Single Model Workflow", assignee: "Ivan Peev", points: 8, lastUpdated: "2026-02-13", daysSinceUpdate: 21, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1297" },
+  { key: "BACK-1810", summary: "Pentest - SSL Cipher for WPEngine", assignee: "Brandon Baguley", points: 2, lastUpdated: "2026-02-13", daysSinceUpdate: 21, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1810" },
+  { key: "CI-935", summary: "CNPG Backup cleanup", assignee: "Jeff Hegerhorst", points: 3, lastUpdated: "2026-02-13", daysSinceUpdate: 21, jiraUrl: "https://deepsee.atlassian.net/browse/CI-935" },
+  { key: "BACK-1862", summary: "Colony Bank RV loans evaluation", assignee: "Konnor Willison", points: 8, lastUpdated: "2026-02-13", daysSinceUpdate: 21, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1862" }
 ];
 
 // Stale Code Review items (>3 days)

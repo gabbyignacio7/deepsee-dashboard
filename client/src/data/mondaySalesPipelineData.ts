@@ -1,5 +1,5 @@
 // Sales Pipeline Data - Monday.com CRM
-// Last Updated: March 5, 2026 @ 10:49 AM MT
+// Last Updated: March 6, 2026 @ 1:36 PM MT
 // Source: Monday.com GraphQL API Extraction + PoV & Client Tracker
 
 export type RiskLevel = 'green' | 'yellow' | 'red';
@@ -105,12 +105,12 @@ export interface MondaySalesPipelineData {
 
 export const mondaySalesPipelineData: MondaySalesPipelineData = {
   overview: {
-    asOf: "2026-03-05T10:49:00-07:00",
+    asOf: "2026-03-06T10:49:00-07:00",
     totalPipeline: 13655000,
-    weightedPipeline: 3467300,
-    activeDeals: 113,
-    activeAccounts: 113,
-    totalAccounts: 113,
+    weightedPipeline: 3506950,
+    activeDeals: 114,
+    activeAccounts: 114,
+    totalAccounts: 114,
     avgOpportunityAge: 163,
     closingQ1_2026: 929500,
     closingThisMonth: 2190000,
@@ -330,7 +330,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
       arr: 250000,
       stage: "Solution Fit/Technical Validation",
       probability: 25,
-      closeDate: "2026-03-05",
+      closeDate: "2026-03-06",
       product: "Comms",
       segment: "Cap Markets",
       engineeringRequired: false,
@@ -420,7 +420,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     { family: "SSIs", arr: 313000 }
   ],
 
-  // Updated from Monday.com PoV & Client Tracker - March 5, 2026
+  // Updated from Monday.com PoV & Client Tracker - March 6, 2026
   existingCustomers: [
     { client: "DTCC - SSI", arr: 416200, tcv3yr: 1162200, status: "Active", primary: "Joe Graziano" },
     { client: "Accenture", arr: 225000, tcv3yr: 725000, status: "Active", primary: "Dominic Stanyer" },
@@ -563,7 +563,7 @@ export const q1_2026_deals: Deal[] = [
     arr: 250000,
     stage: "Solution Fit/Technical Validation",
     probability: 25,
-    closeDate: "2026-03-05",
+    closeDate: "2026-03-06",
     product: "Operations",
     segment: "Cap Markets",
     engineeringRequired: false,
@@ -702,7 +702,7 @@ export const dashboardAlerts = [
 // DATA LAST UPDATED
 // ═══════════════════════════════════════════════════════════════
 
-export const dataLastUpdated = "March 5, 2026, 10:49 AM MT";
+export const dataLastUpdated = "March 6, 2026, 1:36 PM MT";
 
 // ═══════════════════════════════════════════════════════════════
 // HELPER FUNCTIONS

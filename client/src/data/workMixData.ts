@@ -1,5 +1,5 @@
-// Work Mix Data - Updated March 5, 2026
-// Source: JIRA Extract - Sprint 2026-S5 (Day 6 of 14)
+// Work Mix Data - Updated March 6, 2026
+// Source: JIRA Extract - Sprint 2026-S5 (Day 7 of 14)
 
 export interface WorkCategory {
   category: string;
@@ -14,23 +14,23 @@ export const workMix: WorkCategory[] = [
   {
     category: "ARTEMIS/Platform",
     s2Tickets: 8,
-    s2Percentage: 11,
+    s2Percentage: 10,
     target: "50-60%",
     status: "below",
     color: "#3B82F6" // blue
   },
   {
     category: "Client Work",
-    s2Tickets: 9,
-    s2Percentage: 13,
+    s2Tickets: 12,
+    s2Percentage: 15,
     target: "30-35%",
     status: "below",
     color: "#F59E0B" // amber
   },
   {
     category: "Infrastructure",
-    s2Tickets: 1,
-    s2Percentage: 2,
+    s2Tickets: 3,
+    s2Percentage: 4,
     target: "10-15%",
     status: "below",
     color: "#10B981" // green
@@ -45,10 +45,10 @@ export interface ClientWorkBreakdown {
   status?: string;
 }
 
-// Client work breakdown - Updated March 5, 2026
+// Client work breakdown - Updated March 6, 2026
 export const clientBreakdown: ClientWorkBreakdown[] = [
   { client: "CTC/BBVA/Mercury", s2Tickets: 11, s2Points: 29, arrAtRisk: 878000, status: "BACK-1938 IP, BACK-1921 IP, Mercury HITL tickets unassigned" },
-  { client: "Colony Bank", s2Tickets: 3, s2Points: 16, arrAtRisk: 59000, status: "Contract EXPIRED Jan 31 (-33 days). BACK-1965 Done, BACK-1918 CR (stale 9d), BACK-1970 CR." },
+  { client: "Colony Bank", s2Tickets: 3, s2Points: 16, arrAtRisk: 59000, status: "Contract EXPIRED Jan 31 (-34 days). BACK-1965 Done, BACK-1918 CR (stale 9d), BACK-1970 CR." },
   { client: "Broadridge/Accenture", s2Tickets: 2, s2Points: 2, arrAtRisk: 1000000, status: "UI-743 now To Do (was Blocked)" },
   { client: "DTCC", s2Tickets: 2, s2Points: 5, arrAtRisk: 1850000, status: "BACK-1603 DONE Feb 22 — $1.85M close imminent" },
   { client: "Sunwest", s2Tickets: 2, s2Points: 5, arrAtRisk: 0, status: "BACK-1532/1653 Mercury extraction fine-tuning. Both unassigned." },
@@ -56,17 +56,17 @@ export const clientBreakdown: ClientWorkBreakdown[] = [
 ];
 
 export const workMixSummary = {
-  totalTickets: 72,
-  totalPoints: 190,
-  artemisPercentage: 11,
+  totalTickets: 80,
+  totalPoints: 202,
+  artemisPercentage: 10,
   artemisTarget: 60,
-  clientPercentage: 13,
+  clientPercentage: 15,
   clientTarget: 30,
-  infrastructurePercentage: 2,
+  infrastructurePercentage: 4,
   infrastructureTarget: 10,
   gap: {
-    artemis: -49, // 11 - 60 (SEVERELY UNDER)
-    client: -17 // 13 - 30 (UNDER)
+    artemis: -50, // 10 - 60 (SEVERELY UNDER)
+    client: -15 // 15 - 30 (UNDER)
   }
 };
 
