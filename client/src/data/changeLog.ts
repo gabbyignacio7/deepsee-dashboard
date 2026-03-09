@@ -676,7 +676,54 @@ export const changeLogMar6: ChangeLogEntry = {
   ]
 };
 
+export const changeLogMar9: ChangeLogEntry = {
+  date: "March 9, 2026",
+  timestamp: "12:22 PM MT",
+  source: "JIRA API + Monday.com GraphQL API - Automated extraction",
+
+  engineerChanges: [
+    { engineer: "Ivan Peev", change: "9 tickets, 26 pts (+1t, +5pts) -- 1 IP (BACK-1326 new), 4 CR, 4 Done." },
+    { engineer: "Jeff Hegerhorst", change: "7 tickets, 20 pts (+2t, +5pts) -- 3 IP (CI-937 stale 7d), 4 Done." },
+    { engineer: "Brandon Baguley", change: "7 tickets, 11 pts (+2t, +3pts) -- 2 IP new, 5 Done (+3). CI-953/BACK-2020/2008 Done." },
+    { engineer: "Kannal Mutharasu", change: "6 tickets, 15 pts (+1pt) -- 1 IP, 5 Done (+1). BACK-1999 CR->Done." },
+    { engineer: "Lane Terry", change: "5 tickets, 17 pts -- 1 IP, 2 CR (both stale 5d+4d), 2 Done." }
+  ],
+
+  ticketStatusChanges: [
+    { ticketId: "BACK-1326", newStatus: "In Progress", note: "Process Reconstruction Workflow -- Ivan Peev, new to sprint" },
+    { ticketId: "BACK-1999", previousStatus: "Code Review", newStatus: "Done", note: "Normalized Value persistence -- Kannal Mutharasu" },
+    { ticketId: "CI-953", previousStatus: "In Progress", newStatus: "Done", note: "Update custom analyzer deployment -- Brandon Baguley" },
+    { ticketId: "BACK-2020", previousStatus: "In Progress", newStatus: "Done", note: "Colony Marine Loans fields -- Brandon Baguley" },
+    { ticketId: "BACK-2008", previousStatus: "Code Review", newStatus: "Done", note: "Sunwest token errors -- Brandon Baguley" },
+    { ticketId: "BACK-2016", newStatus: "Done", note: "Update Sunwest Tenant -- Darius Ouderkirk, new to sprint" },
+    { ticketId: "CI-955", newStatus: "In Progress", note: "Upgrade Crowdstrike Sensor -- Jeff Hegerhorst, new" },
+    { ticketId: "CI-938", newStatus: "In Progress", note: "K8s Operator image detection spike -- Jeff Hegerhorst, new" }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 14, totalStoryPoints: 202, trackedTickets: 80 },
+    current: { engineers: 14, totalStoryPoints: 213, trackedTickets: 87 }
+  },
+
+  dataUpdates: [
+    "Full JIRA API extraction via automated Python scripts (tools/jira_extract.py)",
+    "Full Monday.com GraphQL API extraction (tools/monday_extract.py) -- 113 accounts, $13.171M pipeline",
+    "Orphan ticket reconciliation -- 2 orphans (GPT-5, UI-761), 1 status change",
+    "Sprint S5 Day 10/14: 87 tickets (+7), 213 pts (+11), 38 Done (89 pts) -- weekend catchup",
+    "Completion: 43.7% tickets, 41.8% points (up from 40.0%/38.6%)",
+    "6 Done over weekend: BACK-1999, CI-953, BACK-2020, BACK-2008, BACK-2016 + 1 more",
+    "Stale DOUBLED from 3 to 6: 3 IP (UI-780 10d, CI-946 9d, CI-937 7d) + 3 CR (BACK-1993 10d, BACK-2011 5d, BACK-1980 4d)",
+    "Health regressed: YELLOW -> RED (5 red, 1 yellow, 1 green). Sprint behind pace.",
+    "23 unassigned tickets (26.4%) -- marginal improvement from 27.5%",
+    "ARTEMIS at 9.2% vs 60% -- continuing to decline",
+    "Pipeline DOWN $484K: $13.655M to $13.171M. BetaNxt $340K->$125K but advanced to CC (80%)",
+    "S6 planning NOT STARTED -- only 4 days until next sprint. CRITICAL.",
+    "Colony Bank contract expired -37 days. BetaNxt close date updated to Mar 6."
+  ]
+};
+
 export const changeLog: ChangeLogEntry[] = [
+  changeLogMar9,
   changeLogMar6,
   changeLogMar5,
   changeLogMar4,

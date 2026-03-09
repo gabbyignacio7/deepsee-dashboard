@@ -1,8 +1,8 @@
-// Sprint Data - Updated March 6, 2026 at 1:36 PM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S5 (Active - Day 7 of 14)
+// Sprint Data - Updated March 9, 2026 at 12:22 PM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S5 (Active - Day 10 of 14)
 // CRITICAL: NEXT_SPRINT_READINESS export is required by executive.tsx - DO NOT REMOVE
 
-export const EXTRACTION_TIMESTAMP = "2026-03-06T10:49:00-07:00";
+export const EXTRACTION_TIMESTAMP = "2026-03-09T10:49:00-07:00";
 export const DATA_SOURCE = "JIRA Sprint Extraction + Monday.com CRM";
 
 export interface SprintStatus {
@@ -91,31 +91,31 @@ export const PREVIOUS_SPRINT: Sprint = {
   assessment: 'client-heavy'
 };
 
-// S5 - ACTIVE (current sprint - Day 7 of 14)
+// S5 - ACTIVE (current sprint - Day 10 of 14)
 export const CURRENT_SPRINT: Sprint = {
   id: '2026-S5',
   name: 'Sprint 2026-S5',
   startDate: '2026-02-27',
   endDate: '2026-03-13',
   status: 'active',
-  totalTickets: 80,
-  totalPoints: 202,
-  completedTickets: 32,
-  completedPoints: 78,
+  totalTickets: 87,
+  totalPoints: 213,
+  completedTickets: 38,
+  completedPoints: 89,
   completion: {
-    toDo: 19,
+    toDo: 18,
     blocked: 0,
-    inProgress: 12,
-    codeReview: 9,
-    done: 32
+    inProgress: 15,
+    codeReview: 7,
+    done: 38
   },
-  completionRate: 40.0,
-  pointsCompletionRate: 38.6,
-  health: 'yellow',
-  daysRemaining: 7,
-  daysElapsed: 7,
+  completionRate: 43.7,
+  pointsCompletionRate: 41.8,
+  health: 'red',
+  daysRemaining: 4,
+  daysElapsed: 10,
   likelyRollovers: 0,
-  mix: { artemis: 8, client: 12, infrastructure: 3 },
+  mix: { artemis: 8, client: 14, infrastructure: 3 },
   assessment: 'client-heavy'
 };
 
@@ -230,7 +230,7 @@ export const ARTEMIS_BACKLOG: SprintItem[] = [
   { key: 'UI-734', summary: '[BLUEPRINT] ARTEMIS UI for BluePrint viewing and configuration', priority: 'Major', recommended: true },
 ];
 
-export const SPRINT_DATA_UPDATED = "2026-03-06T10:49:00-07:00";
+export const SPRINT_DATA_UPDATED = "2026-03-09T10:49:00-07:00";
 
 export function getSprintByStatus(status: 'active' | 'planned' | 'future'): Sprint | undefined {
   return SPRINTS.find(s => s.status === status);
@@ -267,5 +267,5 @@ export function getSprintMixChartData() {
 }
 
 export function formatDataTimestamp(isoString: string = EXTRACTION_TIMESTAMP): string {
-  return "March 6, 2026, 1:36 PM MT";
+  return "March 9, 2026, 12:22 PM MT";
 }
