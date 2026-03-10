@@ -722,7 +722,57 @@ export const changeLogMar9: ChangeLogEntry = {
   ]
 };
 
+export const changeLogMar10: ChangeLogEntry = {
+  date: "March 10, 2026",
+  timestamp: "12:00 PM MT",
+  source: "JIRA API + Monday.com GraphQL API - Automated extraction",
+
+  engineerChanges: [
+    { engineer: "Ivan Peev", change: "9 tickets, 26 pts -- 1 IP, 4 CR (ALL stale 4d!), 4 Done. BACK-1297/1299/1300/1311 Done." },
+    { engineer: "Jeff Hegerhorst", change: "8 tickets, 22 pts (+1t, +2pts) -- 2 IP (CI-937 stale 8d), 6 Done. CI-941 added Done." },
+    { engineer: "Matthew Snow", change: "4 tickets, 8 pts (+1t, +3pts) -- 1 IP (UI-795 new), 3 Done. Added counterparty recon." },
+    { engineer: "Treven Trujillo", change: "2 tickets, 10 pts -- 1 Done, 1 CR (BACK-1983 Account Creation). CR queue entry." },
+    { engineer: "Darius Ouderkirk", change: "4 tickets, 6 pts -- 1 IP (BACK-2018), 3 Done. BACK-1921 cleared to Done." },
+    { engineer: "Aleksander Winski", change: "5 tickets, 19 pts -- 1 IP (BACK-1835 stale 6d NEW), 2 Done, 2 WFA." }
+  ],
+
+  ticketStatusChanges: [
+    { ticketId: "BACK-1918", previousStatus: "Code Review", newStatus: "Done", note: "Colony GAP Coverage Provider DONE -- key renewal milestone!" },
+    { ticketId: "UI-743", previousStatus: "Blocked", newStatus: "Done", note: "Broadridge aggregated report DONE -- major unblock" },
+    { ticketId: "BACK-1297", previousStatus: "In Progress", newStatus: "Done", note: "Single Model Workflow -- Ivan Peev" },
+    { ticketId: "BACK-1299", previousStatus: "In Progress", newStatus: "Done", note: "Single Model Input CLI -- Ivan Peev" },
+    { ticketId: "BACK-1300", previousStatus: "To Do", newStatus: "Done", note: "Single Model Output Handler CLI -- Ivan Peev" },
+    { ticketId: "BACK-1311", previousStatus: "To Do", newStatus: "Done", note: "Workflow Template for Single Model -- Ivan Peev" },
+    { ticketId: "BACK-1532", previousStatus: "To Do", newStatus: "Canceled", note: "Sunwest Mercury extraction -- switched to custom analyzers" },
+    { ticketId: "BACK-1653", previousStatus: "To Do", newStatus: "Canceled", note: "Sunwest model fine-tuning -- switched to custom analyzers" },
+    { ticketId: "BACK-1983", newStatus: "Code Review", note: "Account Creation Message Listener -- Treven Trujillo" },
+    { ticketId: "BACK-1835", newStatus: "In Progress", note: "Documents PSQL Schema -- Aleksander, now stale 6d" }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 14, totalStoryPoints: 213, trackedTickets: 87 },
+    current: { engineers: 14, totalStoryPoints: 222, trackedTickets: 92 }
+  },
+
+  dataUpdates: [
+    "Full JIRA API extraction via automated Python scripts (tools/jira_extract.py)",
+    "Full Monday.com GraphQL API extraction (tools/monday_extract.py) -- 113 accounts, $13.171M pipeline (unchanged)",
+    "Orphan ticket reconciliation -- 2 orphans (GPT-5, UI-761), 1 status change",
+    "Sprint S5 Day 11/14: 92 tickets (+5), 222 pts (+9), 42 Done (97 pts)",
+    "Completion: 45.7% tickets, 43.7% points (up from 43.7%/41.8%)",
+    "4 Done since Mar 9: BACK-1918 (Colony GAP!), BACK-1297/1299/1300/1311 (Ivan), BACK-1921 (Darius)",
+    "STALE NEARLY DOUBLED AGAIN: 6 -> 11 (4 stale IP + 7 stale CR). Ivan 4 CRs now stale. BACK-1835 new stale IP.",
+    "BACK-1918 Colony GAP Coverage DONE -- key milestone for renewal conversation. Colony expired -38d.",
+    "UI-743 Broadridge aggregated report DONE -- was blocked, major unblock. $1M ARR deal.",
+    "BACK-1532/1653 Sunwest Mercury CANCELED -- switched to custom analyzers per product meeting.",
+    "Health still RED (6 red, 1 yellow, 1 green). 38.9% behind pace at Day 11.",
+    "S6 planning NOT STARTED -- only 3 days until next sprint. CRITICAL.",
+    "BetaNxt corrected: $125K at CC 80% (was showing $340K at CA 60%). Close date Mar 6 expired."
+  ]
+};
+
 export const changeLog: ChangeLogEntry[] = [
+  changeLogMar10,
   changeLogMar9,
   changeLogMar6,
   changeLogMar5,

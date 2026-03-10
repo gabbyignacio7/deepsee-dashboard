@@ -1,5 +1,5 @@
 // Sales Pipeline Data - Monday.com CRM
-// Last Updated: March 9, 2026 @ 12:22 PM MT
+// Last Updated: March 10, 2026 @ 12:00 PM MT
 // Source: Monday.com GraphQL API Extraction + PoV & Client Tracker
 
 export type RiskLevel = 'green' | 'yellow' | 'red';
@@ -105,7 +105,7 @@ export interface MondaySalesPipelineData {
 
 export const mondaySalesPipelineData: MondaySalesPipelineData = {
   overview: {
-    asOf: "2026-03-09T10:49:00-07:00",
+    asOf: "2026-03-10T12:00:00-07:00",
     totalPipeline: 13171000,
     weightedPipeline: 3383500,
     activeDeals: 113,
@@ -128,12 +128,11 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
   },
 
   stageDistribution: [
-    { stage: "Qualified Lead/Discovery", probability: 5, count: 49, totalArr: 3635000, weightedArr: 181750, convRate: 75.5 },
-    { stage: "Problem Validation & Value Framing", probability: 10, count: 22, totalArr: 3764000, weightedArr: 376400, convRate: 61.8 },
-    { stage: "Solution Fit/Technical Validation", probability: 25, count: 11, totalArr: 2068000, weightedArr: 517000, convRate: 72.7 },
+    { stage: "Qualified Lead/Discovery", probability: 5, count: 53, totalArr: 3159000, weightedArr: 157950, convRate: 75.5 },
+    { stage: "Problem Validation & Value Framing", probability: 10, count: 24, totalArr: 3704000, weightedArr: 370400, convRate: 61.8 },
+    { stage: "Solution Fit/Technical Validation", probability: 25, count: 13, totalArr: 2414000, weightedArr: 603500, convRate: 72.7 },
     { stage: "Business Case & Champion Commit", probability: 35, count: 4, totalArr: 1919000, weightedArr: 671650, convRate: 53.3 },
-    { stage: "Commercial Alignment", probability: 60, count: 1, totalArr: 340000, weightedArr: 204000, convRate: 84.5 },
-    { stage: "Contracting & Close", probability: 80, count: 1, totalArr: 1850000, weightedArr: 1480000, note: "DTCC-ELA only -- BACK-1603 DONE, close imminent" }
+    { stage: "Contracting & Close", probability: 80, count: 2, totalArr: 1975000, weightedArr: 1580000, note: "DTCC-ELA $1.85M + BetaNxt $125K" }
   ],
 
   topDeals: [
@@ -276,16 +275,16 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     {
       client: "BetaNxt",
       dealName: "Design & Deploy",
-      arr: 340000,
-      stage: "Commercial Alignment",
-      probability: 60,
-      closeDate: "2026-02-20",
+      arr: 125000,
+      stage: "Contracting & Close",
+      probability: 80,
+      closeDate: "2026-03-06",
       product: "Operations",
       segment: "Cap Markets",
       engineeringRequired: false,
-      riskLevel: "red",
+      riskLevel: "yellow",
       atRisk: true,
-      daysOverdue: 514
+      daysOverdue: 4
     },
     {
       client: "Wells Fargo",
@@ -356,10 +355,10 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     {
       client: "Colony Bank",
       arr: 59000,
-      daysOverdue: 19,
-      issue: "Contract EXPIRED Jan 31 (-33 days). No renewal deal tracked.",
+      daysOverdue: 38,
+      issue: "Contract EXPIRED Jan 31 (-38 days). BACK-1918 DONE -- push renewal now.",
       priority: "P0",
-      status: "URGENT: Immediate outreach needed"
+      status: "URGENT: Renewal milestone achieved"
     },
     {
       client: "DTCC - ELA",
@@ -377,9 +376,9 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     },
     {
       client: "BetaNxt",
-      arr: 340000,
-      daysOverdue: 514,
-      issue: "Close date Feb 20, 514 days in pipeline",
+      arr: 125000,
+      daysOverdue: 4,
+      issue: "Close date Mar 6, advanced to CC 80%. ARR reduced $340K to $125K.",
       priority: "P1"
     },
     {
@@ -420,13 +419,13 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     { family: "SSIs", arr: 313000 }
   ],
 
-  // Updated from Monday.com PoV & Client Tracker - March 9, 2026
+  // Updated from Monday.com PoV & Client Tracker - March 10, 2026
   existingCustomers: [
     { client: "DTCC - SSI", arr: 416200, tcv3yr: 1162200, status: "Active", primary: "Joe Graziano" },
     { client: "Accenture", arr: 225000, tcv3yr: 725000, status: "Active", primary: "Dominic Stanyer" },
     { client: "Altaira", arr: 150000, tcv3yr: 450000, status: "Active", primary: "Steve Breen" },
     { client: "BetaNXT - UI", arr: 90000, tcv3yr: 90000, status: "Active", primary: "Sam Markey" },
-    { client: "Colony Bank", arr: 59000, tcv3yr: 59000, status: "At Risk", note: "Contract EXPIRED Jan 31 (-19 days)" },
+    { client: "Colony Bank", arr: 59000, tcv3yr: 59000, status: "At Risk", note: "Contract EXPIRED Jan 31 (-38 days). BACK-1918 DONE." },
     { client: "Vantage Bank Texas", arr: 50000, tcv3yr: 150000, status: "Active", primary: "Shawn Main" }
   ],
 
@@ -434,16 +433,16 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     totalARR: 990200,
     customersWithARR: 6,
     customersWithoutARR: 0,
-    dataQualityIssue: "Colony Bank contract expired (-33 days). 55+ accounts missing ARR. 25+ missing close date."
+    dataQualityIssue: "Colony Bank contract expired (-38 days). 55+ accounts missing ARR. 25+ missing close date."
   },
 
   engineeringNeeds: [
     {
       client: "Colony Bank",
       dealArr: 59000,
-      need: "Contract EXPIRED -33 days. No renewal deal tracked. Immediate outreach.",
+      need: "Contract EXPIRED -38 days. BACK-1918 DONE -- push renewal now.",
       priority: "P0",
-      jiraEpic: "BACK-1965"
+      jiraEpic: "BACK-1918"
     },
     {
       client: "DTCC - ELA",
@@ -455,7 +454,7 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     {
       client: "Broadridge",
       dealArr: 1000000,
-      need: "UI-743 blocked (unassigned). UI-755 Done. Steve needs next steps.",
+      need: "UI-743 DONE (was blocked). Steve needs next steps on ELA.",
       priority: "P0",
       jiraEpic: null
     },
@@ -475,8 +474,8 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
     },
     {
       client: "BetaNxt",
-      dealArr: 340000,
-      need: "Design and Deployment — close Feb 20",
+      dealArr: 125000,
+      need: "Design and Deployment — advanced to CC 80%, ARR $340K to $125K, close Mar 6",
       priority: "P1",
       jiraEpic: null
     }
@@ -484,10 +483,10 @@ export const mondaySalesPipelineData: MondaySalesPipelineData = {
 
   engineeringAlignment: [
     { priority: "P0", client: "DTCC - ELA", arr: 1850000, jiraTicket: "BACK-1603", status: "DONE Feb 22 — engineering complete, push to close", stage: "Contracting & Close 80%", daysInPipeline: 470 },
-    { priority: "P0", client: "Colony Bank", arr: 59000, jiraTicket: "BACK-1965/1918/1862", status: "Contract EXPIRED -33 days. No renewal deal tracked.", stage: "Won - At Risk", daysInPipeline: 0 },
-    { priority: "P0", client: "Broadridge", arr: 1000000, jiraTicket: "UI-743", status: "UI-743 blocked unassigned, UI-755 Done", stage: "Biz Case 30%", daysInPipeline: 358 },
+    { priority: "P0", client: "Colony Bank", arr: 59000, jiraTicket: "BACK-1918", status: "Contract EXPIRED -38d. BACK-1918 DONE -- push renewal.", stage: "Won - At Risk", daysInPipeline: 0 },
+    { priority: "P0", client: "Broadridge", arr: 1000000, jiraTicket: "UI-743", status: "UI-743 DONE (was blocked). Steve next steps.", stage: "Biz Case 30%", daysInPipeline: 358 },
     { priority: "P0", client: "CTC/BBVA", arr: 878000, jiraTicket: "BACK-1938", status: "IP, Mercury HITL sprint goal unowned", stage: "Solution Fit/Biz Case", daysInPipeline: 0 },
-    { priority: "P1", client: "BetaNxt", arr: 340000, jiraTicket: "Active", status: "Close Feb 20, 514 days in pipeline", stage: "Commercial Alignment 60%", daysInPipeline: 514 },
+    { priority: "P1", client: "BetaNxt", arr: 125000, jiraTicket: "Active", status: "Advanced to CC 80%, ARR reduced $340K to $125K, close Mar 6", stage: "Contracting & Close 80%", daysInPipeline: 4 },
     { priority: "P1", client: "Wells Fargo", arr: 313000, jiraTicket: "SSI Output", status: "451 days in pipeline at SFT", stage: "Solution Fit 25%", daysInPipeline: 451 }
   ],
 
@@ -702,7 +701,7 @@ export const dashboardAlerts = [
 // DATA LAST UPDATED
 // ═══════════════════════════════════════════════════════════════
 
-export const dataLastUpdated = "March 9, 2026, 12:22 PM MT";
+export const dataLastUpdated = "March 10, 2026, 12:00 PM MT";
 
 // ═══════════════════════════════════════════════════════════════
 // HELPER FUNCTIONS

@@ -1,8 +1,8 @@
-// Sprint Data - Updated March 9, 2026 at 12:22 PM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S5 (Active - Day 10 of 14)
+// Sprint Data - Updated March 10, 2026 at 12:00 PM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S5 (Active - Day 11 of 14)
 // CRITICAL: NEXT_SPRINT_READINESS export is required by executive.tsx - DO NOT REMOVE
 
-export const EXTRACTION_TIMESTAMP = "2026-03-09T10:49:00-07:00";
+export const EXTRACTION_TIMESTAMP = "2026-03-10T12:00:00-07:00";
 export const DATA_SOURCE = "JIRA Sprint Extraction + Monday.com CRM";
 
 export interface SprintStatus {
@@ -91,31 +91,31 @@ export const PREVIOUS_SPRINT: Sprint = {
   assessment: 'client-heavy'
 };
 
-// S5 - ACTIVE (current sprint - Day 10 of 14)
+// S5 - ACTIVE (current sprint - Day 11 of 14)
 export const CURRENT_SPRINT: Sprint = {
   id: '2026-S5',
   name: 'Sprint 2026-S5',
   startDate: '2026-02-27',
   endDate: '2026-03-13',
   status: 'active',
-  totalTickets: 87,
-  totalPoints: 213,
-  completedTickets: 38,
-  completedPoints: 89,
+  totalTickets: 92,
+  totalPoints: 222,
+  completedTickets: 42,
+  completedPoints: 97,
   completion: {
-    toDo: 18,
+    toDo: 20,
     blocked: 0,
-    inProgress: 15,
-    codeReview: 7,
-    done: 38
+    inProgress: 13,
+    codeReview: 8,
+    done: 42
   },
-  completionRate: 43.7,
-  pointsCompletionRate: 41.8,
+  completionRate: 45.7,
+  pointsCompletionRate: 43.7,
   health: 'red',
-  daysRemaining: 4,
-  daysElapsed: 10,
+  daysRemaining: 3,
+  daysElapsed: 11,
   likelyRollovers: 0,
-  mix: { artemis: 8, client: 14, infrastructure: 3 },
+  mix: { artemis: 9, client: 16, infrastructure: 3 },
   assessment: 'client-heavy'
 };
 
@@ -179,9 +179,9 @@ export const NEXT_SPRINT_READINESS = {
   projectBreakdown: [] as { project: string; count: number }[],
   assignedEngineers: [] as { name: string; tickets: number }[],
   blockers: [
-    'S6 not yet planned',
-    'S5 just started -- focus on current sprint first',
-    'Sprint planning session needed before Mar 13'
+    'S6 not yet planned -- 3 days until sprint start',
+    'S5 Day 11: 45.7% complete vs 84.6% expected -- severely behind',
+    'Sprint planning session needed before Mar 13 -- CRITICAL'
   ]
 };
 
@@ -230,7 +230,7 @@ export const ARTEMIS_BACKLOG: SprintItem[] = [
   { key: 'UI-734', summary: '[BLUEPRINT] ARTEMIS UI for BluePrint viewing and configuration', priority: 'Major', recommended: true },
 ];
 
-export const SPRINT_DATA_UPDATED = "2026-03-09T10:49:00-07:00";
+export const SPRINT_DATA_UPDATED = "2026-03-10T12:00:00-07:00";
 
 export function getSprintByStatus(status: 'active' | 'planned' | 'future'): Sprint | undefined {
   return SPRINTS.find(s => s.status === status);
@@ -267,5 +267,6 @@ export function getSprintMixChartData() {
 }
 
 export function formatDataTimestamp(isoString: string = EXTRACTION_TIMESTAMP): string {
-  return "March 9, 2026, 12:22 PM MT";
+  return "March 10, 2026, 12:00 PM MT";
 }
+

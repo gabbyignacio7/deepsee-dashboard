@@ -9,7 +9,7 @@ export interface OrphanTicket {
 }
 
 export const orphanTicketsData: OrphanTicket[] = [
-  // Populated by reconciliation script - March 9, 2026
+  // Populated by reconciliation script - March 10, 2026
   {
     key: "GPT-5",
     summary: "Referenced in dashboard but does not exist in JIRA",
@@ -40,7 +40,7 @@ export const orphanTicketsData: OrphanTicket[] = [
 ];
 
 export const orphanSummary = {
-  lastReconciliation: "March 9, 2026",
+  lastReconciliation: "March 10, 2026",
   totalOrphans: 3,
   deleted: 2,
   completed: 0,

@@ -1,5 +1,5 @@
-// Work Mix Data - Updated March 9, 2026
-// Source: JIRA Extract - Sprint 2026-S5 (Day 10 of 14)
+// Work Mix Data - Updated March 10, 2026
+// Source: JIRA Extract - Sprint 2026-S5 (Day 11 of 14)
 
 export interface WorkCategory {
   category: string;
@@ -13,16 +13,16 @@ export interface WorkCategory {
 export const workMix: WorkCategory[] = [
   {
     category: "ARTEMIS/Platform",
-    s2Tickets: 8,
-    s2Percentage: 9,
+    s2Tickets: 9,
+    s2Percentage: 10,
     target: "50-60%",
     status: "below",
     color: "#3B82F6" // blue
   },
   {
     category: "Client Work",
-    s2Tickets: 14,
-    s2Percentage: 16,
+    s2Tickets: 16,
+    s2Percentage: 17,
     target: "30-35%",
     status: "below",
     color: "#F59E0B" // amber
@@ -45,28 +45,28 @@ export interface ClientWorkBreakdown {
   status?: string;
 }
 
-// Client work breakdown - Updated March 9, 2026
+// Client work breakdown - Updated March 10, 2026
 export const clientBreakdown: ClientWorkBreakdown[] = [
-  { client: "CTC/BBVA/Mercury", s2Tickets: 11, s2Points: 29, arrAtRisk: 878000, status: "BACK-1938 IP, BACK-1921 IP, Mercury HITL tickets unassigned" },
-  { client: "Colony Bank", s2Tickets: 3, s2Points: 16, arrAtRisk: 59000, status: "Contract EXPIRED Jan 31 (-37 days). BACK-1965 Done, BACK-1918 CR (stale 9d), BACK-1970 CR." },
-  { client: "Broadridge/Accenture", s2Tickets: 2, s2Points: 2, arrAtRisk: 1000000, status: "UI-743 now To Do (was Blocked)" },
+  { client: "CTC/BBVA/Mercury", s2Tickets: 11, s2Points: 29, arrAtRisk: 878000, status: "Mercury HITL tickets unassigned. CTC close date TODAY Mar 10." },
+  { client: "Colony Bank", s2Tickets: 3, s2Points: 16, arrAtRisk: 59000, status: "Contract EXPIRED Jan 31 (-38 days). BACK-1918 DONE! Key renewal milestone." },
+  { client: "Broadridge/Accenture", s2Tickets: 2, s2Points: 2, arrAtRisk: 1000000, status: "UI-743 DONE (was Blocked). Major unblock." },
   { client: "DTCC", s2Tickets: 2, s2Points: 5, arrAtRisk: 1850000, status: "BACK-1603 DONE Feb 22 — $1.85M close imminent" },
-  { client: "Sunwest", s2Tickets: 2, s2Points: 5, arrAtRisk: 0, status: "BACK-1532/1653 Mercury extraction fine-tuning. Both unassigned." },
+  { client: "Sunwest", s2Tickets: 2, s2Points: 5, arrAtRisk: 0, status: "BACK-1532/1653 Canceled (switched to custom analyzers). Treasury onboarding priority." },
   { client: "Accenture", s2Tickets: 1, s2Points: 0, arrAtRisk: 225000, status: "BACK-1928 blank fields bug, To Do, unassigned" }
 ];
 
 export const workMixSummary = {
-  totalTickets: 87,
-  totalPoints: 213,
-  artemisPercentage: 9,
+  totalTickets: 92,
+  totalPoints: 222,
+  artemisPercentage: 10,
   artemisTarget: 60,
-  clientPercentage: 16,
+  clientPercentage: 17,
   clientTarget: 30,
   infrastructurePercentage: 3,
   infrastructureTarget: 10,
   gap: {
-    artemis: -51, // 9 - 60 (SEVERELY UNDER)
-    client: -14 // 16 - 30 (UNDER)
+    artemis: -50, // 10 - 60 (SEVERELY UNDER)
+    client: -13 // 17 - 30 (UNDER)
   }
 };
 

@@ -456,7 +456,7 @@ export default function MercuryExtractionSection() {
                 <span className="font-medium">Tech Lead:</span> Kalvin Willison
               </p>
               <p className="text-sm text-muted-foreground">
-                <span className="font-medium">Last Updated:</span> March 9, 2026, 12:22 PM MT
+                <span className="font-medium">Last Updated:</span> March 10, 2026, 12:00 PM MT
               </p>
             </div>
           </div>

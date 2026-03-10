@@ -1,5 +1,5 @@
-// Blocked Items Data - Updated March 9, 2026 at 12:22 PM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S4 (Day 5 of 14)
+// Blocked Items Data - Updated March 10, 2026 at 12:00 PM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S5 (Day 11 of 14)
 
 export interface BlockedItem {
   key: string;
@@ -18,53 +18,46 @@ export const sprintBlockedItems: BlockedItem[] = [
     key: "UI-740",
     summary: "Deep Recon - Add Dropdown List for Assignee Names",
     assignee: "Matthew Snow",
-    daysBlocked: 24,
+    daysBlocked: 25,
     category: "internal",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/UI-740",
-    reason: "Blocked 24 days -- internal dependency"
+    reason: "Blocked 25 days -- internal dependency"
   }
 ];
 
 // All blocked items including backlog
+// UI-743 DONE as of Mar 10 -- removed from blocked list
 export const blockedItems: BlockedItem[] = [
   {
     key: "UI-740",
     summary: "Deep Recon - Add Dropdown List for Assignee Names",
     assignee: "Matthew Snow",
-    daysBlocked: 24,
+    daysBlocked: 25,
     category: "internal",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/UI-740",
-    reason: "Blocked 24 days -- internal dependency"
-  },
-  {
-    key: "UI-743",
-    summary: "Deep Recon - Make aggregated report exportable (Broadridge)",
-    assignee: "Unassigned",
-    daysBlocked: 1,
-    category: "client",
-    priority: "P1",
-    jiraUrl: "https://deepsee.atlassian.net/browse/UI-743",
-    reason: "Blocked AND unassigned — Broadridge client dependency"
+    reason: "Blocked 25 days -- internal dependency"
   }
 ];
 
-// Stale In Progress items (no updates in 10+ days)
+// Stale In Progress items (>5 days in status) -- from JIRA Mar 10 extraction
 export const staleInProgressItems = [
-  { key: "BACK-1299", summary: "Single Model Input CLI", assignee: "Ivan Peev", points: 0, lastUpdated: "2026-02-06", daysSinceUpdate: 31, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1299" },
-  { key: "BACK-1795", summary: "Add AccountName2 to DTCC Output", assignee: "Aleksander Winski", points: 2, lastUpdated: "2026-02-13", daysSinceUpdate: 24, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1795" },
-  { key: "BACK-1911", summary: "Complete artemis-platform Project Setup", assignee: "Lane Terry", points: 5, lastUpdated: "2026-02-13", daysSinceUpdate: 24, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1911" },
-  { key: "BACK-1297", summary: "Single Model Workflow", assignee: "Ivan Peev", points: 8, lastUpdated: "2026-02-13", daysSinceUpdate: 24, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1297" },
-  { key: "BACK-1810", summary: "Pentest - SSL Cipher for WPEngine", assignee: "Brandon Baguley", points: 2, lastUpdated: "2026-02-13", daysSinceUpdate: 24, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1810" },
-  { key: "CI-935", summary: "CNPG Backup cleanup", assignee: "Jeff Hegerhorst", points: 3, lastUpdated: "2026-02-13", daysSinceUpdate: 24, jiraUrl: "https://deepsee.atlassian.net/browse/CI-935" },
-  { key: "BACK-1862", summary: "Colony Bank RV loans evaluation", assignee: "Konnor Willison", points: 8, lastUpdated: "2026-02-13", daysSinceUpdate: 24, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1862" }
+  { key: "UI-780", summary: "Handle 401 errors better", assignee: "Owen Riley", points: 2, lastUpdated: "2026-02-27", daysSinceUpdate: 11, jiraUrl: "https://deepsee.atlassian.net/browse/UI-780" },
+  { key: "CI-946", summary: "Investigate gpu node failure", assignee: "Chad Hegerhorst", points: 3, lastUpdated: "2026-02-28", daysSinceUpdate: 10, jiraUrl: "https://deepsee.atlassian.net/browse/CI-946" },
+  { key: "CI-937", summary: "Create Basic K8s Operator POC", assignee: "Jeff Hegerhorst", points: 5, lastUpdated: "2026-03-02", daysSinceUpdate: 8, jiraUrl: "https://deepsee.atlassian.net/browse/CI-937" },
+  { key: "BACK-1835", summary: "Documents PSQL Schema", assignee: "Aleksander Winski", points: 5, lastUpdated: "2026-03-04", daysSinceUpdate: 6, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1835" }
 ];
 
-// Stale Code Review items (>3 days)
+// Stale Code Review items (>3 days) -- from JIRA Mar 10 extraction
 export const staleCodeReviewItems = [
-  { key: "BACK-1918", summary: "[Colony] GAP Coverage Provider", assignee: "Kannal Mutharasu", points: 5, daysInReview: 20, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1918" },
-  { key: "BACK-1792", summary: "JAVA Unit Test Markdowns", assignee: "Brandon Baguley", points: 1, daysInReview: 20, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1792" }
+  { key: "BACK-1993", summary: "Documents Stuck in Mercury Bottleneck", assignee: "Unassigned", points: 0, daysInReview: 11, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1993" },
+  { key: "BACK-2011", summary: "Automations Improvements", assignee: "Lane Terry", points: 5, daysInReview: 6, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-2011" },
+  { key: "BACK-1980", summary: "AWS SQS to Kafka Camel Adapter", assignee: "Lane Terry", points: 5, daysInReview: 5, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1980" },
+  { key: "BACK-1303", summary: "ML Label/Challenge Workflow Template", assignee: "Ivan Peev", points: 0, daysInReview: 4, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1303" },
+  { key: "BACK-1302", summary: "ML Label/Challenge Output Handler CLI", assignee: "Ivan Peev", points: 0, daysInReview: 4, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1302" },
+  { key: "BACK-1298", summary: "ML Label/Challenge Workflow", assignee: "Ivan Peev", points: 13, daysInReview: 4, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1298" },
+  { key: "BACK-1301", summary: "ML Label/Challenge Input CLI", assignee: "Ivan Peev", points: 0, daysInReview: 4, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1301" }
 ];
 
 export const blockedSummary = {
