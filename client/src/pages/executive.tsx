@@ -15,9 +15,12 @@ import { Download, DollarSign, BarChart2, Settings, Target, AlertTriangle, Rocke
 import { masterFeaturesData, getBucketStats, BUCKET_CONFIG, type Bucket } from '@/data/masterFeaturesData';
 import { Badge } from '@/components/ui/badge';
 import { blockedSummary } from '@/data/blockedItemsData';
-import { CURRENT_SPRINT, NEXT_SPRINT_READINESS } from '@/data/sprintData';
+import { CURRENT_SPRINT, NEXT_SPRINT, NEXT_SPRINT_READINESS } from '@/data/sprintData';
 import { overallHealth, sprintPlanningAlert } from '@/data/sprintHealthData';
 import { artemisReadiness } from '@/data/artemisFoundationData';
+import { formatDataTimestamp } from '@/data/timestamp';
+import { workMix as sprintWorkMix } from '@/data/sprintHealthData';
+import HighlightSourceDropdown from '@/components/HighlightSourceDropdown';
 
 export default function ExecutiveDashboard() {
   const { features, salesOpportunities, allFeatures, selectedClients, setSelectedClients, loading, error } = useDashboard();
@@ -171,26 +174,116 @@ export default function ExecutiveDashboard() {
         {/* Key Highlights */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
           <h3 className="font-semibold text-gray-900 mb-3">Key Highlights</h3>
-          <ul className="space-y-2 text-sm">
-            <li className="flex items-start gap-2">
-              <span className="text-red-500 mt-0.5">●</span>
-              <span>Sprint {CURRENT_SPRINT.id}: {CURRENT_SPRINT.completionRate}% complete, {CURRENT_SPRINT.daysRemaining} days remaining - <strong className="text-red-600">{overallHealth} status</strong></span>
+          <ul className="space-y-3 text-sm">
+            <li>
+              <div className="flex items-start gap-2">
+                <span className="text-red-500 mt-0.5">●</span>
+                <span>Sprint {CURRENT_SPRINT.id}: {CURRENT_SPRINT.completionRate}% complete, {CURRENT_SPRINT.daysRemaining} days remaining - <strong className="text-red-600">{overallHealth} status</strong></span>
+              </div>
+              <div className="ml-5">
+                <HighlightSourceDropdown source={{
+                  sourceFile: "sprintData.ts → CURRENT_SPRINT",
+                  calculationMethod: "completedTickets / totalTickets × 100. Includes Done status only.",
+                  rawInputs: [
+                    { label: "Completed Tickets", value: String(CURRENT_SPRINT.completedTickets) },
+                    { label: "Total Tickets", value: String(CURRENT_SPRINT.totalTickets) },
+                    { label: "Completed Points", value: `${CURRENT_SPRINT.completedPoints} of ${CURRENT_SPRINT.totalPoints}` },
+                    { label: "Days Elapsed / Remaining", value: `${CURRENT_SPRINT.daysElapsed} / ${CURRENT_SPRINT.daysRemaining}` },
+                    { label: "Overall Health", value: overallHealth },
+                  ],
+                  lastUpdated: formatDataTimestamp(),
+                  jiraLinks: [
+                    { key: "Sprint Board", url: "https://deepsee.atlassian.net/jira/software/projects/BACK/boards/1", summary: "JIRA Sprint Board" },
+                  ],
+                  notes: "Data from JIRA REST API extraction (tools/jira_extract.py). Story points use customfield_10023. Health is composite of sprint metrics from sprintHealthData.ts.",
+                }} />
+              </div>
             </li>
-            <li className="flex items-start gap-2">
-              <span className="text-red-500 mt-0.5">●</span>
-              <span>Next Sprint (S3): ⚠️ {NEXT_SPRINT_READINESS.totalTickets} tickets but {NEXT_SPRINT_READINESS.unassigned} unassigned - needs assignment + pointing session</span>
+            <li>
+              <div className="flex items-start gap-2">
+                <span className="text-red-500 mt-0.5">●</span>
+                <span>Next Sprint ({NEXT_SPRINT.id}): {NEXT_SPRINT_READINESS.totalTickets > 0 ? `⚠️ ${NEXT_SPRINT_READINESS.totalTickets} tickets but ${NEXT_SPRINT_READINESS.unassigned} unassigned` : 'Not yet populated'}</span>
+              </div>
+              <div className="ml-5">
+                <HighlightSourceDropdown source={{
+                  sourceFile: "sprintData.ts → NEXT_SPRINT_READINESS",
+                  calculationMethod: "Counts tickets assigned to next sprint in JIRA. Unassigned = tickets with no assignee field.",
+                  rawInputs: [
+                    { label: "Total Tickets", value: String(NEXT_SPRINT_READINESS.totalTickets) },
+                    { label: "Assigned", value: String(NEXT_SPRINT_READINESS.assigned) },
+                    { label: "Unassigned", value: String(NEXT_SPRINT_READINESS.unassigned) },
+                    { label: "With Story Points", value: String(NEXT_SPRINT_READINESS.withStoryPoints) },
+                    { label: "Readiness Status", value: NEXT_SPRINT_READINESS.readinessStatus },
+                  ],
+                  lastUpdated: formatDataTimestamp(),
+                  notes: "Next sprint readiness is assessed by assignment rate and estimation coverage. GREEN requires >80% assigned and >70% estimated.",
+                }} />
+              </div>
             </li>
-            <li className="flex items-start gap-2">
-              <span className="text-red-500 mt-0.5">●</span>
-              <span>ARTEMIS Foundation: {artemisReadiness.started}/{artemisReadiness.totalEpics} epics started - needs immediate attention</span>
+            <li>
+              <div className="flex items-start gap-2">
+                <span className="text-red-500 mt-0.5">●</span>
+                <span>ARTEMIS Foundation: {artemisReadiness.started}/{artemisReadiness.totalEpics} epics started - needs immediate attention</span>
+              </div>
+              <div className="ml-5">
+                <HighlightSourceDropdown source={{
+                  sourceFile: "artemisFoundationData.ts → artemisReadiness",
+                  calculationMethod: "Count of foundation epics with status 'IN PROGRESS' or 'DONE' / total foundation epics.",
+                  rawInputs: [
+                    { label: "Total Foundation Epics", value: String(artemisReadiness.totalEpics) },
+                    { label: "Started", value: String(artemisReadiness.started) },
+                    { label: "Completed", value: String(artemisReadiness.completed) },
+                    { label: "Readiness %", value: `${artemisReadiness.readinessPct}%` },
+                  ],
+                  lastUpdated: formatDataTimestamp(),
+                  jiraLinks: [
+                    { key: "PR-1561", url: "https://deepsee.atlassian.net/browse/PR-1561", summary: "DeepSee Agentic Platform" },
+                  ],
+                  notes: "This tracks ARTEMIS foundation epics from artemisFoundationData.ts (BACK-1680 through BACK-1688 + PR-1561/PR-1563). The ARTEMIS Initiative tab shows a DIFFERENT metric: epic-level status from agenticPlatformData.ts, which counts child epics marked 'Done' out of total children. The roadmap milestone bars use yet another source: completedStoryPoints / totalStoryPoints from roadmapData.ts. These three views intentionally measure different things — foundation readiness vs epic completion vs story point progress.",
+                }} />
+              </div>
             </li>
-            <li className="flex items-start gap-2">
-              <span className="text-red-500 mt-0.5">●</span>
-              <span>{blockedSummary.total} blocked items requiring escalation (avg {blockedSummary.avgDaysBlocked} days blocked)</span>
+            <li>
+              <div className="flex items-start gap-2">
+                <span className="text-red-500 mt-0.5">●</span>
+                <span>{blockedSummary.total} blocked items requiring escalation (avg {blockedSummary.avgDaysBlocked} days blocked)</span>
+              </div>
+              <div className="ml-5">
+                <HighlightSourceDropdown source={{
+                  sourceFile: "blockedItemsData.ts → blockedSummary",
+                  calculationMethod: "Count of all items with 'Blocked' status in JIRA (sprint + backlog). Average = sum of daysBlocked / count.",
+                  rawInputs: [
+                    { label: "Total Blocked", value: String(blockedSummary.total) },
+                    { label: "Sprint Blocked", value: String(blockedSummary.sprintBlocked) },
+                    { label: "Backlog Blocked", value: String(blockedSummary.backlogBlocked) },
+                    { label: "Avg Days Blocked", value: String(blockedSummary.avgDaysBlocked) },
+                    { label: "Oldest", value: blockedSummary.oldestBlocked },
+                    { label: "Stale In Progress", value: String(blockedSummary.staleInProgress) },
+                    { label: "Stale Code Review", value: String(blockedSummary.staleCodeReview) },
+                  ],
+                  lastUpdated: formatDataTimestamp(),
+                  notes: "Includes both sprint-blocked (status='Blocked') and long-blocked backlog items. Stale thresholds: In Progress > 5 days, Code Review > 3 days.",
+                }} />
+              </div>
             </li>
-            <li className="flex items-start gap-2">
-              <span className="text-blue-500 mt-0.5">●</span>
-              <span>Work mix: {CURRENT_SPRINT.mix.artemis}% ARTEMIS vs 50-60% target - rebalancing needed</span>
+            <li>
+              <div className="flex items-start gap-2">
+                <span className="text-blue-500 mt-0.5">●</span>
+                <span>Work mix: {sprintWorkMix.artemis.percent}% ARTEMIS vs {sprintWorkMix.artemis.target} target - rebalancing needed</span>
+              </div>
+              <div className="ml-5">
+                <HighlightSourceDropdown source={{
+                  sourceFile: "sprintHealthData.ts → workMix",
+                  calculationMethod: "Category ticket count / total sprint tickets × 100. ARTEMIS includes platform and agentic tickets.",
+                  rawInputs: [
+                    { label: "ARTEMIS", value: `${sprintWorkMix.artemis.tickets} tickets (${sprintWorkMix.artemis.percent}%) — target ${sprintWorkMix.artemis.target}` },
+                    { label: "Client Work", value: `${sprintWorkMix.client.tickets} tickets (${sprintWorkMix.client.percent}%) — target ${sprintWorkMix.client.target}` },
+                    { label: "Infrastructure", value: `${sprintWorkMix.infrastructure.tickets} tickets (${sprintWorkMix.infrastructure.percent}%) — target ${sprintWorkMix.infrastructure.target}` },
+                  ],
+                  lastUpdated: formatDataTimestamp(),
+                  notes: "Work mix categorization is based on JIRA project keys and epic labels. ARTEMIS tickets are tagged with 'ARTEMIS' or 'Platform' labels. The gap between actual and target allocation indicates rebalancing priority.",
+                }} />
+              </div>
             </li>
           </ul>
         </div>
