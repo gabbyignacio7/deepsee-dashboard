@@ -20,7 +20,7 @@ export interface HardcodedEngineerData {
 }
 
 export const engineerAllocationData: HardcodedEngineerData = {
-  lastUpdated: "March 10, 2026, 12:00 PM MT",
+  lastUpdated: "March 17, 2026, 10:15 AM MT",
 
   engineers: [
     {

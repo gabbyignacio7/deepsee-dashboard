@@ -722,6 +722,51 @@ export const changeLogMar9: ChangeLogEntry = {
   ]
 };
 
+export const changeLogMar17: ChangeLogEntry = {
+  date: "March 17, 2026",
+  timestamp: "10:15 AM MT",
+  source: "JIRA API + Monday.com GraphQL API - Automated extraction",
+
+  engineerChanges: [
+    { engineer: "Ivan Peev", change: "5 sprint tickets (18 pts) -- 4 Done, 1 CR (BACK-1326 5pts). S5 stale backlog CLEARED. Debt -4." },
+    { engineer: "Kalvin Willison", change: "5 sprint tickets (5 pts) -- 3 Done, 1 IP (BACK-2054), 1 WFA. Strong velocity." },
+    { engineer: "Kannal Mutharasu", change: "4 sprint tickets (5 pts) -- 2 IP (BACK-2051, BACK-1796 stale 17d!), 2 ToDo." },
+    { engineer: "Jeff Hegerhorst", change: "0 sprint tickets. Needs S6 assignment. Backlog debt +3." },
+    { engineer: "Chad Hegerhorst", change: "0 sprint tickets. Needs S6 assignment. Backlog debt +2." },
+    { engineer: "Loris D'Acunto", change: "MISSING FROM SPRINT: 0 tickets, backlog debt +15" }
+  ],
+
+  ticketStatusChanges: [
+    { ticketId: "2026-S5", newStatus: "Closed", note: "Sprint S5 closed Mar 13. Final estimated: 55 Done, 130 pts (58.6%)" },
+    { ticketId: "2026-S6", newStatus: "Active", note: "Sprint S6 started Mar 12. Goal: Colony/Sunwest/CTC/BBVA/SOC2." },
+    { ticketId: "BACK-2028", previousStatus: "In Progress", newStatus: "Done", note: "CTC Light + CU Extraction DONE -- Darius Ouderkirk" },
+    { ticketId: "BACK-1918", newStatus: "Done", note: "Colony GAP Coverage DONE (carried from S5)" },
+    { ticketId: "BACK-1326", newStatus: "Code Review", note: "Process Reconstruction Workflow -- Ivan Peev, 5 pts" }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 14, totalStoryPoints: 222, trackedTickets: 92 },
+    current: { engineers: 14, totalStoryPoints: 84, trackedTickets: 100 }
+  },
+
+  dataUpdates: [
+    "Full JIRA API extraction via automated Python scripts (tools/jira_extract.py)",
+    "Full Monday.com GraphQL API extraction (tools/monday_extract.py) -- 114 accounts, $13.576M pipeline",
+    "Orphan ticket reconciliation -- 3 orphans (GPT-5, UI-761, UI-794), 1 status change",
+    "SPRINT TRANSITION: S5 closed (130 pts, 58.6%), S6 active Day 5/15",
+    "S6: 100 tickets, 84 pts, 10 Done (21 pts), 10.0% complete",
+    "STALE ITEMS: 11 -> 1 (BACK-1796 only) -- MASSIVE improvement",
+    "CODE REVIEW: 0 stale CR (was 7 in S5) -- all cleared",
+    "72 unassigned tickets (72%) -- early sprint typical but needs assignment push",
+    "5 engineers with 0 sprint tickets (Jeff, Chad, Konnor, Loris, Karolina)",
+    "ARTEMIS at 4.0% vs 60% target -- worst ratio yet",
+    "Health improved: RED -> YELLOW",
+    "Pipeline: $13.576M total (+$405K), $3.420M weighted (+$37K), 114 deals (+1)",
+    "Colony Bank contract expired -45 days. BetaNxt close Mar 6 expired (11d).",
+    "Wells Fargo advanced from SFT to BCC -- positive stage movement"
+  ]
+};
+
 export const changeLogMar10: ChangeLogEntry = {
   date: "March 10, 2026",
   timestamp: "12:00 PM MT",
@@ -772,6 +817,7 @@ export const changeLogMar10: ChangeLogEntry = {
 };
 
 export const changeLog: ChangeLogEntry[] = [
+  changeLogMar17,
   changeLogMar10,
   changeLogMar9,
   changeLogMar6,

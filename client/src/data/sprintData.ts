@@ -1,8 +1,8 @@
-// Sprint Data - Updated March 10, 2026 at 12:00 PM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S5 (Active - Day 11 of 14)
+// Sprint Data - Updated March 17, 2026 at 10:15 AM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S6 (Active - Day 5 of 15)
 // CRITICAL: NEXT_SPRINT_READINESS export is required by executive.tsx - DO NOT REMOVE
 
-export const EXTRACTION_TIMESTAMP = "2026-03-10T12:00:00-07:00";
+export const EXTRACTION_TIMESTAMP = "2026-03-17T10:15:00-07:00";
 export const DATA_SOURCE = "JIRA Sprint Extraction + Monday.com CRM";
 
 export interface SprintStatus {
@@ -64,66 +64,66 @@ export interface NextSprintClientItem {
   client: string;
 }
 
-// S4 - COMPLETED (closed Feb 27, 2026)
+// S5 - COMPLETED (closed Mar 13, 2026)
 export const PREVIOUS_SPRINT: Sprint = {
-  id: '2026-S4',
-  name: 'Sprint 2026-S4',
-  startDate: '2026-02-13',
-  endDate: '2026-02-27',
+  id: '2026-S5',
+  name: 'Sprint 2026-S5',
+  startDate: '2026-02-27',
+  endDate: '2026-03-13',
   status: 'completed',
-  totalTickets: 103,
-  totalPoints: 252,
-  completedTickets: 56,
-  completedPoints: 115,
+  totalTickets: 92,
+  totalPoints: 222,
+  completedTickets: 55,
+  completedPoints: 130,
   completion: {
     toDo: 0,
     blocked: 0,
     inProgress: 0,
     codeReview: 0,
-    done: 115
+    done: 130
   },
-  completionRate: 58.3,
-  pointsCompletionRate: 45.6,
+  completionRate: 59.8,
+  pointsCompletionRate: 58.6,
   health: 'red',
   daysRemaining: 0,
   daysElapsed: 14,
-  mix: { artemis: 10, client: 21, infrastructure: 5 },
-  assessment: 'client-heavy'
-};
-
-// S5 - ACTIVE (current sprint - Day 11 of 14)
-export const CURRENT_SPRINT: Sprint = {
-  id: '2026-S5',
-  name: 'Sprint 2026-S5',
-  startDate: '2026-02-27',
-  endDate: '2026-03-13',
-  status: 'active',
-  totalTickets: 92,
-  totalPoints: 222,
-  completedTickets: 42,
-  completedPoints: 97,
-  completion: {
-    toDo: 20,
-    blocked: 0,
-    inProgress: 13,
-    codeReview: 8,
-    done: 42
-  },
-  completionRate: 45.7,
-  pointsCompletionRate: 43.7,
-  health: 'red',
-  daysRemaining: 3,
-  daysElapsed: 11,
-  likelyRollovers: 0,
   mix: { artemis: 9, client: 16, infrastructure: 3 },
   assessment: 'client-heavy'
 };
 
-// S6 - PLANNED (next sprint)
-export const NEXT_SPRINT: Sprint = {
+// S6 - ACTIVE (current sprint - Day 5 of 15)
+export const CURRENT_SPRINT: Sprint = {
   id: '2026-S6',
   name: 'Sprint 2026-S6',
-  startDate: '2026-03-13',
+  startDate: '2026-03-12',
+  endDate: '2026-03-27',
+  status: 'active',
+  totalTickets: 100,
+  totalPoints: 84,
+  completedTickets: 10,
+  completedPoints: 21,
+  completion: {
+    toDo: 77,
+    blocked: 0,
+    inProgress: 9,
+    codeReview: 3,
+    done: 10
+  },
+  completionRate: 10.0,
+  pointsCompletionRate: 25.0,
+  health: 'yellow',
+  daysRemaining: 10,
+  daysElapsed: 5,
+  likelyRollovers: 0,
+  mix: { artemis: 4, client: 8, infrastructure: 3 },
+  assessment: 'client-heavy'
+};
+
+// S7 - PLANNED (next sprint)
+export const NEXT_SPRINT: Sprint = {
+  id: '2026-S7',
+  name: 'Sprint 2026-S7',
+  startDate: '2026-03-27',
   endDate: 'TBD',
   status: 'planned',
   totalTickets: 0,
@@ -138,7 +138,7 @@ export const NEXT_SPRINT: Sprint = {
     done: 0
   },
   completionRate: 0,
-  health: 'red',
+  health: 'green',
   daysRemaining: 14,
   daysElapsed: 0,
   mix: { artemis: 60, client: 25, infrastructure: 15 },
@@ -179,25 +179,20 @@ export const NEXT_SPRINT_READINESS = {
   projectBreakdown: [] as { project: string; count: number }[],
   assignedEngineers: [] as { name: string; tickets: number }[],
   blockers: [
-    'S6 not yet planned -- 3 days until sprint start',
-    'S5 Day 11: 45.7% complete vs 84.6% expected -- severely behind',
-    'Sprint planning session needed before Mar 13 -- CRITICAL'
+    'S7 not yet planned -- 10 days until sprint start',
+    'S6 Day 5: 10% complete vs 33.3% expected -- early sprint, typical ramp-up',
+    'Focus on S6 execution: Colony/Sunwest/CTC extraction + SOC 2 audit sprint goals'
   ]
 };
 
-// Blocked Items in current sprint (S5)
+// Blocked Items in current sprint (S6)
 export const BLOCKED_ITEMS: SprintItem[] = [
-  // 0 sprint blocked items as of Mar 2 extraction
+  // 0 sprint blocked items as of Mar 17 extraction
 ];
 
-// Rollover candidates - High risk items from S4
+// Rollover candidates - items from S5 that resolved
 export const ROLLOVER_HIGH_RISK: SprintItem[] = [
-  { key: 'BACK-1921', summary: 'Mercury HITL - Upload CSV & Create Training Set', category: 'Mercury HITL', staleDays: 0, unassigned: true },
-  { key: 'BACK-1532', summary: 'Fine-tune Mercury Extraction for Sunwest Bank', category: 'Sunwest', staleDays: 0, unassigned: true },
-  { key: 'BACK-1653', summary: 'Sunwest Bank - Extraction model fine-tuning', category: 'Sunwest', staleDays: 0, unassigned: true },
-  { key: 'BACK-1311', summary: 'Workflow Template for Single Model', category: 'Platform', staleDays: 0, unassigned: true },
-  { key: 'BACK-1300', summary: 'Single Model Output Handler CLI', category: 'Platform', staleDays: 0, unassigned: true },
-  { key: 'BACK-1299', summary: 'Single Model Input CLI', category: 'Platform', staleDays: 16, unassigned: false }
+  // All S5 rollovers resolved: BACK-1921 Done, BACK-1532/1653 Canceled, BACK-1311/1300/1299 Done
 ];
 
 // ARTEMIS Backlog Items -- Verified against JIRA Feb 22, 2026
@@ -230,7 +225,7 @@ export const ARTEMIS_BACKLOG: SprintItem[] = [
   { key: 'UI-734', summary: '[BLUEPRINT] ARTEMIS UI for BluePrint viewing and configuration', priority: 'Major', recommended: true },
 ];
 
-export const SPRINT_DATA_UPDATED = "2026-03-10T12:00:00-07:00";
+export const SPRINT_DATA_UPDATED = "2026-03-17T10:15:00-07:00";
 
 export function getSprintByStatus(status: 'active' | 'planned' | 'future'): Sprint | undefined {
   return SPRINTS.find(s => s.status === status);
@@ -267,6 +262,6 @@ export function getSprintMixChartData() {
 }
 
 export function formatDataTimestamp(isoString: string = EXTRACTION_TIMESTAMP): string {
-  return "March 10, 2026, 12:00 PM MT";
+  return "March 17, 2026, 10:15 AM MT";
 }
 

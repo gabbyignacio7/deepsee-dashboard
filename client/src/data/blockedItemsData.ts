@@ -1,5 +1,5 @@
-// Blocked Items Data - Updated March 10, 2026 at 12:00 PM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S5 (Day 11 of 14)
+// Blocked Items Data - Updated March 17, 2026 at 10:15 AM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S6 (Day 5 of 15)
 
 export interface BlockedItem {
   key: string;
@@ -18,86 +18,70 @@ export const sprintBlockedItems: BlockedItem[] = [
     key: "UI-740",
     summary: "Deep Recon - Add Dropdown List for Assignee Names",
     assignee: "Matthew Snow",
-    daysBlocked: 25,
+    daysBlocked: 32,
     category: "internal",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/UI-740",
-    reason: "Blocked 25 days -- internal dependency"
+    reason: "Blocked 32 days -- internal dependency"
   }
 ];
 
 // All blocked items including backlog
-// UI-743 DONE as of Mar 10 -- removed from blocked list
 export const blockedItems: BlockedItem[] = [
   {
     key: "UI-740",
     summary: "Deep Recon - Add Dropdown List for Assignee Names",
     assignee: "Matthew Snow",
-    daysBlocked: 25,
+    daysBlocked: 32,
     category: "internal",
     priority: "P2",
     jiraUrl: "https://deepsee.atlassian.net/browse/UI-740",
-    reason: "Blocked 25 days -- internal dependency"
+    reason: "Blocked 32 days -- internal dependency"
   }
 ];
 
-// Stale In Progress items (>5 days in status) -- from JIRA Mar 10 extraction
+// Stale In Progress items (>5 days in status) -- from JIRA Mar 17 extraction
 export const staleInProgressItems = [
-  { key: "UI-780", summary: "Handle 401 errors better", assignee: "Owen Riley", points: 2, lastUpdated: "2026-02-27", daysSinceUpdate: 11, jiraUrl: "https://deepsee.atlassian.net/browse/UI-780" },
-  { key: "CI-946", summary: "Investigate gpu node failure", assignee: "Chad Hegerhorst", points: 3, lastUpdated: "2026-02-28", daysSinceUpdate: 10, jiraUrl: "https://deepsee.atlassian.net/browse/CI-946" },
-  { key: "CI-937", summary: "Create Basic K8s Operator POC", assignee: "Jeff Hegerhorst", points: 5, lastUpdated: "2026-03-02", daysSinceUpdate: 8, jiraUrl: "https://deepsee.atlassian.net/browse/CI-937" },
-  { key: "BACK-1835", summary: "Documents PSQL Schema", assignee: "Aleksander Winski", points: 5, lastUpdated: "2026-03-04", daysSinceUpdate: 6, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1835" }
+  { key: "BACK-1796", summary: "Auto refresh Allegro password before expiry", assignee: "Kannal Mutharasu", points: 5, lastUpdated: "2026-02-28", daysSinceUpdate: 17, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1796" }
 ];
 
-// Stale Code Review items (>3 days) -- from JIRA Mar 10 extraction
-export const staleCodeReviewItems = [
-  { key: "BACK-1993", summary: "Documents Stuck in Mercury Bottleneck", assignee: "Unassigned", points: 0, daysInReview: 11, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1993" },
-  { key: "BACK-2011", summary: "Automations Improvements", assignee: "Lane Terry", points: 5, daysInReview: 6, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-2011" },
-  { key: "BACK-1980", summary: "AWS SQS to Kafka Camel Adapter", assignee: "Lane Terry", points: 5, daysInReview: 5, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1980" },
-  { key: "BACK-1303", summary: "ML Label/Challenge Workflow Template", assignee: "Ivan Peev", points: 0, daysInReview: 4, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1303" },
-  { key: "BACK-1302", summary: "ML Label/Challenge Output Handler CLI", assignee: "Ivan Peev", points: 0, daysInReview: 4, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1302" },
-  { key: "BACK-1298", summary: "ML Label/Challenge Workflow", assignee: "Ivan Peev", points: 13, daysInReview: 4, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1298" },
-  { key: "BACK-1301", summary: "ML Label/Challenge Input CLI", assignee: "Ivan Peev", points: 0, daysInReview: 4, jiraUrl: "https://deepsee.atlassian.net/browse/BACK-1301" }
-];
+// Stale Code Review items (>3 days) -- from JIRA Mar 17 extraction
+// ALL CLEARED -- 0 stale CR items. Massive improvement from 7 stale CR in S5.
+export const staleCodeReviewItems: typeof staleInProgressItems = [];
 
 export const blockedSummary = {
-  total: 20,
-  sprintBlocked: 1,
-  backlogBlocked: 19,
+  total: 11,
+  sprintBlocked: 0,
+  backlogBlocked: 10,
   p0Count: 0,
   p1Count: 0,
   p2Count: 1,
-  avgDaysBlocked: 3,
-  oldestBlocked: "UI-740 (5 days)",
-  unassignedCount: 1,
+  avgDaysBlocked: 32,
+  oldestBlocked: "UI-740 (32 days)",
+  unassignedCount: 0,
   staleInProgress: 1,
-  staleCodeReview: 3,
-  legacyFBItems: 6,
+  staleCodeReview: 0,
+  legacyFBItems: 0,
   longBlockedByAssignee: {
-    'Matthew Snow': 5,
-    'Owen Riley': 3,
-    'Unassigned': 5,
-    'Other': 3
+    'Matthew Snow': 4,
+    'Unassigned': 4,
+    'Other': 2
   }
 };
 
-// Long-blocked items in backlog (not in current sprint) - 15 total
+// Long-blocked items in backlog (not in current sprint) - 10 total
+// FB-xxxx items Canceled, UI-544/625 Canceled -- cleaned up
 export const longBlockedItems = [
-  { ticket: 'UI-607', summary: 'Sentiment and Relevance Visualization', assignee: 'Matthew Snow', daysBlocked: 106, updated: 'Nov 3' },
-  { ticket: 'UI-658', summary: 'Enable Customer Self-Service SSO/SAML', assignee: 'Matthew Snow', daysBlocked: 56, updated: 'Dec 23' },
-  { ticket: 'UI-606', summary: 'Provenance and Trust Indicators', assignee: 'Matthew Snow', daysBlocked: 56, updated: 'Dec 23' },
-  { ticket: 'UI-604', summary: 'Result Detail Drawer', assignee: 'Matthew Snow', daysBlocked: 56, updated: 'Dec 23' },
-  { ticket: 'UI-692', summary: 'Allow filtering/sorting by custom fields', assignee: 'Unassigned', daysBlocked: 42, updated: 'Jan 6' },
-  { ticket: 'UI-625', summary: 'Implement UI for paginated work item tasks', assignee: 'Owen Riley', daysBlocked: 42, updated: 'Jan 6' },
-  { ticket: 'UI-544', summary: 'Status Dashboard fix other hyperlinks', assignee: 'Matthew Snow', daysBlocked: 42, updated: 'Jan 6' },
-  { ticket: 'CI-739', summary: 'Update Pretoken-Generator Lambda', assignee: 'Unassigned', daysBlocked: 141, updated: 'Sep 29' },
-  { ticket: 'SYSADMN-89', summary: 'BambooHR to Azure AD Integration', assignee: 'Unassigned', daysBlocked: 886, updated: 'Sep 15, 2023' },
-  { ticket: 'FB-2013', summary: 'Increase timeout in FL server', assignee: 'Mitesh Yadav', daysBlocked: 909, updated: 'Aug 23, 2023' },
-  { ticket: 'FB-2001', summary: 'Update Federated Learning Model', assignee: 'Mitesh Yadav', daysBlocked: 909, updated: 'Aug 23, 2023' },
-  { ticket: 'FB-1803', summary: 'Integrate Federated Learning', assignee: 'Mitesh Yadav', daysBlocked: 909, updated: 'Aug 23, 2023' },
-  { ticket: 'FB-1493', summary: 'Populate DeepGraph with evaluation results', assignee: 'Unassigned', daysBlocked: 1177, updated: 'Nov 28, 2022' },
-  { ticket: 'FB-1442', summary: 'Save evaluations to DeepGraph', assignee: 'Matthew Poulton', daysBlocked: 936, updated: 'Jul 27, 2023' },
-  { ticket: 'FB-1437', summary: 'Integrate Document Endpoints with DeepGraph', assignee: 'Unassigned', daysBlocked: 1159, updated: 'Dec 16, 2022' }
+  { ticket: 'SYSADMN-89', summary: 'BambooHR to Azure AD Integration', assignee: 'Unassigned', daysBlocked: 893, updated: 'Sep 15, 2023' },
+  { ticket: 'CI-739', summary: 'Update Pretoken-Generator Lambda', assignee: 'Unassigned', daysBlocked: 169, updated: 'Sep 29, 2025' },
+  { ticket: 'UI-607', summary: 'Sentiment and Relevance Visualization', assignee: 'Matthew Snow', daysBlocked: 134, updated: 'Nov 3' },
+  { ticket: 'UI-604', summary: 'Result Detail Drawer', assignee: 'Matthew Snow', daysBlocked: 84, updated: 'Dec 23' },
+  { ticket: 'UI-606', summary: 'Provenance and Trust Indicators', assignee: 'Matthew Snow', daysBlocked: 84, updated: 'Dec 23' },
+  { ticket: 'UI-658', summary: 'Enable Customer Self-Service SSO/SAML', assignee: 'Matthew Snow', daysBlocked: 84, updated: 'Dec 23' },
+  { ticket: 'FB-786', summary: 'Set up separate PROD/non-PROD Azure accounts', assignee: 'Unassigned', daysBlocked: 103, updated: 'Dec 4' },
+  { ticket: 'UI-692', summary: 'Allow filtering/sorting by custom fields', assignee: 'Unassigned', daysBlocked: 70, updated: 'Jan 6' },
+  { ticket: 'UI-682', summary: 'Enhance Golden Source Picker for Colony', assignee: 'Unassigned', daysBlocked: 18, updated: 'Feb 27' },
+  { ticket: 'UI-740', summary: 'Deep Recon - Add Dropdown for Assignee Names', assignee: 'Matthew Snow', daysBlocked: 32, updated: 'Mar 3' }
 ];
 
 export function getBlockedByPriority(priority: "P0" | "P1" | "P2"): BlockedItem[] {
