@@ -722,6 +722,106 @@ export const changeLogMar9: ChangeLogEntry = {
   ]
 };
 
+export const changeLogMar23: ChangeLogEntry = {
+  date: "March 23, 2026",
+  timestamp: "3:58 PM MT",
+  source: "JIRA API + Monday.com GraphQL API - Automated extraction",
+
+  engineerChanges: [
+    { engineer: "Jeff Hegerhorst", change: "16 sprint tickets (8 pts) -- 14 Done. SOC2 DCF compliance batch completed. MASSIVE contribution." },
+    { engineer: "Chad Hegerhorst", change: "6 sprint tickets (0 pts) -- 6 Done. SOC2 DCF compliance batch completed." },
+    { engineer: "Kalvin Willison", change: "10 sprint tickets (12 pts) -- 8 Done, 1 IP (BACK-2077 Artemis Blueprint). Workflow studio shipped." },
+    { engineer: "Ivan Peev", change: "8 sprint tickets (25 pts) -- 5 Done, 1 IP (BACK-1326), 1 CR (BACK-2061). Highest points load." },
+    { engineer: "Kannal Mutharasu", change: "7 sprint tickets (9 pts) -- 4 Done (+2), 1 IP (BACK-2078), 1 ToDo. Tables email data work." },
+    { engineer: "Darius Ouderkirk", change: "6 sprint tickets (8 pts) -- 4 Done (+2). BACK-2051 extraction DONE. Custom analyzer mapping IP." },
+    { engineer: "Treven Trujillo", change: "4 sprint tickets (21 pts) -- 2 Done, 1 IP (BACK-2056 Critical), 1 CR (BACK-2043 stale 5d)." },
+    { engineer: "Lane Terry", change: "1 sprint ticket (3 pts) -- BACK-2012 moved from IP to Code Review. Debt=4." }
+  ],
+
+  ticketStatusChanges: [
+    { ticketId: "BACK-2012", previousStatus: "In Progress", newStatus: "Code Review", note: "Account Creation API Integration -- Lane Terry, was stale 6d IP, now in CR" },
+    { ticketId: "BACK-2051", previousStatus: "In Progress", newStatus: "Done", note: "DeepRecon Extraction issue DONE -- Darius Ouderkirk" },
+    { ticketId: "BACK-2047", previousStatus: "To Do", newStatus: "Done", note: "Missing JPM work items DONE -- Kannal" },
+    { ticketId: "BACK-2060", previousStatus: "In Progress", newStatus: "Done", note: "Counterparty Actors Statistics DONE -- Ivan Peev" },
+    { ticketId: "BACK-2059", previousStatus: "In Progress", newStatus: "Done", note: "Statistics API Updates DONE -- Ivan Peev" },
+    { ticketId: "CI-957", previousStatus: "To Do", newStatus: "Done", note: "CTC Bulk Reconciliation Demo promoted -- Jeff Hegerhorst" },
+    { ticketId: "BACK-2043", newStatus: "Code Review", note: "Merge artemis-platform -- Treven Trujillo, stale CR 5d" }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 14, totalStoryPoints: 179, trackedTickets: 122 },
+    current: { engineers: 14, totalStoryPoints: 190, trackedTickets: 129 }
+  },
+
+  dataUpdates: [
+    "Full JIRA API extraction via automated Python scripts (tools/jira_extract.py)",
+    "Full Monday.com GraphQL API extraction (tools/monday_extract.py) -- 117 accounts, $14.057M pipeline",
+    "Orphan ticket reconciliation -- 2 orphans (GPT-5, UI-761), 3 status changes",
+    "S6 Day 11: 129 tickets (+7), 190 pts (+11), 67 Done (68 pts) -- MASSIVE velocity surge",
+    "Done jumped from 25 to 67 (+42 tickets!) -- SOC2 compliance batch + client work",
+    "Jeff Hegerhorst: 16 sprint tickets, 14 Done -- SOC2 DCF compliance sweep",
+    "Chad Hegerhorst: 6 sprint tickets, 6 Done -- SOC2 DCF compliance sweep",
+    "Kalvin Willison: 10 tickets, 8 Done -- Artemis workflow studio, blueprint analytics shipped",
+    "4 blocked items persist (BACK-2042/2041/2017/2001) -- all unassigned, now 6 days blocked",
+    "Stale items down: 1 stale IP (BACK-2023 10d), 1 stale CR (BACK-2043 5d)",
+    "BACK-2012 advanced from stale IP to Code Review -- Lane Terry",
+    "ARTEMIS at 5.4% vs 60% target -- marginal improvement from 4.9%",
+    "Pipeline: $14.057M total (+$385K), $3.464M weighted (+$34K), 117 accounts (+3)",
+    "NEW deal: Vanguard $350K at QLD stage (2 days old)",
+    "DTCC close date UPDATED from Feb 13 to Mar 20 -- now only 3 days overdue!",
+    "Colony Bank contract expired -51 days. BetaNxt close Mar 6 expired (17d).",
+    "S7 planning: only 2 tickets, 1 assigned. CRITICAL gap with 4 days until sprint start."
+  ]
+};
+
+export const changeLogMar19: ChangeLogEntry = {
+  date: "March 19, 2026",
+  timestamp: "2:51 PM MT",
+  source: "JIRA API + Monday.com GraphQL API - Automated extraction",
+
+  engineerChanges: [
+    { engineer: "Ivan Peev", change: "8 sprint tickets (25 pts) -- 4 Done, 2 CR (BACK-2060, BACK-1326), 2 IP. Highest load." },
+    { engineer: "Kalvin Willison", change: "7 sprint tickets (10 pts) -- 5 Done, 1 IP, 1 WFA. Strong velocity continues." },
+    { engineer: "Kannal Mutharasu", change: "4 sprint tickets (6 pts) -- 2 Done, 1 IP, 1 ToDo. BACK-1796 DONE! 17-day stale cleared." },
+    { engineer: "Lane Terry", change: "1 sprint ticket (3 pts) -- RED: BACK-2012 stale 6d IP. Debt increased." },
+    { engineer: "Jeff Hegerhorst", change: "2 sprint tickets (3 pts) -- up from 0. Now has CI work assigned." },
+    { engineer: "Chad Hegerhorst", change: "1 sprint ticket (0 pts) -- up from 0. Now has sprint ticket." },
+    { engineer: "Treven Trujillo", change: "4 sprint tickets (21 pts) -- 2 Done, 1 CR (BACK-2043), 1 IP. Strong points." }
+  ],
+
+  ticketStatusChanges: [
+    { ticketId: "BACK-1796", previousStatus: "In Progress", newStatus: "Done", note: "Allegro password refresh DONE -- 17-day stale item cleared! Kannal." },
+    { ticketId: "BACK-2042", newStatus: "Blocked", note: "Tooling Library for Agent consumption -- unassigned, blocked 2d" },
+    { ticketId: "BACK-2041", newStatus: "Blocked", note: "Artemis Implementation Checklist -- unassigned, blocked 2d" },
+    { ticketId: "BACK-2017", newStatus: "Blocked", note: "Provision all documents returned by CU -- unassigned, blocked 2d" },
+    { ticketId: "BACK-2001", newStatus: "Blocked", note: "Auto generate terms not in schema -- unassigned, blocked 2d" },
+    { ticketId: "BACK-2012", newStatus: "In Progress", note: "Account Creation API Integration -- Lane Terry, stale 6d" },
+    { ticketId: "BACK-2023", newStatus: "In Progress", note: "Sunwest Treasury Custom Analyzers -- Brandon Baguley, stale 6d" }
+  ],
+
+  metricsComparison: {
+    previous: { engineers: 14, totalStoryPoints: 84, trackedTickets: 100 },
+    current: { engineers: 14, totalStoryPoints: 179, trackedTickets: 122 }
+  },
+
+  dataUpdates: [
+    "Full JIRA API extraction via automated Python scripts (tools/jira_extract.py)",
+    "Full Monday.com GraphQL API extraction (tools/monday_extract.py) -- 114 accounts, $13.672M pipeline",
+    "Orphan ticket reconciliation -- 2 orphans (GPT-5, UI-761), 1 status change",
+    "S6 Day 7: 122 tickets (+22), 179 pts (+95), 25 Done (57 pts) -- MASSIVE expansion",
+    "Sprint expanded from 100 to 122 tickets, 84 to 179 pts (CI infra tickets batch-added)",
+    "4 NEW blocked items (BACK-2042/2041/2017/2001) -- all unassigned, caused health RED",
+    "BACK-1796 Allegro password refresh DONE -- 17-day stale item cleared (Kannal)",
+    "Health REGRESSED: YELLOW -> RED (blocked items + behind pace 20.5% vs 46.7%)",
+    "2 stale IP items: BACK-2012 (Lane 6d), BACK-2023 (Brandon 6d)",
+    "Jeff/Chad now have sprint tickets (were 0 on Mar 17). 3 engineers still at 0.",
+    "ARTEMIS at 4.9% vs 60% target -- marginally improved from 4.0%",
+    "Pipeline: $13.672M total (+$96K), $3.430M weighted (+$10K), 114 deals",
+    "Banking segment grew $96K ($934K to $1.030M) -- Tony Maucieri deals",
+    "Colony Bank contract expired -47 days. BetaNxt close Mar 6 expired (13d)."
+  ]
+};
+
 export const changeLogMar17: ChangeLogEntry = {
   date: "March 17, 2026",
   timestamp: "10:15 AM MT",
@@ -817,6 +917,8 @@ export const changeLogMar10: ChangeLogEntry = {
 };
 
 export const changeLog: ChangeLogEntry[] = [
+  changeLogMar23,
+  changeLogMar19,
   changeLogMar17,
   changeLogMar10,
   changeLogMar9,

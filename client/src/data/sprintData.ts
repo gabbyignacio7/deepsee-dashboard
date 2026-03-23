@@ -1,8 +1,8 @@
-// Sprint Data - Updated March 17, 2026 at 10:15 AM MT
-// Source: JIRA Sprint Extraction - Sprint 2026-S6 (Active - Day 5 of 15)
+// Sprint Data - Updated March 23, 2026 at 3:58 PM MT
+// Source: JIRA Sprint Extraction - Sprint 2026-S6 (Active - Day 11 of 15)
 // CRITICAL: NEXT_SPRINT_READINESS export is required by executive.tsx - DO NOT REMOVE
 
-export const EXTRACTION_TIMESTAMP = "2026-03-17T10:15:00-07:00";
+export const EXTRACTION_TIMESTAMP = "2026-03-23T15:58:00-07:00";
 export const DATA_SOURCE = "JIRA Sprint Extraction + Monday.com CRM";
 
 export interface SprintStatus {
@@ -91,31 +91,31 @@ export const PREVIOUS_SPRINT: Sprint = {
   assessment: 'client-heavy'
 };
 
-// S6 - ACTIVE (current sprint - Day 5 of 15)
+// S6 - ACTIVE (current sprint - Day 11 of 15)
 export const CURRENT_SPRINT: Sprint = {
   id: '2026-S6',
   name: 'Sprint 2026-S6',
   startDate: '2026-03-12',
   endDate: '2026-03-27',
   status: 'active',
-  totalTickets: 100,
-  totalPoints: 84,
-  completedTickets: 10,
-  completedPoints: 21,
+  totalTickets: 129,
+  totalPoints: 190,
+  completedTickets: 67,
+  completedPoints: 68,
   completion: {
-    toDo: 77,
-    blocked: 0,
-    inProgress: 9,
-    codeReview: 3,
-    done: 10
+    toDo: 41,
+    blocked: 4,
+    inProgress: 11,
+    codeReview: 4,
+    done: 67
   },
-  completionRate: 10.0,
-  pointsCompletionRate: 25.0,
-  health: 'yellow',
-  daysRemaining: 10,
-  daysElapsed: 5,
+  completionRate: 51.9,
+  pointsCompletionRate: 35.8,
+  health: 'red',
+  daysRemaining: 4,
+  daysElapsed: 11,
   likelyRollovers: 0,
-  mix: { artemis: 4, client: 8, infrastructure: 3 },
+  mix: { artemis: 7, client: 9, infrastructure: 3 },
   assessment: 'client-heavy'
 };
 
@@ -126,19 +126,19 @@ export const NEXT_SPRINT: Sprint = {
   startDate: '2026-03-27',
   endDate: 'TBD',
   status: 'planned',
-  totalTickets: 0,
-  totalPoints: 0,
+  totalTickets: 2,
+  totalPoints: 3,
   completedTickets: 0,
   completedPoints: 0,
   completion: {
-    toDo: 0,
+    toDo: 2,
     blocked: 0,
     inProgress: 0,
     codeReview: 0,
     done: 0
   },
   completionRate: 0,
-  health: 'green',
+  health: 'red',
   daysRemaining: 14,
   daysElapsed: 0,
   mix: { artemis: 60, client: 25, infrastructure: 15 },
@@ -170,18 +170,18 @@ export const currentSprint = CURRENT_SPRINT;
 
 // CRITICAL: This export is required by executive.tsx and NextSprintReadiness.tsx - DO NOT REMOVE
 export const NEXT_SPRINT_READINESS = {
-  totalTickets: 0,
-  assigned: 0,
-  unassigned: 0,
-  withStoryPoints: 0,
-  missingEstimates: 0,
+  totalTickets: 2,
+  assigned: 1,
+  unassigned: 1,
+  withStoryPoints: 1,
+  missingEstimates: 1,
   readinessStatus: 'NOT STARTED',
   projectBreakdown: [] as { project: string; count: number }[],
   assignedEngineers: [] as { name: string; tickets: number }[],
   blockers: [
-    'S7 not yet planned -- 10 days until sprint start',
-    'S6 Day 5: 10% complete vs 33.3% expected -- early sprint, typical ramp-up',
-    'Focus on S6 execution: Colony/Sunwest/CTC extraction + SOC 2 audit sprint goals'
+    'S7 has only 2 tickets -- 4 days until sprint start',
+    'S6 Day 11: 51.9% complete vs 73.3% expected -- still behind pace',
+    '4 blocked items persist (all unassigned) -- must resolve before S7'
   ]
 };
 
@@ -225,7 +225,7 @@ export const ARTEMIS_BACKLOG: SprintItem[] = [
   { key: 'UI-734', summary: '[BLUEPRINT] ARTEMIS UI for BluePrint viewing and configuration', priority: 'Major', recommended: true },
 ];
 
-export const SPRINT_DATA_UPDATED = "2026-03-17T10:15:00-07:00";
+export const SPRINT_DATA_UPDATED = "2026-03-23T15:58:00-07:00";
 
 export function getSprintByStatus(status: 'active' | 'planned' | 'future'): Sprint | undefined {
   return SPRINTS.find(s => s.status === status);
@@ -262,6 +262,7 @@ export function getSprintMixChartData() {
 }
 
 export function formatDataTimestamp(isoString: string = EXTRACTION_TIMESTAMP): string {
-  return "March 17, 2026, 10:15 AM MT";
+  return "March 23, 2026, 3:58 PM MT";
 }
+
 
